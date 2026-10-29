@@ -18,16 +18,23 @@
     <button data-mode="hard">Hard: 30 seconds, tougher enemies, better loot</button>
   </div>
 
-  <div id="question-panel" hidden>
+  <div id="battle-panel" hidden>
     <p id="mode-label"></p>
-    <div id="timer">
-      <div id="timer-track"><div id="timer-bar"></div></div>
-      <span id="timer-text"></span>
+    <p id="battle-log"></p>
+
+    <div id="skills"></div>
+
+    <div id="question-area" hidden>
+      <div id="timer">
+        <div id="timer-track"><div id="timer-bar"></div></div>
+        <span id="timer-text"></span>
+      </div>
+      <p id="question-text"></p>
+      <div id="choices"></div>
+      <p id="feedback"></p>
     </div>
-    <p id="question-text"></p>
-    <div id="choices"></div>
-    <p id="feedback"></p>
-    <button id="next-button" hidden>Next question</button>
+
+    <button id="next-button" hidden>Continue</button>
   </div>
 
   <script src="js/main.js"></script>

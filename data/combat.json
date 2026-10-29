@@ -1,0 +1,26 @@
+{
+  "skills": [
+    {
+      "id": "firewall-rule",
+      "name": "Firewall Rule",
+      "topic": "control-categories",
+      "damage": 20,
+      "description": "Name the control category to strike."
+    },
+    {
+      "id": "patch-deploy",
+      "name": "Patch Deploy",
+      "topic": "control-types",
+      "damage": 25,
+      "description": "Name the control type to strike harder."
+    }
+  ],
+  "enemies": [
+    {
+      "id": "misconfig-gremlin",
+      "name": "Misconfig Gremlin",
+      "zone": "controls-yard",
+      "hp": 80
+    }
+  ]
+}

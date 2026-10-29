@@ -26,13 +26,14 @@ body {
 
 #status,
 #mode-panel,
-#question-panel {
+#battle-panel {
   width: 100%;
   max-width: 960px;
   font-size: 18px;
 }
 
 #mode-panel button,
+#skills button,
 #choices button,
 #next-button {
   display: block;
@@ -50,6 +51,25 @@ body {
 #mode-label {
   color: #7fa894;
   margin: 0 0 8px;
+}
+
+#battle-log {
+  color: #ffd166;
+  min-height: 1.2em;
+}
+
+/* Skill buttons: name on the first line, details underneath */
+#skills button small {
+  display: block;
+  color: #7fa894;
+  margin-top: 4px;
+}
+
+#skills button:hover,
+#choices button:hover:enabled,
+#mode-panel button:hover,
+#next-button:hover {
+  background: #12301f;
 }
 
 /* Countdown: a track with a bar inside that shrinks as time runs out */
