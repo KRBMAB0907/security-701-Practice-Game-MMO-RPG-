@@ -23,7 +23,7 @@ The five areas follow the five SY0-701 domains:
 | The Foundry | 1.0 General Security Concepts | 12% | Playable: all four sub-zones plus the Foundry Heart finale |
 | The Breach Wastes | 2.0 Threats, Vulnerabilities, and Mitigations | 22% | Playable: 5 sub-zones plus the Breach Core finale |
 | The Citadel | 3.0 Security Architecture | 18% | Playable: 4 sub-zones plus the Citadel Keep finale |
-| The Operations Deep | 4.0 Security Operations | 28% | Planned |
+| The Operations Deep | 4.0 Security Operations | 28% | Playable: 9 sub-zones plus the Operations Core finale |
 | The Council Spire | 5.0 Security Program Management and Oversight | 20% | Planned |
 
 Clearing an area's finale unlocks the next area. The question bank already covers all 28 exam objectives (300+ questions), so new areas are built on top of it.

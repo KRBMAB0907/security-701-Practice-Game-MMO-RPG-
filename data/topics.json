@@ -155,21 +155,24 @@
           "id": "4.2",
           "title": "Explain the security implications of proper hardware, software, and data asset management",
           "topics": [
-            { "id": "asset-management", "name": "Asset management" }
+            { "id": "asset-management", "name": "Asset acquisition and tracking" },
+            { "id": "asset-disposal", "name": "Asset disposal and data retention" }
           ]
         },
         {
           "id": "4.3",
           "title": "Explain various activities associated with vulnerability management",
           "topics": [
-            { "id": "vuln-management", "name": "Vulnerability management" }
+            { "id": "vuln-identification", "name": "Finding vulnerabilities" },
+            { "id": "vuln-management", "name": "Analyzing and fixing vulnerabilities" }
           ]
         },
         {
           "id": "4.4",
           "title": "Explain security alerting and monitoring concepts and tools",
           "topics": [
-            { "id": "monitoring", "name": "Alerting and monitoring" }
+            { "id": "monitoring", "name": "SIEM, logs and alerting" },
+            { "id": "monitoring-tools", "name": "Monitoring tools and protocols" }
           ]
         },
         {
@@ -193,7 +196,8 @@
           "id": "4.7",
           "title": "Explain the importance of automation and orchestration related to secure operations",
           "topics": [
-            { "id": "automation", "name": "Automation and orchestration" }
+            { "id": "automation", "name": "Automation use cases" },
+            { "id": "automation-considerations", "name": "Benefits and risks of automation" }
           ]
         },
         {
@@ -208,7 +212,8 @@
           "id": "4.9",
           "title": "Given a scenario, use data sources to support an investigation",
           "topics": [
-            { "id": "investigation-data", "name": "Logs and data sources" }
+            { "id": "investigation-data", "name": "Log data" },
+            { "id": "investigation-sources", "name": "Packet captures, metadata and other sources" }
           ]
         }
       ]

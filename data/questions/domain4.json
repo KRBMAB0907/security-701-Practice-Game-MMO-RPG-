@@ -146,7 +146,7 @@
     {
       "id": "d4-011",
       "objective": "4.2",
-      "topic": "asset-management",
+      "topic": "asset-disposal",
       "question": "Before old laptops are donated, all data is overwritten so it cannot be recovered. What is this process called?",
       "choices": [
         "Procurement",
@@ -160,7 +160,7 @@
     {
       "id": "d4-012",
       "objective": "4.2",
-      "topic": "asset-management",
+      "topic": "asset-disposal",
       "question": "Hard drives that held top-secret data must never be reused. What disposal method fits best?",
       "choices": [
         "Physical destruction, such as shredding",
@@ -174,7 +174,7 @@
     {
       "id": "d4-013",
       "objective": "4.2",
-      "topic": "asset-management",
+      "topic": "asset-disposal",
       "question": "A third-party disposal company provides a document confirming that specific drives were destroyed. What is this document called?",
       "choices": [
         "Certificate of destruction",
@@ -188,7 +188,7 @@
     {
       "id": "d4-014",
       "objective": "4.2",
-      "topic": "asset-management",
+      "topic": "asset-disposal",
       "question": "A law requires financial records to be kept for seven years. Which practice ensures this?",
       "choices": [
         "Sandboxing",
@@ -258,7 +258,7 @@
     {
       "id": "d4-019",
       "objective": "4.3",
-      "topic": "vuln-management",
+      "topic": "vuln-identification",
       "question": "A vulnerability scanner reports a flaw that, after investigation, does not actually exist on the system. What is this?",
       "choices": [
         "False positive",
@@ -272,7 +272,7 @@
     {
       "id": "d4-020",
       "objective": "4.3",
-      "topic": "vuln-management",
+      "topic": "vuln-identification",
       "question": "A real vulnerability exists on a server, but the scanner does not report it. What is this?",
       "choices": [
         "True negative",
@@ -286,7 +286,7 @@
     {
       "id": "d4-021",
       "objective": "4.3",
-      "topic": "vuln-management",
+      "topic": "vuln-identification",
       "question": "Why does a credentialed vulnerability scan usually find more than a non-credentialed scan?",
       "choices": [
         "It does not need network access",
@@ -314,7 +314,7 @@
     {
       "id": "d4-023",
       "objective": "4.3",
-      "topic": "vuln-management",
+      "topic": "vuln-identification",
       "question": "A company pays outside researchers who find and responsibly report vulnerabilities in its products. What is this program called?",
       "choices": [
         "Tabletop exercise",
@@ -384,7 +384,7 @@
     {
       "id": "d4-028",
       "objective": "4.4",
-      "topic": "monitoring",
+      "topic": "monitoring-tools",
       "question": "Which technology records summary information about traffic flows, such as source, destination and amount of data, without capturing full packet contents?",
       "choices": [
         "SNMP traps",
@@ -398,7 +398,7 @@
     {
       "id": "d4-029",
       "objective": "4.4",
-      "topic": "monitoring",
+      "topic": "monitoring-tools",
       "question": "A network switch sends an alert message to a monitoring server when one of its ports goes down. What is this message called?",
       "choices": [
         "CVE entry",
@@ -412,7 +412,7 @@
     {
       "id": "d4-030",
       "objective": "4.4",
-      "topic": "monitoring",
+      "topic": "monitoring-tools",
       "question": "Which tool detects and blocks sensitive data, such as credit card numbers, from leaving the organization?",
       "choices": [
         "Data loss prevention (DLP)",
@@ -706,7 +706,7 @@
     {
       "id": "d4-051",
       "objective": "4.7",
-      "topic": "automation",
+      "topic": "automation-considerations",
       "question": "What is a major security benefit of automating routine tasks such as account creation?",
       "choices": [
         "Automation never needs maintenance",
@@ -762,7 +762,7 @@
     {
       "id": "d4-055",
       "objective": "4.7",
-      "topic": "automation",
+      "topic": "automation-considerations",
       "question": "What is a risk of relying heavily on automation?",
       "choices": [
         "Automated tasks cannot be logged",
@@ -776,7 +776,7 @@
     {
       "id": "d4-056",
       "objective": "4.7",
-      "topic": "automation",
+      "topic": "automation-considerations",
       "question": "Automation scripts written quickly and never maintained can create which long-term problem?",
       "choices": [
         "Non-repudiation",
@@ -972,7 +972,7 @@
     {
       "id": "d4-070",
       "objective": "4.9",
-      "topic": "investigation-data",
+      "topic": "investigation-sources",
       "question": "Which data source captures the full contents of network traffic for detailed analysis?",
       "choices": [
         "SNMP traps",
@@ -986,7 +986,7 @@
     {
       "id": "d4-071",
       "objective": "4.9",
-      "topic": "investigation-data",
+      "topic": "investigation-sources",
       "question": "To trace where a phishing email really came from, which data is most useful?",
       "choices": [
         "The printer logs",
@@ -1042,7 +1042,7 @@
     {
       "id": "d4-075",
       "objective": "4.9",
-      "topic": "investigation-data",
+      "topic": "investigation-sources",
       "question": "What is the main benefit of a SIEM dashboard during an investigation?",
       "choices": [
         "It permanently deletes old logs",
@@ -1052,6 +1052,860 @@
       ],
       "answer": 1,
       "explanation": "Dashboards give a fast overview of what is happening, helping investigators decide where to dig deeper."
+    },
+    {
+      "id": "d4-076",
+      "objective": "4.1",
+      "topic": "secure-baselines",
+      "question": "After a secure baseline has been deployed to all servers, what still needs to happen?",
+      "choices": [
+        "Nothing, baselines never change",
+        "It should be deleted to save space",
+        "Each user should edit it as they like",
+        "It must be maintained, reviewed and updated as threats and software change"
+      ],
+      "answer": 3,
+      "explanation": "Baselines follow a cycle: establish, deploy, maintain. An outdated baseline slowly becomes insecure."
+    },
+    {
+      "id": "d4-077",
+      "objective": "4.1",
+      "topic": "secure-baselines",
+      "question": "Which belongs on a hardening checklist for a network switch?",
+      "choices": [
+        "Disable unused ports and change the default admin credentials",
+        "Turn off all logging",
+        "Share the admin password with all staff",
+        "Enable every port for convenience"
+      ],
+      "answer": 0,
+      "explanation": "Unused ports invite rogue devices, and default credentials are publicly known. Both are easy, high-value fixes."
+    },
+    {
+      "id": "d4-078",
+      "objective": "4.1",
+      "topic": "secure-baselines",
+      "question": "Industrial control systems are hard to patch. How are they usually hardened instead?",
+      "choices": [
+        "By connecting them directly to the internet",
+        "By disabling all authentication",
+        "By segmenting them from other networks and tightly restricting access",
+        "By installing games to test performance"
+      ],
+      "answer": 2,
+      "explanation": "When patching is limited, isolation and strict access control become the main protections."
+    },
+    {
+      "id": "d4-079",
+      "objective": "4.1",
+      "topic": "secure-baselines",
+      "question": "Which Windows feature can push the same secure settings to thousands of domain computers at once?",
+      "choices": [
+        "Captive portal",
+        "NetFlow",
+        "Port mirroring",
+        "Group Policy"
+      ],
+      "answer": 3,
+      "explanation": "Group Policy centrally enforces a baseline, such as password rules and disabled services, across a Windows domain."
+    },
+    {
+      "id": "d4-080",
+      "objective": "4.1",
+      "topic": "app-security",
+      "question": "Reviewing an application's source code for vulnerabilities without running it is called:",
+      "choices": [
+        "Penetration testing",
+        "Static code analysis",
+        "Load testing",
+        "Dynamic analysis"
+      ],
+      "answer": 1,
+      "explanation": "Static analysis tools scan code for risky patterns, like unsafe input handling, early in development."
+    },
+    {
+      "id": "d4-081",
+      "objective": "4.1",
+      "topic": "app-security",
+      "question": "Which cookie attribute makes sure a cookie is only sent over encrypted HTTPS connections?",
+      "choices": [
+        "Path",
+        "Domain",
+        "Secure",
+        "Expires"
+      ],
+      "answer": 2,
+      "explanation": "The Secure attribute stops the browser from sending the cookie over plain HTTP, where it could be intercepted."
+    },
+    {
+      "id": "d4-082",
+      "objective": "4.1",
+      "topic": "app-security",
+      "question": "Why should session cookies use the HttpOnly attribute?",
+      "choices": [
+        "It makes the cookie load faster",
+        "It stops scripts in the page from reading the cookie, reducing theft through XSS",
+        "It encrypts the cookie with a public key",
+        "It lets the cookie work on any website"
+      ],
+      "answer": 1,
+      "explanation": "If an XSS attack runs in the page, HttpOnly keeps it from grabbing the session cookie and hijacking the account."
+    },
+    {
+      "id": "d4-083",
+      "objective": "4.2",
+      "topic": "asset-management",
+      "question": "Why should assets be classified by how important they are to the business?",
+      "choices": [
+        "So every asset gets exactly the same budget",
+        "So assets can skip patching",
+        "So they never need an owner",
+        "So the most critical assets get the strongest protection and fastest response"
+      ],
+      "answer": 3,
+      "explanation": "Classification guides priorities, from patching order to monitoring and recovery planning."
+    },
+    {
+      "id": "d4-084",
+      "objective": "4.2",
+      "topic": "asset-management",
+      "question": "Recording which employee has which laptop and phone is part of which asset management activity?",
+      "choices": [
+        "Assignment and accounting",
+        "Disposal",
+        "Data retention",
+        "Sanitization"
+      ],
+      "answer": 0,
+      "explanation": "Knowing who holds each asset makes it possible to recover devices and remove access when people leave."
+    },
+    {
+      "id": "d4-085",
+      "objective": "4.2",
+      "topic": "asset-management",
+      "question": "How do RFID or barcode asset tags help security?",
+      "choices": [
+        "They make it easy to track where assets are and notice when they go missing",
+        "They block malware",
+        "They replace the need for passwords",
+        "They encrypt the device's storage"
+      ],
+      "answer": 0,
+      "explanation": "Asset tracking supports accurate inventories and helps detect theft or loss quickly."
+    },
+    {
+      "id": "d4-086",
+      "objective": "4.2",
+      "topic": "asset-management",
+      "question": "An inventory scan finds unapproved software installed on many computers. Which asset management activity caught this?",
+      "choices": [
+        "Procurement",
+        "Monitoring and asset tracking",
+        "Disposal",
+        "Certification of destruction"
+      ],
+      "answer": 1,
+      "explanation": "Ongoing monitoring of assets reveals unauthorized hardware and software that could introduce risk."
+    },
+    {
+      "id": "d4-087",
+      "objective": "4.2",
+      "topic": "asset-disposal",
+      "question": "Using a powerful magnetic field to erase the data on old magnetic hard drives is called:",
+      "choices": [
+        "Formatting",
+        "Hashing",
+        "Tokenization",
+        "Degaussing"
+      ],
+      "answer": 3,
+      "explanation": "Degaussing scrambles magnetic media. It does not work on solid-state drives, which need other methods."
+    },
+    {
+      "id": "d4-088",
+      "objective": "4.2",
+      "topic": "asset-disposal",
+      "question": "Why is quick-formatting a hard drive not enough before getting rid of it?",
+      "choices": [
+        "Formatted drives cannot be sold",
+        "Formatting physically destroys the drive",
+        "The data is usually still recoverable with common tools",
+        "Formatting encrypts the data permanently"
+      ],
+      "answer": 2,
+      "explanation": "A quick format mostly removes the index to the data, not the data itself. Proper sanitization overwrites or destroys it."
+    },
+    {
+      "id": "d4-089",
+      "objective": "4.2",
+      "topic": "asset-disposal",
+      "question": "Why should data be securely deleted once its required retention period ends?",
+      "choices": [
+        "Deleted data improves backups",
+        "Old data makes computers faster",
+        "Laws require keeping all data forever",
+        "Data kept longer than needed adds risk and liability if it is breached"
+      ],
+      "answer": 3,
+      "explanation": "Retention policies set a minimum and a maximum. Data you no longer hold cannot be stolen."
+    },
+    {
+      "id": "d4-090",
+      "objective": "4.3",
+      "topic": "vuln-identification",
+      "question": "Which activity actively tries to exploit vulnerabilities to prove they are real and show their impact?",
+      "choices": [
+        "Asset tagging",
+        "Penetration testing",
+        "Reading threat feeds",
+        "A passive vulnerability scan"
+      ],
+      "answer": 1,
+      "explanation": "A penetration test goes beyond finding flaws: it shows what an attacker could actually achieve with them."
+    },
+    {
+      "id": "d4-091",
+      "objective": "4.3",
+      "topic": "vuln-identification",
+      "question": "How do vendor security advisories and threat feeds help vulnerability management?",
+      "choices": [
+        "They encrypt the network",
+        "They patch systems automatically",
+        "They alert the team quickly to new vulnerabilities affecting their systems",
+        "They replace vulnerability scanning"
+      ],
+      "answer": 2,
+      "explanation": "Threat intelligence sources, including OSINT, help teams identify and prioritize new risks faster."
+    },
+    {
+      "id": "d4-092",
+      "objective": "4.3",
+      "topic": "vuln-identification",
+      "question": "Testing a running application by sending it unexpected and malformed input to find flaws is an example of:",
+      "choices": [
+        "Dynamic analysis",
+        "Code signing",
+        "Static code analysis",
+        "Asset enumeration"
+      ],
+      "answer": 0,
+      "explanation": "Dynamic analysis, such as fuzzing, finds problems that only appear when the program is actually running."
+    },
+    {
+      "id": "d4-093",
+      "objective": "4.3",
+      "topic": "vuln-identification",
+      "question": "Which method checks the third-party libraries an application uses for known vulnerabilities?",
+      "choices": [
+        "Load balancing",
+        "Data masking",
+        "Package monitoring",
+        "Port mirroring"
+      ],
+      "answer": 2,
+      "explanation": "Applications rely on many outside packages. Monitoring them catches known flaws in code you did not write."
+    },
+    {
+      "id": "d4-094",
+      "objective": "4.3",
+      "topic": "vuln-management",
+      "question": "Two vulnerabilities have the same CVSS score, but one is on a public web server holding customer data. Which should be fixed first?",
+      "choices": [
+        "Whichever was found first",
+        "Neither, since the scores match",
+        "The one on the isolated test server",
+        "The one on the public web server with customer data"
+      ],
+      "answer": 3,
+      "explanation": "Prioritization considers context, such as exposure and asset value, not just the severity score."
+    },
+    {
+      "id": "d4-095",
+      "objective": "4.3",
+      "topic": "vuln-management",
+      "question": "In vulnerability analysis, what does exposure factor describe?",
+      "choices": [
+        "How much of an asset would be lost or affected if the vulnerability were exploited",
+        "How many people know about the vulnerability",
+        "How long the scan took",
+        "The number of open ports"
+      ],
+      "answer": 0,
+      "explanation": "Exposure factor helps estimate impact, which feeds into deciding how urgently to respond."
+    },
+    {
+      "id": "d4-096",
+      "objective": "4.3",
+      "topic": "vuln-management",
+      "question": "Why should vulnerability management produce regular reports for leadership?",
+      "choices": [
+        "To replace patching",
+        "To show risk trends and track whether remediation is keeping up",
+        "To list every employee's password",
+        "To meet the minimum number of pages"
+      ],
+      "answer": 1,
+      "explanation": "Reporting keeps leaders informed and accountable, and highlights where more resources are needed."
+    },
+    {
+      "id": "d4-097",
+      "objective": "4.4",
+      "topic": "monitoring",
+      "question": "A SIEM links a failed VPN login from one country with a successful login from another country five minutes later. What SIEM capability is this?",
+      "choices": [
+        "Correlation",
+        "Tokenization",
+        "Archiving",
+        "Load balancing"
+      ],
+      "answer": 0,
+      "explanation": "Correlation connects events from different sources that together reveal an attack, even if each alone looks harmless."
+    },
+    {
+      "id": "d4-098",
+      "objective": "4.4",
+      "topic": "monitoring",
+      "question": "Monitoring that requires installing software on each system to collect data is called:",
+      "choices": [
+        "Agentless monitoring",
+        "Passive reconnaissance",
+        "Agent-based monitoring",
+        "Port mirroring"
+      ],
+      "answer": 2,
+      "explanation": "Agents gather detailed data from inside a system. Agentless monitoring collects data remotely, with less detail but no install."
+    },
+    {
+      "id": "d4-099",
+      "objective": "4.4",
+      "topic": "monitoring",
+      "question": "After responding to an alert, the team checks that the threat is really gone and the fix worked. What is this step?",
+      "choices": [
+        "Quarantine",
+        "Validation",
+        "Archiving",
+        "Procurement"
+      ],
+      "answer": 1,
+      "explanation": "Validation confirms remediation succeeded before the alert is closed, so the threat does not quietly return."
+    },
+    {
+      "id": "d4-100",
+      "objective": "4.4",
+      "topic": "monitoring-tools",
+      "question": "Which standard lets security tools automatically check systems for vulnerabilities and configuration problems using shared formats?",
+      "choices": [
+        "SNMPv1",
+        "FTP",
+        "SMTP",
+        "SCAP (Security Content Automation Protocol)"
+      ],
+      "answer": 3,
+      "explanation": "SCAP provides common languages for describing vulnerabilities and configurations, so different tools can share and automate checks."
+    },
+    {
+      "id": "d4-101",
+      "objective": "4.4",
+      "topic": "monitoring-tools",
+      "question": "A team compares server settings against the CIS Benchmarks. What are they doing?",
+      "choices": [
+        "Issuing certificates",
+        "Creating backups",
+        "Measuring network speed",
+        "Checking configurations against a recognized security benchmark"
+      ],
+      "answer": 3,
+      "explanation": "Benchmarks describe secure settings for specific systems. Comparing against them reveals weak configurations."
+    },
+    {
+      "id": "d4-102",
+      "objective": "4.4",
+      "topic": "monitoring-tools",
+      "question": "Which tool regularly checks systems for missing patches and known weaknesses?",
+      "choices": [
+        "Vulnerability scanner",
+        "Load balancer",
+        "Proxy server",
+        "Captive portal"
+      ],
+      "answer": 0,
+      "explanation": "Vulnerability scanners feed monitoring with up-to-date information about where systems are exposed."
+    },
+    {
+      "id": "d4-103",
+      "objective": "4.4",
+      "topic": "monitoring-tools",
+      "question": "Which version of SNMP adds authentication and encryption?",
+      "choices": [
+        "SNMPv1",
+        "SNMPv2c",
+        "SNMPv3",
+        "SNMP traps only"
+      ],
+      "answer": 2,
+      "explanation": "Older SNMP versions send community strings in plain text. SNMPv3 protects monitoring traffic."
+    },
+    {
+      "id": "d4-104",
+      "objective": "4.5",
+      "topic": "security-tools",
+      "question": "Which tool blocks employees from visiting websites in categories like gambling or known malware sites?",
+      "choices": [
+        "SNMP trap",
+        "Web filter",
+        "Hardware security module",
+        "Load balancer"
+      ],
+      "answer": 1,
+      "explanation": "Web (content) filters enforce acceptable use and block access to known malicious or inappropriate sites."
+    },
+    {
+      "id": "d4-105",
+      "objective": "4.5",
+      "topic": "security-tools",
+      "question": "Which Linux security feature enforces mandatory access control policies on processes?",
+      "choices": [
+        "OAuth",
+        "SELinux",
+        "Group Policy",
+        "NetFlow"
+      ],
+      "answer": 1,
+      "explanation": "SELinux limits what each process can do, even if it runs as a privileged user, containing the damage from a compromise."
+    },
+    {
+      "id": "d4-106",
+      "objective": "4.5",
+      "topic": "security-tools",
+      "question": "To secure file transfers, which protocol should replace plain FTP?",
+      "choices": [
+        "SFTP",
+        "Telnet",
+        "HTTP",
+        "TFTP"
+      ],
+      "answer": 0,
+      "explanation": "FTP sends credentials and data in plain text. SFTP runs over SSH and encrypts everything."
+    },
+    {
+      "id": "d4-107",
+      "objective": "4.5",
+      "topic": "security-tools",
+      "question": "Which tool learns users' normal behavior and alerts when someone acts unusually, such as downloading far more data than usual?",
+      "choices": [
+        "Static code analysis",
+        "Captive portal",
+        "User behavior analytics (UBA)",
+        "Port security"
+      ],
+      "answer": 2,
+      "explanation": "UBA spots compromised accounts and insider threats by comparing activity to each user's normal baseline."
+    },
+    {
+      "id": "d4-108",
+      "objective": "4.5",
+      "topic": "email-security",
+      "question": "Which system scans incoming and outgoing email for spam, malware and phishing before it reaches users?",
+      "choices": [
+        "Certificate authority",
+        "Jump server",
+        "Load balancer",
+        "Secure email gateway"
+      ],
+      "answer": 3,
+      "explanation": "An email gateway filters threats at the edge, so dangerous messages never reach inboxes."
+    },
+    {
+      "id": "d4-109",
+      "objective": "4.5",
+      "topic": "email-security",
+      "question": "Which standard lets users encrypt and digitally sign individual email messages using certificates?",
+      "choices": [
+        "S/MIME",
+        "SPF",
+        "SNMP",
+        "DMARC"
+      ],
+      "answer": 0,
+      "explanation": "S/MIME protects the message itself, providing confidentiality and proof of who sent it."
+    },
+    {
+      "id": "d4-110",
+      "objective": "4.5",
+      "topic": "email-security",
+      "question": "Why are DMARC reports useful to a domain owner?",
+      "choices": [
+        "They encrypt every message",
+        "They speed up email delivery",
+        "They block all spam automatically",
+        "They show who is sending email that claims to come from the domain"
+      ],
+      "answer": 3,
+      "explanation": "DMARC reports reveal spoofing attempts and misconfigured legitimate senders."
+    },
+    {
+      "id": "d4-111",
+      "objective": "4.6",
+      "topic": "access-control-models",
+      "question": "Access is granted based on attributes such as the user's department, the device used and the time of day. Which model is this?",
+      "choices": [
+        "Role-based access control (RBAC)",
+        "Attribute-based access control (ABAC)",
+        "Mandatory access control (MAC)",
+        "Discretionary access control (DAC)"
+      ],
+      "answer": 1,
+      "explanation": "ABAC makes fine-grained decisions by combining many attributes about the user, resource and situation."
+    },
+    {
+      "id": "d4-112",
+      "objective": "4.6",
+      "topic": "access-control-models",
+      "question": "A system blocks all logins to the payroll application after 6 p.m. for everyone. Which access control model is this?",
+      "choices": [
+        "Mandatory access control",
+        "Role-based access control",
+        "Rule-based access control",
+        "Discretionary access control"
+      ],
+      "answer": 2,
+      "explanation": "Rule-based access control applies the same system-wide rules, such as time restrictions, to every user."
+    },
+    {
+      "id": "d4-113",
+      "objective": "4.6",
+      "topic": "identity-federation",
+      "question": "Before creating an account, a company checks a new contractor's government ID to confirm who they are. What is this?",
+      "choices": [
+        "Deprovisioning",
+        "Federation",
+        "Tokenization",
+        "Identity proofing"
+      ],
+      "answer": 3,
+      "explanation": "Identity proofing verifies that a person is who they claim to be before they are given an identity in the system."
+    },
+    {
+      "id": "d4-114",
+      "objective": "4.6",
+      "topic": "mfa-passwords",
+      "question": "A user logs in by tapping a hardware security key, with no password at all. What is this called?",
+      "choices": [
+        "Passwordless authentication",
+        "Password spraying",
+        "Single-factor password login",
+        "Shared credentials"
+      ],
+      "answer": 0,
+      "explanation": "Passwordless methods, such as security keys or biometrics, remove passwords that can be phished or reused."
+    },
+    {
+      "id": "d4-115",
+      "objective": "4.6",
+      "topic": "mfa-passwords",
+      "question": "Which privileged access management tool stores administrator passwords securely and rotates them, so people never need to know them?",
+      "choices": [
+        "Web filter",
+        "Load balancer",
+        "Password vault",
+        "Proxy server"
+      ],
+      "answer": 2,
+      "explanation": "A password vault controls and logs access to powerful credentials and changes them regularly."
+    },
+    {
+      "id": "d4-116",
+      "objective": "4.6",
+      "topic": "mfa-passwords",
+      "question": "What are ephemeral credentials?",
+      "choices": [
+        "Credentials shared by a whole team",
+        "Temporary credentials that expire shortly after use",
+        "Passwords that never change",
+        "Passwords written on paper"
+      ],
+      "answer": 1,
+      "explanation": "Short-lived credentials limit the damage if they are stolen, because they stop working quickly."
+    },
+    {
+      "id": "d4-117",
+      "objective": "4.7",
+      "topic": "automation",
+      "question": "Cloud servers are automatically created from templates that already include the approved security settings. What is this an example of?",
+      "choices": [
+        "Automated resource provisioning",
+        "Shadow IT",
+        "Data masking",
+        "Manual change control"
+      ],
+      "answer": 0,
+      "explanation": "Building from secure templates means every new resource starts compliant, without relying on someone remembering each setting."
+    },
+    {
+      "id": "d4-118",
+      "objective": "4.7",
+      "topic": "automation",
+      "question": "A critical alert automatically pages the on-call engineer if no one responds within ten minutes. What automation use case is this?",
+      "choices": [
+        "Decommissioning",
+        "Provisioning",
+        "Escalation",
+        "Tokenization"
+      ],
+      "answer": 2,
+      "explanation": "Automated escalation makes sure serious issues reach the right person quickly, even at night."
+    },
+    {
+      "id": "d4-119",
+      "objective": "4.7",
+      "topic": "automation",
+      "question": "When HR marks an employee as terminated, their accounts are disabled automatically. Why is this valuable?",
+      "choices": [
+        "It makes the employee's computer faster",
+        "Access is removed immediately and consistently, with no forgotten accounts",
+        "It replaces the need for passwords",
+        "It deletes all company data"
+      ],
+      "answer": 1,
+      "explanation": "Automating deprovisioning closes a common gap: old accounts left active after someone leaves."
+    },
+    {
+      "id": "d4-120",
+      "objective": "4.7",
+      "topic": "automation-considerations",
+      "question": "What does it mean to call automation a workforce multiplier?",
+      "choices": [
+        "It doubles everyone's salary",
+        "It replaces all security staff",
+        "It requires twice as many employees",
+        "It handles repetitive work so a small team can accomplish much more"
+      ],
+      "answer": 3,
+      "explanation": "Automation frees people from routine tasks so they can focus on work that needs human judgment."
+    },
+    {
+      "id": "d4-121",
+      "objective": "4.7",
+      "topic": "automation-considerations",
+      "question": "How does automation improve reaction time to threats?",
+      "choices": [
+        "It needs approval for every step",
+        "It slows responses down for accuracy",
+        "It can take response actions in seconds instead of waiting for a person",
+        "It only works during business hours"
+      ],
+      "answer": 2,
+      "explanation": "Fast automated containment, such as blocking a malicious IP, limits damage before analysts even look."
+    },
+    {
+      "id": "d4-122",
+      "objective": "4.7",
+      "topic": "automation-considerations",
+      "question": "Which is a cost consideration when adopting automation?",
+      "choices": [
+        "Tools, development and maintenance all take money and staff time",
+        "Automation removes all other costs",
+        "Automation is always free",
+        "Automation never needs updating"
+      ],
+      "answer": 0,
+      "explanation": "Automation pays off over time, but it requires investment up front and ongoing upkeep."
+    },
+    {
+      "id": "d4-123",
+      "objective": "4.7",
+      "topic": "automation-considerations",
+      "question": "Many security processes run through one automation platform. What risk does this create?",
+      "choices": [
+        "Faster manual work",
+        "A single point of failure: if the platform breaks, many processes stop",
+        "Too much redundancy",
+        "Better physical security"
+      ],
+      "answer": 1,
+      "explanation": "Critical automation needs its own resilience and a manual fallback plan."
+    },
+    {
+      "id": "d4-124",
+      "objective": "4.8",
+      "topic": "incident-response",
+      "question": "Writing the incident response plan and training the team happen in which phase?",
+      "choices": [
+        "Lessons learned",
+        "Eradication",
+        "Containment",
+        "Preparation"
+      ],
+      "answer": 3,
+      "explanation": "Preparation happens before any incident, so the team knows exactly what to do when one occurs."
+    },
+    {
+      "id": "d4-125",
+      "objective": "4.8",
+      "topic": "incident-response",
+      "question": "Restoring systems from clean backups and watching them closely for signs of reinfection happens in which phase?",
+      "choices": [
+        "Detection",
+        "Recovery",
+        "Analysis",
+        "Preparation"
+      ],
+      "answer": 1,
+      "explanation": "Recovery returns systems to normal operation while confirming the threat is truly gone."
+    },
+    {
+      "id": "d4-126",
+      "objective": "4.8",
+      "topic": "incident-response",
+      "question": "The team responds to a realistic fake attack as if it were real, using actual tools and systems. What kind of exercise is this?",
+      "choices": [
+        "Legal hold",
+        "Tabletop exercise",
+        "Root cause analysis",
+        "Simulation"
+      ],
+      "answer": 3,
+      "explanation": "Simulations test the team hands-on. Tabletop exercises only talk through the scenario."
+    },
+    {
+      "id": "d4-127",
+      "objective": "4.8",
+      "topic": "forensics",
+      "question": "Collecting and producing electronic information, such as emails and files, for a lawsuit is called:",
+      "choices": [
+        "E-discovery",
+        "Sandboxing",
+        "Provisioning",
+        "Threat hunting"
+      ],
+      "answer": 0,
+      "explanation": "E-discovery finds and hands over relevant electronic records in a legally defensible way."
+    },
+    {
+      "id": "d4-128",
+      "objective": "4.8",
+      "topic": "forensics",
+      "question": "Why do investigators analyze a forensic copy of a drive instead of the original?",
+      "choices": [
+        "It is required for backups",
+        "The original is always encrypted",
+        "To preserve the original evidence unchanged",
+        "Copies run faster than the original"
+      ],
+      "answer": 2,
+      "explanation": "Preservation keeps the original intact, so its integrity can be proven later in court."
+    },
+    {
+      "id": "d4-129",
+      "objective": "4.8",
+      "topic": "forensics",
+      "question": "Why do investigators connect a suspect drive through a write blocker when copying it?",
+      "choices": [
+        "It encrypts the drive",
+        "It removes malware from the drive",
+        "It prevents any changes from being written to the original evidence",
+        "It makes the copy faster"
+      ],
+      "answer": 2,
+      "explanation": "Even plugging in a drive can change it. A write blocker allows reading only, protecting evidence integrity."
+    },
+    {
+      "id": "d4-130",
+      "objective": "4.9",
+      "topic": "investigation-data",
+      "question": "Which log would reveal that an infected laptop repeatedly looked up a suspicious domain name?",
+      "choices": [
+        "Printer logs",
+        "DNS logs",
+        "UPS battery logs",
+        "Badge reader logs"
+      ],
+      "answer": 1,
+      "explanation": "DNS logs show every name lookup, which often exposes malware contacting its command-and-control servers."
+    },
+    {
+      "id": "d4-131",
+      "objective": "4.9",
+      "topic": "investigation-data",
+      "question": "Why must all systems' clocks be synchronized, for example with NTP, before logs are useful in an investigation?",
+      "choices": [
+        "So events from different logs can be lined up in the correct order",
+        "So logs can be deleted automatically",
+        "To make logs smaller",
+        "To encrypt the logs"
+      ],
+      "answer": 0,
+      "explanation": "If clocks disagree, the timeline of an attack becomes confusing or misleading."
+    },
+    {
+      "id": "d4-132",
+      "objective": "4.9",
+      "topic": "investigation-data",
+      "question": "A web server's log shows thousands of requests for pages that do not exist, all from one IP address. What does this suggest?",
+      "choices": [
+        "A user forgot their password",
+        "The site is very popular",
+        "The server is being backed up",
+        "Someone is scanning the site for vulnerable pages"
+      ],
+      "answer": 3,
+      "explanation": "Large numbers of not-found errors from one source are a common sign of automated reconnaissance."
+    },
+    {
+      "id": "d4-133",
+      "objective": "4.9",
+      "topic": "investigation-sources",
+      "question": "During an investigation, why are vulnerability scan results useful?",
+      "choices": [
+        "They replace the need for logs",
+        "They list every user's password",
+        "They show whether the exploited weakness existed on the affected systems",
+        "They restore deleted files"
+      ],
+      "answer": 2,
+      "explanation": "Scan results help confirm how the attacker got in and which other systems share the same weakness."
+    },
+    {
+      "id": "d4-134",
+      "objective": "4.9",
+      "topic": "investigation-sources",
+      "question": "A document's properties show who created it and when it was last edited. What kind of data is this?",
+      "choices": [
+        "SNMP trap",
+        "NetFlow record",
+        "Packet capture",
+        "Metadata"
+      ],
+      "answer": 3,
+      "explanation": "Metadata is data about data. It can reveal authors, timestamps, devices and even locations."
+    },
+    {
+      "id": "d4-135",
+      "objective": "4.9",
+      "topic": "investigation-sources",
+      "question": "A photo taken on a phone contains the GPS location where it was taken. What is this an example of?",
+      "choices": [
+        "Mobile metadata",
+        "Application logs",
+        "Encrypted payload",
+        "Firewall logs"
+      ],
+      "answer": 0,
+      "explanation": "Mobile metadata, such as location and device details, can be valuable evidence and also a privacy risk."
+    },
+    {
+      "id": "d4-136",
+      "objective": "4.9",
+      "topic": "investigation-sources",
+      "question": "Why should investigators gather data from several different sources?",
+      "choices": [
+        "It avoids having to follow chain of custody",
+        "Combining sources gives a fuller picture and confirms findings",
+        "More sources make reports shorter",
+        "One source is always enough"
+      ],
+      "answer": 1,
+      "explanation": "Each source sees part of the story. Together they confirm the timeline and reduce the chance of being misled."
     }
   ]
 }

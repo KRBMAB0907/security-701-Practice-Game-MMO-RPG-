@@ -12,7 +12,7 @@
       "damageTakenScale": 0.8,
       "weaknessMultiplier": 1.5,
       "healOnCorrect": 0,
-      "favoredSkills": ["firewall-rule", "access-lockdown", "site-survey", "rollback-plan", "key-vault", "social-shield", "segment-wall", "harden-host", "motive-read", "dmz-shift", "air-gap", "failover-switch", "backup-restore"]
+      "favoredSkills": ["firewall-rule", "access-lockdown", "site-survey", "rollback-plan", "key-vault", "social-shield", "segment-wall", "harden-host", "motive-read", "dmz-shift", "air-gap", "failover-switch", "backup-restore", "golden-image", "secure-wipe", "rule-tune", "least-access", "contain", "guard-rail", "patch-priority"]
     },
     {
       "id": "analyst",
@@ -26,7 +26,7 @@
       "damageTakenScale": 1,
       "weaknessMultiplier": 1.75,
       "healOnCorrect": 8,
-      "favoredSkills": ["patch-deploy", "honeypot-lure", "zero-trust-verify", "impact-scan", "version-lock", "stego-veil", "threat-profile", "vector-scan", "system-audit", "malware-purge", "packet-inspect", "ioc-hunt", "shared-responsibility", "classify-data"]
+      "favoredSkills": ["patch-deploy", "honeypot-lure", "zero-trust-verify", "impact-scan", "version-lock", "stego-veil", "threat-profile", "vector-scan", "system-audit", "malware-purge", "packet-inspect", "ioc-hunt", "shared-responsibility", "classify-data", "vuln-scan", "siem-sight", "flow-tap", "log-dive", "packet-capture", "inventory-sweep", "chain-of-custody", "playbook-run"]
     },
     {
       "id": "cryptographer",
@@ -40,7 +40,7 @@
       "damageTakenScale": 1,
       "weaknessMultiplier": 1.5,
       "healOnCorrect": 0,
-      "favoredSkills": ["integrity-check", "key-exchange", "certificate-seal", "hash-strike", "credential-guard", "input-sanitizer", "request-filter", "tunnel-guard", "lockbox"]
+      "favoredSkills": ["integrity-check", "key-exchange", "certificate-seal", "hash-strike", "credential-guard", "input-sanitizer", "request-filter", "tunnel-guard", "lockbox", "code-review", "mfa-seal", "federate", "signal-lock", "mail-shield"]
     }
   ]
 }

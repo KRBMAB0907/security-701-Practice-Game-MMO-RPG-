@@ -28,7 +28,7 @@
       "id": "operations-deep",
       "name": "The Operations Deep",
       "domain": 4,
-      "file": null,
+      "file": "data/areas/operations-deep.json",
       "questions": "data/questions/domain4.json",
       "enemyDamageScale": 2.4
     },
