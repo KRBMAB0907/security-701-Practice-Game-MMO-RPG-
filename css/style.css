@@ -26,6 +26,7 @@ body {
 
 #status,
 #mode-panel,
+#map-panel,
 #battle-panel {
   width: 100%;
   max-width: 960px;
@@ -33,9 +34,11 @@ body {
 }
 
 #mode-panel button,
+#zone-list button,
 #skills button,
 #choices button,
-#next-button {
+#next-button,
+#map-button {
   display: block;
   width: 100%;
   margin: 8px 0;
@@ -68,8 +71,43 @@ body {
 #skills button:hover,
 #choices button:hover:enabled,
 #mode-panel button:hover,
-#next-button:hover {
+#zone-list button:hover:enabled,
+#next-button:hover,
+#map-button:hover {
   background: #12301f;
+}
+
+/* Locked or unbuilt zones: greyed out and not clickable */
+#zone-list button:disabled {
+  border-color: #33413a;
+  color: #5d6f66;
+  cursor: not-allowed;
+}
+
+#player-summary {
+  color: #ffd166;
+}
+
+/* Skill that hits the enemy's weak point */
+#skills button.weak-point {
+  border-color: #ffd166;
+}
+
+/* Smaller side-by-side buttons under the map */
+.small-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.small-buttons button {
+  padding: 8px 12px;
+  font: inherit;
+  font-size: 14px;
+  background: none;
+  color: #7fa894;
+  border: 1px solid #33413a;
+  cursor: pointer;
 }
 
 /* Countdown: a track with a bar inside that shrinks as time runs out */

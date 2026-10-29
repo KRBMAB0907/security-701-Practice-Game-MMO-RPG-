@@ -19,8 +19,62 @@
     {
       "id": "misconfig-gremlin",
       "name": "Misconfig Gremlin",
-      "zone": "controls-yard",
-      "hp": 80
+      "hp": 60,
+      "xp": 20,
+      "weakness": "control-categories",
+      "color": "#ff3864"
+    },
+    {
+      "id": "tailgate-phantom",
+      "name": "Tailgate Phantom",
+      "hp": 70,
+      "xp": 25,
+      "weakness": "control-types",
+      "color": "#b388ff"
+    },
+    {
+      "id": "rogue-insider",
+      "name": "Rogue Insider",
+      "hp": 80,
+      "xp": 30,
+      "weakness": "control-categories",
+      "color": "#ff9f43"
+    },
+    {
+      "id": "unpatched-warden",
+      "name": "Unpatched Warden",
+      "hp": 150,
+      "xp": 80,
+      "boss": true,
+      "damageScale": 1.5,
+      "phases": ["control-types", "control-categories"],
+      "color": "#ffd166"
+    }
+  ],
+  "zones": [
+    {
+      "id": "controls-yard",
+      "name": "Controls Yard",
+      "objective": "1.1",
+      "enemies": ["misconfig-gremlin", "tailgate-phantom", "rogue-insider", "unpatched-warden"]
+    },
+    {
+      "id": "core-sanctum",
+      "name": "Core Sanctum",
+      "objective": "1.2",
+      "enemies": []
+    },
+    {
+      "id": "change-gate",
+      "name": "Change Gate",
+      "objective": "1.3",
+      "enemies": []
+    },
+    {
+      "id": "cipher-vault",
+      "name": "Cipher Vault",
+      "objective": "1.4",
+      "enemies": []
     }
   ]
 }

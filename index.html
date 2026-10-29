@@ -18,6 +18,16 @@
     <button data-mode="hard">Hard: 30 seconds, tougher enemies, better loot</button>
   </div>
 
+  <div id="map-panel" hidden>
+    <p id="player-summary"></p>
+    <p>The Foundry: choose a sub-zone</p>
+    <div id="zone-list"></div>
+    <div class="small-buttons">
+      <button id="change-mode-button">Change difficulty</button>
+      <button id="reset-button">Reset progress</button>
+    </div>
+  </div>
+
   <div id="battle-panel" hidden>
     <p id="mode-label"></p>
     <p id="battle-log"></p>
@@ -35,6 +45,7 @@
     </div>
 
     <button id="next-button" hidden>Continue</button>
+    <button id="map-button" hidden>Back to map</button>
   </div>
 
   <script src="js/main.js"></script>
