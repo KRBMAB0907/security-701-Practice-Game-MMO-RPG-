@@ -12,7 +12,7 @@
       "damageTakenScale": 0.8,
       "weaknessMultiplier": 1.5,
       "healOnCorrect": 0,
-      "favoredSkills": ["firewall-rule", "access-lockdown", "site-survey", "rollback-plan", "key-vault", "social-shield", "segment-wall", "harden-host", "motive-read"]
+      "favoredSkills": ["firewall-rule", "access-lockdown", "site-survey", "rollback-plan", "key-vault", "social-shield", "segment-wall", "harden-host", "motive-read", "dmz-shift", "air-gap", "failover-switch", "backup-restore"]
     },
     {
       "id": "analyst",
@@ -26,7 +26,7 @@
       "damageTakenScale": 1,
       "weaknessMultiplier": 1.75,
       "healOnCorrect": 8,
-      "favoredSkills": ["patch-deploy", "honeypot-lure", "zero-trust-verify", "impact-scan", "version-lock", "stego-veil", "threat-profile", "vector-scan", "system-audit", "malware-purge", "packet-inspect", "ioc-hunt"]
+      "favoredSkills": ["patch-deploy", "honeypot-lure", "zero-trust-verify", "impact-scan", "version-lock", "stego-veil", "threat-profile", "vector-scan", "system-audit", "malware-purge", "packet-inspect", "ioc-hunt", "shared-responsibility", "classify-data"]
     },
     {
       "id": "cryptographer",
@@ -40,7 +40,7 @@
       "damageTakenScale": 1,
       "weaknessMultiplier": 1.5,
       "healOnCorrect": 0,
-      "favoredSkills": ["integrity-check", "key-exchange", "certificate-seal", "hash-strike", "credential-guard", "input-sanitizer", "request-filter"]
+      "favoredSkills": ["integrity-check", "key-exchange", "certificate-seal", "hash-strike", "credential-guard", "input-sanitizer", "request-filter", "tunnel-guard", "lockbox"]
     }
   ]
 }

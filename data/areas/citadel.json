@@ -1,0 +1,146 @@
+{
+  "skills": [
+    {
+      "id": "shared-responsibility",
+      "name": "Shared Responsibility",
+      "topics": ["architecture-models"],
+      "damage": 34,
+      "description": "Know who secures what in cloud and modern architectures."
+    },
+    {
+      "id": "air-gap",
+      "name": "Air Gap",
+      "topics": ["specialized-systems"],
+      "damage": 34,
+      "description": "Protect IoT, ICS/SCADA and embedded systems."
+    },
+    {
+      "id": "dmz-shift",
+      "name": "DMZ Shift",
+      "topics": ["network-security"],
+      "damage": 34,
+      "description": "Place appliances and zones to secure the network."
+    },
+    {
+      "id": "tunnel-guard",
+      "name": "Tunnel Guard",
+      "topics": ["secure-remote-access"],
+      "damage": 36,
+      "description": "Secure remote access with VPNs and tunnels."
+    },
+    {
+      "id": "classify-data",
+      "name": "Classify Data",
+      "topics": ["data-classification"],
+      "damage": 36,
+      "description": "Label data types and classifications correctly."
+    },
+    {
+      "id": "lockbox",
+      "name": "Lockbox",
+      "topics": ["data-protection"],
+      "damage": 34,
+      "description": "Protect data in every state."
+    },
+    {
+      "id": "failover-switch",
+      "name": "Failover Switch",
+      "topics": ["resilience"],
+      "damage": 34,
+      "description": "Keep services running with high availability."
+    },
+    {
+      "id": "backup-restore",
+      "name": "Backup Restore",
+      "topics": ["backups"],
+      "damage": 36,
+      "description": "Recover with backups, snapshots and power."
+    }
+  ],
+  "enemies": [
+    { "id": "serverless-sprite", "name": "Serverless Sprite", "hp": 220, "xp": 80, "weakness": "architecture-models", "color": "#80deea" },
+    { "id": "container-breaker", "name": "Container Breaker", "hp": 235, "xp": 85, "weakness": "architecture-models", "color": "#4fc3f7" },
+    { "id": "scada-saboteur", "name": "SCADA Saboteur", "hp": 240, "xp": 85, "weakness": "specialized-systems", "color": "#ffab40" },
+    { "id": "iot-swarm", "name": "IoT Swarm", "hp": 240, "xp": 85, "weakness": "specialized-systems", "color": "#c5e1a5" },
+    {
+      "id": "hypervisor-tyrant", "name": "Hypervisor Tyrant", "hp": 440, "xp": 240,
+      "boss": true, "damageScale": 1.5, "phases": ["architecture-models", "specialized-systems"], "color": "#29b6f6"
+    },
+
+    { "id": "port-prowler", "name": "Port Prowler", "hp": 235, "xp": 85, "weakness": "network-security", "color": "#ef9a9a" },
+    { "id": "split-tunnel-leech", "name": "Split Tunnel Leech", "hp": 240, "xp": 85, "weakness": "secure-remote-access", "color": "#ce93d8" },
+    { "id": "flat-network-golem", "name": "Flat Network Golem", "hp": 245, "xp": 90, "weakness": "network-security", "color": "#bcaaa4" },
+    { "id": "vpn-hijacker", "name": "VPN Hijacker", "hp": 245, "xp": 90, "weakness": "secure-remote-access", "color": "#7e57c2" },
+    {
+      "id": "perimeter-breaker", "name": "Perimeter Breaker", "hp": 455, "xp": 250,
+      "boss": true, "damageScale": 1.5, "phases": ["secure-remote-access", "network-security"], "color": "#ff7043"
+    },
+
+    { "id": "data-hoarder", "name": "Data Hoarder", "hp": 240, "xp": 90, "weakness": "data-classification", "color": "#ffe082" },
+    { "id": "exfil-courier", "name": "Exfil Courier", "hp": 245, "xp": 90, "weakness": "data-protection", "color": "#80cbc4" },
+    { "id": "sovereignty-smuggler", "name": "Sovereignty Smuggler", "hp": 255, "xp": 90, "weakness": "data-classification", "color": "#9fa8da" },
+    { "id": "memory-scraper", "name": "Memory Scraper", "hp": 255, "xp": 95, "weakness": "data-protection", "color": "#f48fb1" },
+    {
+      "id": "leak-leviathan", "name": "Leak Leviathan", "hp": 470, "xp": 260,
+      "boss": true, "damageScale": 1.5, "phases": ["data-classification", "data-protection"], "color": "#26c6da"
+    },
+
+    { "id": "single-point-wraith", "name": "Single Point Wraith", "hp": 245, "xp": 95, "weakness": "resilience", "color": "#b0bec5" },
+    { "id": "power-surge", "name": "Power Surge", "hp": 255, "xp": 95, "weakness": "backups", "color": "#ffee58" },
+    { "id": "disaster-drake", "name": "Disaster Drake", "hp": 260, "xp": 95, "weakness": "resilience", "color": "#ff8a65" },
+    { "id": "corrupted-archive", "name": "Corrupted Archive", "hp": 260, "xp": 95, "weakness": "backups", "color": "#a1887f" },
+    {
+      "id": "blackout-behemoth", "name": "Blackout Behemoth", "hp": 495, "xp": 270,
+      "boss": true, "damageScale": 1.5, "phases": ["backups", "resilience"], "color": "#607d8b"
+    },
+
+    {
+      "id": "the-architect", "name": "The Architect", "hp": 730, "xp": 500,
+      "boss": true, "damageScale": 1.75,
+      "phases": ["specialized-systems", "secure-remote-access", "data-classification", "resilience"],
+      "color": "#e0e0e0"
+    }
+  ],
+  "zones": [
+    {
+      "id": "cloud-spires",
+      "name": "Cloud Spires",
+      "level": 12,
+      "objective": "3.1",
+      "skills": ["shared-responsibility", "air-gap"],
+      "enemies": ["serverless-sprite", "container-breaker", "scada-saboteur", "iot-swarm", "hypervisor-tyrant"]
+    },
+    {
+      "id": "perimeter-walls",
+      "name": "Perimeter Walls",
+      "level": 13,
+      "objective": "3.2",
+      "skills": ["dmz-shift", "tunnel-guard"],
+      "enemies": ["port-prowler", "split-tunnel-leech", "flat-network-golem", "vpn-hijacker", "perimeter-breaker"]
+    },
+    {
+      "id": "data-vaults",
+      "name": "Data Vaults",
+      "level": 14,
+      "objective": "3.3",
+      "skills": ["classify-data", "lockbox"],
+      "enemies": ["data-hoarder", "exfil-courier", "sovereignty-smuggler", "memory-scraper", "leak-leviathan"]
+    },
+    {
+      "id": "resilience-bastion",
+      "name": "Resilience Bastion",
+      "level": 15,
+      "objective": "3.4",
+      "skills": ["failover-switch", "backup-restore"],
+      "enemies": ["single-point-wraith", "power-surge", "disaster-drake", "corrupted-archive", "blackout-behemoth"]
+    },
+    {
+      "id": "citadel-keep",
+      "name": "Citadel Keep",
+      "level": 16,
+      "objective": "3.1-3.4",
+      "skills": ["shared-responsibility", "air-gap", "tunnel-guard", "classify-data", "lockbox", "failover-switch"],
+      "enemies": ["the-architect"]
+    }
+  ]
+}

@@ -272,7 +272,7 @@
     {
       "id": "d3-020",
       "objective": "3.3",
-      "topic": "data-protection",
+      "topic": "data-classification",
       "question": "A company stores customer data in a data center in Germany. Which concept means that data is subject to German and EU laws?",
       "choices": [
         "Data masking",
@@ -286,7 +286,7 @@
     {
       "id": "d3-021",
       "objective": "3.3",
-      "topic": "data-protection",
+      "topic": "data-classification",
       "question": "Labeling information by how sensitive it is, such as public, confidential or restricted, so the right protections can be applied is called:",
       "choices": [
         "Data minimization",
@@ -328,7 +328,7 @@
     {
       "id": "d3-024",
       "objective": "3.3",
-      "topic": "data-protection",
+      "topic": "data-classification",
       "question": "Patient health records protected by laws like HIPAA are an example of which data type?",
       "choices": [
         "Non-human-readable data",
@@ -450,6 +450,412 @@
       ],
       "answer": 3,
       "explanation": "Replication keeps a near real-time copy for fast recovery. Note that it also copies mistakes and corruption, so it does not replace backups."
+    },
+    {
+      "id": "d3-033",
+      "objective": "3.1",
+      "topic": "architecture-models",
+      "question": "An application is split into many small, independent services that each do one job and talk to each other over APIs. What architecture is this?",
+      "choices": [
+        "Monolithic",
+        "Air-gapped",
+        "Real-time operating system",
+        "Microservices"
+      ],
+      "answer": 3,
+      "explanation": "Microservices can be updated and scaled separately, but every API between them is another surface that must be secured."
+    },
+    {
+      "id": "d3-034",
+      "objective": "3.1",
+      "topic": "architecture-models",
+      "question": "A company runs some systems in its own data center and others in a public cloud, connected together. What model is this?",
+      "choices": [
+        "Hybrid cloud",
+        "Serverless",
+        "Private cloud only",
+        "Air gap"
+      ],
+      "answer": 0,
+      "explanation": "Hybrid cloud combines on-premises and cloud resources. Security policies must cover both environments consistently."
+    },
+    {
+      "id": "d3-035",
+      "objective": "3.1",
+      "topic": "architecture-models",
+      "question": "Which approach separates a network's control decisions from the switches and routers that forward traffic, so the network is managed centrally by software?",
+      "choices": [
+        "Port mirroring",
+        "Static routing on each device",
+        "Software-defined networking (SDN)",
+        "Air-gapped networking"
+      ],
+      "answer": 2,
+      "explanation": "SDN makes networks programmable and centrally managed. The central controller becomes a critical asset to protect."
+    },
+    {
+      "id": "d3-036",
+      "objective": "3.1",
+      "topic": "specialized-systems",
+      "question": "Why are embedded systems, like the computer inside a smart TV, often hard to secure?",
+      "choices": [
+        "They never connect to networks",
+        "They have limited processing power and are often difficult or impossible to patch",
+        "They are protected by default antivirus",
+        "They always run the latest operating system"
+      ],
+      "answer": 1,
+      "explanation": "Embedded systems are built for one job with minimal resources, so security features and updates are often limited."
+    },
+    {
+      "id": "d3-037",
+      "objective": "3.1",
+      "topic": "specialized-systems",
+      "question": "Which type of system monitors and controls industrial equipment spread across a large area, such as a gas pipeline?",
+      "choices": [
+        "VDI",
+        "CASB",
+        "SIEM",
+        "SCADA"
+      ],
+      "answer": 3,
+      "explanation": "Supervisory control and data acquisition (SCADA) systems manage infrastructure like pipelines, power grids and water systems."
+    },
+    {
+      "id": "d3-038",
+      "objective": "3.1",
+      "topic": "specialized-systems",
+      "question": "An office installs dozens of smart cameras, thermostats and speakers. What is the best way to reduce the risk they create?",
+      "choices": [
+        "Disable the firewall for them",
+        "Connect them directly to the payroll server",
+        "Put them on a separate network segment from business systems",
+        "Give them administrator accounts"
+      ],
+      "answer": 2,
+      "explanation": "Segmenting IoT devices means that if one is compromised, the attacker cannot easily reach important business systems."
+    },
+    {
+      "id": "d3-039",
+      "objective": "3.1",
+      "topic": "specialized-systems",
+      "question": "A hospital's medical device cannot be patched because changes would void its safety certification. What is the best approach?",
+      "choices": [
+        "Isolate it and protect it with compensating controls such as segmentation",
+        "Connect it directly to the internet",
+        "Remove all access controls",
+        "Patch it anyway without approval"
+      ],
+      "answer": 0,
+      "explanation": "When a system cannot be patched, other controls must reduce the risk, such as strict segmentation and monitoring."
+    },
+    {
+      "id": "d3-040",
+      "objective": "3.2",
+      "topic": "network-security",
+      "question": "Which server sits between internal users and the internet, forwarding their web requests and filtering content?",
+      "choices": [
+        "Jump server",
+        "Forward proxy",
+        "Load balancer",
+        "Reverse proxy"
+      ],
+      "answer": 1,
+      "explanation": "A forward proxy acts on behalf of users going out. A reverse proxy sits in front of servers, handling requests coming in."
+    },
+    {
+      "id": "d3-041",
+      "objective": "3.2",
+      "topic": "network-security",
+      "question": "A switch is configured so each port only works with the specific device that is supposed to be plugged into it. What is this?",
+      "choices": [
+        "NAT",
+        "Port security",
+        "Load balancing",
+        "Port mirroring"
+      ],
+      "answer": 1,
+      "explanation": "Port security limits which MAC addresses can use a port, blocking unknown devices plugged into wall jacks."
+    },
+    {
+      "id": "d3-042",
+      "objective": "3.2",
+      "topic": "network-security",
+      "question": "Which type of firewall can identify and control specific applications, not just ports and IP addresses?",
+      "choices": [
+        "Packet-filtering firewall",
+        "Network hub",
+        "Stateless firewall",
+        "Next-generation firewall (NGFW)"
+      ],
+      "answer": 3,
+      "explanation": "An NGFW inspects traffic up to the application layer, so it can, for example, allow a website but block a file-sharing app on the same port."
+    },
+    {
+      "id": "d3-043",
+      "objective": "3.2",
+      "topic": "secure-remote-access",
+      "question": "Which type of remote-access VPN works through a web browser over HTTPS, often without installing a separate client?",
+      "choices": [
+        "TLS (SSL) VPN",
+        "IPsec site-to-site VPN",
+        "Split DNS",
+        "Telnet"
+      ],
+      "answer": 0,
+      "explanation": "TLS VPNs use the same encryption as secure websites, making them easy to use from almost anywhere."
+    },
+    {
+      "id": "d3-044",
+      "objective": "3.2",
+      "topic": "secure-remote-access",
+      "question": "With a full-tunnel VPN, which traffic goes through the corporate network?",
+      "choices": [
+        "Only traffic to the corporate network",
+        "Only email traffic",
+        "All of the user's traffic, including general internet browsing",
+        "No traffic at all"
+      ],
+      "answer": 2,
+      "explanation": "A full tunnel lets corporate security controls inspect everything, at the cost of more bandwidth through the company's connection."
+    },
+    {
+      "id": "d3-045",
+      "objective": "3.2",
+      "topic": "secure-remote-access",
+      "question": "A company connects its branch offices using several internet links, managed centrally and steering traffic over the best path. What is this?",
+      "choices": [
+        "Captive portal",
+        "Screened subnet",
+        "Air gap",
+        "Software-defined wide area network (SD-WAN)"
+      ],
+      "answer": 3,
+      "explanation": "SD-WAN makes branch connectivity cheaper and more flexible. Security must be built in, often alongside SASE."
+    },
+    {
+      "id": "d3-046",
+      "objective": "3.2",
+      "topic": "secure-remote-access",
+      "question": "Which protocol should replace Telnet for secure remote command-line administration of servers?",
+      "choices": [
+        "FTP",
+        "SNMPv1",
+        "SSH",
+        "HTTP"
+      ],
+      "answer": 2,
+      "explanation": "Telnet sends everything, including passwords, in plain text. SSH encrypts the whole session."
+    },
+    {
+      "id": "d3-047",
+      "objective": "3.3",
+      "topic": "data-classification",
+      "question": "A soft drink company's secret recipe is an example of which data type?",
+      "choices": [
+        "Public data",
+        "Trade secret",
+        "Regulated data",
+        "Human-readable logs"
+      ],
+      "answer": 1,
+      "explanation": "Trade secrets give a business its competitive advantage and are protected by keeping them confidential."
+    },
+    {
+      "id": "d3-048",
+      "objective": "3.3",
+      "topic": "data-classification",
+      "question": "Patents, trademarks and copyrighted designs are examples of which data type?",
+      "choices": [
+        "Intellectual property",
+        "Public data",
+        "Regulated health data",
+        "Financial transactions"
+      ],
+      "answer": 0,
+      "explanation": "Intellectual property is a company's creative and technical work, a common target for espionage."
+    },
+    {
+      "id": "d3-049",
+      "objective": "3.3",
+      "topic": "data-classification",
+      "question": "Which classification fits a company's published press releases?",
+      "choices": [
+        "Critical",
+        "Confidential",
+        "Public",
+        "Restricted"
+      ],
+      "answer": 2,
+      "explanation": "Public data is meant to be shared and causes no harm if disclosed, so it needs the least protection."
+    },
+    {
+      "id": "d3-050",
+      "objective": "3.3",
+      "topic": "data-classification",
+      "question": "Data that would cause serious harm to the business if disclosed, such as unreleased financial results, should be classified as:",
+      "choices": [
+        "Public",
+        "Open",
+        "Unclassified",
+        "Confidential or restricted"
+      ],
+      "answer": 3,
+      "explanation": "Higher classifications require stronger protections, such as encryption and tighter access control."
+    },
+    {
+      "id": "d3-051",
+      "objective": "3.3",
+      "topic": "data-protection",
+      "question": "Backup tapes containing customer data are shipped to an offsite storage company. Which method best protects the data if a tape is lost?",
+      "choices": [
+        "Encryption",
+        "Load balancing",
+        "Data masking on screen",
+        "Geographic restrictions"
+      ],
+      "answer": 0,
+      "explanation": "Encrypting data at rest means a lost or stolen tape is unreadable without the key."
+    },
+    {
+      "id": "d3-052",
+      "objective": "3.3",
+      "topic": "data-protection",
+      "question": "Which protection method stores a one-way digest of a sensitive value instead of the value itself?",
+      "choices": [
+        "Tokenization with a vault",
+        "Hashing",
+        "Data masking",
+        "Encryption with a shared key"
+      ],
+      "answer": 1,
+      "explanation": "Hashing cannot be reversed, which suits values that only need to be checked, such as passwords."
+    },
+    {
+      "id": "d3-053",
+      "objective": "3.3",
+      "topic": "data-protection",
+      "question": "Only HR staff can open the folders containing payroll data. Which data protection method is this?",
+      "choices": [
+        "Obfuscation",
+        "Permission restrictions",
+        "Geographic restrictions",
+        "Data masking"
+      ],
+      "answer": 1,
+      "explanation": "Permission restrictions limit who can access data, applying least privilege to sensitive files."
+    },
+    {
+      "id": "d3-054",
+      "objective": "3.4",
+      "topic": "resilience",
+      "question": "A company builds data centers in different regions so a single natural disaster cannot take down both. What is this?",
+      "choices": [
+        "Geographic dispersion",
+        "Load balancing on one server",
+        "Platform diversity",
+        "Journaling"
+      ],
+      "answer": 0,
+      "explanation": "Spreading sites apart geographically protects against regional events like hurricanes, floods or power outages."
+    },
+    {
+      "id": "d3-055",
+      "objective": "3.4",
+      "topic": "resilience",
+      "question": "A company runs servers on two different operating systems so one vulnerability cannot take down every system at once. What is this?",
+      "choices": [
+        "Capacity planning",
+        "Geographic dispersion",
+        "Replication",
+        "Platform diversity"
+      ],
+      "answer": 3,
+      "explanation": "Diversity means a flaw in one platform or vendor does not affect the whole environment."
+    },
+    {
+      "id": "d3-056",
+      "objective": "3.4",
+      "topic": "resilience",
+      "question": "Making sure the organization has enough people, technology and infrastructure to handle expected demand is called:",
+      "choices": [
+        "Risk transference",
+        "Tabletop exercise",
+        "Capacity planning",
+        "Journaling"
+      ],
+      "answer": 2,
+      "explanation": "Capacity planning prevents outages caused by too little staff, computing power or bandwidth when demand grows."
+    },
+    {
+      "id": "d3-057",
+      "objective": "3.4",
+      "topic": "backups",
+      "question": "A virtual machine's exact state is saved at a point in time so it can be rolled back quickly. What is this?",
+      "choices": [
+        "Cold site",
+        "Journaling",
+        "Snapshot",
+        "Generator"
+      ],
+      "answer": 2,
+      "explanation": "Snapshots make fast rollbacks easy, for example before applying a risky update."
+    },
+    {
+      "id": "d3-058",
+      "objective": "3.4",
+      "topic": "backups",
+      "question": "Which technique records changes to a log before they are written, so data can be recovered cleanly after a crash?",
+      "choices": [
+        "Capacity planning",
+        "Journaling",
+        "Load balancing",
+        "Snapshotting"
+      ],
+      "answer": 1,
+      "explanation": "Journaling lets a system replay or discard incomplete changes, protecting data integrity after a failure."
+    },
+    {
+      "id": "d3-059",
+      "objective": "3.4",
+      "topic": "backups",
+      "question": "Which provides electricity for hours or days during a long power outage?",
+      "choices": [
+        "Generator",
+        "Power strip",
+        "Surge protector",
+        "Uninterruptible power supply (UPS)"
+      ],
+      "answer": 0,
+      "explanation": "A UPS covers the first few minutes. A generator takes over for long outages once it has started."
+    },
+    {
+      "id": "d3-060",
+      "objective": "3.4",
+      "topic": "backups",
+      "question": "Why should backups be encrypted?",
+      "choices": [
+        "Encrypted backups never need testing",
+        "It removes the need for offsite storage",
+        "Encryption makes backups smaller",
+        "So the data stays protected if backup media is lost or stolen"
+      ],
+      "answer": 3,
+      "explanation": "Backups often contain all of an organization's data, so they need the same protection as the live systems."
+    },
+    {
+      "id": "d3-061",
+      "objective": "3.4",
+      "topic": "backups",
+      "question": "Why should an organization regularly test restoring data from its backups?",
+      "choices": [
+        "Restores delete old backups",
+        "It is only needed for tape backups",
+        "Testing makes backups run faster",
+        "To confirm the backups actually work before a real disaster"
+      ],
+      "answer": 3,
+      "explanation": "A backup that cannot be restored is useless. Regular restore tests catch problems while there is still time to fix them."
     }
   ]
 }

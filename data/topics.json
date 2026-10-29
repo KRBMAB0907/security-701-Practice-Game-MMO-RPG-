@@ -123,7 +123,8 @@
           "id": "3.3",
           "title": "Compare and contrast concepts and strategies to protect data",
           "topics": [
-            { "id": "data-protection", "name": "Data types, states and protection" }
+            { "id": "data-classification", "name": "Data types, classification and sovereignty" },
+            { "id": "data-protection", "name": "Data states and protection methods" }
           ]
         },
         {

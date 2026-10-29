@@ -20,9 +20,9 @@
       "id": "citadel",
       "name": "The Citadel",
       "domain": 3,
-      "file": null,
+      "file": "data/areas/citadel.json",
       "questions": "data/questions/domain3.json",
-      "enemyDamageScale": 1.6
+      "enemyDamageScale": 1.9
     },
     {
       "id": "operations-deep",
@@ -30,7 +30,7 @@
       "domain": 4,
       "file": null,
       "questions": "data/questions/domain4.json",
-      "enemyDamageScale": 1.9
+      "enemyDamageScale": 2.4
     },
     {
       "id": "council-spire",
@@ -38,7 +38,7 @@
       "domain": 5,
       "file": null,
       "questions": "data/questions/domain5.json",
-      "enemyDamageScale": 2.2
+      "enemyDamageScale": 2.9
     }
   ]
 }
