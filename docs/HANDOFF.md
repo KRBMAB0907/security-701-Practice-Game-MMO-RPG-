@@ -6,9 +6,9 @@ Written 2026-10-29 when the work moved to Claude Code. Read `CLAUDE.md` first fo
 
 All five areas are built and playable from level 1 to the final boss: 33 zones, 144 enemies, 69 skills, 3 classes, loot in five tiers with legendaries, pixel art for everything, and a screen layout that fits laptops, desktops and phones without scrolling.
 
-Last commit on GitHub: `fc75f73 Window update to size`.
+Last commit on GitHub: `7e335ea Claude add` (the hit-chance and dialogue feature below).
 
-## Just built, not yet committed: enemy hit chance and dialogue
+## Latest feature: enemy hit chance and dialogue (committed in `7e335ea`)
 
 Kaleb asked for enemies to have a % chance to hit, with dialogue based on whether they hit or the player misses. He chose: **the enemy attacks every turn**, and **both enemy taunts and battle narration**.
 
@@ -23,7 +23,9 @@ How it works now:
 
 Files changed: `index.html`, `js/config.js`, `js/state.js`, `js/combat.js`, `js/questions.js`, `js/render.js`, `js/main.js`, `data/areas/operations-deep.json`. New: `js/dialogue.js`, `data/dialogue.json`.
 
-**Still to do for this feature:** run the full regression suite in `tests/` on it (the checkers and individual tests passed during building, but the full run was skipped), then have Kaleb playtest it and commit.
+**Tested 2026-10-29:** all 8 regression tests in `tests/` passed with no page errors, and both checkers found no problems. The full playthrough cleared all 33 zones; measured enemy hit rates matched the settings within about 1%.
+
+**Still to do for this feature:** Kaleb playtests it and reports anything that feels off.
 
 ### Balance results with hit chance
 
