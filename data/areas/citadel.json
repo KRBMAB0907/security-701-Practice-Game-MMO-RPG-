@@ -58,44 +58,44 @@
     }
   ],
   "enemies": [
-    { "id": "serverless-sprite", "name": "Serverless Sprite", "hp": 220, "xp": 80, "weakness": "architecture-models", "color": "#80deea" },
-    { "id": "container-breaker", "name": "Container Breaker", "hp": 235, "xp": 85, "weakness": "architecture-models", "color": "#4fc3f7" },
-    { "id": "scada-saboteur", "name": "SCADA Saboteur", "hp": 240, "xp": 85, "weakness": "specialized-systems", "color": "#ffab40" },
-    { "id": "iot-swarm", "name": "IoT Swarm", "hp": 240, "xp": 85, "weakness": "specialized-systems", "color": "#c5e1a5" },
+    { "id": "serverless-sprite", "name": "Serverless Sprite", "sprite": "drone", "hp": 220, "xp": 80, "weakness": "architecture-models", "color": "#80deea" },
+    { "id": "container-breaker", "name": "Container Breaker", "sprite": "gremlin", "hp": 235, "xp": 85, "weakness": "architecture-models", "color": "#4fc3f7" },
+    { "id": "scada-saboteur", "name": "SCADA Saboteur", "sprite": "drone", "hp": 240, "xp": 85, "weakness": "specialized-systems", "color": "#ffab40" },
+    { "id": "iot-swarm", "name": "IoT Swarm", "sprite": "swarm", "hp": 240, "xp": 85, "weakness": "specialized-systems", "color": "#c5e1a5" },
     {
-      "id": "hypervisor-tyrant", "name": "Hypervisor Tyrant", "hp": 440, "xp": 240,
+      "id": "hypervisor-tyrant", "name": "Hypervisor Tyrant", "sprite": "wraith", "hp": 440, "xp": 240,
       "boss": true, "damageScale": 1.5, "phases": ["architecture-models", "specialized-systems"], "color": "#29b6f6"
     },
 
-    { "id": "port-prowler", "name": "Port Prowler", "hp": 235, "xp": 85, "weakness": "network-security", "color": "#ef9a9a" },
-    { "id": "split-tunnel-leech", "name": "Split Tunnel Leech", "hp": 240, "xp": 85, "weakness": "secure-remote-access", "color": "#ce93d8" },
-    { "id": "flat-network-golem", "name": "Flat Network Golem", "hp": 245, "xp": 90, "weakness": "network-security", "color": "#bcaaa4" },
-    { "id": "vpn-hijacker", "name": "VPN Hijacker", "hp": 245, "xp": 90, "weakness": "secure-remote-access", "color": "#7e57c2" },
+    { "id": "port-prowler", "name": "Port Prowler", "sprite": "gremlin", "hp": 235, "xp": 85, "weakness": "network-security", "color": "#ef9a9a" },
+    { "id": "split-tunnel-leech", "name": "Split Tunnel Leech", "sprite": "crawler", "hp": 240, "xp": 85, "weakness": "secure-remote-access", "color": "#ce93d8" },
+    { "id": "flat-network-golem", "name": "Flat Network Golem", "sprite": "golem", "hp": 245, "xp": 90, "weakness": "network-security", "color": "#bcaaa4" },
+    { "id": "vpn-hijacker", "name": "VPN Hijacker", "sprite": "crawler", "hp": 245, "xp": 90, "weakness": "secure-remote-access", "color": "#7e57c2" },
     {
-      "id": "perimeter-breaker", "name": "Perimeter Breaker", "hp": 455, "xp": 250,
+      "id": "perimeter-breaker", "name": "Perimeter Breaker", "sprite": "drone", "hp": 455, "xp": 250,
       "boss": true, "damageScale": 1.5, "phases": ["secure-remote-access", "network-security"], "color": "#ff7043"
     },
 
-    { "id": "data-hoarder", "name": "Data Hoarder", "hp": 240, "xp": 90, "weakness": "data-classification", "color": "#ffe082" },
-    { "id": "exfil-courier", "name": "Exfil Courier", "hp": 245, "xp": 90, "weakness": "data-protection", "color": "#80cbc4" },
-    { "id": "sovereignty-smuggler", "name": "Sovereignty Smuggler", "hp": 255, "xp": 90, "weakness": "data-classification", "color": "#9fa8da" },
-    { "id": "memory-scraper", "name": "Memory Scraper", "hp": 255, "xp": 95, "weakness": "data-protection", "color": "#f48fb1" },
+    { "id": "data-hoarder", "name": "Data Hoarder", "sprite": "slime", "hp": 240, "xp": 90, "weakness": "data-classification", "color": "#ffe082" },
+    { "id": "exfil-courier", "name": "Exfil Courier", "sprite": "crawler", "hp": 245, "xp": 90, "weakness": "data-protection", "color": "#80cbc4" },
+    { "id": "sovereignty-smuggler", "name": "Sovereignty Smuggler", "sprite": "wraith", "hp": 255, "xp": 90, "weakness": "data-classification", "color": "#9fa8da" },
+    { "id": "memory-scraper", "name": "Memory Scraper", "sprite": "crawler", "hp": 255, "xp": 95, "weakness": "data-protection", "color": "#f48fb1" },
     {
-      "id": "leak-leviathan", "name": "Leak Leviathan", "hp": 470, "xp": 260,
+      "id": "leak-leviathan", "name": "Leak Leviathan", "sprite": "serpent", "hp": 470, "xp": 260,
       "boss": true, "damageScale": 1.5, "phases": ["data-classification", "data-protection"], "color": "#26c6da"
     },
 
-    { "id": "single-point-wraith", "name": "Single Point Wraith", "hp": 245, "xp": 95, "weakness": "resilience", "color": "#b0bec5" },
-    { "id": "power-surge", "name": "Power Surge", "hp": 255, "xp": 95, "weakness": "backups", "color": "#ffee58" },
-    { "id": "disaster-drake", "name": "Disaster Drake", "hp": 260, "xp": 95, "weakness": "resilience", "color": "#ff8a65" },
-    { "id": "corrupted-archive", "name": "Corrupted Archive", "hp": 260, "xp": 95, "weakness": "backups", "color": "#a1887f" },
+    { "id": "single-point-wraith", "name": "Single Point Wraith", "sprite": "wraith", "hp": 245, "xp": 95, "weakness": "resilience", "color": "#b0bec5" },
+    { "id": "power-surge", "name": "Power Surge", "sprite": "slime", "hp": 255, "xp": 95, "weakness": "backups", "color": "#ffee58" },
+    { "id": "disaster-drake", "name": "Disaster Drake", "sprite": "serpent", "hp": 260, "xp": 95, "weakness": "resilience", "color": "#ff8a65" },
+    { "id": "corrupted-archive", "name": "Corrupted Archive", "sprite": "slime", "hp": 260, "xp": 95, "weakness": "backups", "color": "#a1887f" },
     {
-      "id": "blackout-behemoth", "name": "Blackout Behemoth", "hp": 495, "xp": 270,
+      "id": "blackout-behemoth", "name": "Blackout Behemoth", "sprite": "golem", "hp": 495, "xp": 270,
       "boss": true, "damageScale": 1.5, "phases": ["backups", "resilience"], "color": "#607d8b"
     },
 
     {
-      "id": "the-architect", "name": "The Architect", "hp": 730, "xp": 500,
+      "id": "the-architect", "name": "The Architect", "sprite": "wraith", "hp": 730, "xp": 500,
       "boss": true, "damageScale": 1.75,
       "phases": ["specialized-systems", "secure-remote-access", "data-classification", "resilience"],
       "color": "#e0e0e0"

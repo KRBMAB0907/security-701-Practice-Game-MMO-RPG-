@@ -3,34 +3,95 @@
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 
-function drawHealthBar(fighter) {
+const FLOOR_Y = 128;      // where fighters stand
+const BOSS_SIZE = 32;     // bosses are drawn at 2x (16px art x 2 stays crisp)
+let animationTime = 0;    // total milliseconds, drives the idle animation
+
+// Text with a 1px dark shadow, so it stays readable over the backgrounds
+function shadowText(text, x, y, color) {
+  ctx.fillStyle = "#05070a";
+  ctx.fillText(text, x + 1, y + 1);
+  ctx.fillStyle = color;
+  ctx.fillText(text, x, y);
+}
+
+// Top edge of a fighter drawn at this size (everyone stands on the floor)
+function fighterTop(fighter, size) {
+  return fighter.y + 16 - size;
+}
+
+function drawHealthBar(fighter, size) {
   const width = 48;
-  const x = fighter.x + 8 - width / 2;  // centred over the 16px fighter
-  const y = fighter.y - 24;
+  const x = fighter.x + 8 - width / 2;  // centred over the fighter
+  const y = fighterTop(fighter, size) - (fighter.boss ? 18 : 12);  // bosses leave room for the crown
   const fill = Math.max(fighter.hp, 0) / fighter.maxHp;
 
+  ctx.fillStyle = "#05070a";
+  ctx.fillRect(x - 1, y - 1, width + 2, 7);
   ctx.fillStyle = "#1c2733";
   ctx.fillRect(x, y, width, 5);
   ctx.fillStyle = fill > 0.3 ? "#00ff9c" : "#ff3864";  // red when low
   ctx.fillRect(x, y, Math.round(width * fill), 5);
 
-  ctx.fillStyle = "#d8f3e8";
   ctx.font = "8px monospace";
   ctx.textAlign = "center";
-  ctx.fillText(Math.max(fighter.hp, 0) + "/" + fighter.maxHp, fighter.x + 8, y - 3);
+  shadowText(Math.max(fighter.hp, 0) + "/" + fighter.maxHp, fighter.x + 8, y - 3, "#d8f3e8");
 }
 
-function drawFighter(fighter, size) {
+// The sheet to draw for a fighter, or null if its image isn't loaded
+function fighterSheet(fighter) {
+  if (fighter.spritePath === null) {
+    return null;
+  }
+  if (fighter.flash > 0) {
+    return silhouette(fighter.spritePath);  // white hit flash
+  }
+  return fighter.tint ? tinted(fighter.spritePath, fighter.color) : getImage(fighter.spritePath);
+}
+
+function drawFighter(fighter, size, flip) {
   // A shake moves the fighter a random 1-2 pixels each frame
   const offset = fighter.shake > 0 ? Math.round(Math.random() * 4 - 2) : 0;
-  ctx.fillStyle = fighter.flash > 0 ? "#ffffff" : fighter.color;
-  // Bigger fighters stand on the same floor line
-  ctx.fillRect(fighter.x + offset - (size - 16) / 2, fighter.y + 16 - size, size, size);
+  const x = fighter.x + offset - (size - 16) / 2;
+  const y = fighterTop(fighter, size);
+
+  const sheet = fighterSheet(fighter);
+  if (sheet === null) {
+    // Fallback: the original colored square, used while images load or if one is missing
+    ctx.fillStyle = fighter.flash > 0 ? "#ffffff" : fighter.color;
+    ctx.fillRect(x, y, size, size);
+  } else {
+    drawFrame(sheet, idleFrame(animationTime), x, y, size, flip);
+  }
+
+  // Bosses wear a crown, centred above their head
+  const crown = getImage("assets/sprites/crown.png");
+  if (fighter.boss && crown !== null) {
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(crown, fighter.x + 8 - crown.width, y - crown.height * 2 + 2, crown.width * 2, crown.height * 2);
+  }
+}
+
+// The area scene behind everything; plain colors if the image isn't ready
+function drawBackground() {
+  const area = currentZone ? areaOf(currentZone) : selectedArea;
+  const background = area ? getImage(backgroundPath(area.id)) : null;
+
+  if (background !== null) {
+    ctx.drawImage(background, 0, 0);
+  } else {
+    ctx.fillStyle = "#0a0e14";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#1c2733";
+    ctx.fillRect(0, FLOOR_Y, canvas.width, 2);
+  }
 }
 
 function drawXpBar() {
   const x = 8, y = 166, width = canvas.width - 16;
   const fill = save.xp / xpToNextLevel();
+  ctx.fillStyle = "#05070a";
+  ctx.fillRect(x - 1, y - 1, width + 2, 5);
   ctx.fillStyle = "#1c2733";
   ctx.fillRect(x, y, width, 3);
   ctx.fillStyle = "#ffd166";
@@ -38,40 +99,31 @@ function drawXpBar() {
 
   ctx.font = "8px monospace";
   ctx.textAlign = "left";
-  ctx.fillText("Lv " + save.level + "  XP " + save.xp + "/" + xpToNextLevel(), x, y - 4);
+  shadowText("Lv " + save.level + "  XP " + save.xp + "/" + xpToNextLevel(), x, y - 4, "#ffd166");
 }
 
 function draw() {
-  // Background and floor
-  ctx.fillStyle = "#0a0e14";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "#1c2733";
-  ctx.fillRect(0, 128, canvas.width, 2);
-
+  drawBackground();
   ctx.font = "8px monospace";
-  ctx.fillStyle = "#d8f3e8";
 
   if (currentZone && enemy.maxHp > 0) {
     // Zone name and progress across the top
     ctx.textAlign = "center";
-    ctx.fillStyle = "#7fa894";
-    ctx.fillText(currentZone.name + "  " + (enemyIndex + 1) + "/" + currentZone.enemies.length, canvas.width / 2, 14);
+    shadowText(currentZone.name + "  " + (enemyIndex + 1) + "/" + currentZone.enemies.length, canvas.width / 2, 14, "#a8d5c0");
 
-    ctx.fillStyle = "#d8f3e8";
     ctx.textAlign = "left";
-    ctx.fillText(player.name, 8, 28);
+    shadowText(player.name, 8, 28, "#d8f3e8");
     ctx.textAlign = "right";
-    ctx.fillStyle = enemy.boss ? "#ffd166" : "#d8f3e8";
-    ctx.fillText(enemy.name, canvas.width - 8, 28);
+    shadowText(enemy.name, canvas.width - 8, 28, enemy.boss ? "#ffd166" : "#d8f3e8");
     if (enemy.phases) {
-      ctx.fillStyle = "#7fa894";
-      ctx.fillText("Phase " + (currentPhase() + 1) + "/" + enemy.phases.length, canvas.width - 8, 40);
+      shadowText("Phase " + (currentPhase() + 1) + "/" + enemy.phases.length, canvas.width - 8, 40, "#a8d5c0");
     }
 
-    drawFighter(player, 16);
-    drawFighter(enemy, enemy.boss ? 24 : 16);
-    drawHealthBar(player);
-    drawHealthBar(enemy);
+    const enemySize = enemy.boss ? BOSS_SIZE : 16;
+    drawFighter(player, 16, false);
+    drawFighter(enemy, enemySize, true);  // enemies face left, toward the player
+    drawHealthBar(player, 16);
+    drawHealthBar(enemy, enemySize);
   }
 
   if (currentMode) {
@@ -82,14 +134,14 @@ function draw() {
   ctx.textAlign = "center";
   floatingTexts.forEach(text => {
     ctx.globalAlpha = Math.max(text.life / text.maxLife, 0);
-    ctx.fillStyle = text.color;
-    ctx.fillText(text.value, text.x, text.y);
+    shadowText(text.value, text.x, text.y, text.color);
   });
   ctx.globalAlpha = 1;
 }
 
 // Move the animations forward by dt milliseconds
 function update(dt) {
+  animationTime += dt;
   [player, enemy].forEach(fighter => {
     fighter.flash = Math.max(fighter.flash - dt, 0);
     fighter.shake = Math.max(fighter.shake - dt, 0);

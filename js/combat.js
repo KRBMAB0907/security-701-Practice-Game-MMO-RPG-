@@ -103,6 +103,7 @@ function startFight() {
 
   enemy.name = type.name;
   enemy.color = type.color;
+  enemy.spritePath = type.sprite ? enemySpritePath(type.sprite) : null;  // null = draw a square
   enemy.boss = type.boss || false;
   enemy.weakness = type.weakness;
   enemy.phases = type.phases;
@@ -114,6 +115,7 @@ function startFight() {
   // You start every fight at full health, in your class's colors
   player.name = currentClass().name;
   player.color = currentClass().color;
+  player.spritePath = classSpritePath(currentClass().id);
   player.maxHp = playerMaxHp();
   player.hp = player.maxHp;
 

@@ -3,7 +3,7 @@
 Run from the repo's main folder:
     python tools/check_game_data.py
 
-It checks that areas, zones, enemies, skills and classes all link up:
+It checks that areas, zones, enemies, skills, classes and art all link up:
 every enemy weakness can be hit by a skill in its zone, every skill's
 topics exist and have questions, IDs are unique, and so on. Run it after
 editing anything in data/areas/, data/areas.json or data/classes.json.
@@ -68,6 +68,11 @@ def main():
             all_enemies[enemy["id"]] = enemy
             if "weakness" not in enemy and "phases" not in enemy:
                 problems.append(f"{where}: enemy '{enemy['id']}' has no weakness or phases")
+            sprite = enemy.get("sprite")
+            if sprite is None:
+                problems.append(f"{where}: enemy '{enemy['id']}' has no sprite (it will be drawn as a square)")
+            elif not (ROOT / "assets" / "sprites" / "enemies" / f"{sprite}.png").exists():
+                problems.append(f"{where}: enemy '{enemy['id']}' uses missing sprite assets/sprites/enemies/{sprite}.png")
 
         for zone in data["zones"]:
             if zone["id"] in all_zones:
@@ -95,6 +100,9 @@ def main():
                     if weakness not in zone_topics:
                         problems.append(f"{where}: in zone '{zone['id']}', no skill can hit {enemy_id}'s weakness '{weakness}'")
 
+        if not (ROOT / "assets" / "backgrounds" / f"{area['id']}.png").exists():
+            problems.append(f"{area['name']}: missing background assets/backgrounds/{area['id']}.png")
+
         summary.append(f"  {area['name']}: {len(data['zones'])} zones, {len(data['enemies'])} enemies, "
                        f"{len(data['skills'])} skills, {len(questions)} questions")
 
@@ -103,6 +111,8 @@ def main():
             problems.append(f"skill '{skill_id}' is not used in any zone")
 
     for player_class in load("data/classes.json")["classes"]:
+        if not (ROOT / "assets" / "sprites" / "classes" / f"{player_class['id']}.png").exists():
+            problems.append(f"class '{player_class['id']}' is missing assets/sprites/classes/{player_class['id']}.png")
         for skill_id in player_class["favoredSkills"]:
             if skill_id not in all_skills:
                 problems.append(f"class '{player_class['id']}' favors unknown skill '{skill_id}'")

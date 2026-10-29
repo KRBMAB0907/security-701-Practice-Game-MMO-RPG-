@@ -67,6 +67,7 @@ async function start() {
 
     classes = classData.classes;
     lootTable = lootData;
+    preloadArt();  // start loading images in the background
 
     status.hidden = true;
     showPanel("mode-panel");

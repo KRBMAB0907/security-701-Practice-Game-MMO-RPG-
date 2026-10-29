@@ -110,6 +110,7 @@
     {
       "id": "misconfig-gremlin",
       "name": "Misconfig Gremlin",
+      "sprite": "gremlin",
       "hp": 60,
       "xp": 20,
       "weakness": "control-categories",
@@ -118,6 +119,7 @@
     {
       "id": "tailgate-phantom",
       "name": "Tailgate Phantom",
+      "sprite": "ghost",
       "hp": 70,
       "xp": 25,
       "weakness": "control-types",
@@ -126,6 +128,7 @@
     {
       "id": "rogue-insider",
       "name": "Rogue Insider",
+      "sprite": "slime",
       "hp": 80,
       "xp": 30,
       "weakness": "control-categories",
@@ -134,6 +137,7 @@
     {
       "id": "unpatched-warden",
       "name": "Unpatched Warden",
+      "sprite": "golem",
       "hp": 150,
       "xp": 80,
       "boss": true,
@@ -144,6 +148,7 @@
     {
       "id": "data-tamperer",
       "name": "Data Tamperer",
+      "sprite": "crawler",
       "hp": 70,
       "xp": 25,
       "weakness": "cia-triad",
@@ -152,6 +157,7 @@
     {
       "id": "credential-thief",
       "name": "Credential Thief",
+      "sprite": "crawler",
       "hp": 75,
       "xp": 30,
       "weakness": "aaa",
@@ -160,6 +166,7 @@
     {
       "id": "trust-wraith",
       "name": "Implicit Trust Wraith",
+      "sprite": "wraith",
       "hp": 80,
       "xp": 30,
       "weakness": "zero-trust",
@@ -168,6 +175,7 @@
     {
       "id": "lurking-intruder",
       "name": "Lurking Intruder",
+      "sprite": "slime",
       "hp": 85,
       "xp": 35,
       "weakness": "deception",
@@ -176,6 +184,7 @@
     {
       "id": "sanctum-usurper",
       "name": "Sanctum Usurper",
+      "sprite": "wraith",
       "hp": 170,
       "xp": 100,
       "boss": true,
@@ -186,6 +195,7 @@
     {
       "id": "rogue-change",
       "name": "Rogue Change",
+      "sprite": "drone",
       "hp": 80,
       "xp": 30,
       "weakness": "change-process",
@@ -194,6 +204,7 @@
     {
       "id": "scope-creep",
       "name": "Scope Creep",
+      "sprite": "serpent",
       "hp": 85,
       "xp": 35,
       "weakness": "change-technical",
@@ -202,6 +213,7 @@
     {
       "id": "undocumented-patch",
       "name": "Undocumented Patch",
+      "sprite": "drone",
       "hp": 90,
       "xp": 35,
       "weakness": "change-documentation",
@@ -210,6 +222,7 @@
     {
       "id": "shadow-deployer",
       "name": "Shadow Deployer",
+      "sprite": "drone",
       "hp": 95,
       "xp": 40,
       "weakness": "change-process",
@@ -218,6 +231,7 @@
     {
       "id": "outage-overlord",
       "name": "Outage Overlord",
+      "sprite": "wraith",
       "hp": 190,
       "xp": 120,
       "boss": true,
@@ -228,6 +242,7 @@
     {
       "id": "plaintext-leaker",
       "name": "Plaintext Leaker",
+      "sprite": "slime",
       "hp": 90,
       "xp": 35,
       "weakness": "encryption",
@@ -236,6 +251,7 @@
     {
       "id": "forged-certificate",
       "name": "Forged Certificate",
+      "sprite": "gremlin",
       "hp": 95,
       "xp": 40,
       "weakness": "pki-certificates",
@@ -244,6 +260,7 @@
     {
       "id": "hash-collider",
       "name": "Hash Collider",
+      "sprite": "gremlin",
       "hp": 100,
       "xp": 40,
       "weakness": "hashing-integrity",
@@ -252,6 +269,7 @@
     {
       "id": "hidden-payload",
       "name": "Hidden Payload",
+      "sprite": "slime",
       "hp": 100,
       "xp": 45,
       "weakness": "obfuscation",
@@ -260,6 +278,7 @@
     {
       "id": "rogue-ca",
       "name": "Rogue Certificate Authority",
+      "sprite": "drone",
       "hp": 210,
       "xp": 140,
       "boss": true,
@@ -270,6 +289,7 @@
     {
       "id": "foundry-overseer",
       "name": "Foundry Overseer",
+      "sprite": "wraith",
       "hp": 300,
       "xp": 250,
       "boss": true,

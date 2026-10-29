@@ -12,6 +12,7 @@ A free, browser-based RPG that helps you study for the **CompTIA Security+ (SY0-
 - **Answer correctly** and your skill hits. Answer wrong or run out of time and the enemy hits you. Every answer shows an explanation, so mistakes still teach.
 - **Hit weak points.** Enemies are weak to certain topics, and matching skills deal 1.5x damage. Bosses change weakness halfway through the fight.
 - **Collect loot.** Enemies drop gear in five tiers, from Common to Legendary: tools boost damage, armor boosts health, and modules add time to the question timer. Legendaries have special effects, like removing a wrong answer from every question. Hard mode finds rare gear more often.
+- **Retro pixel art.** Each area has its own scene, every class has its own sprite, and enemies come in 10 body types tinted to look different. Bosses wear crowns.
 - **Level up and unlock areas.** Clear a sub-zone's boss to unlock the next one. Progress saves in your browser.
 
 ## World map
@@ -50,6 +51,7 @@ js/                     the game code, one file per job (loaded in this order)
   state.js              game state and the two fighters
   storage.js            loading data files, saving progress
   leveling.js           XP, leveling and the death penalty
+  sprites.js            loading, tinting and animating the pixel art
   classes.js            picking and switching classes
   loot.js               drops, gear and the gear screen
   render.js             drawing the canvas and the game loop
@@ -65,9 +67,15 @@ data/
   classes.json          class stats and favored skills
   loot.json             loot tiers, drop chances and item names
   questions/            question bank, one file per domain
+assets/
+  sprites/              class and enemy sprites, plus the boss crown
+  backgrounds/          one scene per area
+docs/
+  ART.md                how to edit the art in Piskel
 tools/
   check_questions.py    checks the question bank for mistakes
-  check_game_data.py    checks areas, zones, enemies, skills and classes link up
+  check_game_data.py    checks areas, zones, enemies, skills, classes and art link up
+  make_sprites.py       draws the starter pixel art
 ```
 
 Game **content lives in `data/`, separate from the code**. Adding enemies, zones or questions means editing JSON, not JavaScript. Building a new area means writing its file in `data/areas/` and pointing to it from `data/areas.json`. Then run `python tools/check_game_data.py` to make sure everything links up.

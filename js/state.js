@@ -37,8 +37,9 @@ let questionTime = 0;     // full time for the current question, including gear 
 let failoverUsed = false; // the Failover Core legendary works once per fight
 
 // The two fighters. flash and shake count down in milliseconds.
-const player = { name: "You", hp: 100, maxHp: 100, x: 48,  y: 112, color: "#00ff9c", flash: 0, shake: 0 };
-const enemy  = { name: "",    hp: 0,   maxHp: 0,   x: 256, y: 112, color: "#ff3864", flash: 0, shake: 0 };
+// spritePath is the image to draw; tint = true recolors it with `color`.
+const player = { name: "You", hp: 100, maxHp: 100, x: 48,  y: 112, color: "#00ff9c", flash: 0, shake: 0, spritePath: null, tint: false };
+const enemy  = { name: "",    hp: 0,   maxHp: 0,   x: 256, y: 112, color: "#ff3864", flash: 0, shake: 0, spritePath: null, tint: true };
 
 // Damage numbers that float up and fade out
 let floatingTexts = [];
