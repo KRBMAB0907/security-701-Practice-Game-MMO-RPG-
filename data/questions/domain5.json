@@ -1,0 +1,693 @@
+{
+  "exam": "SY0-701",
+  "domain": 5,
+  "name": "Security Program Management and Oversight",
+  "questions": [
+    {
+      "id": "d5-001",
+      "objective": "5.1",
+      "topic": "governance",
+      "question": "Which governance document gives detailed, step-by-step instructions for performing a specific task?",
+      "choices": [
+        "Procedure",
+        "Policy",
+        "Guideline",
+        "Standard"
+      ],
+      "answer": 0,
+      "explanation": "Policies state what must be done and why, standards set specific requirements, guidelines give recommendations, and procedures say exactly how."
+    },
+    {
+      "id": "d5-002",
+      "objective": "5.1",
+      "topic": "governance",
+      "question": "A document requires that all passwords be at least 14 characters long. What type of document is this?",
+      "choices": [
+        "Procedure",
+        "Standard",
+        "Guideline",
+        "Memorandum of understanding"
+      ],
+      "answer": 1,
+      "explanation": "Standards set specific, mandatory requirements that support a broader policy."
+    },
+    {
+      "id": "d5-003",
+      "objective": "5.1",
+      "topic": "governance",
+      "question": "Which type of document offers recommendations that employees are encouraged, but not required, to follow?",
+      "choices": [
+        "Standard",
+        "Guideline",
+        "Policy",
+        "Procedure"
+      ],
+      "answer": 1,
+      "explanation": "Guidelines are advisory. They give flexibility where a strict standard is not needed."
+    },
+    {
+      "id": "d5-004",
+      "objective": "5.1",
+      "topic": "governance",
+      "question": "Which policy explains what employees may and may not do with company computers, email and internet access?",
+      "choices": [
+        "Incident response plan",
+        "Change management policy",
+        "Acceptable use policy (AUP)",
+        "Business continuity plan"
+      ],
+      "answer": 2,
+      "explanation": "An AUP sets the rules for using company technology, and users usually must agree to it."
+    },
+    {
+      "id": "d5-005",
+      "objective": "5.1",
+      "topic": "governance",
+      "question": "Which role is ultimately accountable for a set of data, including deciding how it is classified?",
+      "choices": [
+        "Data custodian",
+        "Data owner",
+        "Data processor",
+        "Data subject"
+      ],
+      "answer": 1,
+      "explanation": "The data owner, usually a senior leader, is accountable for the data. Custodians handle its day-to-day protection."
+    },
+    {
+      "id": "d5-006",
+      "objective": "5.1",
+      "topic": "governance",
+      "question": "Which role carries out the day-to-day protection of data, such as running backups and applying access controls?",
+      "choices": [
+        "Data owner",
+        "Data subject",
+        "Data controller",
+        "Data custodian"
+      ],
+      "answer": 3,
+      "explanation": "Custodians, often IT staff, implement the protections the data owner decides on."
+    },
+    {
+      "id": "d5-007",
+      "objective": "5.1",
+      "topic": "governance",
+      "question": "A payroll company processes employee data on behalf of another company that decides how that data is used. What is the payroll company's role?",
+      "choices": [
+        "Data controller",
+        "Data owner",
+        "Data subject",
+        "Data processor"
+      ],
+      "answer": 3,
+      "explanation": "The controller decides the purpose and means of processing. The processor handles data on the controller's behalf."
+    },
+    {
+      "id": "d5-008",
+      "objective": "5.1",
+      "topic": "governance",
+      "question": "In a centralized governance structure, security decisions are:",
+      "choices": [
+        "Left to individual employees",
+        "Made only by outside regulators",
+        "Made by one central group for the whole organization",
+        "Made separately by each department"
+      ],
+      "answer": 2,
+      "explanation": "Centralized governance gives consistency. Decentralized governance gives business units more freedom but can be inconsistent."
+    },
+    {
+      "id": "d5-009",
+      "objective": "5.2",
+      "topic": "risk-analysis",
+      "question": "A server outage costs $20,000 each time (SLE) and is expected once every two years (ARO of 0.5). What is the annualized loss expectancy (ALE)?",
+      "choices": [
+        "$5,000",
+        "$10,000",
+        "$40,000",
+        "$20,000"
+      ],
+      "answer": 1,
+      "explanation": "ALE = SLE x ARO, so $20,000 x 0.5 = $10,000 per year."
+    },
+    {
+      "id": "d5-010",
+      "objective": "5.2",
+      "topic": "risk-analysis",
+      "question": "An asset is worth $100,000, and a flood would destroy 40% of its value (exposure factor). What is the single loss expectancy (SLE)?",
+      "choices": [
+        "$40,000",
+        "$4,000",
+        "$100,000",
+        "$60,000"
+      ],
+      "answer": 0,
+      "explanation": "SLE = asset value x exposure factor, so $100,000 x 0.40 = $40,000."
+    },
+    {
+      "id": "d5-011",
+      "objective": "5.2",
+      "topic": "risk-strategies",
+      "question": "A company buys cybersecurity insurance to cover the costs of a data breach. Which risk strategy is this?",
+      "choices": [
+        "Accept",
+        "Avoid",
+        "Mitigate",
+        "Transfer"
+      ],
+      "answer": 3,
+      "explanation": "Transferring risk shifts its financial impact to another party, such as an insurer."
+    },
+    {
+      "id": "d5-012",
+      "objective": "5.2",
+      "topic": "risk-strategies",
+      "question": "A company decides a new product feature is too risky and stops offering it entirely. Which risk strategy is this?",
+      "choices": [
+        "Avoid",
+        "Mitigate",
+        "Transfer",
+        "Accept"
+      ],
+      "answer": 0,
+      "explanation": "Avoidance removes the risk by stopping the activity that creates it."
+    },
+    {
+      "id": "d5-013",
+      "objective": "5.2",
+      "topic": "risk-strategies",
+      "question": "A risk costs very little if it happens, so the company decides to take no action. Which risk strategy is this?",
+      "choices": [
+        "Avoid",
+        "Mitigate",
+        "Transfer",
+        "Accept"
+      ],
+      "answer": 3,
+      "explanation": "Acceptance is a valid choice when fixing a risk would cost more than the risk itself, as long as it is documented."
+    },
+    {
+      "id": "d5-014",
+      "objective": "5.2",
+      "topic": "risk-analysis",
+      "question": "Which document records identified risks along with their owners, ratings and planned responses?",
+      "choices": [
+        "Asset inventory",
+        "Chain of custody",
+        "Acceptable use policy",
+        "Risk register"
+      ],
+      "answer": 3,
+      "explanation": "The risk register is the central tracking document for the risk management process."
+    },
+    {
+      "id": "d5-015",
+      "objective": "5.2",
+      "topic": "business-impact",
+      "question": "The maximum time a system can be down before the business suffers unacceptable harm is the:",
+      "choices": [
+        "Mean time between failures (MTBF)",
+        "Recovery point objective (RPO)",
+        "Recovery time objective (RTO)",
+        "Annualized rate of occurrence (ARO)"
+      ],
+      "answer": 2,
+      "explanation": "RTO is about downtime: how quickly a system must be back up."
+    },
+    {
+      "id": "d5-016",
+      "objective": "5.2",
+      "topic": "business-impact",
+      "question": "A business can afford to lose at most one hour of data, so backups run every hour. Which metric is this?",
+      "choices": [
+        "Single loss expectancy (SLE)",
+        "Recovery point objective (RPO)",
+        "Recovery time objective (RTO)",
+        "Mean time to repair (MTTR)"
+      ],
+      "answer": 1,
+      "explanation": "RPO is about data loss: how far back in time you can afford to restore from."
+    },
+    {
+      "id": "d5-017",
+      "objective": "5.2",
+      "topic": "business-impact",
+      "question": "Which metric measures the average time it takes to fix a failed system?",
+      "choices": [
+        "Mean time to repair (MTTR)",
+        "Recovery point objective (RPO)",
+        "Annualized loss expectancy (ALE)",
+        "Mean time between failures (MTBF)"
+      ],
+      "answer": 0,
+      "explanation": "MTTR tracks repair speed. MTBF measures how long a system typically runs between failures."
+    },
+    {
+      "id": "d5-018",
+      "objective": "5.3",
+      "topic": "third-party-risk",
+      "question": "Which agreement defines measurable performance a vendor must meet, such as 99.9% uptime?",
+      "choices": [
+        "Service level agreement (SLA)",
+        "Statement of work (SOW)",
+        "Non-disclosure agreement (NDA)",
+        "Memorandum of understanding (MOU)"
+      ],
+      "answer": 0,
+      "explanation": "An SLA sets specific service levels and usually the penalties if the vendor misses them."
+    },
+    {
+      "id": "d5-019",
+      "objective": "5.3",
+      "topic": "third-party-risk",
+      "question": "Two organizations write down a mutual intention to work together, but it is not usually legally binding. What is this?",
+      "choices": [
+        "Service level agreement (SLA)",
+        "Master service agreement (MSA)",
+        "Memorandum of understanding (MOU)",
+        "Non-disclosure agreement (NDA)"
+      ],
+      "answer": 2,
+      "explanation": "An MOU documents shared goals and intent, without the enforceable terms of a contract."
+    },
+    {
+      "id": "d5-020",
+      "objective": "5.3",
+      "topic": "third-party-risk",
+      "question": "Which agreement legally requires a vendor to keep the company's confidential information secret?",
+      "choices": [
+        "Statement of work (SOW)",
+        "Service level agreement (SLA)",
+        "Non-disclosure agreement (NDA)",
+        "Memorandum of agreement (MOA)"
+      ],
+      "answer": 2,
+      "explanation": "An NDA protects sensitive information shared during a business relationship."
+    },
+    {
+      "id": "d5-021",
+      "objective": "5.3",
+      "topic": "third-party-risk",
+      "question": "A company signs one agreement with a vendor that sets the general terms for all future projects together. What is this?",
+      "choices": [
+        "Memorandum of understanding (MOU)",
+        "Statement of work (SOW)",
+        "Master service agreement (MSA)",
+        "Work order (WO)"
+      ],
+      "answer": 2,
+      "explanation": "An MSA covers the overall relationship. Individual projects are then defined in separate statements of work."
+    },
+    {
+      "id": "d5-022",
+      "objective": "5.3",
+      "topic": "third-party-risk",
+      "question": "Which document describes the specific tasks, deliverables and timeline for one project with a vendor?",
+      "choices": [
+        "Master service agreement (MSA)",
+        "Non-disclosure agreement (NDA)",
+        "Acceptable use policy (AUP)",
+        "Statement of work (SOW)"
+      ],
+      "answer": 3,
+      "explanation": "A SOW details exactly what will be done for a particular project, usually under an existing MSA."
+    },
+    {
+      "id": "d5-023",
+      "objective": "5.3",
+      "topic": "third-party-risk",
+      "question": "Which contract clause lets a company inspect a vendor's security controls?",
+      "choices": [
+        "Non-compete clause",
+        "Right-to-audit clause",
+        "Termination for convenience clause",
+        "Force majeure clause"
+      ],
+      "answer": 1,
+      "explanation": "A right-to-audit clause gives the customer the ability to verify that the vendor actually follows its security promises."
+    },
+    {
+      "id": "d5-024",
+      "objective": "5.3",
+      "topic": "third-party-risk",
+      "question": "Before hiring a vendor, a company researches its security practices, finances and reputation. What is this called?",
+      "choices": [
+        "Due diligence",
+        "Due care",
+        "Legal hold",
+        "Risk acceptance"
+      ],
+      "answer": 0,
+      "explanation": "Due diligence is investigating before committing, so the company understands the risks a vendor brings."
+    },
+    {
+      "id": "d5-025",
+      "objective": "5.3",
+      "topic": "third-party-risk",
+      "question": "Before a third-party penetration test, both sides agree on what may be tested, when, and which methods are allowed. What is this document?",
+      "choices": [
+        "Rules of engagement",
+        "Business partnership agreement",
+        "Acceptable use policy",
+        "Service level agreement"
+      ],
+      "answer": 0,
+      "explanation": "Rules of engagement set the scope and limits of testing, protecting both the tester and the client."
+    },
+    {
+      "id": "d5-026",
+      "objective": "5.4",
+      "topic": "compliance-privacy",
+      "question": "Which is a common consequence of failing to comply with regulations such as PCI DSS?",
+      "choices": [
+        "Fines and possible loss of the ability to process card payments",
+        "Automatic cyber insurance coverage",
+        "A free security audit",
+        "Faster network speeds"
+      ],
+      "answer": 0,
+      "explanation": "Non-compliance can lead to fines, sanctions, reputational damage, loss of licenses and contractual problems."
+    },
+    {
+      "id": "d5-027",
+      "objective": "5.4",
+      "topic": "compliance-privacy",
+      "question": "Under GDPR, a customer asks a company to delete all their personal data. Which right is this?",
+      "choices": [
+        "The right to non-repudiation",
+        "The right to data sovereignty",
+        "The right of key escrow",
+        "The right to be forgotten"
+      ],
+      "answer": 3,
+      "explanation": "GDPR gives individuals the right to request erasure of their personal data in many circumstances."
+    },
+    {
+      "id": "d5-028",
+      "objective": "5.4",
+      "topic": "compliance-privacy",
+      "question": "Under privacy laws, what is a data subject?",
+      "choices": [
+        "The regulator enforcing the law",
+        "The person the personal data is about",
+        "The company that stores the data",
+        "The IT administrator managing the database"
+      ],
+      "answer": 1,
+      "explanation": "Privacy laws exist to protect data subjects, the individuals whose information is being collected."
+    },
+    {
+      "id": "d5-029",
+      "objective": "5.4",
+      "topic": "compliance-privacy",
+      "question": "Why must a US-based online store that sells to customers in the EU follow GDPR?",
+      "choices": [
+        "GDPR applies only to companies headquartered in Europe",
+        "GDPR protects personal data of people in the EU, wherever the company is based",
+        "US law automatically includes GDPR",
+        "GDPR only applies to government agencies"
+      ],
+      "answer": 1,
+      "explanation": "GDPR's reach depends on whose data is processed, not just on where the company is located."
+    },
+    {
+      "id": "d5-030",
+      "objective": "5.4",
+      "topic": "compliance-privacy",
+      "question": "A senior executive formally signs a statement confirming the company meets a regulation's requirements. What is this called?",
+      "choices": [
+        "Escalation",
+        "Attestation",
+        "Deprovisioning",
+        "Acceptance"
+      ],
+      "answer": 1,
+      "explanation": "Attestation is a formal declaration of compliance, which makes leaders accountable for its accuracy."
+    },
+    {
+      "id": "d5-031",
+      "objective": "5.4",
+      "topic": "compliance-privacy",
+      "question": "What is the difference between internal and external compliance reporting?",
+      "choices": [
+        "Internal reporting goes to the organization's own leaders; external reporting goes to regulators or outside parties",
+        "Internal reports are always public",
+        "There is no difference",
+        "External reports are never required by law"
+      ],
+      "answer": 0,
+      "explanation": "Internal reports help leadership manage compliance. External reports satisfy regulators, customers or partners."
+    },
+    {
+      "id": "d5-032",
+      "objective": "5.4",
+      "topic": "compliance-privacy",
+      "question": "Continuously taking reasonable steps to protect data, such as keeping systems patched, is known as:",
+      "choices": [
+        "Due diligence",
+        "Due care",
+        "Risk avoidance",
+        "Data sovereignty"
+      ],
+      "answer": 1,
+      "explanation": "Due diligence is researching and understanding risks. Due care is acting on that knowledge in ongoing operations."
+    },
+    {
+      "id": "d5-033",
+      "objective": "5.4",
+      "topic": "compliance-privacy",
+      "question": "Which privacy practice means collecting only the personal data truly needed for a purpose?",
+      "choices": [
+        "Data aggregation",
+        "Data sovereignty",
+        "Data minimization",
+        "Data replication"
+      ],
+      "answer": 2,
+      "explanation": "Data that is never collected cannot be breached. Minimization reduces both risk and compliance burden."
+    },
+    {
+      "id": "d5-034",
+      "objective": "5.5",
+      "topic": "audits-assessments",
+      "question": "Which type of audit is performed by an independent outside organization?",
+      "choices": [
+        "External audit",
+        "Internal audit",
+        "Self-assessment",
+        "Tabletop exercise"
+      ],
+      "answer": 0,
+      "explanation": "External audits provide independent, objective assurance, often required by regulators or customers."
+    },
+    {
+      "id": "d5-035",
+      "objective": "5.5",
+      "topic": "audits-assessments",
+      "question": "A company's own audit team reviews whether departments follow security policies. What type of assessment is this?",
+      "choices": [
+        "External audit",
+        "Regulatory examination",
+        "Bug bounty",
+        "Internal audit"
+      ],
+      "answer": 3,
+      "explanation": "Internal audits are performed by the organization's own staff to find issues before outside auditors do."
+    },
+    {
+      "id": "d5-036",
+      "objective": "5.5",
+      "topic": "audits-assessments",
+      "question": "Penetration testers are given full network diagrams, source code and credentials before testing. What type of environment is this?",
+      "choices": [
+        "Unknown environment",
+        "Known environment",
+        "Passive environment",
+        "Partially known environment"
+      ],
+      "answer": 1,
+      "explanation": "In a known environment test (formerly white box), testers have full information, which allows a thorough review."
+    },
+    {
+      "id": "d5-037",
+      "objective": "5.5",
+      "topic": "audits-assessments",
+      "question": "Penetration testers receive no information about the target, just like a real outside attacker. What type of environment is this?",
+      "choices": [
+        "Integrated environment",
+        "Partially known environment",
+        "Unknown environment",
+        "Known environment"
+      ],
+      "answer": 2,
+      "explanation": "An unknown environment test (formerly black box) shows what an outsider could discover and exploit."
+    },
+    {
+      "id": "d5-038",
+      "objective": "5.5",
+      "topic": "audits-assessments",
+      "question": "Testers are given some information, such as a list of IP ranges, but not full details. What type of environment is this?",
+      "choices": [
+        "Unknown environment",
+        "Offensive environment",
+        "Partially known environment",
+        "Known environment"
+      ],
+      "answer": 2,
+      "explanation": "A partially known environment test (formerly gray box) balances realism with efficient use of testing time."
+    },
+    {
+      "id": "d5-039",
+      "objective": "5.5",
+      "topic": "audits-assessments",
+      "question": "A tester gathers information from public websites and social media without directly touching the target's systems. What is this?",
+      "choices": [
+        "Privilege escalation",
+        "Passive reconnaissance",
+        "Exploitation",
+        "Active reconnaissance"
+      ],
+      "answer": 1,
+      "explanation": "Passive reconnaissance cannot be detected by the target because it never interacts with their systems."
+    },
+    {
+      "id": "d5-040",
+      "objective": "5.5",
+      "topic": "audits-assessments",
+      "question": "A tester tries to get into a building by tailgating staff and picking locks. What type of penetration test is this?",
+      "choices": [
+        "Code review",
+        "Wireless survey",
+        "Web application test",
+        "Physical penetration test"
+      ],
+      "answer": 3,
+      "explanation": "Physical tests check whether locks, badges, guards and staff awareness actually stop intruders."
+    },
+    {
+      "id": "d5-041",
+      "objective": "5.5",
+      "topic": "audits-assessments",
+      "question": "Why might a company choose an independent third party for a security assessment instead of its own staff?",
+      "choices": [
+        "Third-party assessments are always free",
+        "Internal staff are not allowed to assess security",
+        "Third parties never need rules of engagement",
+        "Outsiders are objective and may spot issues insiders overlook"
+      ],
+      "answer": 3,
+      "explanation": "Independence removes conflicts of interest and brings a fresh perspective."
+    },
+    {
+      "id": "d5-042",
+      "objective": "5.6",
+      "topic": "security-awareness",
+      "question": "Why do companies send fake phishing emails to their own employees?",
+      "choices": [
+        "To test the email server's speed",
+        "To collect employees' passwords",
+        "To train staff to recognize phishing and to measure how many people fall for it",
+        "To punish employees who click"
+      ],
+      "answer": 2,
+      "explanation": "Phishing simulations build skill through practice and give measurable results to improve training."
+    },
+    {
+      "id": "d5-043",
+      "objective": "5.6",
+      "topic": "security-awareness",
+      "question": "An employee notices a coworker copying large amounts of customer data to a USB drive late at night. What should training teach them to do?",
+      "choices": [
+        "Confront the coworker aggressively",
+        "Ignore it because it is not their business",
+        "Copy the data themselves to be safe",
+        "Report the anomalous behavior through the proper channel"
+      ],
+      "answer": 3,
+      "explanation": "Awareness training teaches staff to recognize risky or unusual behavior and report it, without trying to investigate on their own."
+    },
+    {
+      "id": "d5-044",
+      "objective": "5.6",
+      "topic": "security-awareness",
+      "question": "Which password practice should security awareness training encourage?",
+      "choices": [
+        "Using a password manager with a unique password for each account",
+        "Sharing passwords with trusted coworkers",
+        "Reusing one strong password everywhere",
+        "Writing passwords on sticky notes"
+      ],
+      "answer": 0,
+      "explanation": "Unique passwords stop one breach from unlocking other accounts, and a password manager makes them practical."
+    },
+    {
+      "id": "d5-045",
+      "objective": "5.6",
+      "topic": "security-awareness",
+      "question": "An employee finds a USB drive labeled Salaries in the parking lot. What should they do?",
+      "choices": [
+        "Hand it to the security or IT team without plugging it in",
+        "Take it home to check on a personal computer",
+        "Throw it away and say nothing",
+        "Plug it in to find the owner"
+      ],
+      "answer": 0,
+      "explanation": "Dropped USB drives are a classic attack. Plugging one in can run malware immediately."
+    },
+    {
+      "id": "d5-046",
+      "objective": "5.6",
+      "topic": "security-awareness",
+      "question": "Why should employees avoid posting details about internal systems or upcoming projects on social media?",
+      "choices": [
+        "It violates copyright law",
+        "Social media slows down company networks",
+        "Attackers use that information to plan targeted attacks",
+        "Social media posts cannot be deleted"
+      ],
+      "answer": 2,
+      "explanation": "Operational security means protecting small details that attackers can piece together for spear phishing and pretexting."
+    },
+    {
+      "id": "d5-047",
+      "objective": "5.6",
+      "topic": "security-awareness",
+      "question": "What is the best way to measure whether a security awareness program is working?",
+      "choices": [
+        "Measure how long the training video is",
+        "Check whether employees liked the training",
+        "Track results over time, such as phishing click rates and how often staff report suspicious emails",
+        "Count how many slides the training has"
+      ],
+      "answer": 2,
+      "explanation": "Effective programs use metrics that reflect real behavior, and adjust training based on the results."
+    },
+    {
+      "id": "d5-048",
+      "objective": "5.6",
+      "topic": "security-awareness",
+      "question": "What should employees do when they receive a suspicious email?",
+      "choices": [
+        "Report it using the company's reporting process, such as a report-phishing button",
+        "Forward it to all coworkers as a warning",
+        "Reply to ask the sender if it is real",
+        "Click the link to see where it goes"
+      ],
+      "answer": 0,
+      "explanation": "Fast reporting lets the security team block the threat for everyone before others fall for it."
+    },
+    {
+      "id": "d5-049",
+      "objective": "5.6",
+      "topic": "security-awareness",
+      "question": "Which topic is especially important in security training for remote and hybrid workers?",
+      "choices": [
+        "How to badge into the office lobby",
+        "How to use the office printer",
+        "Where to park at headquarters",
+        "Securing home networks and avoiding untrusted public Wi-Fi"
+      ],
+      "answer": 3,
+      "explanation": "Remote work moves the workplace outside corporate defenses, so home network security and safe connections matter more."
+    }
+  ]
+}

@@ -29,13 +29,8 @@ const SAVE_KEY = "secplus-rpg-save";
 const FLASH_MS = 150;
 const SHAKE_MS = 300;
 
-// Readable names for question topics
-const TOPIC_NAMES = {
-  "control-categories": "control categories",
-  "control-types": "control types"
-};
-
 // Loaded from the data files
+let topicNames = {};  // topic id -> readable name, built from topics.json
 let questions = [];
 let skills = [];
 let enemyTypes = [];
@@ -314,6 +309,11 @@ document.getElementById("reset-button").addEventListener("click", () => {
 // Combat
 // ===============================================================
 
+// Readable topic name, e.g. "control-types" -> "Control types"
+function topicName(topicId) {
+  return topicNames[topicId] || topicId;
+}
+
 // Bosses change weakness at half health (their "phases")
 function currentWeakness() {
   if (enemy.phases) {
@@ -365,7 +365,7 @@ function startFight() {
   document.getElementById("mode-label").textContent = "Mode: " + currentMode.label;
 
   const intro = enemy.boss ? "BOSS: " + enemy.name + " blocks the way!" : "A " + enemy.name + " appears!";
-  setLog(intro + " Weak to " + TOPIC_NAMES[currentWeakness()] + ".");
+  setLog(intro + " Weak to " + topicName(currentWeakness()) + ".");
   showSkillChoice();
 }
 
@@ -423,7 +423,7 @@ function playerAttacks() {
 
   let message = currentSkill.name + " hits for " + damage + " damage!";
   if (enemy.hp > 0 && currentWeakness() !== weaknessBefore) {
-    message += " The " + enemy.name + " shifts! Now weak to " + TOPIC_NAMES[currentWeakness()] + ".";
+    message += " The " + enemy.name + " shifts! Now weak to " + topicName(currentWeakness()) + ".";
   }
   setLog(message);
 }
@@ -604,11 +604,24 @@ async function start() {
 
   const status = document.getElementById("status");
   try {
-    // Load both files at the same time and wait for both to finish
-    const [questionData, combatData] = await Promise.all([
-      loadJson("data/domain1.json"),
+    // Load all the files at the same time and wait for all to finish.
+    // The Foundry only needs Domain 1 questions; later areas will load
+    // their own domain file from data/questions/.
+    const [topicData, questionData, combatData] = await Promise.all([
+      loadJson("data/topics.json"),
+      loadJson("data/questions/domain1.json"),
       loadJson("data/combat.json")
     ]);
+
+    // Flatten domains -> objectives -> topics into one id -> name lookup
+    topicData.domains.forEach(domain => {
+      domain.objectives.forEach(objective => {
+        objective.topics.forEach(topic => {
+          topicNames[topic.id] = topic.name;
+        });
+      });
+    });
+
     questions = questionData.questions;
     skills = combatData.skills;
     enemyTypes = combatData.enemies;

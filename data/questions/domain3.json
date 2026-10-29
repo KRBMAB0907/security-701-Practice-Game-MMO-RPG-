@@ -1,0 +1,455 @@
+{
+  "exam": "SY0-701",
+  "domain": 3,
+  "name": "Security Architecture",
+  "questions": [
+    {
+      "id": "d3-001",
+      "objective": "3.1",
+      "topic": "architecture-models",
+      "question": "A company uses a cloud email service where the provider runs everything, including the application. In this SaaS model, who patches the email application?",
+      "choices": [
+        "The cloud provider",
+        "The end users",
+        "The customer's IT team",
+        "Nobody, SaaS apps are never patched"
+      ],
+      "answer": 0,
+      "explanation": "In SaaS, the provider manages the application and everything beneath it. The customer still manages its users, data and access settings."
+    },
+    {
+      "id": "d3-002",
+      "objective": "3.1",
+      "topic": "architecture-models",
+      "question": "In an Infrastructure as a Service (IaaS) model, which task is the customer's responsibility?",
+      "choices": [
+        "Physical security of the data center",
+        "Maintaining the hypervisor",
+        "Power and cooling",
+        "Patching the guest operating system"
+      ],
+      "answer": 3,
+      "explanation": "Under the shared responsibility model, IaaS customers manage everything from the operating system up, while the provider secures the physical hardware and virtualization layer."
+    },
+    {
+      "id": "d3-003",
+      "objective": "3.1",
+      "topic": "architecture-models",
+      "question": "What is a key security benefit of infrastructure as code (IaC)?",
+      "choices": [
+        "Systems are built from reviewed files, so deployments are consistent and repeatable",
+        "It removes the need for any access control",
+        "It encrypts all network traffic automatically",
+        "It makes servers physically harder to reach"
+      ],
+      "answer": 0,
+      "explanation": "Defining infrastructure in code means configurations can be version-controlled, reviewed and deployed identically every time, reducing misconfigurations."
+    },
+    {
+      "id": "d3-004",
+      "objective": "3.1",
+      "topic": "architecture-models",
+      "question": "In a serverless architecture, what does the customer mainly manage?",
+      "choices": [
+        "The application code and its permissions",
+        "The data center network cabling",
+        "The physical servers",
+        "The server operating systems"
+      ],
+      "answer": 0,
+      "explanation": "Serverless means the provider runs and scales the servers. The customer focuses on the functions themselves, so insecure code and excessive permissions are the main risks."
+    },
+    {
+      "id": "d3-005",
+      "objective": "3.1",
+      "topic": "architecture-models",
+      "question": "What is a security consideration specific to containers?",
+      "choices": [
+        "Each container needs its own physical server",
+        "Containers always run with no network access",
+        "Containers cannot be updated",
+        "Containers share the host's operating system kernel, so a kernel flaw can affect them all"
+      ],
+      "answer": 3,
+      "explanation": "Containers are lighter than VMs because they share a kernel, but that also means the isolation between them is thinner."
+    },
+    {
+      "id": "d3-006",
+      "objective": "3.1",
+      "topic": "specialized-systems",
+      "question": "Why are ICS/SCADA networks, such as those running a water treatment plant, usually heavily segmented or air-gapped?",
+      "choices": [
+        "They use too much bandwidth for normal networks",
+        "They do not need any availability",
+        "They are always cloud-hosted",
+        "They control physical processes, are hard to patch, and outages can be dangerous"
+      ],
+      "answer": 3,
+      "explanation": "Industrial systems prioritize availability and safety, often run old software that cannot easily be patched, and failures can cause physical harm."
+    },
+    {
+      "id": "d3-007",
+      "objective": "3.1",
+      "topic": "specialized-systems",
+      "question": "What defines a real-time operating system (RTOS), such as one controlling a car's braking system?",
+      "choices": [
+        "It cannot connect to sensors",
+        "It must respond to events within strict, predictable time limits",
+        "It is designed for gaming",
+        "It runs only in the cloud"
+      ],
+      "answer": 1,
+      "explanation": "An RTOS guarantees deterministic timing. Security controls must not slow it down, which limits options like heavy scanning."
+    },
+    {
+      "id": "d3-008",
+      "objective": "3.1",
+      "topic": "specialized-systems",
+      "question": "What is a common security weakness of IoT devices such as smart thermostats?",
+      "choices": [
+        "Weak default settings and limited or no security updates",
+        "They cannot connect to networks",
+        "They always use strong encryption",
+        "They have too much processing power"
+      ],
+      "answer": 0,
+      "explanation": "Many IoT devices ship with default credentials and get few updates, so they are often placed on separate network segments."
+    },
+    {
+      "id": "d3-009",
+      "objective": "3.2",
+      "topic": "network-security",
+      "question": "A company's public web server sits in a separate network zone between the internet and the internal network. What is this zone called?",
+      "choices": [
+        "Screened subnet (DMZ)",
+        "Intranet",
+        "Air gap",
+        "Honeynet"
+      ],
+      "answer": 0,
+      "explanation": "A screened subnet lets the public reach specific servers while keeping the internal network protected behind another layer of filtering."
+    },
+    {
+      "id": "d3-010",
+      "objective": "3.2",
+      "topic": "network-security",
+      "question": "Administrators must first connect to one hardened server before they can manage servers in a secure zone. What is that server called?",
+      "choices": [
+        "Proxy server",
+        "Load balancer",
+        "Jump server",
+        "DNS server"
+      ],
+      "answer": 2,
+      "explanation": "A jump server is a single, tightly controlled entry point for administration, which is easier to monitor and secure than many open paths."
+    },
+    {
+      "id": "d3-011",
+      "objective": "3.2",
+      "topic": "network-security",
+      "question": "A firewall is configured so that if it crashes, it blocks all traffic instead of allowing everything through. What is this failure mode?",
+      "choices": [
+        "Active-passive",
+        "Fail-closed",
+        "Load balanced",
+        "Fail-open"
+      ],
+      "answer": 1,
+      "explanation": "Fail-closed prioritizes security over availability. Fail-open keeps traffic flowing but leaves the network unprotected during the failure."
+    },
+    {
+      "id": "d3-012",
+      "objective": "3.2",
+      "topic": "network-security",
+      "question": "Why can an intrusion prevention system (IPS) stop attacks while a passive intrusion detection system (IDS) cannot?",
+      "choices": [
+        "An IPS uses more storage",
+        "An IDS cannot read network traffic",
+        "An IPS sits inline in the traffic path, so it can block packets",
+        "An IPS only works on wireless networks"
+      ],
+      "answer": 2,
+      "explanation": "An inline device sees traffic before it reaches its destination and can drop it. A passive IDS gets a copy, so it can only alert."
+    },
+    {
+      "id": "d3-013",
+      "objective": "3.2",
+      "topic": "network-security",
+      "question": "Which device is designed to protect web applications from attacks like SQL injection and cross-site scripting?",
+      "choices": [
+        "Layer 4 firewall",
+        "Web application firewall (WAF)",
+        "VPN concentrator",
+        "Network switch"
+      ],
+      "answer": 1,
+      "explanation": "A WAF inspects web traffic at the application layer (layer 7), where these attacks hide inside normal-looking requests."
+    },
+    {
+      "id": "d3-014",
+      "objective": "3.2",
+      "topic": "secure-remote-access",
+      "question": "Two offices connect their networks securely over the internet, encrypting the entire original packet. What is commonly used?",
+      "choices": [
+        "Telnet",
+        "IPsec in transport mode",
+        "Plain HTTP",
+        "IPsec in tunnel mode"
+      ],
+      "answer": 3,
+      "explanation": "Tunnel mode encrypts the whole packet and wraps it in a new one, which suits site-to-site VPNs between gateways."
+    },
+    {
+      "id": "d3-015",
+      "objective": "3.2",
+      "topic": "secure-remote-access",
+      "question": "With a split-tunnel VPN, which traffic goes through the corporate VPN?",
+      "choices": [
+        "No traffic at all",
+        "Only traffic headed for the corporate network",
+        "Only email traffic",
+        "All of the user's internet traffic"
+      ],
+      "answer": 1,
+      "explanation": "Split tunneling saves bandwidth, but the user's other traffic skips corporate security controls. A full tunnel sends everything through the VPN."
+    },
+    {
+      "id": "d3-016",
+      "objective": "3.2",
+      "topic": "secure-remote-access",
+      "question": "Which approach combines networking and security services, such as secure web gateways and Zero Trust access, delivered from the cloud close to users?",
+      "choices": [
+        "Screened subnet",
+        "Air gap",
+        "Secure access service edge (SASE)",
+        "Port security"
+      ],
+      "answer": 2,
+      "explanation": "SASE moves security to the cloud edge, which suits remote workers and cloud apps better than routing everything back to headquarters."
+    },
+    {
+      "id": "d3-017",
+      "objective": "3.3",
+      "topic": "data-protection",
+      "question": "Customer records saved on a database server's hard drive are in which data state?",
+      "choices": [
+        "At rest",
+        "In use",
+        "In motion",
+        "In transit"
+      ],
+      "answer": 0,
+      "explanation": "Data at rest is stored. Full-disk, database or file encryption protects it."
+    },
+    {
+      "id": "d3-018",
+      "objective": "3.3",
+      "topic": "data-protection",
+      "question": "Data travelling across the internet between a browser and a web server is in which state?",
+      "choices": [
+        "In transit",
+        "At rest",
+        "In use",
+        "Archived"
+      ],
+      "answer": 0,
+      "explanation": "Data in transit is moving across a network. TLS and VPNs protect it."
+    },
+    {
+      "id": "d3-019",
+      "objective": "3.3",
+      "topic": "data-protection",
+      "question": "Data loaded into a computer's memory while a program processes it is in which state?",
+      "choices": [
+        "In transit",
+        "Masked",
+        "At rest",
+        "In use"
+      ],
+      "answer": 3,
+      "explanation": "Data in use is often decrypted so it can be processed, which makes it a target for memory-scraping attacks."
+    },
+    {
+      "id": "d3-020",
+      "objective": "3.3",
+      "topic": "data-protection",
+      "question": "A company stores customer data in a data center in Germany. Which concept means that data is subject to German and EU laws?",
+      "choices": [
+        "Data masking",
+        "Data sovereignty",
+        "Tokenization",
+        "Data classification"
+      ],
+      "answer": 1,
+      "explanation": "Data sovereignty means data falls under the laws of the country where it is stored, which affects where companies choose to keep it."
+    },
+    {
+      "id": "d3-021",
+      "objective": "3.3",
+      "topic": "data-protection",
+      "question": "Labeling information by how sensitive it is, such as public, confidential or restricted, so the right protections can be applied is called:",
+      "choices": [
+        "Data minimization",
+        "Data sovereignty",
+        "Data masking",
+        "Data classification"
+      ],
+      "answer": 3,
+      "explanation": "Classification tells everyone how to handle data. Protection is matched to the label, not guessed case by case."
+    },
+    {
+      "id": "d3-022",
+      "objective": "3.3",
+      "topic": "data-protection",
+      "question": "A customer service screen shows only the last four digits of a credit card number. What technique is this?",
+      "choices": [
+        "Hashing",
+        "Steganography",
+        "Data masking",
+        "Tokenization"
+      ],
+      "answer": 2,
+      "explanation": "Masking hides part of the data from view, so staff see only what they need to do their job."
+    },
+    {
+      "id": "d3-023",
+      "objective": "3.3",
+      "topic": "data-protection",
+      "question": "A system blocks access to sensitive files when the request comes from outside the company's home country. What protection method is this?",
+      "choices": [
+        "Hashing",
+        "Segmentation by department",
+        "Geographic restrictions",
+        "Data masking"
+      ],
+      "answer": 2,
+      "explanation": "Geographic (location-based) restrictions use the requester's location as one factor in deciding whether to allow access."
+    },
+    {
+      "id": "d3-024",
+      "objective": "3.3",
+      "topic": "data-protection",
+      "question": "Patient health records protected by laws like HIPAA are an example of which data type?",
+      "choices": [
+        "Non-human-readable data",
+        "Regulated data",
+        "Public data",
+        "Trade secrets"
+      ],
+      "answer": 1,
+      "explanation": "Regulated data is controlled by laws or industry rules that dictate how it must be stored, protected and disclosed."
+    },
+    {
+      "id": "d3-025",
+      "objective": "3.4",
+      "topic": "resilience",
+      "question": "Which recovery site is fully equipped and running with current data, ready to take over almost immediately?",
+      "choices": [
+        "Mobile site with no equipment",
+        "Hot site",
+        "Cold site",
+        "Warm site"
+      ],
+      "answer": 1,
+      "explanation": "A hot site offers the fastest recovery and the highest cost. It mirrors the main site."
+    },
+    {
+      "id": "d3-026",
+      "objective": "3.4",
+      "topic": "resilience",
+      "question": "Which recovery site provides space and power but little or no equipment, so recovery takes the longest?",
+      "choices": [
+        "Cold site",
+        "Warm site",
+        "Hot site",
+        "Active-active cluster"
+      ],
+      "answer": 0,
+      "explanation": "A cold site is cheap but slow. Hardware, software and data must all be brought in before it can run."
+    },
+    {
+      "id": "d3-027",
+      "objective": "3.4",
+      "topic": "resilience",
+      "question": "Which recovery site has some equipment and connectivity in place but needs data and setup before it can run?",
+      "choices": [
+        "Hot site",
+        "Honeynet",
+        "Warm site",
+        "Cold site"
+      ],
+      "answer": 2,
+      "explanation": "A warm site is the middle ground between cost and recovery speed."
+    },
+    {
+      "id": "d3-028",
+      "objective": "3.4",
+      "topic": "resilience",
+      "question": "Spreading incoming traffic across several web servers so the site stays up if one fails is called:",
+      "choices": [
+        "Geofencing",
+        "Load balancing",
+        "Tokenization",
+        "Journaling"
+      ],
+      "answer": 1,
+      "explanation": "Load balancing improves both performance and high availability, because no single server is a point of failure."
+    },
+    {
+      "id": "d3-029",
+      "objective": "3.4",
+      "topic": "resilience",
+      "question": "A team meets to talk through how they would respond to a ransomware outage, without touching any systems. What kind of test is this?",
+      "choices": [
+        "Failover test",
+        "Parallel processing",
+        "Tabletop exercise",
+        "Penetration test"
+      ],
+      "answer": 2,
+      "explanation": "Tabletop exercises are discussion-based. They reveal gaps in plans cheaply, before a real incident."
+    },
+    {
+      "id": "d3-030",
+      "objective": "3.4",
+      "topic": "backups",
+      "question": "Which device provides immediate battery power during an outage, long enough for systems to shut down safely or a generator to start?",
+      "choices": [
+        "Load balancer",
+        "Managed PDU",
+        "Generator",
+        "Uninterruptible power supply (UPS)"
+      ],
+      "answer": 3,
+      "explanation": "A UPS bridges the short gap. A generator provides longer-term power once it is running."
+    },
+    {
+      "id": "d3-031",
+      "objective": "3.4",
+      "topic": "backups",
+      "question": "Why should backup copies be stored offsite?",
+      "choices": [
+        "Offsite backups do not need encryption",
+        "They are faster to restore than onsite backups",
+        "So a disaster at the main site, such as a fire or flood, does not destroy them too",
+        "Offsite storage removes the need for testing"
+      ],
+      "answer": 2,
+      "explanation": "Backups kept in the same building share its risks. Offsite or cloud copies survive a site-wide disaster."
+    },
+    {
+      "id": "d3-032",
+      "objective": "3.4",
+      "topic": "backups",
+      "question": "Continuously copying data to another location so it is almost always up to date is called:",
+      "choices": [
+        "Tokenization",
+        "Snapshot",
+        "Cold storage",
+        "Replication"
+      ],
+      "answer": 3,
+      "explanation": "Replication keeps a near real-time copy for fast recovery. Note that it also copies mistakes and corruption, so it does not replace backups."
+    }
+  ]
+}

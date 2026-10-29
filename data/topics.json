@@ -1,0 +1,267 @@
+{
+  "exam": "SY0-701",
+  "domains": [
+    {
+      "id": 1,
+      "name": "General Security Concepts",
+      "weight": 12,
+      "objectives": [
+        {
+          "id": "1.1",
+          "title": "Compare and contrast various types of security controls",
+          "topics": [
+            { "id": "control-categories", "name": "Control categories" },
+            { "id": "control-types", "name": "Control types" }
+          ]
+        },
+        {
+          "id": "1.2",
+          "title": "Summarize fundamental security concepts",
+          "topics": [
+            { "id": "cia-triad", "name": "CIA triad and non-repudiation" },
+            { "id": "aaa", "name": "Authentication, authorization and accounting" },
+            { "id": "gap-analysis", "name": "Gap analysis" },
+            { "id": "zero-trust", "name": "Zero Trust" },
+            { "id": "physical-security", "name": "Physical security" },
+            { "id": "deception", "name": "Deception and disruption technology" }
+          ]
+        },
+        {
+          "id": "1.3",
+          "title": "Explain the importance of change management processes and the impact to security",
+          "topics": [
+            { "id": "change-process", "name": "Change management process" },
+            { "id": "change-technical", "name": "Technical implications of change" },
+            { "id": "change-documentation", "name": "Change documentation and version control" }
+          ]
+        },
+        {
+          "id": "1.4",
+          "title": "Explain the importance of using appropriate cryptographic solutions",
+          "topics": [
+            { "id": "encryption", "name": "Encryption" },
+            { "id": "pki-certificates", "name": "PKI and certificates" },
+            { "id": "crypto-tools", "name": "Cryptographic tools" },
+            { "id": "hashing-integrity", "name": "Hashing, salting and digital signatures" },
+            { "id": "obfuscation", "name": "Obfuscation" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Threats, Vulnerabilities, and Mitigations",
+      "weight": 22,
+      "objectives": [
+        {
+          "id": "2.1",
+          "title": "Compare and contrast common threat actors and motivations",
+          "topics": [
+            { "id": "threat-actors", "name": "Threat actors and attributes" },
+            { "id": "threat-motivations", "name": "Threat actor motivations" }
+          ]
+        },
+        {
+          "id": "2.2",
+          "title": "Explain common threat vectors and attack surfaces",
+          "topics": [
+            { "id": "threat-vectors", "name": "Threat vectors and attack surfaces" },
+            { "id": "social-engineering", "name": "Social engineering" }
+          ]
+        },
+        {
+          "id": "2.3",
+          "title": "Explain various types of vulnerabilities",
+          "topics": [
+            { "id": "app-vulnerabilities", "name": "Application and web vulnerabilities" },
+            { "id": "system-vulnerabilities", "name": "System, cloud and device vulnerabilities" }
+          ]
+        },
+        {
+          "id": "2.4",
+          "title": "Given a scenario, analyze indicators of malicious activity",
+          "topics": [
+            { "id": "malware", "name": "Malware" },
+            { "id": "network-attacks", "name": "Network attacks" },
+            { "id": "app-attacks", "name": "Application attacks" },
+            { "id": "password-crypto-attacks", "name": "Password and cryptographic attacks" },
+            { "id": "indicators", "name": "Indicators of compromise" }
+          ]
+        },
+        {
+          "id": "2.5",
+          "title": "Explain the purpose of mitigation techniques used to secure the enterprise",
+          "topics": [
+            { "id": "mitigations", "name": "Mitigation techniques" },
+            { "id": "hardening", "name": "Hardening techniques" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Security Architecture",
+      "weight": 18,
+      "objectives": [
+        {
+          "id": "3.1",
+          "title": "Compare and contrast security implications of different architecture models",
+          "topics": [
+            { "id": "architecture-models", "name": "Cloud and architecture models" },
+            { "id": "specialized-systems", "name": "IoT, ICS/SCADA and embedded systems" }
+          ]
+        },
+        {
+          "id": "3.2",
+          "title": "Given a scenario, apply security principles to secure enterprise infrastructure",
+          "topics": [
+            { "id": "network-security", "name": "Network appliances and secure design" },
+            { "id": "secure-remote-access", "name": "VPNs and secure remote access" }
+          ]
+        },
+        {
+          "id": "3.3",
+          "title": "Compare and contrast concepts and strategies to protect data",
+          "topics": [
+            { "id": "data-protection", "name": "Data types, states and protection" }
+          ]
+        },
+        {
+          "id": "3.4",
+          "title": "Explain the importance of resilience and recovery in security architecture",
+          "topics": [
+            { "id": "resilience", "name": "High availability and recovery sites" },
+            { "id": "backups", "name": "Backups and power" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Security Operations",
+      "weight": 28,
+      "objectives": [
+        {
+          "id": "4.1",
+          "title": "Given a scenario, apply common security techniques to computing resources",
+          "topics": [
+            { "id": "secure-baselines", "name": "Secure baselines and hardening targets" },
+            { "id": "wireless-mobile", "name": "Wireless and mobile security" },
+            { "id": "app-security", "name": "Application security" }
+          ]
+        },
+        {
+          "id": "4.2",
+          "title": "Explain the security implications of proper hardware, software, and data asset management",
+          "topics": [
+            { "id": "asset-management", "name": "Asset management" }
+          ]
+        },
+        {
+          "id": "4.3",
+          "title": "Explain various activities associated with vulnerability management",
+          "topics": [
+            { "id": "vuln-management", "name": "Vulnerability management" }
+          ]
+        },
+        {
+          "id": "4.4",
+          "title": "Explain security alerting and monitoring concepts and tools",
+          "topics": [
+            { "id": "monitoring", "name": "Alerting and monitoring" }
+          ]
+        },
+        {
+          "id": "4.5",
+          "title": "Given a scenario, modify enterprise capabilities to enhance security",
+          "topics": [
+            { "id": "security-tools", "name": "Firewalls, IDS/IPS and filtering" },
+            { "id": "email-security", "name": "Email security" }
+          ]
+        },
+        {
+          "id": "4.6",
+          "title": "Given a scenario, implement and maintain identity and access management",
+          "topics": [
+            { "id": "identity-federation", "name": "Identity, SSO and federation" },
+            { "id": "access-control-models", "name": "Access control models" },
+            { "id": "mfa-passwords", "name": "MFA, passwords and privileged access" }
+          ]
+        },
+        {
+          "id": "4.7",
+          "title": "Explain the importance of automation and orchestration related to secure operations",
+          "topics": [
+            { "id": "automation", "name": "Automation and orchestration" }
+          ]
+        },
+        {
+          "id": "4.8",
+          "title": "Explain appropriate incident response activities",
+          "topics": [
+            { "id": "incident-response", "name": "Incident response" },
+            { "id": "forensics", "name": "Digital forensics" }
+          ]
+        },
+        {
+          "id": "4.9",
+          "title": "Given a scenario, use data sources to support an investigation",
+          "topics": [
+            { "id": "investigation-data", "name": "Logs and data sources" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Security Program Management and Oversight",
+      "weight": 20,
+      "objectives": [
+        {
+          "id": "5.1",
+          "title": "Summarize elements of effective security governance",
+          "topics": [
+            { "id": "governance", "name": "Policies, standards and governance roles" }
+          ]
+        },
+        {
+          "id": "5.2",
+          "title": "Explain elements of the risk management process",
+          "topics": [
+            { "id": "risk-analysis", "name": "Risk analysis" },
+            { "id": "risk-strategies", "name": "Risk management strategies" },
+            { "id": "business-impact", "name": "Business impact analysis" }
+          ]
+        },
+        {
+          "id": "5.3",
+          "title": "Explain the processes associated with third-party risk assessment and management",
+          "topics": [
+            { "id": "third-party-risk", "name": "Third-party risk and agreements" }
+          ]
+        },
+        {
+          "id": "5.4",
+          "title": "Summarize elements of effective security compliance",
+          "topics": [
+            { "id": "compliance-privacy", "name": "Compliance and privacy" }
+          ]
+        },
+        {
+          "id": "5.5",
+          "title": "Explain types and purposes of audits and assessments",
+          "topics": [
+            { "id": "audits-assessments", "name": "Audits, assessments and penetration testing" }
+          ]
+        },
+        {
+          "id": "5.6",
+          "title": "Given a scenario, implement security awareness practices",
+          "topics": [
+            { "id": "security-awareness", "name": "Security awareness training" }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,567 @@
+{
+  "exam": "SY0-701",
+  "domain": 2,
+  "name": "Threats, Vulnerabilities, and Mitigations",
+  "questions": [
+    {
+      "id": "d2-001",
+      "objective": "2.1",
+      "topic": "threat-actors",
+      "question": "A government-funded group runs a stealthy campaign lasting years against another country's power grid. Which threat actor fits best?",
+      "choices": [
+        "Shadow IT",
+        "Hacktivist",
+        "Nation-state",
+        "Unskilled attacker"
+      ],
+      "answer": 2,
+      "explanation": "Nation-states have large budgets, high skill and patience, and often run advanced persistent threats (APTs) against critical infrastructure."
+    },
+    {
+      "id": "d2-002",
+      "objective": "2.1",
+      "topic": "threat-actors",
+      "question": "An attacker with little technical knowledge launches attacks using ready-made tools downloaded from the internet. What kind of actor is this?",
+      "choices": [
+        "Nation-state",
+        "Organized crime",
+        "Insider threat",
+        "Unskilled attacker"
+      ],
+      "answer": 3,
+      "explanation": "Unskilled attackers (sometimes called script kiddies) rely on other people's tools and usually lack the ability to create their own exploits."
+    },
+    {
+      "id": "d2-003",
+      "objective": "2.1",
+      "topic": "threat-actors",
+      "question": "A disgruntled employee uses their valid access to delete important company files before quitting. Which threat actor is this?",
+      "choices": [
+        "Hacktivist",
+        "Nation-state",
+        "Insider threat",
+        "Unskilled attacker"
+      ],
+      "answer": 2,
+      "explanation": "Insider threats come from people with legitimate access. Their existing permissions make them hard to detect."
+    },
+    {
+      "id": "d2-004",
+      "objective": "2.1",
+      "topic": "threat-actors",
+      "question": "A marketing team signs up for an unapproved cloud file-sharing service to move faster, without telling IT. What is this called?",
+      "choices": [
+        "Espionage",
+        "Shadow IT",
+        "Hacktivism",
+        "Supply chain attack"
+      ],
+      "answer": 1,
+      "explanation": "Shadow IT is technology used without the IT department's approval. It is usually well-meant but creates unmanaged, unsecured systems."
+    },
+    {
+      "id": "d2-005",
+      "objective": "2.1",
+      "topic": "threat-motivations",
+      "question": "A group defaces a company's website to protest its environmental policies. What is the most likely motivation?",
+      "choices": [
+        "Philosophical or political beliefs",
+        "Blackmail",
+        "Espionage",
+        "Financial gain"
+      ],
+      "answer": 0,
+      "explanation": "Hacktivists attack to promote a cause or make a statement, rather than to make money."
+    },
+    {
+      "id": "d2-006",
+      "objective": "2.1",
+      "topic": "threat-motivations",
+      "question": "Organized crime groups that run ransomware operations are mainly motivated by:",
+      "choices": [
+        "Political beliefs",
+        "War",
+        "Revenge",
+        "Financial gain"
+      ],
+      "answer": 3,
+      "explanation": "Organized crime treats attacks as a business. Ransom payments, stolen card data and fraud all bring in money."
+    },
+    {
+      "id": "d2-007",
+      "objective": "2.1",
+      "topic": "threat-actors",
+      "question": "Which threat actor attribute describes whether an attacker comes from inside or outside the organization?",
+      "choices": [
+        "Resources and funding",
+        "Internal or external",
+        "Motivation",
+        "Level of sophistication"
+      ],
+      "answer": 1,
+      "explanation": "Internal actors already have some access and knowledge, while external actors must first find a way in."
+    },
+    {
+      "id": "d2-008",
+      "objective": "2.1",
+      "topic": "threat-motivations",
+      "question": "An actor secretly collects trade secrets from a defense contractor to benefit a foreign government. What is the motivation?",
+      "choices": [
+        "Disruption for fun",
+        "Espionage",
+        "Financial gain from ransom",
+        "Ethical disclosure"
+      ],
+      "answer": 1,
+      "explanation": "Espionage is spying: stealing secret information for political, military or competitive advantage."
+    },
+    {
+      "id": "d2-009",
+      "objective": "2.2",
+      "topic": "social-engineering",
+      "question": "An employee receives a text message claiming to be from the bank, asking them to tap a link to unlock their account. What is this attack?",
+      "choices": [
+        "Smishing",
+        "Typosquatting",
+        "Whaling",
+        "Vishing"
+      ],
+      "answer": 0,
+      "explanation": "Smishing is phishing over SMS text messages. Vishing uses voice calls, and whaling targets senior executives."
+    },
+    {
+      "id": "d2-010",
+      "objective": "2.2",
+      "topic": "social-engineering",
+      "question": "An attacker calls the help desk pretending to be a stressed executive who urgently needs a password reset. Which technique is this?",
+      "choices": [
+        "Smishing",
+        "Spear phishing by email",
+        "Watering hole",
+        "Vishing"
+      ],
+      "answer": 3,
+      "explanation": "Vishing is voice phishing. Attackers combine a phone call with urgency and authority to pressure the target."
+    },
+    {
+      "id": "d2-011",
+      "objective": "2.2",
+      "topic": "social-engineering",
+      "question": "An attacker invents a believable story, such as posing as an IT auditor, to get information from a target. What is this called?",
+      "choices": [
+        "Brand impersonation",
+        "Pretexting",
+        "Typosquatting",
+        "Tailgating"
+      ],
+      "answer": 1,
+      "explanation": "Pretexting means creating a made-up scenario (the pretext) that gives the attacker a reason to ask for information or access."
+    },
+    {
+      "id": "d2-012",
+      "objective": "2.2",
+      "topic": "social-engineering",
+      "question": "Attackers compromise an industry news website that a target company's engineers visit daily, so the site infects their computers. What attack is this?",
+      "choices": [
+        "Business email compromise",
+        "Smishing",
+        "Watering hole attack",
+        "Pretexting"
+      ],
+      "answer": 2,
+      "explanation": "Like a predator waiting at a watering hole, the attacker infects a site the victims already trust and visit."
+    },
+    {
+      "id": "d2-013",
+      "objective": "2.2",
+      "topic": "social-engineering",
+      "question": "An attacker registers the domain examp1e.com, hoping people mistype or misread example.com. What is this?",
+      "choices": [
+        "Watering hole attack",
+        "Typosquatting",
+        "Vishing",
+        "DNS sinkholing"
+      ],
+      "answer": 1,
+      "explanation": "Typosquatting relies on look-alike or misspelled domains to catch users and steal credentials or spread malware."
+    },
+    {
+      "id": "d2-014",
+      "objective": "2.2",
+      "topic": "social-engineering",
+      "question": "An attacker takes over a finance director's real email account and uses it to request an urgent wire transfer. What is this?",
+      "choices": [
+        "Watering hole attack",
+        "Typosquatting",
+        "Smishing",
+        "Business email compromise"
+      ],
+      "answer": 3,
+      "explanation": "Business email compromise uses a real, trusted account, which makes the fraudulent request very convincing."
+    },
+    {
+      "id": "d2-015",
+      "objective": "2.2",
+      "topic": "threat-vectors",
+      "question": "Why are default credentials on a newly installed IoT camera a serious threat vector?",
+      "choices": [
+        "They make the camera run more slowly",
+        "They stop the camera from receiving updates",
+        "They encrypt the camera's video",
+        "Attackers can look up the default username and password and log in"
+      ],
+      "answer": 3,
+      "explanation": "Default credentials are published in manuals and online lists. Changing them is one of the simplest and most important hardening steps."
+    },
+    {
+      "id": "d2-016",
+      "objective": "2.2",
+      "topic": "threat-vectors",
+      "question": "Why is an operating system that has reached end of life a major threat vector?",
+      "choices": [
+        "It deletes user data automatically",
+        "It cannot connect to the internet",
+        "It no longer receives security patches from the vendor",
+        "It only runs on old hardware"
+      ],
+      "answer": 2,
+      "explanation": "Unsupported systems keep their known vulnerabilities forever, and attackers actively target them for that reason."
+    },
+    {
+      "id": "d2-017",
+      "objective": "2.3",
+      "topic": "app-vulnerabilities",
+      "question": "A program copies user input into a fixed-size memory area without checking its length, letting an attacker overwrite nearby memory. What vulnerability is this?",
+      "choices": [
+        "Directory traversal",
+        "Race condition",
+        "Cross-site scripting",
+        "Buffer overflow"
+      ],
+      "answer": 3,
+      "explanation": "A buffer overflow writes past the end of allocated memory, which can crash the program or let an attacker run their own code."
+    },
+    {
+      "id": "d2-018",
+      "objective": "2.3",
+      "topic": "app-vulnerabilities",
+      "question": "A login form passes user input straight into a database query, so typing ' OR 1=1 -- logs the attacker in. What vulnerability is this?",
+      "choices": [
+        "Session replay",
+        "Cross-site scripting",
+        "SQL injection",
+        "Buffer overflow"
+      ],
+      "answer": 2,
+      "explanation": "SQL injection happens when input becomes part of a database command. Input validation and parameterized queries prevent it."
+    },
+    {
+      "id": "d2-019",
+      "objective": "2.3",
+      "topic": "app-vulnerabilities",
+      "question": "An attacker posts a comment containing a script on a forum, and the script runs in other visitors' browsers. What vulnerability is this?",
+      "choices": [
+        "SQL injection",
+        "VM escape",
+        "Cross-site scripting (XSS)",
+        "Buffer overflow"
+      ],
+      "answer": 2,
+      "explanation": "XSS injects scripts into web pages that other users view. Displaying user content as plain text instead of HTML prevents it."
+    },
+    {
+      "id": "d2-020",
+      "objective": "2.3",
+      "topic": "app-vulnerabilities",
+      "question": "A program checks that a file is safe, but an attacker swaps the file in the moment before the program uses it. What is this vulnerability?",
+      "choices": [
+        "Memory leak",
+        "Time-of-check to time-of-use (TOCTOU) race condition",
+        "Integer overflow",
+        "Cross-site request forgery"
+      ],
+      "answer": 1,
+      "explanation": "A race condition exploits the gap between checking something and using it. The thing that was checked is not what gets used."
+    },
+    {
+      "id": "d2-021",
+      "objective": "2.3",
+      "topic": "system-vulnerabilities",
+      "question": "An attacker breaks out of a virtual machine and gains access to the host system running other VMs. What is this called?",
+      "choices": [
+        "VM escape",
+        "Jailbreaking",
+        "Resource reuse",
+        "Sideloading"
+      ],
+      "answer": 0,
+      "explanation": "VM escape defeats the isolation virtualization is supposed to provide, putting every VM on that host at risk."
+    },
+    {
+      "id": "d2-022",
+      "objective": "2.3",
+      "topic": "system-vulnerabilities",
+      "question": "A vulnerability is being exploited before the vendor knows about it, so no patch exists. What kind of vulnerability is this?",
+      "choices": [
+        "Zero-day",
+        "Misconfiguration",
+        "Legacy",
+        "False positive"
+      ],
+      "answer": 0,
+      "explanation": "The vendor has had zero days to fix it. Defenses must rely on other controls such as monitoring, segmentation and least privilege."
+    },
+    {
+      "id": "d2-023",
+      "objective": "2.3",
+      "topic": "system-vulnerabilities",
+      "question": "A user installs an app on their company phone from a website instead of the official app store. What is this practice called?",
+      "choices": [
+        "Jailbreaking",
+        "Sideloading",
+        "Tethering",
+        "Geofencing"
+      ],
+      "answer": 1,
+      "explanation": "Sideloaded apps skip the app store's security review, making malware far more likely."
+    },
+    {
+      "id": "d2-024",
+      "objective": "2.3",
+      "topic": "system-vulnerabilities",
+      "question": "A cloud storage bucket holding customer records was accidentally set to allow public read access. What type of vulnerability is this?",
+      "choices": [
+        "Misconfiguration",
+        "Buffer overflow",
+        "Supply chain compromise",
+        "Zero-day"
+      ],
+      "answer": 0,
+      "explanation": "Misconfigurations, like open permissions or default settings, are among the most common causes of cloud data breaches."
+    },
+    {
+      "id": "d2-025",
+      "objective": "2.4",
+      "topic": "malware",
+      "question": "Malware encrypts a company's files and displays a demand for payment in cryptocurrency to unlock them. What is it?",
+      "choices": [
+        "Rootkit",
+        "Spyware",
+        "Ransomware",
+        "Logic bomb"
+      ],
+      "answer": 2,
+      "explanation": "Ransomware holds data hostage. Tested, offline backups are one of the best defenses."
+    },
+    {
+      "id": "d2-026",
+      "objective": "2.4",
+      "topic": "malware",
+      "question": "A former developer left hidden code that deletes the payroll database if their name is ever removed from the employee list. What is this?",
+      "choices": [
+        "Keylogger",
+        "Logic bomb",
+        "Trojan",
+        "Worm"
+      ],
+      "answer": 1,
+      "explanation": "A logic bomb lies dormant until a specific condition, date or event triggers its malicious action."
+    },
+    {
+      "id": "d2-027",
+      "objective": "2.4",
+      "topic": "malware",
+      "question": "Which type of malware hides deep in the operating system, often at the kernel level, to conceal itself and other malicious activity?",
+      "choices": [
+        "Worm",
+        "Bloatware",
+        "Adware",
+        "Rootkit"
+      ],
+      "answer": 3,
+      "explanation": "Rootkits modify the system itself to hide files, processes and connections, which makes them very hard to detect from inside the infected machine."
+    },
+    {
+      "id": "d2-028",
+      "objective": "2.4",
+      "topic": "password-crypto-attacks",
+      "question": "Logs show one failed login per account across hundreds of accounts, each using a common password like Spring2024!. What attack is this?",
+      "choices": [
+        "Birthday attack",
+        "Rainbow table attack",
+        "Brute force against one account",
+        "Password spraying"
+      ],
+      "answer": 3,
+      "explanation": "Spraying tries a few common passwords against many accounts, staying under lockout thresholds that a brute-force attack would trigger."
+    },
+    {
+      "id": "d2-029",
+      "objective": "2.4",
+      "topic": "password-crypto-attacks",
+      "question": "An attacker forces a connection to fall back from TLS 1.3 to an older, weaker protocol version so it is easier to break. What is this?",
+      "choices": [
+        "Downgrade attack",
+        "Replay attack",
+        "Pass the hash",
+        "Collision attack"
+      ],
+      "answer": 0,
+      "explanation": "Downgrade attacks exploit backward compatibility. Disabling old protocol versions prevents them."
+    },
+    {
+      "id": "d2-030",
+      "objective": "2.4",
+      "topic": "indicators",
+      "question": "A user logs in from New York and, ten minutes later, from Singapore. What indicator of compromise is this?",
+      "choices": [
+        "Impossible travel",
+        "Missing logs",
+        "Account lockout",
+        "Resource consumption"
+      ],
+      "answer": 0,
+      "explanation": "No one can travel that far that fast, so at least one login likely used stolen credentials."
+    },
+    {
+      "id": "d2-031",
+      "objective": "2.4",
+      "topic": "network-attacks",
+      "question": "An attacker poisons ARP tables so traffic between two hosts passes through the attacker's machine. What type of attack does this enable?",
+      "choices": [
+        "On-path attack",
+        "Watering hole attack",
+        "SQL injection",
+        "Denial of service"
+      ],
+      "answer": 0,
+      "explanation": "An on-path attack (formerly man-in-the-middle) lets the attacker read or modify traffic between two parties who think they are talking directly."
+    },
+    {
+      "id": "d2-032",
+      "objective": "2.4",
+      "topic": "app-attacks",
+      "question": "An attacker captures a valid authentication exchange and sends it again later to log in as the victim. What is this?",
+      "choices": [
+        "Directory traversal",
+        "Downgrade attack",
+        "Replay attack",
+        "Privilege escalation"
+      ],
+      "answer": 2,
+      "explanation": "Replay attacks reuse captured data. Timestamps, one-time tokens and session expiry prevent them."
+    },
+    {
+      "id": "d2-033",
+      "objective": "2.5",
+      "topic": "mitigations",
+      "question": "A company separates its payment systems onto their own network so a breach elsewhere cannot easily reach them. What mitigation is this?",
+      "choices": [
+        "Patching",
+        "Segmentation",
+        "Decommissioning",
+        "Encryption"
+      ],
+      "answer": 1,
+      "explanation": "Segmentation limits how far an attacker can move. A compromise in one segment stays contained."
+    },
+    {
+      "id": "d2-034",
+      "objective": "2.5",
+      "topic": "mitigations",
+      "question": "Giving users only the access they need to do their jobs, and nothing more, is called:",
+      "choices": [
+        "Least privilege",
+        "Implicit trust",
+        "Separation of duties",
+        "Defense in depth"
+      ],
+      "answer": 0,
+      "explanation": "Least privilege limits the damage a compromised or careless account can do."
+    },
+    {
+      "id": "d2-035",
+      "objective": "2.5",
+      "topic": "mitigations",
+      "question": "Which mitigation lets only pre-approved software run on a system and blocks everything else?",
+      "choices": [
+        "Deny list",
+        "Antivirus signature updates",
+        "Application allow list",
+        "Data masking"
+      ],
+      "answer": 2,
+      "explanation": "An allow list blocks by default, so unknown malware cannot run. A deny list only blocks things already known to be bad."
+    },
+    {
+      "id": "d2-036",
+      "objective": "2.5",
+      "topic": "mitigations",
+      "question": "An infected laptop is moved to a quarantine network where it cannot reach other systems while it is investigated. What mitigation is this?",
+      "choices": [
+        "Monitoring",
+        "Decommissioning",
+        "Patching",
+        "Isolation"
+      ],
+      "answer": 3,
+      "explanation": "Isolation stops the spread of an infection while keeping the system available for investigation."
+    },
+    {
+      "id": "d2-037",
+      "objective": "2.5",
+      "topic": "mitigations",
+      "question": "When an old server is retired, its data is securely wiped and it is removed from inventory. What is this process?",
+      "choices": [
+        "Isolation",
+        "Segmentation",
+        "Decommissioning",
+        "Configuration enforcement"
+      ],
+      "answer": 2,
+      "explanation": "Proper decommissioning makes sure retired systems do not leak data or remain forgotten on the network."
+    },
+    {
+      "id": "d2-038",
+      "objective": "2.5",
+      "topic": "hardening",
+      "question": "Which is a basic hardening step for a new server?",
+      "choices": [
+        "Keeping the default admin password",
+        "Disabling unused ports and services",
+        "Enabling the guest account",
+        "Opening all ports for easier testing"
+      ],
+      "answer": 1,
+      "explanation": "Every running service is a possible way in. Turning off what is not needed shrinks the attack surface."
+    },
+    {
+      "id": "d2-039",
+      "objective": "2.5",
+      "topic": "hardening",
+      "question": "Why should default passwords be changed as part of hardening a network device?",
+      "choices": [
+        "Default passwords are publicly known and easy for attackers to find",
+        "Default passwords expire automatically",
+        "Changing them improves network speed",
+        "Vendors require it for warranty"
+      ],
+      "answer": 0,
+      "explanation": "Default credentials are published in manuals and online. Leaving them unchanged is like leaving the key in the door."
+    },
+    {
+      "id": "d2-040",
+      "objective": "2.5",
+      "topic": "hardening",
+      "question": "Installing a host-based firewall on every laptop hardens each device by:",
+      "choices": [
+        "Backing up the device to the cloud",
+        "Encrypting the device's hard drive",
+        "Replacing the network firewall",
+        "Controlling the traffic allowed into and out of that individual device"
+      ],
+      "answer": 3,
+      "explanation": "A host-based firewall protects the device wherever it goes, even on public Wi-Fi outside the corporate network firewall."
+    }
+  ]
+}

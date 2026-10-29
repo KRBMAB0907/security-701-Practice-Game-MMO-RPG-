@@ -1,0 +1,847 @@
+{
+  "exam": "SY0-701",
+  "domain": 1,
+  "name": "General Security Concepts",
+  "questions": [
+    {
+      "id": "d1-001",
+      "objective": "1.1",
+      "topic": "control-types",
+      "question": "A company installs bollards outside its building entrance to stop vehicles from reaching the doors. What type of control is this?",
+      "choices": [
+        "Detective",
+        "Corrective",
+        "Preventive",
+        "Compensating"
+      ],
+      "answer": 2,
+      "explanation": "Bollards physically stop a vehicle before it can cause harm. Stopping an incident before it happens is what a preventive control does."
+    },
+    {
+      "id": "d1-002",
+      "objective": "1.1",
+      "topic": "control-categories",
+      "question": "A fence is built around a data center. Which control category does this belong to?",
+      "choices": [
+        "Technical",
+        "Physical",
+        "Managerial",
+        "Operational"
+      ],
+      "answer": 1,
+      "explanation": "Fences, locks, bollards and guards' booths are tangible barriers in the real world, which places them in the physical category."
+    },
+    {
+      "id": "d1-003",
+      "objective": "1.1",
+      "topic": "control-types",
+      "question": "A sign at a facility reads 'This area is under 24-hour video surveillance.' What type of control is the sign itself?",
+      "choices": [
+        "Deterrent",
+        "Detective",
+        "Compensating",
+        "Preventive"
+      ],
+      "answer": 0,
+      "explanation": "The sign does not stop or record anything. It discourages a would-be attacker from trying, which makes it a deterrent control."
+    },
+    {
+      "id": "d1-004",
+      "objective": "1.1",
+      "topic": "control-types",
+      "question": "After a ransomware attack, an administrator restores the affected servers from last night's backups. What type of control is being used?",
+      "choices": [
+        "Preventive",
+        "Directive",
+        "Corrective",
+        "Detective"
+      ],
+      "answer": 2,
+      "explanation": "Restoring from backup fixes the damage after an incident has already happened. Controls that repair or restore are corrective."
+    },
+    {
+      "id": "d1-005",
+      "objective": "1.1",
+      "topic": "control-types",
+      "question": "A legacy system cannot be patched, so the team places it on an isolated network segment with strict access rules. What type of control is this?",
+      "choices": [
+        "Corrective",
+        "Compensating",
+        "Deterrent",
+        "Detective"
+      ],
+      "answer": 1,
+      "explanation": "The ideal control (patching) is not possible, so an alternative control is used to reduce the risk instead. That is a compensating control."
+    },
+    {
+      "id": "d1-006",
+      "objective": "1.1",
+      "topic": "control-types",
+      "question": "An acceptable use policy tells employees they must lock their screens when leaving their desks. What type of control is this?",
+      "choices": [
+        "Directive",
+        "Corrective",
+        "Detective",
+        "Compensating"
+      ],
+      "answer": 0,
+      "explanation": "A directive control tells people what they should or must do, such as a policy or instruction. It relies on people following it rather than enforcing it technically."
+    },
+    {
+      "id": "d1-007",
+      "objective": "1.1",
+      "topic": "control-categories",
+      "question": "Senior leadership performs an annual risk assessment and updates security policies based on the results. Which control category is this?",
+      "choices": [
+        "Technical",
+        "Operational",
+        "Managerial",
+        "Physical"
+      ],
+      "answer": 2,
+      "explanation": "Managerial controls are about planning, oversight and decision-making, such as risk assessments and policy creation."
+    },
+    {
+      "id": "d1-008",
+      "objective": "1.1",
+      "topic": "control-categories",
+      "question": "Staff members run monthly security awareness training sessions for employees. Which control category is this?",
+      "choices": [
+        "Operational",
+        "Technical",
+        "Physical",
+        "Managerial"
+      ],
+      "answer": 0,
+      "explanation": "Operational controls are carried out by people as part of day-to-day work, such as training, guards and procedures, rather than by systems."
+    },
+    {
+      "id": "d1-009",
+      "objective": "1.1",
+      "topic": "control-categories",
+      "question": "A firewall is configured to block all inbound traffic except HTTPS. Which control category is this?",
+      "choices": [
+        "Managerial",
+        "Physical",
+        "Operational",
+        "Technical"
+      ],
+      "answer": 3,
+      "explanation": "Technical controls are enforced by hardware or software, such as firewalls, encryption and antivirus."
+    },
+    {
+      "id": "d1-010",
+      "objective": "1.1",
+      "topic": "control-types",
+      "question": "An intrusion detection system (IDS) sends an alert when it sees suspicious traffic but does not block it. What type of control is this?",
+      "choices": [
+        "Preventive",
+        "Corrective",
+        "Deterrent",
+        "Detective"
+      ],
+      "answer": 3,
+      "explanation": "The IDS identifies and reports an event as it happens without stopping it. Controls that find and alert are detective."
+    },
+    {
+      "id": "d1-011",
+      "objective": "1.1",
+      "topic": "control-types",
+      "question": "A login screen shows a banner warning that unauthorized access is prohibited and will be prosecuted. What type of control is the banner?",
+      "choices": [
+        "Detective",
+        "Deterrent",
+        "Corrective",
+        "Compensating"
+      ],
+      "answer": 1,
+      "explanation": "The banner does not block or record anything. It discourages attackers by warning them of consequences, which makes it a deterrent control."
+    },
+    {
+      "id": "d1-012",
+      "objective": "1.1",
+      "topic": "control-categories",
+      "question": "Antivirus software, encryption and access control lists all belong to which control category?",
+      "choices": [
+        "Operational",
+        "Technical",
+        "Physical",
+        "Managerial"
+      ],
+      "answer": 1,
+      "explanation": "These controls are enforced by hardware or software rather than by people or paperwork, so they are technical controls."
+    },
+    {
+      "id": "d1-013",
+      "objective": "1.1",
+      "topic": "control-types",
+      "question": "A security analyst reviews authentication logs each morning to spot suspicious logins from the night before. What type of control is the log review?",
+      "choices": [
+        "Deterrent",
+        "Preventive",
+        "Detective",
+        "Directive"
+      ],
+      "answer": 2,
+      "explanation": "Reviewing logs finds incidents that have already happened. It does not stop them, which makes it a detective control."
+    },
+    {
+      "id": "d1-014",
+      "objective": "1.1",
+      "topic": "control-types",
+      "question": "A data handling policy tells employees how they must label and store confidential documents. What type of control is this?",
+      "choices": [
+        "Detective",
+        "Corrective",
+        "Compensating",
+        "Directive"
+      ],
+      "answer": 3,
+      "explanation": "A directive control instructs people what to do, such as a policy or procedure. It depends on people following it."
+    },
+    {
+      "id": "d1-015",
+      "objective": "1.1",
+      "topic": "control-categories",
+      "question": "Which pairing correctly describes a locked door on a server room?",
+      "choices": [
+        "Technical category, detective type",
+        "Physical category, preventive type",
+        "Managerial category, deterrent type",
+        "Operational category, corrective type"
+      ],
+      "answer": 1,
+      "explanation": "A lock is a tangible barrier (physical category) that stops entry before an incident happens (preventive type). Every control has both a category and a type."
+    },
+    {
+      "id": "d1-016",
+      "objective": "1.2",
+      "topic": "cia-triad",
+      "question": "An administrator compares a file's hash before and after download to make sure it was not altered. Which part of the CIA triad does this support?",
+      "choices": [
+        "Confidentiality",
+        "Accounting",
+        "Integrity",
+        "Availability"
+      ],
+      "answer": 2,
+      "explanation": "Integrity means data has not been changed without authorization. Matching hashes show the file is unchanged."
+    },
+    {
+      "id": "d1-017",
+      "objective": "1.2",
+      "topic": "cia-triad",
+      "question": "A distributed denial-of-service (DDoS) attack mainly harms which part of the CIA triad?",
+      "choices": [
+        "Availability",
+        "Confidentiality",
+        "Integrity",
+        "Non-repudiation"
+      ],
+      "answer": 0,
+      "explanation": "A DDoS floods a service so legitimate users cannot reach it. Keeping systems usable when needed is availability."
+    },
+    {
+      "id": "d1-018",
+      "objective": "1.2",
+      "topic": "cia-triad",
+      "question": "Encrypting customer records so that only authorized staff can read them supports which part of the CIA triad?",
+      "choices": [
+        "Confidentiality",
+        "Authorization",
+        "Availability",
+        "Integrity"
+      ],
+      "answer": 0,
+      "explanation": "Confidentiality means keeping information secret from people who should not see it. Encryption makes data unreadable without the key."
+    },
+    {
+      "id": "d1-019",
+      "objective": "1.2",
+      "topic": "cia-triad",
+      "question": "A digital signature on an email means the sender cannot later deny having sent it. What is this property called?",
+      "choices": [
+        "Authorization",
+        "Non-repudiation",
+        "Confidentiality",
+        "Availability"
+      ],
+      "answer": 1,
+      "explanation": "Non-repudiation provides proof of origin. Only the sender's private key could have produced the signature, so they cannot credibly deny it."
+    },
+    {
+      "id": "d1-020",
+      "objective": "1.2",
+      "topic": "aaa",
+      "question": "A system records which files each user opened and when. Which part of AAA is this?",
+      "choices": [
+        "Attestation",
+        "Authentication",
+        "Authorization",
+        "Accounting"
+      ],
+      "answer": 3,
+      "explanation": "Accounting tracks what users do, creating a record for audits and investigations."
+    },
+    {
+      "id": "d1-021",
+      "objective": "1.2",
+      "topic": "aaa",
+      "question": "A user enters a username and password to prove who they are. Which part of AAA is this?",
+      "choices": [
+        "Accounting",
+        "Authentication",
+        "Authorization",
+        "Auditing"
+      ],
+      "answer": 1,
+      "explanation": "Authentication proves identity. Authorization comes next and decides what that proven identity is allowed to do."
+    },
+    {
+      "id": "d1-022",
+      "objective": "1.2",
+      "topic": "aaa",
+      "question": "After logging in, a user can read a shared file but not change it. Which part of AAA decides this?",
+      "choices": [
+        "Authorization",
+        "Identification",
+        "Authentication",
+        "Accounting"
+      ],
+      "answer": 0,
+      "explanation": "Authorization determines what an authenticated user is allowed to access and do, such as read-only versus edit."
+    },
+    {
+      "id": "d1-023",
+      "objective": "1.2",
+      "topic": "aaa",
+      "question": "Why do organizations usually assign permissions to roles or groups instead of to each individual user?",
+      "choices": [
+        "It encrypts the files users can access",
+        "It removes the need for authentication",
+        "It is far easier to manage access as people join, change jobs and leave",
+        "It makes users' passwords stronger"
+      ],
+      "answer": 2,
+      "explanation": "Authorization models built on roles or groups scale well: change someone's role and their access follows, instead of editing many individual permissions."
+    },
+    {
+      "id": "d1-024",
+      "objective": "1.2",
+      "topic": "gap-analysis",
+      "question": "A company compares its current security controls against the requirements of a framework such as NIST to find what is missing. What is this called?",
+      "choices": [
+        "Gap analysis",
+        "Penetration test",
+        "Vulnerability scan",
+        "Business impact analysis"
+      ],
+      "answer": 0,
+      "explanation": "A gap analysis measures the difference between where security is now and where a standard or goal says it should be."
+    },
+    {
+      "id": "d1-025",
+      "objective": "1.2",
+      "topic": "zero-trust",
+      "question": "Which statement best describes the Zero Trust model?",
+      "choices": [
+        "Users are verified once when they are hired",
+        "Never trust, always verify: every access request is checked, wherever it comes from",
+        "Devices inside the corporate network are trusted automatically",
+        "All traffic is allowed and threats are investigated afterward"
+      ],
+      "answer": 1,
+      "explanation": "Zero Trust removes implicit trust based on network location. Each request is authenticated and authorized before access is granted."
+    },
+    {
+      "id": "d1-026",
+      "objective": "1.2",
+      "topic": "zero-trust",
+      "question": "In a Zero Trust architecture, which component decides whether to grant or deny an access request?",
+      "choices": [
+        "Policy enforcement point",
+        "Implicit trust zone",
+        "Subject",
+        "Policy engine"
+      ],
+      "answer": 3,
+      "explanation": "The policy engine makes the decision in the control plane. The policy enforcement point in the data plane carries that decision out."
+    },
+    {
+      "id": "d1-027",
+      "objective": "1.2",
+      "topic": "zero-trust",
+      "question": "In Zero Trust, adaptive identity means that access decisions:",
+      "choices": [
+        "Depend only on the user's password",
+        "Are made once and never re-checked",
+        "Take context into account, such as location, device health and behavior",
+        "Are the same for every user in a department"
+      ],
+      "answer": 2,
+      "explanation": "Adaptive identity uses signals around the request. A login from a new country on an unmanaged device may need extra verification or be blocked."
+    },
+    {
+      "id": "d1-028",
+      "objective": "1.2",
+      "topic": "physical-security",
+      "question": "An access control vestibule (two doors where only one can open at a time) is mainly designed to stop which threat?",
+      "choices": [
+        "Phishing",
+        "Dumpster diving",
+        "Shoulder surfing",
+        "Tailgating"
+      ],
+      "answer": 3,
+      "explanation": "Tailgating is following an authorized person through a door. A vestibule traps entry so only one verified person passes at a time."
+    },
+    {
+      "id": "d1-029",
+      "objective": "1.2",
+      "topic": "physical-security",
+      "question": "Which type of sensor detects the body heat of a person moving through a room?",
+      "choices": [
+        "Infrared",
+        "Pressure",
+        "Microwave",
+        "Ultrasonic"
+      ],
+      "answer": 0,
+      "explanation": "Infrared sensors detect heat signatures. Pressure sensors detect weight, while ultrasonic and microwave sensors detect movement using sound or radio waves."
+    },
+    {
+      "id": "d1-030",
+      "objective": "1.2",
+      "topic": "deception",
+      "question": "A fake file named passwords.txt is placed on a server and monitored, so any attempt to open it alerts the security team. What is this?",
+      "choices": [
+        "Sandbox",
+        "Firewall rule",
+        "Honeynet",
+        "Honeyfile"
+      ],
+      "answer": 3,
+      "explanation": "A honeyfile is a decoy file with no legitimate use. Anyone touching it is likely an intruder, which makes it an early warning sign."
+    },
+    {
+      "id": "d1-031",
+      "objective": "1.3",
+      "topic": "change-process",
+      "question": "Which part of a change request explains how to return a system to its previous state if the change fails?",
+      "choices": [
+        "Maintenance window",
+        "Stakeholder list",
+        "Impact analysis",
+        "Backout plan"
+      ],
+      "answer": 3,
+      "explanation": "A backout plan is the planned rollback. Without one, a failed change can leave systems broken or insecure."
+    },
+    {
+      "id": "d1-032",
+      "objective": "1.3",
+      "topic": "change-process",
+      "question": "Why are changes usually scheduled during a maintenance window?",
+      "choices": [
+        "To limit disruption to users and business operations",
+        "To make the change permanent",
+        "To skip the approval process",
+        "To avoid having to test the change"
+      ],
+      "answer": 0,
+      "explanation": "Maintenance windows are planned low-impact times, often nights or weekends, when an outage would affect the fewest people."
+    },
+    {
+      "id": "d1-033",
+      "objective": "1.3",
+      "topic": "change-process",
+      "question": "What is the main purpose of an impact analysis in change management?",
+      "choices": [
+        "To assign the change to a technician",
+        "To document the change after it is finished",
+        "To identify the risks and effects of a change before it is approved",
+        "To restore systems after a failed change"
+      ],
+      "answer": 2,
+      "explanation": "Impact analysis looks ahead: what could break, who is affected, and what the security consequences are, so approvers can decide wisely."
+    },
+    {
+      "id": "d1-034",
+      "objective": "1.3",
+      "topic": "change-process",
+      "question": "In a formal change management process, who typically reviews and approves proposed changes?",
+      "choices": [
+        "The software vendor",
+        "The help desk",
+        "A change advisory board (CAB)",
+        "Whoever requested the change"
+      ],
+      "answer": 2,
+      "explanation": "A change advisory board brings together the right people to weigh risks and approve, delay or reject changes."
+    },
+    {
+      "id": "d1-035",
+      "objective": "1.3",
+      "topic": "change-process",
+      "question": "Why does each change have a named owner?",
+      "choices": [
+        "So the owner can skip testing",
+        "So the change does not need approval",
+        "So one person is accountable for managing the change from start to finish",
+        "So the change cannot be rolled back"
+      ],
+      "answer": 2,
+      "explanation": "Ownership creates accountability. Someone is responsible for planning, carrying out and following up on the change."
+    },
+    {
+      "id": "d1-036",
+      "objective": "1.3",
+      "topic": "change-process",
+      "question": "In change management, who are stakeholders?",
+      "choices": [
+        "Vendors who sell the affected product",
+        "Outside attackers who may target the change",
+        "People or groups affected by the change, who should be consulted",
+        "Only the technicians making the change"
+      ],
+      "answer": 2,
+      "explanation": "Stakeholders are anyone impacted by a change. Involving them early avoids surprises and reveals risks the IT team might miss."
+    },
+    {
+      "id": "d1-037",
+      "objective": "1.3",
+      "topic": "change-process",
+      "question": "Why should a change be tested in a non-production environment first?",
+      "choices": [
+        "Because production systems cannot be changed",
+        "To make the change happen faster in production",
+        "Because testing replaces the need for approval",
+        "To find problems before they can affect live systems"
+      ],
+      "answer": 3,
+      "explanation": "Test results show whether the change works and whether it breaks anything, before real users and data are at risk."
+    },
+    {
+      "id": "d1-038",
+      "objective": "1.3",
+      "topic": "change-process",
+      "question": "What is a standard operating procedure (SOP) in change management?",
+      "choices": [
+        "A documented, step-by-step method for carrying out a task consistently",
+        "An emergency plan for natural disasters",
+        "A list of everyone affected by a change",
+        "A contract with an outside vendor"
+      ],
+      "answer": 0,
+      "explanation": "An SOP makes routine work repeatable, so changes are done the same safe way every time, no matter who performs them."
+    },
+    {
+      "id": "d1-039",
+      "objective": "1.3",
+      "topic": "change-technical",
+      "question": "Why must service and application restarts be planned as part of a change?",
+      "choices": [
+        "Restarts make the change permanent",
+        "Restarts cause downtime and a service may not come back up correctly",
+        "Restarts are needed to approve a change",
+        "Restarts automatically remove malware"
+      ],
+      "answer": 1,
+      "explanation": "Even a short restart affects availability, and some services fail to start again cleanly. Planning reduces the impact and prepares a fix."
+    },
+    {
+      "id": "d1-040",
+      "objective": "1.3",
+      "topic": "change-technical",
+      "question": "After a new application is installed, the server's allow list blocks it from running. What should the change plan have included?",
+      "choices": [
+        "Running the application as an administrator",
+        "Skipping the installation",
+        "Disabling the allow list permanently",
+        "Updating the allow list as part of the change"
+      ],
+      "answer": 3,
+      "explanation": "Allow and deny lists are technical implications of a change. They must be updated deliberately rather than turned off."
+    },
+    {
+      "id": "d1-041",
+      "objective": "1.3",
+      "topic": "change-technical",
+      "question": "Why are legacy applications a concern during change management?",
+      "choices": [
+        "They are automatically updated by the vendor",
+        "They always run faster after a change",
+        "They cannot be affected by other changes",
+        "They may be unsupported or fragile and can break in unexpected ways"
+      ],
+      "answer": 3,
+      "explanation": "Older applications often lack vendor support and documentation, so changes around them carry more risk and need extra testing."
+    },
+    {
+      "id": "d1-042",
+      "objective": "1.3",
+      "topic": "change-technical",
+      "question": "Why must dependencies be identified before a change?",
+      "choices": [
+        "Dependencies remove the need for a backout plan",
+        "Only dependencies need to be tested",
+        "Dependencies make changes faster",
+        "Changing one component can break other systems that rely on it"
+      ],
+      "answer": 3,
+      "explanation": "A database upgrade might break the web app that depends on it. Knowing dependencies lets you test and schedule changes together."
+    },
+    {
+      "id": "d1-043",
+      "objective": "1.3",
+      "topic": "change-technical",
+      "question": "In change management, what does keeping to restricted activities mean?",
+      "choices": [
+        "Restricting who can view the change documentation",
+        "Making only the changes that were approved, nothing extra",
+        "Blocking all network traffic during the change",
+        "Only administrators may use the system during the change"
+      ],
+      "answer": 1,
+      "explanation": "Scope matters. Extra unapproved tweaks bypass the risk review and are a common cause of outages and security gaps."
+    },
+    {
+      "id": "d1-044",
+      "objective": "1.3",
+      "topic": "change-documentation",
+      "question": "After a change is completed, what should happen to network diagrams and policies?",
+      "choices": [
+        "They should stay as they were before the change",
+        "They should be updated to match the new configuration",
+        "They should be deleted",
+        "They should be sent to the vendor"
+      ],
+      "answer": 1,
+      "explanation": "Outdated documentation misleads troubleshooting and audits. Updating diagrams, policies and procedures is part of finishing a change."
+    },
+    {
+      "id": "d1-045",
+      "objective": "1.3",
+      "topic": "change-documentation",
+      "question": "How does version control support change management?",
+      "choices": [
+        "It prevents any changes from being made",
+        "It encrypts configuration files",
+        "It tracks every change over time and allows rolling back to an earlier version",
+        "It replaces the need for approvals"
+      ],
+      "answer": 2,
+      "explanation": "Version control keeps a history of who changed what and when, and makes it easy to restore a known-good version."
+    },
+    {
+      "id": "d1-046",
+      "objective": "1.4",
+      "topic": "encryption",
+      "question": "What is true of symmetric encryption?",
+      "choices": [
+        "A public key encrypts and a private key decrypts",
+        "It does not use keys",
+        "It produces a fixed-length value that cannot be reversed",
+        "The same key is used to encrypt and decrypt"
+      ],
+      "answer": 3,
+      "explanation": "Symmetric encryption, such as AES, uses one shared secret key. It is fast, but the key must be shared securely."
+    },
+    {
+      "id": "d1-047",
+      "objective": "1.4",
+      "topic": "encryption",
+      "question": "Which of these is an asymmetric encryption algorithm?",
+      "choices": [
+        "DES",
+        "AES",
+        "SHA-256",
+        "RSA"
+      ],
+      "answer": 3,
+      "explanation": "RSA uses a public and private key pair. AES and DES are symmetric ciphers, and SHA-256 is a hashing algorithm."
+    },
+    {
+      "id": "d1-048",
+      "objective": "1.4",
+      "topic": "encryption",
+      "question": "Alice wants to send Bob a message that only Bob can read. Which key should she use to encrypt it?",
+      "choices": [
+        "Bob's public key",
+        "Alice's public key",
+        "Alice's private key",
+        "Bob's private key"
+      ],
+      "answer": 0,
+      "explanation": "Anything encrypted with Bob's public key can only be decrypted with Bob's private key, which only Bob holds."
+    },
+    {
+      "id": "d1-049",
+      "objective": "1.4",
+      "topic": "hashing-integrity",
+      "question": "Which key does a sender use to create a digital signature?",
+      "choices": [
+        "The sender's private key",
+        "The sender's public key",
+        "The recipient's public key",
+        "A shared symmetric key"
+      ],
+      "answer": 0,
+      "explanation": "The sender signs with their private key. Anyone can verify the signature with the sender's public key, proving who sent it and that it was not changed."
+    },
+    {
+      "id": "d1-050",
+      "objective": "1.4",
+      "topic": "hashing-integrity",
+      "question": "Adding a random salt to each password before hashing mainly protects against:",
+      "choices": [
+        "Denial-of-service attacks",
+        "Phishing emails",
+        "Rainbow table attacks using precomputed hashes",
+        "Shoulder surfing"
+      ],
+      "answer": 2,
+      "explanation": "A unique salt makes every stored hash different, even for identical passwords, so precomputed hash tables become useless."
+    },
+    {
+      "id": "d1-051",
+      "objective": "1.4",
+      "topic": "hashing-integrity",
+      "question": "How does key stretching, such as PBKDF2 or bcrypt, strengthen stored passwords?",
+      "choices": [
+        "It makes each hash slow to compute, so brute-force guessing takes far longer",
+        "It makes passwords shorter and easier to remember",
+        "It encrypts passwords with a public key",
+        "It stores passwords in plain text for recovery"
+      ],
+      "answer": 0,
+      "explanation": "Key stretching runs the hash many times. A small delay for one login becomes a huge cost for an attacker trying billions of guesses."
+    },
+    {
+      "id": "d1-052",
+      "objective": "1.4",
+      "topic": "hashing-integrity",
+      "question": "Which statement about hashing is true?",
+      "choices": [
+        "It requires a public and private key pair",
+        "It is a one-way function that produces a fixed-length digest",
+        "It can be reversed with the right key",
+        "Its output grows longer as the input grows"
+      ],
+      "answer": 1,
+      "explanation": "Hashes cannot be decrypted, and the same algorithm always outputs the same length, whether the input is one word or a whole disk."
+    },
+    {
+      "id": "d1-053",
+      "objective": "1.4",
+      "topic": "pki-certificates",
+      "question": "Which protocol checks whether a certificate has been revoked by asking the certificate authority in real time?",
+      "choices": [
+        "PEM",
+        "CSR",
+        "OCSP",
+        "CRL"
+      ],
+      "answer": 2,
+      "explanation": "OCSP (Online Certificate Status Protocol) answers one certificate's status on request. A CRL is a whole list that clients download periodically."
+    },
+    {
+      "id": "d1-054",
+      "objective": "1.4",
+      "topic": "pki-certificates",
+      "question": "What does an organization send to a certificate authority to request a new certificate?",
+      "choices": [
+        "A certificate signing request (CSR)",
+        "A certificate revocation list (CRL)",
+        "Its private key",
+        "An OCSP response"
+      ],
+      "answer": 0,
+      "explanation": "A CSR contains the public key and identifying details. The private key never leaves the organization."
+    },
+    {
+      "id": "d1-055",
+      "objective": "1.4",
+      "topic": "pki-certificates",
+      "question": "A single certificate that secures www.example.com, mail.example.com and shop.example.com using *.example.com is called a:",
+      "choices": [
+        "Root certificate",
+        "Wildcard certificate",
+        "Code signing certificate",
+        "Self-signed certificate"
+      ],
+      "answer": 1,
+      "explanation": "The asterisk in a wildcard certificate covers any subdomain at that level, so one certificate protects many hosts."
+    },
+    {
+      "id": "d1-056",
+      "objective": "1.4",
+      "topic": "pki-certificates",
+      "question": "What is key escrow?",
+      "choices": [
+        "Destroying keys after one use",
+        "A trusted third party holds a copy of keys so they can be recovered if needed",
+        "Generating keys inside a web browser",
+        "Publishing private keys on a public server"
+      ],
+      "answer": 1,
+      "explanation": "Key escrow allows recovery of encrypted data, for example if an employee leaves, but the escrow holder must be highly trusted."
+    },
+    {
+      "id": "d1-057",
+      "objective": "1.4",
+      "topic": "crypto-tools",
+      "question": "Which chip built into a laptop's motherboard securely stores encryption keys and supports full-disk encryption and secure boot?",
+      "choices": [
+        "Trusted Platform Module (TPM)",
+        "Certificate authority (CA)",
+        "Key management system (KMS)",
+        "Hardware security module (HSM)"
+      ],
+      "answer": 0,
+      "explanation": "A TPM is built into the device itself. An HSM is a separate, dedicated device used to protect keys at large scale."
+    },
+    {
+      "id": "d1-058",
+      "objective": "1.4",
+      "topic": "crypto-tools",
+      "question": "A bank needs a dedicated, tamper-resistant appliance to generate and protect thousands of cryptographic keys. What should it use?",
+      "choices": [
+        "Trusted Platform Module (TPM)",
+        "Web application firewall",
+        "Hardware security module (HSM)",
+        "Load balancer"
+      ],
+      "answer": 2,
+      "explanation": "HSMs are purpose-built for high-volume, high-security key management, and many are certified to resist physical tampering."
+    },
+    {
+      "id": "d1-059",
+      "objective": "1.4",
+      "topic": "obfuscation",
+      "question": "Hiding a secret message inside the pixels of an image file is called:",
+      "choices": [
+        "Hashing",
+        "Steganography",
+        "Tokenization",
+        "Data masking"
+      ],
+      "answer": 1,
+      "explanation": "Steganography conceals that a message exists at all, by embedding it in ordinary-looking files like images or audio."
+    },
+    {
+      "id": "d1-060",
+      "objective": "1.4",
+      "topic": "obfuscation",
+      "question": "A payment system replaces a credit card number with a random value that maps back to the real number only in a secure vault. What is this?",
+      "choices": [
+        "Tokenization",
+        "Steganography",
+        "Key stretching",
+        "Data masking"
+      ],
+      "answer": 0,
+      "explanation": "A token has no mathematical link to the real data, so a stolen token is useless without access to the secure vault."
+    }
+  ]
+}
