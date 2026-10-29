@@ -26,6 +26,7 @@ body {
 
 #status,
 #mode-panel,
+#class-panel,
 #map-panel,
 #battle-panel {
   width: 100%;
@@ -34,6 +35,7 @@ body {
 }
 
 #mode-panel button,
+#class-list button,
 #zone-list button,
 #skills button,
 #choices button,
@@ -62,7 +64,8 @@ body {
 }
 
 /* Skill buttons: name on the first line, details underneath */
-#skills button small {
+#skills button small,
+#class-list button small {
   display: block;
   color: #7fa894;
   margin-top: 4px;
@@ -72,13 +75,15 @@ body {
 #choices button:hover:enabled,
 #mode-panel button:hover,
 #zone-list button:hover:enabled,
+#class-list button:hover:enabled,
 #next-button:hover,
 #map-button:hover {
   background: #12301f;
 }
 
 /* Locked or unbuilt zones: greyed out and not clickable */
-#zone-list button:disabled {
+#zone-list button:disabled,
+#class-list button:disabled {
   border-color: #33413a;
   color: #5d6f66;
   cursor: not-allowed;

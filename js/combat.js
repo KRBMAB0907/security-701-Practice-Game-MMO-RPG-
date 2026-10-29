@@ -26,16 +26,33 @@ function zoneSkills() {
   return skills.filter(skill => currentZone.skills.includes(skill.id));
 }
 
+// Skill damage = base x level bonus x class bonus x favored bonus x weak point
 function skillDamage(skill) {
+  const playerClass = currentClass();
   let damage = skill.damage * (1 + (save.level - 1) * DAMAGE_PER_LEVEL);
+  damage *= playerClass.damageScale;
+  if (isFavored(skill)) {
+    damage *= FAVORED_SKILL_BONUS;
+  }
   if (hitsWeakPoint(skill)) {
-    damage *= WEAKNESS_MULTIPLIER;
+    damage *= playerClass.weaknessMultiplier;
   }
   return Math.round(damage);
 }
 
+// Enemy damage = mode damage x boss multiplier x your class's defense
 function enemyDamage() {
-  return Math.round(currentMode.enemyDamage * (enemy.damageScale || 1));
+  const damage = currentMode.enemyDamage * (enemy.damageScale || 1) * currentClass().damageTakenScale;
+  return Math.round(damage);
+}
+
+function heal(fighter, amount) {
+  const healed = Math.min(amount, fighter.maxHp - fighter.hp);
+  if (healed > 0) {
+    fighter.hp += healed;
+    floatingTexts.push({ value: "+" + healed, x: fighter.x + 8, y: fighter.y - 44, color: "#4fc3f7", life: 900, maxLife: 900 });
+  }
+  return healed;
 }
 
 function hit(fighter, amount, color) {
@@ -59,7 +76,9 @@ function startFight() {
   enemy.maxHp = Math.round(type.hp * currentMode.enemyHpScale);
   enemy.hp = enemy.maxHp;
 
-  // You start every fight at full health
+  // You start every fight at full health, in your class's colors
+  player.name = currentClass().name;
+  player.color = currentClass().color;
   player.maxHp = playerMaxHp();
   player.hp = player.maxHp;
 
@@ -89,7 +108,9 @@ function showSkillChoice() {
   zoneSkills().forEach(skill => {
     const button = document.createElement("button");
     const weakPoint = hitsWeakPoint(skill);
-    button.textContent = skill.name + " (" + skillDamage(skill) + " damage)" + (weakPoint ? " - WEAK POINT!" : "");
+    button.textContent = skill.name + " (" + skillDamage(skill) + " damage)"
+      + (isFavored(skill) ? " [class skill]" : "")
+      + (weakPoint ? " - WEAK POINT!" : "");
     button.classList.toggle("weak-point", weakPoint);
 
     const details = document.createElement("small");
@@ -132,6 +153,13 @@ function playerAttacks() {
   hit(enemy, damage, "#00ff9c");
 
   let message = currentSkill.name + " hits for " + damage + " damage!";
+
+  // Analysts heal a little with every correct answer
+  const healed = heal(player, currentClass().healOnCorrect);
+  if (healed > 0) {
+    message += " You recover " + healed + " health.";
+  }
+
   if (enemy.hp > 0 && currentWeakness() !== weaknessBefore) {
     message += " The " + enemy.name + " shifts! Now weak to " + topicName(currentWeakness()) + ".";
   }

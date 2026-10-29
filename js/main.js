@@ -3,7 +3,12 @@
 
 function chooseMode(modeKey) {
   currentMode = MODES[modeKey];
-  showMap();
+  // New players pick a class first; returning players go straight to the map
+  if (currentClass() === undefined) {
+    showClassPicker();
+  } else {
+    showMap();
+  }
 }
 
 // Each mode button stores its mode name in data-mode="..." in the HTML
@@ -20,10 +25,11 @@ async function start() {
     // Load all the files at the same time and wait for all to finish.
     // The Foundry only needs Domain 1 questions; later areas will load
     // their own domain file from data/questions/.
-    const [topicData, questionData, combatData] = await Promise.all([
+    const [topicData, questionData, combatData, classData] = await Promise.all([
       loadJson("data/topics.json"),
       loadJson("data/questions/domain1.json"),
-      loadJson("data/combat.json")
+      loadJson("data/combat.json"),
+      loadJson("data/classes.json")
     ]);
 
     // Flatten domains -> objectives -> topics into one id -> name lookup
@@ -39,6 +45,7 @@ async function start() {
     skills = combatData.skills;
     enemyTypes = combatData.enemies;
     zones = combatData.zones;
+    classes = classData.classes;
 
     status.hidden = true;
     showPanel("mode-panel");

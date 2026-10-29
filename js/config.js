@@ -24,6 +24,8 @@ const HP_PER_LEVEL = 10;          // extra max health per level
 const XP_PER_LEVEL = 50;          // level N needs N x 50 XP to level up
 const DEATH_XP_LOSS = 0.25;       // dying costs 25% of the current XP bar
 const RECENT_QUESTION_MEMORY = 6; // how many recent questions to avoid repeating
+const FAVORED_SKILL_BONUS = 1.2;  // +20% damage for skills your class favors
+const CLASS_SWITCH_LEVEL_LOSS = 0.2; // switching class costs 20% of your levels
 const SAVE_KEY = "secplus-rpg-save";
 
 // Animation timings (milliseconds)

@@ -1,0 +1,46 @@
+{
+  "classes": [
+    {
+      "id": "defender",
+      "name": "Defender",
+      "role": "Security engineer, blue team",
+      "style": "Tank",
+      "description": "+25% max health and takes 20% less damage. Firewall Rule, Access Lockdown and Site Survey hit harder.",
+      "color": "#00ff9c",
+      "hpScale": 1.25,
+      "damageScale": 1,
+      "damageTakenScale": 0.8,
+      "weaknessMultiplier": 1.5,
+      "healOnCorrect": 0,
+      "favoredSkills": ["firewall-rule", "access-lockdown", "site-survey"]
+    },
+    {
+      "id": "analyst",
+      "name": "Analyst",
+      "role": "SOC analyst",
+      "style": "Support",
+      "description": "Heals 8 health for every correct answer, and weak points take 1.75x damage instead of 1.5x. Patch Deploy, Honeypot Lure and Zero Trust Verify hit harder.",
+      "color": "#4fc3f7",
+      "hpScale": 1,
+      "damageScale": 1,
+      "damageTakenScale": 1,
+      "weaknessMultiplier": 1.75,
+      "healOnCorrect": 8,
+      "favoredSkills": ["patch-deploy", "honeypot-lure", "zero-trust-verify"]
+    },
+    {
+      "id": "cryptographer",
+      "name": "Cryptographer",
+      "role": "Cryptography and PKI specialist",
+      "style": "Damage",
+      "description": "+25% damage on every skill, but 15% less max health. Integrity Check hits harder, and future cryptography skills will too.",
+      "color": "#e040fb",
+      "hpScale": 0.85,
+      "damageScale": 1.25,
+      "damageTakenScale": 1,
+      "weaknessMultiplier": 1.5,
+      "healOnCorrect": 0,
+      "favoredSkills": ["integrity-check"]
+    }
+  ]
+}

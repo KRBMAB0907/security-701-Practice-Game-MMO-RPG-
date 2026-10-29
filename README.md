@@ -6,6 +6,7 @@ A free, browser-based RPG that helps you study for the **CompTIA Security+ (SY0-
 
 ## How it plays
 
+- **Pick a class:** Defender (tank), Analyst (support, heals on correct answers) or Cryptographer (high damage, low health). Switching later costs 20% of your levels.
 - **Pick a difficulty:** Fun (no timer), Learner (60 seconds per question) or Hard (30 seconds, tougher enemies).
 - **Choose a skill.** Each skill is tied to an exam topic, and using it means answering a question on that topic.
 - **Answer correctly** and your skill hits. Answer wrong or run out of time and the enemy hits you. Every answer shows an explanation, so mistakes still teach.
@@ -48,6 +49,7 @@ js/                     the game code, one file per job (loaded in this order)
   state.js              game state and the two fighters
   storage.js            loading data files, saving progress
   leveling.js           XP, leveling and the death penalty
+  classes.js            picking and switching classes
   render.js             drawing the canvas and the game loop
   map.js                screens, the map and unlocking
   combat.js             skills, weaknesses, damage, winning and losing
@@ -57,6 +59,7 @@ js/                     the game code, one file per job (loaded in this order)
 data/
   topics.json           every domain, objective and topic
   combat.json           skills, enemies and zones
+  classes.json          class stats and favored skills
   questions/            question bank, one file per domain
 tools/
   check_questions.py    checks the question bank for mistakes

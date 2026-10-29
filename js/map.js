@@ -5,7 +5,7 @@
 // ===============================================================
 
 function showPanel(id) {
-  ["mode-panel", "map-panel", "battle-panel"].forEach(panelId => {
+  ["mode-panel", "class-panel", "map-panel", "battle-panel"].forEach(panelId => {
     document.getElementById(panelId).hidden = panelId !== id;
   });
 }
@@ -26,7 +26,7 @@ function showMap() {
   showPanel("map-panel");
 
   document.getElementById("player-summary").textContent =
-    "Level " + save.level + " · XP " + save.xp + "/" + xpToNextLevel() + " · Mode: " + currentMode.label;
+    currentClass().name + " · Level " + save.level + " · XP " + save.xp + "/" + xpToNextLevel() + " · Mode: " + currentMode.label;
 
   const list = document.getElementById("zone-list");
   list.innerHTML = "";
@@ -63,9 +63,9 @@ document.getElementById("change-mode-button").addEventListener("click", () => {
 });
 
 document.getElementById("reset-button").addEventListener("click", () => {
-  if (confirm("Reset your level, XP and cleared zones?")) {
-    save = { level: 1, xp: 0, clearedZones: [] };
+  if (confirm("Reset your class, level, XP and cleared zones?")) {
+    save = newSave();
     writeSave();
-    showMap();
+    showClassPicker();  // a fresh start means picking a class again
   }
 });

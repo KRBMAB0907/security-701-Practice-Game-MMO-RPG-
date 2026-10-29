@@ -18,12 +18,21 @@
     <button data-mode="hard">Hard: 30 seconds, tougher enemies, better loot</button>
   </div>
 
+  <div id="class-panel" hidden>
+    <p id="class-intro"></p>
+    <div id="class-list"></div>
+    <div class="small-buttons">
+      <button id="class-cancel-button">Keep my class</button>
+    </div>
+  </div>
+
   <div id="map-panel" hidden>
     <p id="player-summary"></p>
     <p>The Foundry: choose a sub-zone</p>
     <div id="zone-list"></div>
     <div class="small-buttons">
       <button id="change-mode-button">Change difficulty</button>
+      <button id="change-class-button">Change class</button>
       <button id="reset-button">Reset progress</button>
     </div>
   </div>
@@ -53,6 +62,7 @@
   <script src="js/state.js"></script>
   <script src="js/storage.js"></script>
   <script src="js/leveling.js"></script>
+  <script src="js/classes.js"></script>
   <script src="js/render.js"></script>
   <script src="js/map.js"></script>
   <script src="js/combat.js"></script>

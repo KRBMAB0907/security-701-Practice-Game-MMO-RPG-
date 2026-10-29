@@ -7,9 +7,15 @@ let questions = [];
 let skills = [];
 let enemyTypes = [];
 let zones = [];
+let classes = [];
+
+// A brand-new save: also used by "Reset progress"
+function newSave() {
+  return { level: 1, xp: 0, clearedZones: [], classId: null };
+}
 
 // Saved progress (kept in the browser between visits)
-let save = { level: 1, xp: 0, clearedZones: [] };
+let save = newSave();
 
 // Current game state
 let currentMode = null;
