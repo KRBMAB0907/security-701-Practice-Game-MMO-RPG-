@@ -33,6 +33,23 @@ const MAX_HIT_CHANCE = 0.95;      // no enemy is a sure thing
 const ENEMY_TURN_DELAY_MS = 650;  // pause between your attack and the enemy's
 const SAVE_KEY = "secplus-rpg-save";
 
+// Skill tree (the nodes themselves are in data/skilltree.json)
+const FINAL_BOSS_TREE_POINTS = 3;     // bonus points for beating the final boss
+
+// Keystones: each one is strong but has a downside
+const ZERO_TRUST_WEAK_BONUS = 0.5;    // Zero Trust: weak points take +0.5x...
+const ZERO_TRUST_OTHER_SCALE = 0.6;   // ...but every other hit deals 40% less
+const ASSUME_BREACH_START_HP = 0.7;   // Assume Breach: start fights at 70% health...
+const ASSUME_BREACH_DAMAGE = 1.3;     // ...but deal 30% more damage
+const DEFENSE_IN_DEPTH_TAKEN = 0.7;   // Defense in Depth: take 30% less damage...
+const DEFENSE_IN_DEPTH_DAMAGE = 0.85; // ...but deal 15% less
+const RAPID_RESPONSE_SECONDS = 20;    // Rapid Response: answer within 20 seconds...
+const RAPID_RESPONSE_FAST = 1.4;      // ...for +40% damage...
+const RAPID_RESPONSE_SLOW = 0.8;      // ...or deal 20% less when slower
+const ACCEPT_RISK_XP = 1.4;           // Accept the Risk: +40% XP...
+const ACCEPT_RISK_LOOT = 0.15;        // ...and +15% gear drop chance...
+const ACCEPT_RISK_HIT = 0.1;          // ...but enemies hit 10% more often
+
 // Animation timings (milliseconds)
 const FLASH_MS = 150;
 const SHAKE_MS = 300;

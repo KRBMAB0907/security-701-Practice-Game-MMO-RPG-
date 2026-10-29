@@ -7,17 +7,21 @@ function xpToNextLevel() {
 // Base health from the mode and level, scaled by your class, plus armor
 function playerMaxHp() {
   const base = currentMode.playerHp + (save.level - 1) * HP_PER_LEVEL;
-  return Math.round(base * currentClass().hpScale) + gearBonus("hp");
+  return Math.round(base * currentClass().hpScale) + gearBonus("hp") + treeBonus("hp");
 }
 
 // Returns a message if the player leveled up, otherwise ""
 function gainXp(amount) {
   save.xp += amount;
   let message = "";
+  let levelsGained = 0;
   while (save.xp >= xpToNextLevel()) {
     save.xp -= xpToNextLevel();
     save.level++;
-    message = " LEVEL UP! You are now level " + save.level + ".";
+    levelsGained++;
+    // Each level is also 1 skill tree point
+    message = " LEVEL UP! You are now level " + save.level + ". +" + levelsGained +
+      (levelsGained === 1 ? " skill tree point." : " skill tree points.");
   }
   writeSave();
   return message;

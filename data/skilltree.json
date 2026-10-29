@@ -1,0 +1,126 @@
+{
+  "about": "The skill tree: five branches, one per exam domain. Each branch has 4 tiers. A tier opens once you have spent tierCosts[tier - 1] points anywhere in the tree. Small nodes take up to 3 points, notables 1, keystones 1 (and you can only have one keystone). stats are added per point. Stat names: damage (% skill damage), hp (max health), time (seconds per question), heal (health per correct answer), weakness (extra weak-point multiplier), dodge (% less enemy hit chance), defense (% less damage taken), xp (% more XP), loot (% more gear drop chance), domainDamage (% damage with this branch's domain skills). Keystone rules are written in js/skilltree.js and their numbers are in js/config.js.",
+  "tierCosts": [0, 4, 10, 18],
+  "branches": [
+    {
+      "domain": 1,
+      "name": "General Security Concepts",
+      "nodes": [
+        { "id": "confidentiality", "name": "Confidentiality", "tier": 1, "kind": "small", "maxRank": 3, "stats": { "damage": 3 },
+          "text": "+3% skill damage per point",
+          "concept": "Confidentiality: only people with permission can read the data." },
+        { "id": "integrity", "name": "Integrity", "tier": 1, "kind": "small", "maxRank": 3, "stats": { "hp": 6 },
+          "text": "+6 max health per point",
+          "concept": "Integrity: data can't be changed without someone noticing. Hashes help prove it." },
+        { "id": "availability", "name": "Availability", "tier": 2, "kind": "small", "maxRank": 3, "stats": { "time": 2 },
+          "text": "+2 seconds per question per point",
+          "concept": "Availability: systems and data are there when authorized users need them." },
+        { "id": "non-repudiation", "name": "Non-repudiation", "tier": 2, "kind": "notable", "maxRank": 1, "stats": { "domainDamage": 15 },
+          "text": "+15% damage with Domain 1 skills (The Foundry)",
+          "concept": "Non-repudiation: a digital signature proves who sent something, so they can't deny it later." },
+        { "id": "gap-analysis", "name": "Gap Analysis", "tier": 3, "kind": "notable", "maxRank": 1, "stats": { "weakness": 0.25 },
+          "text": "Weak points take +0.25x more damage",
+          "concept": "Gap analysis: comparing where your security is now with where it needs to be." },
+        { "id": "zero-trust", "name": "Zero Trust", "tier": 4, "kind": "keystone", "maxRank": 1, "stats": {}, "keystone": "zero-trust",
+          "text": "Weak points take +0.5x more damage. Every other hit deals 40% less.",
+          "concept": "Zero trust: never trust by default. Verify every request, every time." }
+      ]
+    },
+    {
+      "domain": 2,
+      "name": "Threats, Vulnerabilities and Mitigations",
+      "nodes": [
+        { "id": "threat-intel", "name": "Threat Intel", "tier": 1, "kind": "small", "maxRank": 3, "stats": { "dodge": 2 },
+          "text": "Enemies hit 2% less often per point",
+          "concept": "Threat intelligence: what is known about attackers and their methods, used to get ready before they strike." },
+        { "id": "vuln-scanning", "name": "Vulnerability Scanning", "tier": 1, "kind": "small", "maxRank": 3, "stats": { "damage": 3 },
+          "text": "+3% skill damage per point",
+          "concept": "Vulnerability scanning: automatically checking systems for known weaknesses." },
+        { "id": "hardening", "name": "Hardening", "tier": 2, "kind": "small", "maxRank": 3, "stats": { "defense": 3 },
+          "text": "Take 3% less damage per point",
+          "concept": "Hardening: turning off unneeded services, ports and accounts to shrink the attack surface." },
+        { "id": "indicators", "name": "Indicators of Compromise", "tier": 2, "kind": "notable", "maxRank": 1, "stats": { "domainDamage": 15 },
+          "text": "+15% damage with Domain 2 skills (The Breach Wastes)",
+          "concept": "Indicators of compromise: clues that an attack happened, like odd logins, strange traffic or changed files." },
+        { "id": "mitigation", "name": "Mitigation", "tier": 3, "kind": "notable", "maxRank": 1, "stats": { "dodge": 5 },
+          "text": "Enemies hit 5% less often",
+          "concept": "Mitigation: patching, isolation and least privilege make an attack less likely to work, or less harmful if it does." },
+        { "id": "assume-breach", "name": "Assume Breach", "tier": 4, "kind": "keystone", "maxRank": 1, "stats": {}, "keystone": "assume-breach",
+          "text": "Start every fight at 70% health, but deal 30% more damage.",
+          "concept": "Assume breach: plan as if attackers are already inside, so you're ready to find and remove them." }
+      ]
+    },
+    {
+      "domain": 3,
+      "name": "Security Architecture",
+      "nodes": [
+        { "id": "segmentation", "name": "Segmentation", "tier": 1, "kind": "small", "maxRank": 3, "stats": { "defense": 3 },
+          "text": "Take 3% less damage per point",
+          "concept": "Segmentation: splitting a network into zones so one breach can't spread everywhere." },
+        { "id": "redundancy", "name": "Redundancy", "tier": 1, "kind": "small", "maxRank": 3, "stats": { "hp": 6 },
+          "text": "+6 max health per point",
+          "concept": "Redundancy: spare power, disks or servers, so one failure doesn't take everything down." },
+        { "id": "load-balancing", "name": "Load Balancing", "tier": 2, "kind": "small", "maxRank": 3, "stats": { "time": 2 },
+          "text": "+2 seconds per question per point",
+          "concept": "Load balancing: spreading traffic across several servers so none of them is overwhelmed." },
+        { "id": "infrastructure-as-code", "name": "Infrastructure as Code", "tier": 2, "kind": "notable", "maxRank": 1, "stats": { "domainDamage": 15 },
+          "text": "+15% damage with Domain 3 skills (The Citadel)",
+          "concept": "Infrastructure as code: building systems from scripts, so every build is the same and easy to review." },
+        { "id": "hot-site", "name": "Hot Site", "tier": 3, "kind": "notable", "maxRank": 1, "stats": { "hp": 30 },
+          "text": "+30 max health",
+          "concept": "Hot site: a backup location that is already running and can take over almost at once." },
+        { "id": "defense-in-depth", "name": "Defense in Depth", "tier": 4, "kind": "keystone", "maxRank": 1, "stats": {}, "keystone": "defense-in-depth",
+          "text": "Take 30% less damage, but deal 15% less.",
+          "concept": "Defense in depth: layers of controls, so if one fails another still stops the attack." }
+      ]
+    },
+    {
+      "domain": 4,
+      "name": "Security Operations",
+      "nodes": [
+        { "id": "log-review", "name": "Log Review", "tier": 1, "kind": "small", "maxRank": 3, "stats": { "heal": 1 },
+          "text": "Heal 1 health per correct answer, per point",
+          "concept": "Log review: reading system and security logs to work out what happened and when." },
+        { "id": "alert-tuning", "name": "Alert Tuning", "tier": 1, "kind": "small", "maxRank": 3, "stats": { "time": 2 },
+          "text": "+2 seconds per question per point",
+          "concept": "Alert tuning: adjusting alerts to cut false positives, so real threats stand out." },
+        { "id": "automation", "name": "Automation", "tier": 2, "kind": "small", "maxRank": 3, "stats": { "damage": 3 },
+          "text": "+3% skill damage per point",
+          "concept": "Automation and orchestration: scripts and playbooks that respond faster than people can." },
+        { "id": "incident-response", "name": "Incident Response", "tier": 2, "kind": "notable", "maxRank": 1, "stats": { "domainDamage": 15 },
+          "text": "+15% damage with Domain 4 skills (The Operations Deep)",
+          "concept": "Incident response: preparation, detection, analysis, containment, eradication, recovery, lessons learned." },
+        { "id": "edr", "name": "EDR", "tier": 3, "kind": "notable", "maxRank": 1, "stats": { "heal": 5 },
+          "text": "Heal 5 health per correct answer",
+          "concept": "EDR (endpoint detection and response): watches devices for suspicious behavior and can stop an attack in progress." },
+        { "id": "rapid-response", "name": "Rapid Response", "tier": 4, "kind": "keystone", "maxRank": 1, "stats": {}, "keystone": "rapid-response",
+          "text": "Answer within 20 seconds for +40% damage. Slower answers deal 20% less.",
+          "concept": "Time to respond: the faster a team reacts to an incident, the less damage it does." }
+      ]
+    },
+    {
+      "domain": 5,
+      "name": "Security Program Management and Oversight",
+      "nodes": [
+        { "id": "awareness-training", "name": "Awareness Training", "tier": 1, "kind": "small", "maxRank": 3, "stats": { "xp": 5 },
+          "text": "+5% XP per point",
+          "concept": "Security awareness training: teaching people to spot phishing and report problems." },
+        { "id": "due-care", "name": "Due Care", "tier": 1, "kind": "small", "maxRank": 3, "stats": { "hp": 6 },
+          "text": "+6 max health per point",
+          "concept": "Due care: doing what a reasonable organization would do to protect its people and data." },
+        { "id": "vendor-assessment", "name": "Vendor Assessment", "tier": 2, "kind": "small", "maxRank": 3, "stats": { "loot": 3 },
+          "text": "+3% chance for gear to drop, per point",
+          "concept": "Vendor assessment: checking a supplier's security before trusting them with your data." },
+        { "id": "governance", "name": "Governance", "tier": 2, "kind": "notable", "maxRank": 1, "stats": { "domainDamage": 15 },
+          "text": "+15% damage with Domain 5 skills (The Council Spire)",
+          "concept": "Governance: the policies, standards and roles that steer how security is run." },
+        { "id": "business-impact", "name": "Business Impact Analysis", "tier": 3, "kind": "notable", "maxRank": 1, "stats": { "damage": 5, "defense": 5 },
+          "text": "+5% skill damage and take 5% less damage",
+          "concept": "Business impact analysis: working out which systems matter most and how long you can go without them." },
+        { "id": "accept-the-risk", "name": "Accept the Risk", "tier": 4, "kind": "keystone", "maxRank": 1, "stats": {}, "keystone": "accept-the-risk",
+          "text": "+40% XP and +15% gear drop chance, but enemies hit 10% more often.",
+          "concept": "Risk acceptance: knowingly living with a risk because fixing it would cost more than it's worth." }
+      ]
+    }
+  ]
+}

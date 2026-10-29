@@ -51,6 +51,7 @@ body {
 #class-panel,
 #map-panel,
 #gear-panel,
+#tree-panel,
 #battle-panel {
   grid-row: 2;
   width: 100%;
@@ -81,6 +82,7 @@ body {
   #class-panel,
   #map-panel,
   #gear-panel,
+  #tree-panel,
   #battle-panel {
     grid-row: 1;
     grid-column: 2;
@@ -96,6 +98,7 @@ body {
   #class-panel,
   #map-panel,
   #gear-panel,
+  #tree-panel,
   #battle-panel {
     font-size: 15px;
   }
@@ -414,4 +417,122 @@ body {
 
 #area-title {
   color: #7fa894;
+}
+
+/* The skill tree takes the whole window: the game screen hides and the
+   panel fills its place (body gets the "tree-open" class in map.js) */
+body.tree-open {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+}
+
+body.tree-open #game {
+  display: none;
+}
+
+body.tree-open #tree-panel {
+  grid-row: 1;
+  grid-column: 1;
+  max-width: 1400px;
+  justify-self: center;
+  height: 100%;
+}
+
+/* ---------------------------------------------------------------
+   Skill tree screen: one column per exam domain. On narrow screens
+   the columns wrap, and the panel scrolls like the other menus.
+   --------------------------------------------------------------- */
+#tree-summary {
+  color: #ffd166;
+}
+
+#tree-help {
+  color: #7fa894;
+  font-size: 0.85em;
+}
+
+#tree-branches {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12em), 1fr));
+  gap: 0.8em;
+  margin-top: 0.8em;
+}
+
+.tree-branch {
+  border: 2px solid #1c2733;
+  padding: 0.5em;
+}
+
+.tree-branch h3 {
+  margin: 0 0 0.3em;
+  font-size: 0.95em;
+  color: #00ff9c;
+}
+
+.tree-tier {
+  margin: 0.6em 0 0.2em;
+  font-size: 0.8em;
+  color: #7fa894;
+}
+
+.tree-tier.locked {
+  color: #5d6f66;
+}
+
+.tree-node {
+  display: block;
+  width: 100%;
+  margin: 0.3em 0;
+  padding: 0.45em 0.55em;
+  font: inherit;
+  font-size: 0.85em;
+  text-align: left;
+  background: #0a0e14;
+  color: #d8f3e8;
+  border: 1px solid #33413a;
+  cursor: pointer;
+}
+
+.tree-node small {
+  display: block;
+  color: #a8d5c0;
+  margin-top: 0.2em;
+}
+
+.tree-node small.concept {
+  color: #7fa894;
+  font-style: italic;
+}
+
+/* Notables are bigger boosts; keystones change the rules (and have a downside) */
+.tree-node.notable  { border: 2px solid #4fc3f7; }
+.tree-node.keystone { border: 2px solid #e040fb; }
+
+.tree-node:hover:enabled {
+  background: #12301f;
+}
+
+/* Nodes you have points in, and points planned but not locked in yet */
+.tree-node.taken   { background: #0b3d2a; }
+.tree-node.planned { background: #3a3110; }
+
+.tree-node:disabled {
+  cursor: not-allowed;
+  color: #7fa894;
+}
+
+/* A node you have points in stays readable even when you can't add more */
+.tree-node.taken:disabled {
+  color: #d8f3e8;
+}
+
+.small-buttons button:disabled {
+  color: #3f4d46;
+  cursor: not-allowed;
+}
+
+/* The tree screen has four buttons, so let them wrap on phones */
+#tree-panel .small-buttons {
+  flex-wrap: wrap;
+  margin-top: 0.5em;
 }

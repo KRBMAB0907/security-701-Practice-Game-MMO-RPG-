@@ -33,6 +33,7 @@ Each script defaults to the project folder it lives in; you can pass another pat
 | `loot.py` | Drop odds and equipping | < 1 min |
 | `gear_screen.py` | Equip now button, worn armor, gear screen | < 1 min |
 | `timer.py` | Hard timer runs out; Fun has no timer | < 1 min |
+| `skill_tree.py` | Tree points, tiers, lock in, keystones, bonuses, reset and class switch | < 1 min |
 
 ## Balance runs (run after changing damage, health or hit chance)
 

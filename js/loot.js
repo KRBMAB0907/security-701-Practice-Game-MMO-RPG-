@@ -65,7 +65,11 @@ function makeItem(tier, zoneLevel) {
 
 // Called after winning a fight. Returns { item, kept } or null if nothing dropped.
 function rollDrop() {
-  const chance = enemy.boss ? lootTable.bossDropChance : lootTable.dropChance;
+  let chance = enemy.boss ? lootTable.bossDropChance : lootTable.dropChance;
+  chance += treeBonus("loot") / 100;  // e.g. Vendor Assessment: +3% per point
+  if (hasKeystone("accept-the-risk")) {
+    chance += ACCEPT_RISK_LOOT;
+  }
   if (Math.random() >= chance) {
     return null;
   }

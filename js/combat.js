@@ -34,22 +34,36 @@ function zoneSkills() {
   return skills.filter(skill => currentZone.skills.includes(skill.id));
 }
 
-// Skill damage = base x level bonus x class bonus x favored bonus x weak point
+// Skill damage = base x level bonus x class bonus x gear x skill tree x favored bonus x weak point
 function skillDamage(skill) {
   const playerClass = currentClass();
   let damage = skill.damage * (1 + (save.level - 1) * DAMAGE_PER_LEVEL);
   damage *= playerClass.damageScale;
   damage *= 1 + gearBonus("damage") / 100;  // tool gear, e.g. +15%
+  damage *= 1 + (treeBonus("damage") + treeDomainDamage(skill)) / 100;  // skill tree
   if (isFavored(skill)) {
     damage *= FAVORED_SKILL_BONUS;
   }
   if (hitsWeakPoint(skill)) {
-    // The Insight Lens legendary adds +0.5x on top of the class's multiplier
-    damage *= playerClass.weaknessMultiplier + (hasEffect("insight") ? 0.5 : 0);
+    // The Insight Lens legendary and the skill tree add to the class's multiplier
+    let multiplier = playerClass.weaknessMultiplier + (hasEffect("insight") ? 0.5 : 0) + treeBonus("weakness");
+    if (hasKeystone("zero-trust")) {
+      multiplier += ZERO_TRUST_WEAK_BONUS;
+    }
+    damage *= multiplier;
+  } else if (hasKeystone("zero-trust")) {
+    damage *= ZERO_TRUST_OTHER_SCALE;  // Zero Trust's downside: weak points only
+  }
+  if (hasKeystone("assume-breach")) {
+    damage *= ASSUME_BREACH_DAMAGE;
+  }
+  if (hasKeystone("defense-in-depth")) {
+    damage *= DEFENSE_IN_DEPTH_DAMAGE;
   }
   return Math.round(damage);
 }
 
+<<<<<<< HEAD
 // Enemy damage = mode damage x zone level scale x boss multiplier x your class's defense
 // Enemies grow at the same pace as your base health, so an average player
 // dies in about the same number of hits in every zone (Learner: 7 from a
@@ -59,17 +73,32 @@ function enemyDamage() {
   const zoneHp = currentMode.playerHp + (currentZone.level - 1) * HP_PER_LEVEL;
   const levelScale = zoneHp / currentMode.playerHp;
   const damage = currentMode.enemyDamage * levelScale * (enemy.damageScale || 1) * currentClass().damageTakenScale;
+=======
+// Enemy damage = mode damage x area difficulty x boss multiplier x your class's defense x skill tree
+function enemyDamage() {
+  const areaScale = areaOf(currentZone).enemyDamageScale || 1;
+  let damage = currentMode.enemyDamage * areaScale * (enemy.damageScale || 1) * currentClass().damageTakenScale;
+  damage *= 1 - treeBonus("defense") / 100;  // e.g. Hardening: 3% less per point
+  if (hasKeystone("defense-in-depth")) {
+    damage *= DEFENSE_IN_DEPTH_TAKEN;
+  }
+>>>>>>> Skill tree
   return Math.round(damage);
 }
 
 // How likely the enemy's attack is to land, from 0 to 1
 function enemyHitChance() {
-  const chance = currentMode.hitChance + (enemy.boss ? BOSS_HIT_BONUS : 0) + (enemy.accuracy || 0);
-  return Math.min(chance, MAX_HIT_CHANCE);
+  let chance = currentMode.hitChance + (enemy.boss ? BOSS_HIT_BONUS : 0) + (enemy.accuracy || 0);
+  chance -= treeBonus("dodge") / 100;  // e.g. Threat Intel: 2% less per point
+  if (hasKeystone("accept-the-risk")) {
+    chance += ACCEPT_RISK_HIT;
+  }
+  return Math.max(Math.min(chance, MAX_HIT_CHANCE), 0);
 }
 
-// What to say after clearing a zone's last enemy
-function clearedZoneMessage(area) {
+// What to say after clearing a zone's last enemy.
+// firstClear is true the first time, so the final boss bonus is only announced once.
+function clearedZoneMessage(area, firstClear) {
   const isFinale = area.zones.indexOf(currentZone) === area.zones.length - 1;
   if (!isFinale) {
     return " The next sub-zone is unlocked.";
@@ -87,6 +116,9 @@ function clearedZoneMessage(area) {
   } else {
     // The last area: the whole game is complete
     message += " YOU HAVE CONQUERED ALL FIVE DOMAINS OF SECURITY+! Replay any zone on Hard mode to sharpen your weak spots, and good luck on the exam!";
+    if (firstClear) {
+      message += " You earned " + FINAL_BOSS_TREE_POINTS + " bonus skill tree points!";
+    }
   }
   return message;
 }
@@ -129,6 +161,9 @@ function startFight() {
   player.spritePath = classSpritePath(currentClass().id);
   player.maxHp = playerMaxHp();
   player.hp = player.maxHp;
+  if (hasKeystone("assume-breach")) {
+    player.hp = Math.round(player.maxHp * ASSUME_BREACH_START_HP);  // the keystone's downside
+  }
 
   fightOver = false;
   fightWon = false;
@@ -203,13 +238,22 @@ function pickQuestion(topics) {
 function playerAttacks() {
   const weaknessBefore = currentWeakness();
   const weakPoint = hitsWeakPoint(currentSkill);
-  const damage = skillDamage(currentSkill);
+  let damage = skillDamage(currentSkill);
+
+  // Rapid Response keystone: fast answers hit harder, slow ones softer
+  let rapidText = "";
+  if (hasKeystone("rapid-response")) {
+    const seconds = (Date.now() - questionShownAt) / 1000;
+    const fast = seconds <= RAPID_RESPONSE_SECONDS;
+    damage = Math.round(damage * (fast ? RAPID_RESPONSE_FAST : RAPID_RESPONSE_SLOW));
+    rapidText = fast ? " Rapid Response: a fast answer hits harder!" : " Rapid Response: too slow, the hit is weaker.";
+  }
   hit(enemy, damage, "#00ff9c");
 
-  let message = narrate(weakPoint ? "weakHit" : "playerHit", { skill: currentSkill.name, enemy: enemy.name, damage: damage });
+  let message = narrate(weakPoint ? "weakHit" : "playerHit", { skill: currentSkill.name, enemy: enemy.name, damage: damage }) + rapidText;
 
-  // Analysts heal a little with every correct answer
-  const healed = heal(player, currentClass().healOnCorrect);
+  // Analysts (and skill tree healing nodes) heal a little with every correct answer
+  const healed = heal(player, currentClass().healOnCorrect + treeBonus("heal"));
   if (healed > 0) {
     message += " You recover " + healed + " health.";
   }
@@ -337,10 +381,20 @@ function setLootMessage(drop) {
   box.appendChild(info);
 }
 
+// XP for beating the current enemy, with skill tree bonuses
+function xpReward() {
+  let xp = enemy.xp * (1 + treeBonus("xp") / 100);
+  if (hasKeystone("accept-the-risk")) {
+    xp *= ACCEPT_RISK_XP;
+  }
+  return Math.round(xp);
+}
+
 function winFight() {
   fightOver = true;
   fightWon = true;
-  const levelUp = gainXp(enemy.xp);
+  const xp = xpReward();
+  const levelUp = gainXp(xp);
   const drop = rollDrop();
   if (drop !== null) {
     setLootMessage(drop);
@@ -349,15 +403,16 @@ function winFight() {
   const nextButton = document.getElementById("next-button");
 
   if (isLastEnemy) {
-    if (!save.clearedZones.includes(currentZone.id)) {
+    const firstClear = !save.clearedZones.includes(currentZone.id);
+    if (firstClear) {
       save.clearedZones.push(currentZone.id);
       writeSave();
     }
-    const unlockText = clearedZoneMessage(areaOf(currentZone));
-    setLog(currentZone.name + " cleared! +" + enemy.xp + " XP." + levelUp + unlockText);
+    const unlockText = clearedZoneMessage(areaOf(currentZone), firstClear);
+    setLog(currentZone.name + " cleared! +" + xp + " XP." + levelUp + unlockText);
     nextButton.hidden = true;
   } else {
-    setLog("Victory! +" + enemy.xp + " XP." + levelUp);
+    setLog("Victory! +" + xp + " XP." + levelUp);
     nextButton.textContent = "Next enemy";
     nextButton.hidden = false;
   }

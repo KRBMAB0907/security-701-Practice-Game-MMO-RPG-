@@ -27,7 +27,7 @@ function startTimer(question) {
   }
 
   timerBox.hidden = false;
-  questionTime = currentMode.time + gearBonus("time");  // module gear adds seconds
+  questionTime = currentMode.time + gearBonus("time") + treeBonus("time");  // module gear and the skill tree add seconds
   timeLeft = questionTime;
   updateTimerDisplay();
 

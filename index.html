@@ -34,6 +34,7 @@
     <div class="small-buttons">
       <button id="change-mode-button">Change difficulty</button>
       <button id="gear-button">Gear</button>
+      <button id="tree-button">Skill tree</button>
       <button id="change-class-button">Change class</button>
       <button id="reset-button">Reset progress</button>
     </div>
@@ -49,6 +50,18 @@
     <div class="small-buttons">
       <button id="gear-back-button">Back to map</button>
     </div>
+  </div>
+
+  <div id="tree-panel" hidden>
+    <p id="tree-summary"></p>
+    <p id="tree-help">Click a node to plan a point, then Lock in. Taking points back out costs levels, like switching class.</p>
+    <div class="small-buttons">
+      <button id="tree-save-button">Lock in points</button>
+      <button id="tree-undo-button">Undo planned</button>
+      <button id="tree-reset-button">Reset tree</button>
+      <button id="tree-back-button">Back to map</button>
+    </div>
+    <div id="tree-branches"></div>
   </div>
 
   <div id="battle-panel" hidden>
@@ -79,6 +92,7 @@
   <script src="js/leveling.js"></script>
   <script src="js/classes.js"></script>
   <script src="js/loot.js"></script>
+  <script src="js/skilltree.js"></script>
   <script src="js/dialogue.js"></script>
   <script src="js/sprites.js"></script>
   <script src="js/render.js"></script>

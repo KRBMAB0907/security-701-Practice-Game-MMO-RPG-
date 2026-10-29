@@ -26,6 +26,7 @@ function showQuestion(question) {
     button.classList.add("eliminated");
   }
 
+  questionShownAt = Date.now();  // Rapid Response checks how fast you answer
   startTimer(question);
 }
 

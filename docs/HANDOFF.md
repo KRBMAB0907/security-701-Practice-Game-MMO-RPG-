@@ -4,11 +4,33 @@ Written 2026-10-29 when the work moved to Claude Code. Read `CLAUDE.md` first fo
 
 ## Status
 
-All five areas are built and playable from level 1 to the final boss: 33 zones, 144 enemies, 69 skills, 3 classes, loot in five tiers with legendaries, pixel art for everything, and a screen layout that fits laptops, desktops and phones without scrolling.
+All five areas are built and playable from level 1 to the final boss: 33 zones, 144 enemies, 69 skills, 3 classes, a 30-node skill tree, loot in five tiers with legendaries, pixel art for everything, and a screen layout that fits laptops, desktops and phones without scrolling.
 
 Last commit on GitHub: `7e335ea Claude add` (the hit-chance and dialogue feature below).
 
-## Latest feature: enemy hit chance and dialogue (committed in `7e335ea`)
+## Latest feature: skill tree (not committed yet)
+
+Kaleb asked for a skill tree inspired by Path of Exile 2 and Diablo 4, with the cyber theme. He chose:
+
+- **Layout B (Diablo 4 style):** a full-screen menu with five columns, one per exam domain. Each column has Tier 1, Tier 2 (opens at 4 points spent anywhere), Tier 3 (10) and a Keystone (18).
+- **Points from leveling:** 1 per level after 1, plus **3 bonus points for beating the final boss** (The Shadow Council). Points are worked out from level, not stored, so losing levels takes points away.
+- **Resetting costs levels, the same as switching class** (20% of your levels). Switching class also refunds the tree, since it lowers your level.
+- **PoE2 feel for keystones:** each branch ends in a keystone that is strong but has a downside, and you can only have one: Zero Trust, Assume Breach, Defense in Depth, Rapid Response, Accept the Risk.
+
+Every node is named after a real Security+ concept and shows a one-line definition, so the tree teaches too. Small nodes take up to 3 points, notables 1. Clicks are only planned until you press "Lock in", because taking points out costs levels.
+
+The tree holds 60 points; one clean playthrough reaches about level 34 (36 points with the final boss bonus), so players have to choose.
+
+Files: new `data/skilltree.json`, `js/skilltree.js`, `tests/skill_tree.py`. Changed `index.html`, `css/style.css`, `js/config.js` (keystone numbers), `js/state.js`, `js/main.js`, `js/map.js`, `js/combat.js`, `js/leveling.js`, `js/loot.js`, `js/timer.js`, `js/questions.js`, `js/classes.js`, `tools/check_game_data.py`, docs.
+
+**Tested 2026-10-29:** `tests/skill_tree.py` (26 checks) passed, and all 8 regression tests ran with no page errors. Both checkers found no problems. The balance runs weren't re-run: their simulated players don't spend tree points, so their numbers are unchanged, but real players with a tree will find the game somewhat easier than the tables below.
+
+**Still to do:** Kaleb playtests the tree. Then the **ascension board** (he asked for it; build it after the tree playtest):
+- One board **per class**, like PoE2 ascendancies (switching class resets it).
+- Ascension points come **only from the 5 area finale bosses** (Foundry Overseer, Breach Lord, The Architect, Silent Operator, Shadow Council): 1 point each, first win only, 5 in total.
+- A Paragon-style endgame board with glyphs was discussed and left for later.
+
+## Previous feature: enemy hit chance and dialogue (committed in `7e335ea`)
 
 Kaleb asked for enemies to have a % chance to hit, with dialogue based on whether they hit or the player misses. He chose: **the enemy attacks every turn**, and **both enemy taunts and battle narration**.
 
@@ -51,6 +73,7 @@ Finale tries on Hard (Cryptographer, 65%), five runs each: Operations Core 0, 4,
 - Fix anything from his playtest of the hit-chance version.
 - Turn on GitHub Pages, then the custom domain.
 - Quests for players who want direction (he agreed to these early on), and a study log that shows which topics the player keeps missing.
+- The ascension board (see above), then maybe a Paragon-style endgame board.
 - More classes or multiclassing.
 - More questions per objective, especially the heavy domains (4.0 is 28% of the exam).
 - Restyle or hand-edit the starter art in Piskel (`docs/ART.md`).

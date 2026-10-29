@@ -17,6 +17,7 @@ It fits any screen: laptops and desktops on Windows, Linux or Mac, tablets, and 
 - **Hit weak points.** Enemies are weak to certain topics, and matching skills deal 1.5x damage. Bosses change weakness halfway through the fight.
 - **Collect loot.** Enemies drop gear in five tiers, from Common to Legendary: tools boost damage, armor boosts health, and modules add time to the question timer. Equip drops right after a battle, see your gear on a Minecraft-style equipment screen, and watch your armor appear on your character. Legendaries have special effects, like removing a wrong answer from every question. Hard mode finds rare gear more often.
 - **Retro pixel art.** Each area has its own scene, every class has its own sprite, and enemies come in 10 body types tinted to look different. Bosses wear crowns.
+- **Skill tree.** Every level gives a point to spend in a tree with five branches, one per exam domain. Each node is named after a Security+ concept and explains it (Confidentiality, Hardening, Defense in Depth...). Tiers open as you spend more, and a keystone at the bottom of each branch changes how you play, with a downside (only one allowed). Beating the final boss gives 3 bonus points. Taking points back costs levels, like switching class.
 - **Level up and unlock areas.** Clear a sub-zone's boss to unlock the next one. Progress saves in your browser.
 
 ## World map
@@ -57,6 +58,7 @@ js/                     the game code, one file per job (loaded in this order)
   leveling.js           XP, leveling and the death penalty
   classes.js            picking and switching classes
   loot.js               drops, gear and the gear screen
+  skilltree.js          skill tree points, bonuses and the tree screen
   dialogue.js           battle narration and enemy taunts
   sprites.js            loading, tinting and animating the pixel art
   render.js             drawing the canvas and the game loop
@@ -72,6 +74,7 @@ data/
   areas/                one file per built area: its skills, enemies and zones
   classes.json          class stats and favored skills
   loot.json             loot tiers, drop chances and item names
+  skilltree.json        skill tree branches and nodes
   dialogue.json         narration lines and taunts for every topic
   questions/            question bank, one file per domain
 assets/
@@ -84,7 +87,7 @@ tests/                  browser tests and balance runs (see tests/README.md)
 CLAUDE.md               notes for Claude Code when working on this project
 tools/
   check_questions.py    checks the question bank for mistakes
-  check_game_data.py    checks areas, zones, enemies, skills, classes and art link up
+  check_game_data.py    checks areas, zones, enemies, skills, classes, skill tree and art link up
   make_sprites.py       draws the starter pixel art
 ```
 

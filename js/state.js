@@ -10,12 +10,16 @@ let zones = [];       // every zone in every built area, in play order
 let areas = [];       // the 5 areas, each with its own .zones list
 let domainNames = {}; // domain number -> name, from topics.json
 let classes = [];
+let topicDomains = {}; // topic id -> domain number, built from topics.json
+let skillTree = null;  // data/skilltree.json
+let treeNodes = [];    // every skill tree node from every branch, in one list
 
 // A brand-new save: also used by "Reset progress"
 function newSave() {
   return {
     level: 1, xp: 0, clearedZones: [], classId: null,
-    inventory: [], equipped: { tool: null, armor: null, module: null }, nextItemId: 1
+    inventory: [], equipped: { tool: null, armor: null, module: null }, nextItemId: 1,
+    tree: {}  // skill tree points per node, e.g. { "integrity": 2 }
   };
 }
 
@@ -36,6 +40,7 @@ let timeLeft = 0;
 let questionTime = 0;     // full time for the current question, including gear bonus
 let failoverUsed = false; // the Failover Core legendary works once per fight
 let turnInProgress = false; // true while the enemy's attack is still playing out
+let questionShownAt = 0;  // when the current question appeared (for Rapid Response)
 
 // The two fighters. flash and shake count down in milliseconds.
 // spritePath is the image to draw; tint = true recolors it with `color`.

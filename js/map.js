@@ -5,9 +5,12 @@
 // ===============================================================
 
 function showPanel(id) {
-  ["mode-panel", "class-panel", "map-panel", "gear-panel", "battle-panel"].forEach(panelId => {
+  ["mode-panel", "class-panel", "map-panel", "gear-panel", "tree-panel", "battle-panel"].forEach(panelId => {
     document.getElementById(panelId).hidden = panelId !== id;
   });
+  // The skill tree is full screen (like Diablo 4 and Path of Exile 2),
+  // so the game screen hides while it's open. See "tree-open" in style.css.
+  document.body.classList.toggle("tree-open", id === "tree-panel");
 }
 
 // ===============================================================
@@ -70,6 +73,8 @@ function showMap() {
     currentClass().name + " · Level " + save.level + " · XP " + save.xp + "/" + xpToNextLevel() + " · Mode: " + currentMode.label +
     (allMastered ? " · ALL FIVE DOMAINS MASTERED" : "");
   document.getElementById("gear-button").textContent = "Gear (" + save.inventory.length + ")";
+  const pointsLeft = treePointsLeft(save.tree);
+  document.getElementById("tree-button").textContent = "Skill tree" + (pointsLeft > 0 ? " (" + pointsLeft + " points)" : "");
 
   showAreaTabs();
   showZoneList();
@@ -139,7 +144,7 @@ document.getElementById("change-mode-button").addEventListener("click", () => {
 });
 
 document.getElementById("reset-button").addEventListener("click", () => {
-  if (confirm("Reset your class, level, XP, gear and cleared zones?")) {
+  if (confirm("Reset your class, level, XP, gear, skill tree and cleared zones?")) {
     save = newSave();
     writeSave();
     selectedArea = null;

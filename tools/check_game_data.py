@@ -6,7 +6,8 @@ Run from the repo's main folder:
 It checks that areas, zones, enemies, skills, classes and art all link up:
 every enemy weakness can be hit by a skill in its zone, every skill's
 topics exist and have questions, IDs are unique, and so on. Run it after
-editing anything in data/areas/, data/areas.json or data/classes.json.
+editing anything in data/areas/, data/areas.json, data/classes.json or
+data/skilltree.json.
 """
 import json
 import sys
@@ -131,6 +132,36 @@ def main():
             for class_id in class_ids:
                 if not (ROOT / "assets" / "sprites" / "armor" / f"{icon}-{class_id}.png").exists():
                     problems.append(f"missing armor overlay assets/sprites/armor/{icon}-{class_id}.png")
+
+    # Skill tree: ids unique, tiers valid, stats and keystones the code knows about
+    tree = load("data/skilltree.json")
+    known_stats = {"damage", "hp", "time", "heal", "weakness", "dodge", "defense", "xp", "loot", "domainDamage"}
+    known_keystones = {"zero-trust", "assume-breach", "defense-in-depth", "rapid-response", "accept-the-risk"}  # see js/skilltree.js
+    tier_count = len(tree["tierCosts"])
+    node_ids = set()
+    tree_points = 0
+    for branch in tree["branches"]:
+        if branch["domain"] not in {d["id"] for d in topics["domains"]}:
+            problems.append(f"skill tree branch '{branch['name']}' uses unknown domain {branch['domain']}")
+        for node in branch["nodes"]:
+            where = f"skill tree node '{node['id']}'"
+            if node["id"] in node_ids:
+                problems.append(f"{where} is used twice")
+            node_ids.add(node["id"])
+            tree_points += node["maxRank"]
+            if not 1 <= node["tier"] <= tier_count:
+                problems.append(f"{where} has tier {node['tier']} (must be 1 to {tier_count})")
+            if node["kind"] not in {"small", "notable", "keystone"}:
+                problems.append(f"{where} has unknown kind '{node['kind']}'")
+            if node["kind"] == "keystone" and node.get("keystone") not in known_keystones:
+                problems.append(f"{where} has unknown keystone rule '{node.get('keystone')}'")
+            for stat in node["stats"]:
+                if stat not in known_stats:
+                    problems.append(f"{where} has unknown stat '{stat}'")
+            for field in ("name", "text", "concept"):
+                if not node.get(field):
+                    problems.append(f"{where} has no {field}")
+    summary.append(f"  Skill tree: {len(node_ids)} nodes, {tree_points} points to fill it")
 
     print("Areas:")
     print("\n".join(summary))

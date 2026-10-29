@@ -36,14 +36,15 @@ Browser tests and balance runs are in `tests/` (see `tests/README.md`). Run the 
 
 ## How the code is laid out
 
-- **No build step.** `index.html` loads 15 plain scripts in order, all sharing global scope: config, state, storage, leveling, classes, loot, dialogue, sprites, render, map, combat, timer, questions, layout, main. `main.js` starts the game and must load last.
+- **No build step.** `index.html` loads 16 plain scripts in order, all sharing global scope: config, state, storage, leveling, classes, loot, skilltree, dialogue, sprites, render, map, combat, timer, questions, layout, main. `main.js` starts the game and must load last.
 - **Load order matters.** A file can call functions from later files only at runtime, not while it is loading. Button listeners set up early should use arrow functions, e.g. `() => showMap()`, not `showMap` directly (this bug happened once).
-- **Content lives in `data/`, separate from code.** Topics, areas, zones, enemies, skills, classes, loot, dialogue and questions are JSON. New content should almost never need JavaScript changes.
+- **Content lives in `data/`, separate from code.** Topics, areas, zones, enemies, skills, classes, loot, the skill tree, dialogue and questions are JSON. New content should almost never need JavaScript changes.
 - **All balance numbers live in `js/config.js`** (`MODES` plus constants). Change them there, not inline.
 - **Game units:** positions are in a 320×180 virtual screen (`GAME_W`/`GAME_H`). The canvas is drawn at real screen resolution with `ctx.setTransform` and image smoothing off, so pixel art stays sharp and text stays smooth.
 - **Sprites** are 2-frame 16×16 sheets (idle bob). Enemy sprites are grayscale and get tinted at runtime (cached). Armor is drawn as an overlay on the class sprite; bosses are drawn 2× with a crown. `tools/make_sprites.py` (Pillow) draws the starter art; `docs/ART.md` explains editing in Piskel.
 - **Layout:** the page is a `100dvh` grid that never scrolls; menus may scroll inside themselves. `js/layout.js` shrinks the battle panel's font until it fits (a MutationObserver re-checks when content changes).
 - **Saves** go to `localStorage` (key `secplus-rpg-save`), wrapped in try/catch. Old saves are upgraded by merging with `newSave()` defaults, so add new save fields there.
+- **Skill tree** (`js/skilltree.js`, `data/skilltree.json`): five branches, one per domain, with tiers that open by points spent. Points aren't saved, they're worked out from level (+3 after the final boss), and `save.tree` only stores points per node. Combat asks `treeBonus(stat)`, `treeDomainDamage(skill)` and `hasKeystone(id)`. A new stat or keystone needs code in those places and in `tools/check_game_data.py`; new nodes using existing stats are JSON only.
 - **Turn flow** (`js/combat.js`): `checkAnswer` → `playTurn(correct, timedOut)` → your attack or miss → pause `ENEMY_TURN_DELAY_MS` → `enemyAttacks()` rolls `enemyHitChance()` → `finishTurn()`. `turnInProgress` is true during the pause; tests wait for it to go false.
 
 ## Content rules
