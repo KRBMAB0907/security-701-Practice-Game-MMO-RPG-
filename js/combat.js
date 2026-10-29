@@ -63,8 +63,7 @@ function skillDamage(skill) {
   return Math.round(damage);
 }
 
-<<<<<<< HEAD
-// Enemy damage = mode damage x zone level scale x boss multiplier x your class's defense
+// Enemy damage = mode damage x zone level scale x boss multiplier x your class's defense x skill tree
 // Enemies grow at the same pace as your base health, so an average player
 // dies in about the same number of hits in every zone (Learner: 7 from a
 // normal enemy). Being above the zone's level still helps, since you have
@@ -72,17 +71,11 @@ function skillDamage(skill) {
 function enemyDamage() {
   const zoneHp = currentMode.playerHp + (currentZone.level - 1) * HP_PER_LEVEL;
   const levelScale = zoneHp / currentMode.playerHp;
-  const damage = currentMode.enemyDamage * levelScale * (enemy.damageScale || 1) * currentClass().damageTakenScale;
-=======
-// Enemy damage = mode damage x area difficulty x boss multiplier x your class's defense x skill tree
-function enemyDamage() {
-  const areaScale = areaOf(currentZone).enemyDamageScale || 1;
-  let damage = currentMode.enemyDamage * areaScale * (enemy.damageScale || 1) * currentClass().damageTakenScale;
+  let damage = currentMode.enemyDamage * levelScale * (enemy.damageScale || 1) * currentClass().damageTakenScale;
   damage *= 1 - treeBonus("defense") / 100;  // e.g. Hardening: 3% less per point
   if (hasKeystone("defense-in-depth")) {
     damage *= DEFENSE_IN_DEPTH_TAKEN;
   }
->>>>>>> Skill tree
   return Math.round(damage);
 }
 
