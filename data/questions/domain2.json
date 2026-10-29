@@ -562,6 +562,594 @@
       ],
       "answer": 3,
       "explanation": "A host-based firewall protects the device wherever it goes, even on public Wi-Fi outside the corporate network firewall."
+    },
+    {
+      "id": "d2-041",
+      "objective": "2.1",
+      "topic": "threat-actors",
+      "question": "Which threat actor attribute describes how much money, time and equipment an attacker can put into an attack?",
+      "choices": [
+        "Location",
+        "Resources and funding",
+        "Motivation",
+        "Internal or external"
+      ],
+      "answer": 1,
+      "explanation": "Well-funded actors, such as nation-states, can afford custom tools, long campaigns and large teams. Poorly funded actors rely on free, public tools."
+    },
+    {
+      "id": "d2-042",
+      "objective": "2.1",
+      "topic": "threat-actors",
+      "question": "Which threat actor attribute describes how skilled an attacker is and how advanced their tools are?",
+      "choices": [
+        "Resources and funding",
+        "Motivation",
+        "Internal or external",
+        "Level of sophistication and capability"
+      ],
+      "answer": 3,
+      "explanation": "Highly sophisticated actors can write their own exploits and evade detection. Unskilled attackers depend on existing tools."
+    },
+    {
+      "id": "d2-043",
+      "objective": "2.1",
+      "topic": "threat-actors",
+      "question": "An employee accidentally emails a spreadsheet of customer data to the wrong outside address. What kind of threat is this?",
+      "choices": [
+        "Unintentional insider threat",
+        "Organized crime",
+        "Nation-state attack",
+        "Hacktivism"
+      ],
+      "answer": 0,
+      "explanation": "Insider threats are not always malicious. Careless or mistaken insiders cause many real-world data leaks, which is why training and DLP matter."
+    },
+    {
+      "id": "d2-044",
+      "objective": "2.1",
+      "topic": "threat-actors",
+      "question": "A group of attackers runs ransomware as a business, with separate members for development, negotiation and money laundering. Which threat actor is this?",
+      "choices": [
+        "Unskilled attacker",
+        "Shadow IT",
+        "Organized crime",
+        "Hacktivist"
+      ],
+      "answer": 2,
+      "explanation": "Organized crime groups operate like companies, with roles, budgets and a focus on profit."
+    },
+    {
+      "id": "d2-045",
+      "objective": "2.1",
+      "topic": "threat-motivations",
+      "question": "An attacker steals a company's customer database and threatens to publish it unless the company pays. What is the motivation?",
+      "choices": [
+        "Ethical disclosure",
+        "Philosophical beliefs",
+        "Blackmail",
+        "War"
+      ],
+      "answer": 2,
+      "explanation": "Blackmail uses the threat of exposing information to force payment or action."
+    },
+    {
+      "id": "d2-046",
+      "objective": "2.1",
+      "topic": "threat-motivations",
+      "question": "A former employee who was fired attacks the company's systems to get back at it. What is the most likely motivation?",
+      "choices": [
+        "Revenge",
+        "Financial gain",
+        "War",
+        "Espionage"
+      ],
+      "answer": 0,
+      "explanation": "Revenge is a common motivation for insider attacks, which is why access must be removed quickly when people leave."
+    },
+    {
+      "id": "d2-047",
+      "objective": "2.1",
+      "topic": "threat-motivations",
+      "question": "A country's military hackers knock out an enemy nation's power grid during a conflict. What is the motivation?",
+      "choices": [
+        "Blackmail",
+        "Financial gain",
+        "Revenge",
+        "War"
+      ],
+      "answer": 3,
+      "explanation": "Cyberattacks can be part of warfare, targeting critical infrastructure to weaken an opponent."
+    },
+    {
+      "id": "d2-048",
+      "objective": "2.2",
+      "topic": "threat-vectors",
+      "question": "An attacker leaves infected USB drives in a company parking lot, hoping employees plug them in. Which threat vector is this?",
+      "choices": [
+        "Open service port",
+        "Removable device",
+        "Voice call",
+        "Unsecure network"
+      ],
+      "answer": 1,
+      "explanation": "Removable media can carry malware past network defenses, so many organizations block or control USB use."
+    },
+    {
+      "id": "d2-049",
+      "objective": "2.2",
+      "topic": "threat-vectors",
+      "question": "A company leaves Remote Desktop exposed to the internet on its default port, and attackers find it by scanning. Which threat vector is this?",
+      "choices": [
+        "Removable device",
+        "Open service ports",
+        "Voice call",
+        "Image-based attack"
+      ],
+      "answer": 1,
+      "explanation": "Every open port is a potential entry point. Exposed remote-access services are a favorite target for attackers."
+    },
+    {
+      "id": "d2-050",
+      "objective": "2.2",
+      "topic": "threat-vectors",
+      "question": "An attacker compromises a software vendor's update server so that customers install malware with a normal update. What is this?",
+      "choices": [
+        "Typosquatting",
+        "Vishing",
+        "Watering hole attack",
+        "Supply chain attack"
+      ],
+      "answer": 3,
+      "explanation": "Supply chain attacks exploit the trust customers place in a vendor, reaching many victims at once."
+    },
+    {
+      "id": "d2-051",
+      "objective": "2.2",
+      "topic": "threat-vectors",
+      "question": "Employees connect to an open coffee shop Wi-Fi with no encryption, letting attackers capture their traffic. Which threat vector is this?",
+      "choices": [
+        "Unsecure network",
+        "Default credentials",
+        "Removable device",
+        "Supply chain"
+      ],
+      "answer": 0,
+      "explanation": "Open or poorly secured networks let attackers eavesdrop. VPNs and encrypted protocols reduce this risk."
+    },
+    {
+      "id": "d2-052",
+      "objective": "2.2",
+      "topic": "social-engineering",
+      "question": "An attacker targets only the company's CEO with a carefully personalized phishing email. What is this called?",
+      "choices": [
+        "Smishing",
+        "Vishing",
+        "Whaling",
+        "Typosquatting"
+      ],
+      "answer": 2,
+      "explanation": "Whaling is phishing aimed at senior executives, the \"big fish\" with the most access and authority."
+    },
+    {
+      "id": "d2-053",
+      "objective": "2.2",
+      "topic": "social-engineering",
+      "question": "An attacker creates a fake website that copies a well-known bank's logo and design to collect logins. What is this?",
+      "choices": [
+        "Brand impersonation",
+        "Watering hole attack",
+        "Pretexting by phone",
+        "Business email compromise"
+      ],
+      "answer": 0,
+      "explanation": "Brand impersonation borrows the trust people have in a known brand to make a scam look legitimate."
+    },
+    {
+      "id": "d2-054",
+      "objective": "2.2",
+      "topic": "social-engineering",
+      "question": "False stories spread deliberately on social media to damage a company's reputation are an example of:",
+      "choices": [
+        "Pretexting",
+        "Typosquatting",
+        "Disinformation",
+        "Smishing"
+      ],
+      "answer": 2,
+      "explanation": "Disinformation is deliberately false information. Misinformation is false information spread without intent to deceive."
+    },
+    {
+      "id": "d2-055",
+      "objective": "2.3",
+      "topic": "app-vulnerabilities",
+      "question": "An attacker injects malicious code into a running process's memory so it executes inside a trusted program. What is this vulnerability?",
+      "choices": [
+        "Directory traversal",
+        "Sideloading",
+        "Typosquatting",
+        "Memory injection"
+      ],
+      "answer": 3,
+      "explanation": "Memory injection hides malicious code inside legitimate processes, which helps it avoid detection."
+    },
+    {
+      "id": "d2-056",
+      "objective": "2.3",
+      "topic": "app-vulnerabilities",
+      "question": "An application downloads updates without verifying their digital signature, so attackers could push a fake update. What vulnerability is this?",
+      "choices": [
+        "Race condition",
+        "Malicious update",
+        "Buffer overflow",
+        "SQL injection"
+      ],
+      "answer": 1,
+      "explanation": "Updates must be signed and verified. Otherwise the update channel itself becomes a way to deliver malware."
+    },
+    {
+      "id": "d2-057",
+      "objective": "2.3",
+      "topic": "app-vulnerabilities",
+      "question": "Which practice best prevents SQL injection in a web application?",
+      "choices": [
+        "Adding more web servers",
+        "Using longer passwords",
+        "Increasing server memory",
+        "Using parameterized queries (prepared statements)"
+      ],
+      "answer": 3,
+      "explanation": "Parameterized queries keep user input separate from the database command, so input can never change the query's structure."
+    },
+    {
+      "id": "d2-058",
+      "objective": "2.3",
+      "topic": "system-vulnerabilities",
+      "question": "A router's firmware has a known flaw, but the manufacturer has stopped releasing updates for that model. What type of vulnerability is this?",
+      "choices": [
+        "Memory injection",
+        "End-of-life hardware",
+        "Zero-day",
+        "Cross-site scripting"
+      ],
+      "answer": 1,
+      "explanation": "End-of-life devices stay vulnerable forever. The fix is usually replacing the hardware."
+    },
+    {
+      "id": "d2-059",
+      "objective": "2.3",
+      "topic": "system-vulnerabilities",
+      "question": "On a virtualization host, one VM can read memory left behind by another VM. What vulnerability is this?",
+      "choices": [
+        "Resource reuse",
+        "Jailbreaking",
+        "SQL injection",
+        "Typosquatting"
+      ],
+      "answer": 0,
+      "explanation": "If resources like memory or storage are not cleared before reuse, data can leak between virtual machines."
+    },
+    {
+      "id": "d2-060",
+      "objective": "2.3",
+      "topic": "system-vulnerabilities",
+      "question": "A user removes the manufacturer's restrictions on their iPhone to install unapproved software. What is this called?",
+      "choices": [
+        "Sideloading",
+        "Tethering",
+        "Jailbreaking",
+        "Geofencing"
+      ],
+      "answer": 2,
+      "explanation": "Jailbreaking (rooting on Android) removes built-in security protections, making the device much easier to compromise."
+    },
+    {
+      "id": "d2-061",
+      "objective": "2.3",
+      "topic": "system-vulnerabilities",
+      "question": "A company still uses an old encryption algorithm that is now known to be breakable. What type of vulnerability is this?",
+      "choices": [
+        "Social engineering",
+        "Physical vulnerability",
+        "Supply chain",
+        "Cryptographic vulnerability"
+      ],
+      "answer": 3,
+      "explanation": "Weak or outdated algorithms and poor key handling are cryptographic vulnerabilities, fixed by moving to modern, strong algorithms."
+    },
+    {
+      "id": "d2-062",
+      "objective": "2.4",
+      "topic": "malware",
+      "question": "Which malware spreads by itself across a network, without any user action?",
+      "choices": [
+        "Trojan",
+        "Worm",
+        "Logic bomb",
+        "Keylogger"
+      ],
+      "answer": 1,
+      "explanation": "Worms self-replicate by exploiting vulnerabilities, which is why they can spread extremely fast."
+    },
+    {
+      "id": "d2-063",
+      "objective": "2.4",
+      "topic": "malware",
+      "question": "Malware disguised as a free game secretly installs a backdoor when a user runs it. What is it?",
+      "choices": [
+        "Trojan",
+        "Rootkit",
+        "Ransomware",
+        "Worm"
+      ],
+      "answer": 0,
+      "explanation": "A Trojan pretends to be something useful, so the user installs it willingly."
+    },
+    {
+      "id": "d2-064",
+      "objective": "2.4",
+      "topic": "network-attacks",
+      "question": "Thousands of compromised devices flood a website with traffic until it goes offline. What attack is this?",
+      "choices": [
+        "Credential replay",
+        "On-path attack",
+        "Distributed denial-of-service (DDoS)",
+        "Replay attack"
+      ],
+      "answer": 2,
+      "explanation": "A DDoS uses many sources at once, which makes it hard to block simply by filtering one address."
+    },
+    {
+      "id": "d2-065",
+      "objective": "2.4",
+      "topic": "network-attacks",
+      "question": "An attacker corrupts a DNS server's records so users typing a real bank's address are sent to a fake site. What attack is this?",
+      "choices": [
+        "DNS poisoning",
+        "Bluejacking",
+        "Typosquatting",
+        "ARP poisoning"
+      ],
+      "answer": 0,
+      "explanation": "DNS poisoning sends victims to the wrong IP address even when they type the correct domain name."
+    },
+    {
+      "id": "d2-066",
+      "objective": "2.4",
+      "topic": "network-attacks",
+      "question": "An attacker sets up a Wi-Fi access point with the same name as a coffee shop's real network to capture users' traffic. What is this?",
+      "choices": [
+        "Bluesnarfing",
+        "Jamming",
+        "DNS sinkhole",
+        "Evil twin"
+      ],
+      "answer": 3,
+      "explanation": "An evil twin imitates a legitimate network, so users connect to the attacker without noticing."
+    },
+    {
+      "id": "d2-067",
+      "objective": "2.4",
+      "topic": "app-attacks",
+      "question": "A web request includes ../../../etc/passwd in a file path to read files outside the web folder. What attack is this?",
+      "choices": [
+        "SQL injection",
+        "Directory traversal",
+        "Replay attack",
+        "Buffer overflow"
+      ],
+      "answer": 1,
+      "explanation": "Directory traversal uses ../ sequences to climb out of the intended folder. Input validation blocks it."
+    },
+    {
+      "id": "d2-068",
+      "objective": "2.4",
+      "topic": "app-attacks",
+      "question": "An attacker with a normal user account exploits a flaw to gain administrator rights. What is this?",
+      "choices": [
+        "Typosquatting",
+        "Password spraying",
+        "Privilege escalation",
+        "Downgrade attack"
+      ],
+      "answer": 2,
+      "explanation": "Privilege escalation turns limited access into full control, which is why patching and least privilege both matter."
+    },
+    {
+      "id": "d2-069",
+      "objective": "2.4",
+      "topic": "app-attacks",
+      "question": "A logged-in user visits a malicious site that silently makes their browser submit a money transfer request to their bank. What attack is this?",
+      "choices": [
+        "Cross-site request forgery (CSRF)",
+        "Directory traversal",
+        "Rootkit",
+        "SQL injection"
+      ],
+      "answer": 0,
+      "explanation": "CSRF tricks the browser into sending a request using the victim's existing session. Anti-CSRF tokens prevent it."
+    },
+    {
+      "id": "d2-070",
+      "objective": "2.4",
+      "topic": "password-crypto-attacks",
+      "question": "An attacker tries every possible combination of characters until one works. What attack is this?",
+      "choices": [
+        "Birthday attack",
+        "Phishing",
+        "Password spraying",
+        "Brute force"
+      ],
+      "answer": 3,
+      "explanation": "Brute force guarantees success eventually, so long passwords, lockouts and slow hashing are needed to make it impractical."
+    },
+    {
+      "id": "d2-071",
+      "objective": "2.4",
+      "topic": "password-crypto-attacks",
+      "question": "An attacker finds two different inputs that produce the same hash value. What is this called?",
+      "choices": [
+        "Key stretching",
+        "Collision",
+        "Downgrade",
+        "Salting"
+      ],
+      "answer": 1,
+      "explanation": "Collisions break a hash's ability to prove integrity. That is why older algorithms like MD5 are no longer trusted."
+    },
+    {
+      "id": "d2-072",
+      "objective": "2.4",
+      "topic": "indicators",
+      "question": "A user's account is suddenly locked after dozens of failed login attempts they did not make. What does this indicate?",
+      "choices": [
+        "The firewall is working normally",
+        "A backup has completed",
+        "Someone may be trying to guess the account's password",
+        "The user's computer needs more memory"
+      ],
+      "answer": 2,
+      "explanation": "Account lockouts can be a sign of brute-force or spraying attempts and should be investigated."
+    },
+    {
+      "id": "d2-073",
+      "objective": "2.4",
+      "topic": "indicators",
+      "question": "Security logs for an important server have a gap of several hours with no entries at all. What might this indicate?",
+      "choices": [
+        "The logs were compressed normally",
+        "The server was extra secure that day",
+        "An attacker may have deleted logs to hide their activity",
+        "Users were on holiday"
+      ],
+      "answer": 2,
+      "explanation": "Missing logs are a red flag. Attackers often clear logs to cover their tracks, which is why logs are sent to a central system."
+    },
+    {
+      "id": "d2-074",
+      "objective": "2.5",
+      "topic": "mitigations",
+      "question": "Which mitigation makes sure systems stay in their approved secure settings, automatically fixing any drift?",
+      "choices": [
+        "Configuration enforcement",
+        "Decommissioning",
+        "Data masking",
+        "Isolation"
+      ],
+      "answer": 0,
+      "explanation": "Configuration enforcement tools compare systems to the approved baseline and correct unauthorized changes."
+    },
+    {
+      "id": "d2-075",
+      "objective": "2.5",
+      "topic": "mitigations",
+      "question": "Why is regular patching one of the most effective mitigation techniques?",
+      "choices": [
+        "It removes the need for backups",
+        "It fixes known vulnerabilities before attackers can exploit them",
+        "It blocks every phishing email",
+        "It encrypts all data automatically"
+      ],
+      "answer": 1,
+      "explanation": "Many breaches use vulnerabilities that already had patches available. Patching quickly closes those doors."
+    },
+    {
+      "id": "d2-076",
+      "objective": "2.5",
+      "topic": "hardening",
+      "question": "Which hardening step helps protect a laptop's data if it is stolen?",
+      "choices": [
+        "Installing more games",
+        "Turning off automatic updates",
+        "Disabling the screen lock",
+        "Enabling full-disk encryption"
+      ],
+      "answer": 3,
+      "explanation": "Full-disk encryption makes the drive unreadable without the key, so a stolen laptop does not mean stolen data."
+    },
+    {
+      "id": "d2-077",
+      "objective": "2.5",
+      "topic": "hardening",
+      "question": "Installing endpoint detection and response (EDR) on servers is a hardening step because it:",
+      "choices": [
+        "Monitors for and responds to malicious activity on each server",
+        "Replaces the need for patches",
+        "Removes all user accounts",
+        "Speeds up the server's network"
+      ],
+      "answer": 0,
+      "explanation": "EDR adds visibility and automatic response on the host itself, catching threats that get past other defenses."
+    },
+    {
+      "id": "d2-078",
+      "objective": "2.5",
+      "topic": "hardening",
+      "question": "An administrator removes software that came preinstalled on new laptops but is never used. Why is this a hardening step?",
+      "choices": [
+        "It is required to activate Windows",
+        "Unused software adds vulnerabilities without adding value",
+        "It makes the laptops heavier",
+        "It encrypts the hard drive"
+      ],
+      "answer": 1,
+      "explanation": "Less software means a smaller attack surface, with fewer programs to patch and fewer places for flaws to hide."
+    },
+    {
+      "id": "d2-079",
+      "objective": "2.5",
+      "topic": "hardening",
+      "question": "A host-based intrusion prevention system (HIPS) hardens a server by:",
+      "choices": [
+        "Backing up the server nightly",
+        "Issuing certificates to users",
+        "Balancing traffic across servers",
+        "Detecting and blocking suspicious activity on that server"
+      ],
+      "answer": 3,
+      "explanation": "A HIPS watches the host's own activity, such as processes and file changes, and can stop attacks as they happen."
+    },
+    {
+      "id": "d2-080",
+      "objective": "2.5",
+      "topic": "hardening",
+      "question": "Why should administrators avoid using their admin account for everyday tasks like email and browsing?",
+      "choices": [
+        "It makes the computer run faster",
+        "Admin accounts cannot open email",
+        "Malware that runs during everyday tasks would get full admin rights",
+        "Admin accounts are free to use"
+      ],
+      "answer": 2,
+      "explanation": "Using a standard account for daily work limits the damage if something malicious runs. Admin rights are used only when needed."
+    },
+    {
+      "id": "d2-081",
+      "objective": "2.4",
+      "topic": "indicators",
+      "question": "A server's CPU usage stays near 100% around the clock, with no increase in legitimate users, and it keeps contacting an unknown external address. What might this indicate?",
+      "choices": [
+        "The antivirus is updating normally",
+        "It may be infected with cryptomining or other malware",
+        "Users are working overtime",
+        "The server is perfectly healthy"
+      ],
+      "answer": 1,
+      "explanation": "Unexplained resource consumption, especially alongside unusual outbound connections, is a common sign of compromise."
+    },
+    {
+      "id": "d2-082",
+      "objective": "2.4",
+      "topic": "indicators",
+      "question": "A user reports that files on a shared drive suddenly have strange new extensions and cannot be opened. What does this most likely indicate?",
+      "choices": [
+        "Ransomware is encrypting files",
+        "The drive is being defragmented",
+        "A normal software update is running",
+        "The files were backed up"
+      ],
+      "answer": 0,
+      "explanation": "Mass renaming and unreadable files are classic ransomware indicators. The infected system should be isolated immediately."
     }
   ]
 }

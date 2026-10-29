@@ -6,7 +6,9 @@ let topicNames = {};  // topic id -> readable name, built from topics.json
 let questions = [];
 let skills = [];
 let enemyTypes = [];
-let zones = [];
+let zones = [];       // every zone in every built area, in play order
+let areas = [];       // the 5 areas, each with its own .zones list
+let domainNames = {}; // domain number -> name, from topics.json
 let classes = [];
 
 // A brand-new save: also used by "Reset progress"
@@ -23,6 +25,7 @@ let save = newSave();
 // Current game state
 let currentMode = null;
 let currentZone = null;
+let selectedArea = null; // the area shown on the map
 let enemyIndex = 0;       // which enemy in the zone we're fighting
 let currentSkill = null;
 let recentQuestionIds = [];  // the last few questions asked, to avoid repeats

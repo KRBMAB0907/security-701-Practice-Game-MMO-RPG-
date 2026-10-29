@@ -21,12 +21,12 @@ The five areas follow the five SY0-701 domains:
 | Area | Domain | Exam weight | Status |
 | --- | --- | --- | --- |
 | The Foundry | 1.0 General Security Concepts | 12% | Playable: all four sub-zones plus the Foundry Heart finale |
-| The Breach Wastes | 2.0 Threats, Vulnerabilities, and Mitigations | 22% | Planned |
+| The Breach Wastes | 2.0 Threats, Vulnerabilities, and Mitigations | 22% | Playable: 5 sub-zones plus the Breach Core finale |
 | The Citadel | 3.0 Security Architecture | 18% | Planned |
 | The Operations Deep | 4.0 Security Operations | 28% | Planned |
 | The Council Spire | 5.0 Security Program Management and Oversight | 20% | Planned |
 
-The question bank already covers all 28 exam objectives (260+ questions), so new areas are built on top of it.
+Clearing an area's finale unlocks the next area. The question bank already covers all 28 exam objectives (300+ questions), so new areas are built on top of it.
 
 ## Run it on your own computer
 
@@ -60,15 +60,17 @@ js/                     the game code, one file per job (loaded in this order)
   main.js               starting the game (loads last)
 data/
   topics.json           every domain, objective and topic
-  combat.json           skills, enemies and zones
+  areas.json            the 5 areas, in order, and which data files they use
+  areas/                one file per built area: its skills, enemies and zones
   classes.json          class stats and favored skills
   loot.json             loot tiers, drop chances and item names
   questions/            question bank, one file per domain
 tools/
   check_questions.py    checks the question bank for mistakes
+  check_game_data.py    checks areas, zones, enemies, skills and classes link up
 ```
 
-Game **content lives in `data/`, separate from the code**. Adding enemies, zones or questions means editing JSON, not JavaScript.
+Game **content lives in `data/`, separate from the code**. Adding enemies, zones or questions means editing JSON, not JavaScript. Building a new area means writing its file in `data/areas/` and pointing to it from `data/areas.json`. Then run `python tools/check_game_data.py` to make sure everything links up.
 
 ## Adding questions
 

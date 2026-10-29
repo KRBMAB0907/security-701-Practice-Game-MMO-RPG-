@@ -22,16 +22,35 @@ async function start() {
 
   const status = document.getElementById("status");
   try {
-    // Load all the files at the same time and wait for all to finish.
-    // The Foundry only needs Domain 1 questions; later areas will load
-    // their own domain file from data/questions/.
-    const [topicData, questionData, combatData, classData, lootData] = await Promise.all([
+    // Load the shared files at the same time and wait for all to finish
+    const [topicData, areaList, classData, lootData] = await Promise.all([
       loadJson("data/topics.json"),
-      loadJson("data/questions/domain1.json"),
-      loadJson("data/combat.json"),
+      loadJson("data/areas.json"),
       loadJson("data/classes.json"),
       loadJson("data/loot.json")
     ]);
+
+    // Then each built area's own file and its domain's questions, all at once.
+    // Areas still being built have "file": null and are skipped.
+    areas = areaList.areas;
+    const builtAreas = areas.filter(area => area.file !== null);
+    const loaded = await Promise.all(builtAreas.map(area =>
+      Promise.all([loadJson(area.file), loadJson(area.questions)])
+    ));
+
+    // Merge every area's skills, enemies, zones and questions into the shared lists
+    areas.forEach(area => { area.zones = []; });
+    builtAreas.forEach((area, i) => {
+      const [areaData, questionData] = loaded[i];
+      skills.push(...areaData.skills);
+      enemyTypes.push(...areaData.enemies);
+      questions.push(...questionData.questions);
+      areaData.zones.forEach(zone => {
+        zone.area = area.id;  // remember which area each zone belongs to
+        area.zones.push(zone);
+        zones.push(zone);
+      });
+    });
 
     // Flatten domains -> objectives -> topics into one id -> name lookup
     topicData.domains.forEach(domain => {
@@ -42,10 +61,10 @@ async function start() {
       });
     });
 
-    questions = questionData.questions;
-    skills = combatData.skills;
-    enemyTypes = combatData.enemies;
-    zones = combatData.zones;
+    topicData.domains.forEach(domain => {
+      domainNames[domain.id] = domain.name;
+    });
+
     classes = classData.classes;
     lootTable = lootData;
 

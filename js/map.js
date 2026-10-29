@@ -1,4 +1,4 @@
-// Screens and the map: switching panels, sub-zones and unlocking.
+// Screens and the map: switching panels, areas, sub-zones and unlocking.
 
 // ===============================================================
 // Screens: only one panel shows at a time
@@ -11,13 +11,49 @@ function showPanel(id) {
 }
 
 // ===============================================================
-// The map: sub-zones and unlocking
+// Areas and unlocking
+// The world has 5 areas (one per exam domain). Each area has sub-zones.
+// Everything unlocks in order: clear a zone to open the next one, and
+// clear an area's last zone (its finale) to open the next area.
 // ===============================================================
 
-// A zone is unlocked if it's the first one, or the one before it is cleared
-function isUnlocked(index) {
-  return index === 0 || save.clearedZones.includes(zones[index - 1].id);
+function areaOf(zone) {
+  return areas.find(area => area.id === zone.area);
 }
+
+function isCleared(zone) {
+  return save.clearedZones.includes(zone.id);
+}
+
+// An area is built once it has zones (areas without a data file have none yet)
+function isAreaBuilt(area) {
+  return area.zones.length > 0;
+}
+
+function isAreaComplete(area) {
+  return isAreaBuilt(area) && isCleared(area.zones[area.zones.length - 1]);
+}
+
+function isAreaUnlocked(area) {
+  const index = areas.indexOf(area);
+  return index === 0 || isAreaComplete(areas[index - 1]);
+}
+
+function isZoneUnlocked(zone) {
+  const area = areaOf(zone);
+  const index = area.zones.indexOf(zone);
+  return index === 0 ? isAreaUnlocked(area) : isCleared(area.zones[index - 1]);
+}
+
+// The furthest area the player can currently play in
+function latestPlayableArea() {
+  const playable = areas.filter(area => isAreaBuilt(area) && isAreaUnlocked(area));
+  return playable[playable.length - 1] || areas[0];
+}
+
+// ===============================================================
+// The map screen
+// ===============================================================
 
 function showMap() {
   stopTimer();
@@ -25,25 +61,61 @@ function showMap() {
   enemy.maxHp = 0;
   showPanel("map-panel");
 
+  if (selectedArea === null || !isAreaUnlocked(selectedArea)) {
+    selectedArea = latestPlayableArea();
+  }
+
   document.getElementById("player-summary").textContent =
     currentClass().name + " · Level " + save.level + " · XP " + save.xp + "/" + xpToNextLevel() + " · Mode: " + currentMode.label;
-
   document.getElementById("gear-button").textContent = "Gear (" + save.inventory.length + ")";
+
+  showAreaTabs();
+  showZoneList();
+}
+
+// One button per area along the top of the map
+function showAreaTabs() {
+  const tabs = document.getElementById("area-list");
+  tabs.innerHTML = "";
+
+  areas.forEach(area => {
+    const button = document.createElement("button");
+    let status = "";
+    if (!isAreaBuilt(area)) {
+      status = " [coming soon]";
+      button.disabled = true;
+    } else if (!isAreaUnlocked(area)) {
+      status = " [locked]";
+      button.disabled = true;
+    } else if (isAreaComplete(area)) {
+      status = " [complete]";
+    }
+    button.textContent = area.name + status;
+    button.classList.toggle("selected", area === selectedArea);
+    button.addEventListener("click", () => {
+      selectedArea = area;
+      showMap();
+    });
+    tabs.appendChild(button);
+  });
+}
+
+// The sub-zones of the selected area
+function showZoneList() {
+  document.getElementById("area-title").textContent =
+    selectedArea.name + " (Domain " + selectedArea.domain + ": " + domainNames[selectedArea.domain] + "): choose a sub-zone";
 
   const list = document.getElementById("zone-list");
   list.innerHTML = "";
 
-  zones.forEach((zone, index) => {
+  selectedArea.zones.forEach(zone => {
     const button = document.createElement("button");
     let status = "";
 
-    if (!isUnlocked(index)) {
+    if (!isZoneUnlocked(zone)) {
       status = "[locked]";
       button.disabled = true;
-    } else if (zone.enemies.length === 0) {
-      status = "[coming soon]";
-      button.disabled = true;
-    } else if (save.clearedZones.includes(zone.id)) {
+    } else if (isCleared(zone)) {
       status = "[cleared - replay]";
     }
 
@@ -68,6 +140,7 @@ document.getElementById("reset-button").addEventListener("click", () => {
   if (confirm("Reset your class, level, XP, gear and cleared zones?")) {
     save = newSave();
     writeSave();
+    selectedArea = null;
     showClassPicker();  // a fresh start means picking a class again
   }
 });

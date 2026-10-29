@@ -51,9 +51,31 @@ function skillDamage(skill) {
 }
 
 // Enemy damage = mode damage x boss multiplier x your class's defense
+// Enemy damage = mode damage x area difficulty x boss multiplier x your class's defense
 function enemyDamage() {
-  const damage = currentMode.enemyDamage * (enemy.damageScale || 1) * currentClass().damageTakenScale;
+  const areaScale = areaOf(currentZone).enemyDamageScale || 1;
+  const damage = currentMode.enemyDamage * areaScale * (enemy.damageScale || 1) * currentClass().damageTakenScale;
   return Math.round(damage);
+}
+
+// What to say after clearing a zone's last enemy
+function clearedZoneMessage(area) {
+  const isFinale = area.zones.indexOf(currentZone) === area.zones.length - 1;
+  if (!isFinale) {
+    return " The next sub-zone is unlocked.";
+  }
+  let message = " " + area.name.toUpperCase() + " IS COMPLETE! You have mastered Domain " +
+    area.domain + ": " + domainNames[area.domain] + ".";
+  const nextArea = areas[areas.indexOf(area) + 1];
+  if (nextArea !== undefined) {
+    if (isAreaBuilt(nextArea)) {
+      message += " " + nextArea.name + " is now unlocked!";
+      selectedArea = nextArea;  // the map opens on the new area next time
+    } else {
+      message += " " + nextArea.name + " is coming soon.";
+    }
+  }
+  return message;
 }
 
 function heal(fighter, amount) {
@@ -226,10 +248,7 @@ function winFight() {
       save.clearedZones.push(currentZone.id);
       writeSave();
     }
-    const isLastZone = zones.indexOf(currentZone) === zones.length - 1;
-    const unlockText = isLastZone
-      ? " THE FOUNDRY IS COMPLETE! You have mastered Domain 1: General Security Concepts."
-      : " The next sub-zone is unlocked.";
+    const unlockText = clearedZoneMessage(areaOf(currentZone));
     setLog(currentZone.name + " cleared! +" + enemy.xp + " XP." + levelUp + unlockText);
     nextButton.hidden = true;
   } else {

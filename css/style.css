@@ -191,3 +191,35 @@ body {
   color: #5d6f66;
   cursor: not-allowed;
 }
+
+/* Area tabs along the top of the map */
+#area-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+#area-list button {
+  padding: 8px 12px;
+  font: inherit;
+  font-size: 14px;
+  background: #0a0e14;
+  color: #d8f3e8;
+  border: 1px solid #33413a;
+  cursor: pointer;
+}
+
+#area-list button.selected {
+  border: 2px solid #ffd166;
+  color: #ffd166;
+}
+
+#area-list button:disabled {
+  color: #5d6f66;
+  cursor: not-allowed;
+}
+
+#area-title {
+  color: #7fa894;
+}

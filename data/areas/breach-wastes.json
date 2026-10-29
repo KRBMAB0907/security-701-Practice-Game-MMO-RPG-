@@ -1,0 +1,198 @@
+{
+  "skills": [
+    {
+      "id": "threat-profile",
+      "name": "Threat Profile",
+      "topics": ["threat-actors"],
+      "damage": 28,
+      "description": "Identify the threat actor and their attributes."
+    },
+    {
+      "id": "motive-read",
+      "name": "Motive Read",
+      "topics": ["threat-motivations"],
+      "damage": 30,
+      "description": "Work out why the attacker is attacking."
+    },
+    {
+      "id": "vector-scan",
+      "name": "Vector Scan",
+      "topics": ["threat-vectors"],
+      "damage": 30,
+      "description": "Find the path the attack came through."
+    },
+    {
+      "id": "social-shield",
+      "name": "Social Shield",
+      "topics": ["social-engineering"],
+      "damage": 28,
+      "description": "See through phishing, pretexting and impersonation."
+    },
+    {
+      "id": "input-sanitizer",
+      "name": "Input Sanitizer",
+      "topics": ["app-vulnerabilities"],
+      "damage": 30,
+      "description": "Spot application and web vulnerabilities."
+    },
+    {
+      "id": "system-audit",
+      "name": "System Audit",
+      "topics": ["system-vulnerabilities"],
+      "damage": 28,
+      "description": "Find weaknesses in systems, devices and the cloud."
+    },
+    {
+      "id": "malware-purge",
+      "name": "Malware Purge",
+      "topics": ["malware"],
+      "damage": 30,
+      "description": "Name the malware by how it behaves."
+    },
+    {
+      "id": "packet-inspect",
+      "name": "Packet Inspect",
+      "topics": ["network-attacks"],
+      "damage": 30,
+      "description": "Recognize attacks on the network."
+    },
+    {
+      "id": "request-filter",
+      "name": "Request Filter",
+      "topics": ["app-attacks"],
+      "damage": 30,
+      "description": "Recognize attacks on applications."
+    },
+    {
+      "id": "credential-guard",
+      "name": "Credential Guard",
+      "topics": ["password-crypto-attacks"],
+      "damage": 32,
+      "description": "Stop password and cryptographic attacks."
+    },
+    {
+      "id": "ioc-hunt",
+      "name": "IOC Hunt",
+      "topics": ["indicators"],
+      "damage": 32,
+      "description": "Read the indicators of compromise."
+    },
+    {
+      "id": "segment-wall",
+      "name": "Segment Wall",
+      "topics": ["mitigations"],
+      "damage": 28,
+      "description": "Contain attackers with mitigation techniques."
+    },
+    {
+      "id": "harden-host",
+      "name": "Harden Host",
+      "topics": ["hardening"],
+      "damage": 30,
+      "description": "Shrink the attack surface by hardening systems."
+    }
+  ],
+  "enemies": [
+    { "id": "unskilled-attacker", "name": "Unskilled Attacker", "hp": 110, "xp": 50, "weakness": "threat-actors", "color": "#aed581" },
+    { "id": "hacktivist-cell", "name": "Hacktivist Cell", "hp": 120, "xp": 55, "weakness": "threat-motivations", "color": "#4fc3f7" },
+    { "id": "crime-syndicate", "name": "Crime Syndicate", "hp": 130, "xp": 60, "weakness": "threat-actors", "color": "#ff8a65" },
+    { "id": "insider-mole", "name": "Insider Mole", "hp": 130, "xp": 60, "weakness": "threat-motivations", "color": "#a1887f" },
+    {
+      "id": "nation-state-phantom", "name": "Nation-State Phantom", "hp": 260, "xp": 170,
+      "boss": true, "damageScale": 1.5, "phases": ["threat-actors", "threat-motivations"], "color": "#ef5350"
+    },
+
+    { "id": "phish-swarm", "name": "Phish Swarm", "hp": 120, "xp": 55, "weakness": "social-engineering", "color": "#4dd0e1" },
+    { "id": "smishing-sprite", "name": "Smishing Sprite", "hp": 125, "xp": 55, "weakness": "social-engineering", "color": "#f06292" },
+    { "id": "default-cred-golem", "name": "Default Cred Golem", "hp": 135, "xp": 60, "weakness": "threat-vectors", "color": "#90a4ae" },
+    { "id": "rogue-usb", "name": "Rogue USB", "hp": 135, "xp": 60, "weakness": "threat-vectors", "color": "#ba68c8" },
+    {
+      "id": "pretext-puppeteer", "name": "Pretext Puppeteer", "hp": 270, "xp": 180,
+      "boss": true, "damageScale": 1.5, "phases": ["social-engineering", "threat-vectors"], "color": "#ffca28"
+    },
+
+    { "id": "overflow-beast", "name": "Overflow Beast", "hp": 130, "xp": 60, "weakness": "app-vulnerabilities", "color": "#ff7043" },
+    { "id": "injection-wraith", "name": "Injection Wraith", "hp": 135, "xp": 60, "weakness": "app-vulnerabilities", "color": "#9575cd" },
+    { "id": "vm-escapee", "name": "VM Escapee", "hp": 140, "xp": 65, "weakness": "system-vulnerabilities", "color": "#4db6ac" },
+    { "id": "misconfig-hydra", "name": "Misconfig Hydra", "hp": 145, "xp": 65, "weakness": "system-vulnerabilities", "color": "#81c784" },
+    {
+      "id": "zero-day-specter", "name": "Zero-Day Specter", "hp": 280, "xp": 190,
+      "boss": true, "damageScale": 1.5, "phases": ["system-vulnerabilities", "app-vulnerabilities"], "color": "#e0e0e0"
+    },
+
+    { "id": "ransomware-brute", "name": "Ransomware Brute", "hp": 140, "xp": 65, "weakness": "malware", "color": "#e53935" },
+    { "id": "arp-poisoner", "name": "ARP Poisoner", "hp": 140, "xp": 65, "weakness": "network-attacks", "color": "#7cb342" },
+    { "id": "replay-ghost", "name": "Replay Ghost", "hp": 145, "xp": 65, "weakness": "app-attacks", "color": "#b0bec5" },
+    { "id": "password-sprayer", "name": "Password Sprayer", "hp": 145, "xp": 70, "weakness": "password-crypto-attacks", "color": "#ffb74d" },
+    {
+      "id": "botnet-herder", "name": "Botnet Herder", "hp": 300, "xp": 200,
+      "boss": true, "damageScale": 1.5, "phases": ["indicators", "network-attacks", "malware"], "color": "#8d6e63"
+    },
+
+    { "id": "lateral-crawler", "name": "Lateral Crawler", "hp": 145, "xp": 70, "weakness": "mitigations", "color": "#26a69a" },
+    { "id": "open-port-imp", "name": "Open Port Imp", "hp": 145, "xp": 70, "weakness": "hardening", "color": "#ff8a80" },
+    { "id": "privilege-creep", "name": "Privilege Creep", "hp": 150, "xp": 70, "weakness": "mitigations", "color": "#b388ff" },
+    { "id": "default-config-ghoul", "name": "Default Config Ghoul", "hp": 150, "xp": 75, "weakness": "hardening", "color": "#9e9d24" },
+    {
+      "id": "attack-surface-titan", "name": "Attack Surface Titan", "hp": 310, "xp": 210,
+      "boss": true, "damageScale": 1.5, "phases": ["hardening", "mitigations"], "color": "#5c6bc0"
+    },
+
+    {
+      "id": "breach-lord", "name": "The Breach Lord", "hp": 480, "xp": 400,
+      "boss": true, "damageScale": 1.75,
+      "phases": ["threat-motivations", "social-engineering", "app-vulnerabilities", "malware", "hardening"],
+      "color": "#ff1744"
+    }
+  ],
+  "zones": [
+    {
+      "id": "actors-den",
+      "name": "Actor's Den",
+      "level": 6,
+      "objective": "2.1",
+      "skills": ["threat-profile", "motive-read"],
+      "enemies": ["unskilled-attacker", "hacktivist-cell", "crime-syndicate", "insider-mole", "nation-state-phantom"]
+    },
+    {
+      "id": "vector-fields",
+      "name": "Vector Fields",
+      "level": 7,
+      "objective": "2.2",
+      "skills": ["vector-scan", "social-shield"],
+      "enemies": ["phish-swarm", "smishing-sprite", "default-cred-golem", "rogue-usb", "pretext-puppeteer"]
+    },
+    {
+      "id": "vulnerability-rift",
+      "name": "Vulnerability Rift",
+      "level": 8,
+      "objective": "2.3",
+      "skills": ["input-sanitizer", "system-audit"],
+      "enemies": ["overflow-beast", "injection-wraith", "vm-escapee", "misconfig-hydra", "zero-day-specter"]
+    },
+    {
+      "id": "malware-marsh",
+      "name": "Malware Marsh",
+      "level": 9,
+      "objective": "2.4",
+      "skills": ["malware-purge", "packet-inspect", "request-filter", "credential-guard", "ioc-hunt"],
+      "enemies": ["ransomware-brute", "arp-poisoner", "replay-ghost", "password-sprayer", "botnet-herder"]
+    },
+    {
+      "id": "hardening-forge",
+      "name": "Hardening Forge",
+      "level": 10,
+      "objective": "2.5",
+      "skills": ["segment-wall", "harden-host"],
+      "enemies": ["lateral-crawler", "open-port-imp", "privilege-creep", "default-config-ghoul", "attack-surface-titan"]
+    },
+    {
+      "id": "breach-core",
+      "name": "Breach Core",
+      "level": 11,
+      "objective": "2.1-2.5",
+      "skills": ["motive-read", "social-shield", "input-sanitizer", "malware-purge", "harden-host", "ioc-hunt"],
+      "enemies": ["breach-lord"]
+    }
+  ]
+}
