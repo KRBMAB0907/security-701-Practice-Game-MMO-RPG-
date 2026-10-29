@@ -9,8 +9,22 @@
 <body>
   <canvas id="game" width="320" height="180"></canvas>
 
-  <div id="question-panel">
-    <p id="question-text">Loading questions...</p>
+  <p id="status">Loading questions...</p>
+
+  <div id="mode-panel" hidden>
+    <p>Choose your difficulty:</p>
+    <button data-mode="fun">Fun: no timer, weaker enemies</button>
+    <button data-mode="learner">Learner: 60 seconds per question (recommended)</button>
+    <button data-mode="hard">Hard: 30 seconds, tougher enemies, better loot</button>
+  </div>
+
+  <div id="question-panel" hidden>
+    <p id="mode-label"></p>
+    <div id="timer">
+      <div id="timer-track"><div id="timer-bar"></div></div>
+      <span id="timer-text"></span>
+    </div>
+    <p id="question-text"></p>
     <div id="choices"></div>
     <p id="feedback"></p>
     <button id="next-button" hidden>Next question</button>

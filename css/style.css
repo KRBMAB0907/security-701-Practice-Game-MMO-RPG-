@@ -1,19 +1,9 @@
-body {
-  margin: 0;
-  background: #05070a;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+/* Make the HTML "hidden" attribute always win. Without this, any
+   element we give a display style (like display: flex) ignores it. */
+[hidden] {
+  display: none !important;
 }
 
-#game {
-  width: 100%;
-  max-width: 960px;
-  aspect-ratio: 16 / 9;
-  image-rendering: pixelated;
-  border: 2px solid #00ff9c;
-}
 body {
   margin: 0;
   background: #05070a;
@@ -26,13 +16,25 @@ body {
   padding: 16px;
 }
 
+#game {
+  width: 100%;
+  max-width: 960px;
+  aspect-ratio: 16 / 9;
+  image-rendering: pixelated;
+  border: 2px solid #00ff9c;
+}
+
+#status,
+#mode-panel,
 #question-panel {
   width: 100%;
   max-width: 960px;
   font-size: 18px;
 }
 
-#choices button, #next-button {
+#mode-panel button,
+#choices button,
+#next-button {
   display: block;
   width: 100%;
   margin: 8px 0;
@@ -43,6 +45,39 @@ body {
   color: #d8f3e8;
   border: 2px solid #00ff9c;
   cursor: pointer;
+}
+
+#mode-label {
+  color: #7fa894;
+  margin: 0 0 8px;
+}
+
+/* Countdown: a track with a bar inside that shrinks as time runs out */
+#timer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+#timer-track {
+  flex: 1;
+  height: 12px;
+  border: 2px solid #00ff9c;
+}
+
+#timer-bar {
+  height: 100%;
+  width: 100%;
+  background: #00ff9c;
+}
+
+#timer-bar.low {
+  background: #ff3864;
+}
+
+#timer-text {
+  min-width: 4ch;
+  text-align: right;
 }
 
 #choices button.correct { background: #0b3d2a; }
