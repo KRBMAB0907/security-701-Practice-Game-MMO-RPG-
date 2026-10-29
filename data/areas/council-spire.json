@@ -45,7 +45,7 @@
     {"id": "careless-insider", "name": "Careless Insider", "sprite": "slime", "hp": 850, "xp": 290, "weakness": "awareness-topics", "color": "#ffcc80"},
     {"id": "shoulder-surfer", "name": "Shoulder Surfer", "sprite": "ghost", "hp": 860, "xp": 295, "weakness": "awareness-topics", "color": "#80deea"},
     {"id": "social-siren", "name": "Social Siren", "sprite": "sentinel", "hp": 1500, "xp": 645, "boss": true, "damageScale": 1.2, "phases": ["awareness-topics", "security-awareness"], "color": "#f06292"},
-    {"id": "shadow-council", "name": "The Shadow Council", "sprite": "wraith", "hp": 2400, "xp": 1500, "boss": true, "damageScale": 1.35, "phases": ["governance", "risk-strategies", "vendor-agreements", "privacy", "penetration-testing", "security-awareness"], "color": "#ffd700"}
+    {"id": "shadow-council", "name": "The Shadow Council", "sprite": "wraith", "hp": 2400, "xp": 1500, "boss": true, "damageScale": 1.15, "phases": ["governance", "risk-strategies", "vendor-agreements", "privacy", "penetration-testing", "security-awareness"], "color": "#ffd700"}
   ],
   "zones": [
     {"id": "policy-chambers", "name": "Policy Chambers", "level": 27, "objective": "5.1", "skills": ["policy-decree", "role-charter"], "enemies": ["outdated-policy", "rogue-guideline", "absent-owner", "careless-custodian", "bureaucrat-shade"]},

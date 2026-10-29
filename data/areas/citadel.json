@@ -96,7 +96,7 @@
 
     {
       "id": "the-architect", "name": "The Architect", "sprite": "wraith", "hp": 730, "xp": 500,
-      "boss": true, "damageScale": 1.35,
+      "boss": true, "damageScale": 1.15,
       "phases": ["specialized-systems", "secure-remote-access", "data-classification", "resilience"],
       "color": "#e0e0e0"
     }

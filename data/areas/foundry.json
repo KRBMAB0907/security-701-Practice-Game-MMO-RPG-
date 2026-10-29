@@ -293,7 +293,7 @@
       "hp": 300,
       "xp": 250,
       "boss": true,
-      "damageScale": 1.35,
+      "damageScale": 1.15,
       "phases": ["control-types", "zero-trust", "change-technical", "hashing-integrity"],
       "color": "#ffd700"
     }

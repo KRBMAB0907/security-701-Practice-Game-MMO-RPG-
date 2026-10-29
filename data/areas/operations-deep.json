@@ -67,7 +67,7 @@
     {"id": "metadata-mask", "name": "Metadata Mask", "sprite": "slime", "hp": 640, "xp": 210, "weakness": "investigation-sources", "color": "#b39ddb"},
     {"id": "cipher-tunnel", "name": "Cipher Tunnel", "sprite": "crawler", "hp": 650, "xp": 215, "weakness": "investigation-sources", "color": "#80deea"},
     {"id": "trail-eraser", "name": "Trail Eraser", "sprite": "drone", "hp": 1210, "xp": 510, "boss": true, "damageScale": 1.2, "phases": ["investigation-sources", "investigation-data"], "color": "#8d6e63"},
-    {"id": "silent-operator", "name": "The Silent Operator", "sprite": "wraith", "hp": 1400, "xp": 900, "boss": true, "damageScale": 1.35, "phases": ["wireless-mobile", "vuln-management", "monitoring", "mfa-passwords", "incident-response", "investigation-data"], "color": "#797979"}
+    {"id": "silent-operator", "name": "The Silent Operator", "sprite": "wraith", "hp": 1400, "xp": 900, "boss": true, "damageScale": 1.15, "phases": ["wireless-mobile", "vuln-management", "monitoring", "mfa-passwords", "incident-response", "investigation-data"], "color": "#797979"}
   ],
   "zones": [
     {"id": "baseline-barracks", "name": "Baseline Barracks", "level": 17, "objective": "4.1", "skills": ["golden-image", "signal-lock", "code-review"], "enemies": ["drifted-config", "rogue-access-point", "jailbroken-phone", "unsigned-binary", "config-drift-dragon"]},

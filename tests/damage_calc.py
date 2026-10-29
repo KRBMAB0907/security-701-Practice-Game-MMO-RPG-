@@ -28,7 +28,7 @@ MODES = {
     "hard":    {"playerHp": 80,  "enemyHpScale": 1,    "enemyDamage": 14, "hitChance": 0.75},
 }
 SUB_BOSS_DAMAGE = 1.2  # "damageScale" of bosses in data/areas/*.json
-FINALE_DAMAGE = 1.35   # "damageScale" of each area's last boss
+FINALE_DAMAGE = 1.15   # "damageScale" of each area's last boss
 
 # The old numbers, before enemy damage grew with zone level, for --old
 OLD_MODES = {
@@ -39,8 +39,8 @@ OLD_MODES = {
 
 # Targets: hits to die (normal, sub-boss, finale)
 TARGETS = {
-    "fun":     {"normal": (8, 8), "sub-boss": (6, 7), "finale": (6, 6)},
-    "learner": {"normal": (7, 7), "sub-boss": (6, 6), "finale": (5, 6)},
+    "fun":     {"normal": (8, 8), "sub-boss": (6, 7), "finale": (7, 7)},
+    "learner": {"normal": (7, 7), "sub-boss": (6, 6), "finale": (6, 6)},
     "hard":    {"normal": (6, 6), "sub-boss": (5, 5), "finale": (5, 5)},
 }
 

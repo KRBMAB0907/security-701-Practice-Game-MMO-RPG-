@@ -140,7 +140,7 @@
 
     {
       "id": "breach-lord", "name": "The Breach Lord", "sprite": "wraith", "hp": 480, "xp": 400,
-      "boss": true, "damageScale": 1.35,
+      "boss": true, "damageScale": 1.15,
       "phases": ["threat-motivations", "social-engineering", "app-vulnerabilities", "malware", "hardening"],
       "color": "#ff3960"
     }
