@@ -9,11 +9,15 @@
 //   enemyDamage  how hard a normal enemy hits at level 1 (it grows with the
 //                zone's level, see enemyDamage() in js/combat.js)
 //   hitChance    how often an enemy's attack lands (0.65 = 65%)
+//   enemyHpGrowth extra enemy health per zone level above 1 (0.02 = +2%,
+//                so +64% by the final zone). It makes up for the skill tree
+//                and gear, which make you much stronger late in the game.
+//                Fun leaves it at 0 so it stays relaxed.
 // ---------------------------------------------------------------
 const MODES = {
-  fun:     { label: "Fun",     time: null, playerHp: 100, enemyHpScale: 0.75, enemyDamage: 13, hitChance: 0.5 },
-  learner: { label: "Learner", time: 60,   playerHp: 100, enemyHpScale: 1,    enemyDamage: 15, hitChance: 0.65 },
-  hard:    { label: "Hard",    time: 30,   playerHp: 80,  enemyHpScale: 1,    enemyDamage: 14, hitChance: 0.75 }
+  fun:     { label: "Fun",     time: null, playerHp: 100, enemyHpScale: 0.75, enemyDamage: 13, hitChance: 0.5,  enemyHpGrowth: 0 },
+  learner: { label: "Learner", time: 60,   playerHp: 100, enemyHpScale: 1,    enemyDamage: 15, hitChance: 0.65, enemyHpGrowth: 0.02 },
+  hard:    { label: "Hard",    time: 30,   playerHp: 80,  enemyHpScale: 1,    enemyDamage: 14, hitChance: 0.75, enemyHpGrowth: 0.02 }
 };
 
 // ---------------------------------------------------------------
@@ -34,6 +38,12 @@ const BOSS_HIT_BONUS = 0.1;       // bosses hit 10% more often
 const MAX_HIT_CHANCE = 0.95;      // no enemy is a sure thing
 const ENEMY_TURN_DELAY_MS = 650;  // pause between your attack and the enemy's
 const SAVE_KEY = "secplus-rpg-save";
+
+// Gear (tiers and base stats are in data/loot.json)
+const LEVEL_STAT_BONUS = 0.05;    // each item level above 1 adds 5% to its stat
+                                  // (it was 10%, which made late gear too strong)
+const MAX_EXTRA_TIME = 0.5;       // gear and the skill tree can add at most +50%
+                                  // of the mode's time (Learner 60s -> 90s max)
 
 // Skill tree (the nodes themselves are in data/skilltree.json)
 const FINAL_BOSS_TREE_POINTS = 3;     // bonus points for beating the final boss

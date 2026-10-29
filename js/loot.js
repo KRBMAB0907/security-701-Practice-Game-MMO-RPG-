@@ -3,8 +3,6 @@
 
 let lootTable = null;  // loaded from data/loot.json by main.js
 
-const LEVEL_STAT_BONUS = 0.1;  // each item level above 1 adds 10% to its stat
-
 function tierById(id) {
   return lootTable.tiers.find(tier => tier.id === id);
 }

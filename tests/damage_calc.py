@@ -13,6 +13,7 @@ Run from anywhere:
     python tests/damage_calc.py           # summary per area
     python tests/damage_calc.py --full    # every zone
     python tests/damage_calc.py --old     # the formula before the level scaling
+    python tests/damage_calc.py --built   # a player who spends tree points and wears gear
 """
 import json, math, os, sys
 
@@ -23,9 +24,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # ---------------------------------------------------------------
 # Same fields as MODES in js/config.js
 MODES = {
-    "fun":     {"playerHp": 100, "enemyHpScale": 0.75, "enemyDamage": 13, "hitChance": 0.5},
-    "learner": {"playerHp": 100, "enemyHpScale": 1,    "enemyDamage": 15, "hitChance": 0.65},
-    "hard":    {"playerHp": 80,  "enemyHpScale": 1,    "enemyDamage": 14, "hitChance": 0.75},
+    "fun":     {"playerHp": 100, "enemyHpScale": 0.75, "enemyDamage": 13, "hitChance": 0.5,  "enemyHpGrowth": 0},
+    "learner": {"playerHp": 100, "enemyHpScale": 1,    "enemyDamage": 15, "hitChance": 0.65, "enemyHpGrowth": 0.02},
+    "hard":    {"playerHp": 80,  "enemyHpScale": 1,    "enemyDamage": 14, "hitChance": 0.75, "enemyHpGrowth": 0.02},
 }
 SUB_BOSS_DAMAGE = 1.2  # "damageScale" of bosses in data/areas/*.json
 FINALE_DAMAGE = 1.15   # "damageScale" of each area's last boss
@@ -53,7 +54,23 @@ HP_PER_LEVEL = 10
 DAMAGE_PER_LEVEL = 0.1
 BOSS_HIT_BONUS = 0.1
 MAX_HIT_CHANCE = 0.95
+LEVEL_STAT_BONUS = 0.05  # gear: each item level above 1 adds 5% to its stat
 ACCURACY = 0.65  # how often the simulated player answers right
+
+# The --built player: what a typical player has after spending tree points and
+# equipping drops. Uncommon gear at the zone's level (data/loot.json), and about
+# 1% damage and 2 health per tree point (the damage nodes run out at about 32%).
+UNCOMMON_GEAR = {"damage": 10, "hp": 20}
+TREE_DAMAGE_PER_POINT, TREE_DAMAGE_MAX = 1, 32
+TREE_HP_PER_POINT = 2
+
+
+def build_bonus(level):
+    # Returns (% extra damage from gear, % from the tree, extra health) at this level
+    gear = lambda stat: round(UNCOMMON_GEAR[stat] * (1 + (level - 1) * LEVEL_STAT_BONUS))
+    points = level - 1
+    tree_damage = min(points * TREE_DAMAGE_PER_POINT, TREE_DAMAGE_MAX)
+    return gear("damage"), tree_damage, gear("hp") + points * TREE_HP_PER_POINT
 
 
 def load(path):
@@ -94,9 +111,13 @@ def kind_of(enemy, finale_id):
 def main():
     old = "--old" in sys.argv
     full = "--full" in sys.argv
+    built = "--built" in sys.argv
     modes = OLD_MODES if old else MODES
     print("Formula:", "OLD (fixed step per area)" if old else "NEW (grows with zone level)")
-    print("Average player: Analyst, no armor, at the zone's level, %d%% accuracy" % (ACCURACY * 100))
+    if built:
+        print("Built player: Analyst, Uncommon gear and tree points spent, at the zone's level, %d%% accuracy" % (ACCURACY * 100))
+    else:
+        print("Average player: Analyst, no armor, at the zone's level, %d%% accuracy" % (ACCURACY * 100))
     print("Each cell: hits to die  [turns you survive / turns to win]  * = outside target\n")
 
     for mode_id, mode in modes.items():
@@ -113,6 +134,10 @@ def main():
                 # Average damage of the zone's skills at this level (no weak point bonus)
                 avg_skill = sum(skills[s]["damage"] for s in zone["skills"]) / len(zone["skills"])
                 your_damage = avg_skill * (1 + (level - 1) * DAMAGE_PER_LEVEL)
+                if built:
+                    gear_damage, tree_damage, extra_hp = build_bonus(level)
+                    your_damage *= (1 + gear_damage / 100) * (1 + tree_damage / 100)
+                    hp += extra_hp
                 cells = {}
                 for enemy_id in zone["enemies"]:
                     enemy = enemies[enemy_id]
@@ -124,7 +149,9 @@ def main():
                     hits = math.ceil(hp / dmg)
                     chance = min(mode["hitChance"] + (BOSS_HIT_BONUS if enemy.get("boss") else 0), MAX_HIT_CHANCE)
                     survive = hits / chance
-                    enemy_hp = round(enemy["hp"] * mode["enemyHpScale"])
+                    # Same as startFight() in js/combat.js: later zones get more enemy health
+                    growth = 1 + (level - 1) * mode.get("enemyHpGrowth", 0)
+                    enemy_hp = round(enemy["hp"] * mode["enemyHpScale"] * growth)
                     win = math.ceil(enemy_hp / your_damage) / ACCURACY
                     low, high = TARGETS[mode_id][kind]
                     # Keep the worst (fewest hits) enemy of each kind in the zone

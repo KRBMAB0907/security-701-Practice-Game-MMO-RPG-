@@ -27,7 +27,9 @@ function startTimer(question) {
   }
 
   timerBox.hidden = false;
-  questionTime = currentMode.time + gearBonus("time") + treeBonus("time");  // module gear and the skill tree add seconds
+  // Module gear and the skill tree add seconds, up to a cap so the timer still matters
+  const extraTime = Math.min(gearBonus("time") + treeBonus("time"), currentMode.time * MAX_EXTRA_TIME);
+  questionTime = currentMode.time + extraTime;
   timeLeft = questionTime;
   updateTimerDisplay();
 

@@ -147,7 +147,9 @@ function startFight() {
   enemy.damageScale = type.damageScale;
   enemy.xp = type.xp;
   enemy.accuracy = type.accuracy || 0;  // optional per-enemy hit chance bonus in the data
-  enemy.maxHp = Math.round(type.hp * currentMode.enemyHpScale);
+  // Later zones get tougher enemies, to keep up with your tree points and gear
+  const levelGrowth = 1 + (currentZone.level - 1) * currentMode.enemyHpGrowth;
+  enemy.maxHp = Math.round(type.hp * currentMode.enemyHpScale * levelGrowth);
   enemy.hp = enemy.maxHp;
 
   // You start every fight at full health, in your class's colors
