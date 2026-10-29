@@ -29,6 +29,10 @@ MODES = {
 }
 SUB_BOSS_DAMAGE = 1.2  # "damageScale" of bosses in data/areas/*.json
 FINALE_DAMAGE = 1.15   # "damageScale" of each area's last boss
+# How fast enemy damage grows compared with your base health (ENEMY_DAMAGE_GROWTH
+# in js/config.js). 1 = same pace, so hits to die never change. Below 1, late
+# areas take more hits, which makes up for their longer fights.
+ENEMY_DAMAGE_GROWTH = 0.7
 
 # The old numbers, before enemy damage grew with zone level, for --old
 OLD_MODES = {
@@ -37,11 +41,11 @@ OLD_MODES = {
     "hard":    {"playerHp": 80,  "enemyHpScale": 1,    "enemyDamage": 13, "hitChance": 0.75},
 }
 
-# Targets: hits to die (normal, sub-boss, finale)
+# Targets: hits to die (normal, sub-boss, finale), from the Foundry to the Spire
 TARGETS = {
-    "fun":     {"normal": (8, 8), "sub-boss": (6, 7), "finale": (7, 7)},
-    "learner": {"normal": (7, 7), "sub-boss": (6, 6), "finale": (6, 6)},
-    "hard":    {"normal": (6, 6), "sub-boss": (5, 5), "finale": (5, 5)},
+    "fun":     {"normal": (8, 10), "sub-boss": (7, 9), "finale": (8, 9)},
+    "learner": {"normal": (7, 9),  "sub-boss": (6, 8), "finale": (7, 8)},
+    "hard":    {"normal": (6, 8),  "sub-boss": (5, 7), "finale": (6, 7)},
 }
 
 # Fixed game constants (js/config.js)
@@ -74,8 +78,9 @@ def enemy_damage_old(mode, area, kind):
 
 def enemy_damage_new(mode, zone_level, kind):
     # Same as enemyDamage() in js/combat.js: enemy damage grows with the zone's
-    # level at the same pace as your base health, so hits to die stay the same
-    level_scale = player_hp(mode, zone_level) / mode["playerHp"]
+    # level, a bit slower than your base health (see ENEMY_DAMAGE_GROWTH)
+    health_growth = player_hp(mode, zone_level) / mode["playerHp"] - 1
+    level_scale = 1 + health_growth * ENEMY_DAMAGE_GROWTH
     boss_scale = {"normal": 1, "sub-boss": SUB_BOSS_DAMAGE, "finale": FINALE_DAMAGE}[kind]
     return round(mode["enemyDamage"] * level_scale * boss_scale)
 

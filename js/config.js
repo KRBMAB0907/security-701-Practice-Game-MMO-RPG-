@@ -23,6 +23,8 @@ const LOW_TIME_WARNING = 10;      // seconds left when the timer bar turns red
 const WEAKNESS_MULTIPLIER = 1.5;  // damage bonus for hitting a weak point
 const DAMAGE_PER_LEVEL = 0.1;     // +10% skill damage per level above 1
 const HP_PER_LEVEL = 10;          // extra max health per level
+const ENEMY_DAMAGE_GROWTH = 0.7;  // enemy damage grows 70% as fast as your health,
+                                  // so late areas (longer fights) take more hits
 const XP_PER_LEVEL = 50;          // level N needs N x 50 XP to level up
 const DEATH_XP_LOSS = 0.25;       // dying costs 25% of the current XP bar
 const RECENT_QUESTION_MEMORY = 6; // how many recent questions to avoid repeating

@@ -64,13 +64,15 @@ function skillDamage(skill) {
 }
 
 // Enemy damage = mode damage x zone level scale x boss multiplier x your class's defense x skill tree
-// Enemies grow at the same pace as your base health, so an average player
-// dies in about the same number of hits in every zone (Learner: 7 from a
-// normal enemy). Being above the zone's level still helps, since you have
-// more health than the zone expects. Try numbers with tests/damage_calc.py.
+// Enemies get stronger with the zone's level, a bit slower than your base
+// health (ENEMY_DAMAGE_GROWTH). An average player dies in about 7 hits from a
+// normal enemy early on (Learner) and about 9 late, when fights are longer.
+// Being above the zone's level still helps, since you have more health than
+// the zone expects. Try numbers with tests/damage_calc.py.
 function enemyDamage() {
   const zoneHp = currentMode.playerHp + (currentZone.level - 1) * HP_PER_LEVEL;
-  const levelScale = zoneHp / currentMode.playerHp;
+  const healthGrowth = zoneHp / currentMode.playerHp - 1;  // 0 at level 1
+  const levelScale = 1 + healthGrowth * ENEMY_DAMAGE_GROWTH;
   let damage = currentMode.enemyDamage * levelScale * (enemy.damageScale || 1) * currentClass().damageTakenScale;
   damage *= 1 - treeBonus("defense") / 100;  // e.g. Hardening: 3% less per point
   if (hasKeystone("defense-in-depth")) {
