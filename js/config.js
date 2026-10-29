@@ -6,12 +6,13 @@
 //   time         seconds per question (null = no timer)
 //   playerHp     your starting health at level 1
 //   enemyHpScale multiplies every enemy's health (0.75 = 25% less)
-//   enemyDamage  how hard enemies hit when you miss
+//   enemyDamage  how hard an enemy hits (enemies attack every turn)
+//   hitChance    how often an enemy's attack lands (0.65 = 65%)
 // ---------------------------------------------------------------
 const MODES = {
-  fun:     { label: "Fun",     time: null, playerHp: 100, enemyHpScale: 0.75, enemyDamage: 10 },
-  learner: { label: "Learner", time: 60,   playerHp: 100, enemyHpScale: 1,    enemyDamage: 15 },
-  hard:    { label: "Hard",    time: 30,   playerHp: 80,  enemyHpScale: 1,    enemyDamage: 25 }
+  fun:     { label: "Fun",     time: null, playerHp: 100, enemyHpScale: 0.75, enemyDamage: 6,  hitChance: 0.5 },
+  learner: { label: "Learner", time: 60,   playerHp: 100, enemyHpScale: 1,    enemyDamage: 9,  hitChance: 0.65 },
+  hard:    { label: "Hard",    time: 30,   playerHp: 80,  enemyHpScale: 1,    enemyDamage: 13, hitChance: 0.75 }
 };
 
 // ---------------------------------------------------------------
@@ -26,8 +27,13 @@ const DEATH_XP_LOSS = 0.25;       // dying costs 25% of the current XP bar
 const RECENT_QUESTION_MEMORY = 6; // how many recent questions to avoid repeating
 const FAVORED_SKILL_BONUS = 1.2;  // +20% damage for skills your class favors
 const CLASS_SWITCH_LEVEL_LOSS = 0.2; // switching class costs 20% of your levels
+const BOSS_HIT_BONUS = 0.1;       // bosses hit 10% more often
+const MAX_HIT_CHANCE = 0.95;      // no enemy is a sure thing
+const ENEMY_TURN_DELAY_MS = 650;  // pause between your attack and the enemy's
 const SAVE_KEY = "secplus-rpg-save";
 
 // Animation timings (milliseconds)
 const FLASH_MS = 150;
 const SHAKE_MS = 300;
+const LUNGE_MS = 300;  // enemy jumps toward you when it attacks
+const DODGE_MS = 350;  // you hop back when an attack misses

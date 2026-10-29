@@ -11,6 +11,7 @@ const ctx = canvas.getContext("2d");
 const GAME_W = 320;
 const GAME_H = 180;
 const FONT = "8px monospace";  // 8 game units tall, drawn sharp at any size
+const SPEECH_FONT = "7px monospace";
 let renderScale = 1;
 
 function resizeCanvas() {
@@ -74,9 +75,19 @@ function fighterSheet(fighter) {
   return fighter.tint ? tinted(fighter.spritePath, fighter.color) : getImage(fighter.spritePath);
 }
 
+// A smooth "out and back" movement: 0 at the start and end, 1 in the middle.
+// When the countdown is finished (timeLeft is 0) it returns 0, so no movement.
+function bounce(timeLeft, totalTime) {
+  return timeLeft > 0 ? Math.sin((1 - timeLeft / totalTime) * Math.PI) : 0;
+}
+
 function drawFighter(fighter, size, flip) {
   // A shake moves the fighter a random 1-2 pixels each frame
-  const offset = fighter.shake > 0 ? Math.round(Math.random() * 4 - 2) : 0;
+  let offset = fighter.shake > 0 ? Math.round(Math.random() * 4 - 2) : 0;
+  // Lunging moves toward the other fighter; dodging hops back (flip = facing left)
+  const toward = flip ? -1 : 1;
+  offset += Math.round(toward * 12 * bounce(fighter.lunge, LUNGE_MS));
+  offset -= Math.round(toward * 8 * bounce(fighter.dodge, DODGE_MS));
   const x = fighter.x + offset - (size - 16) / 2;
   const y = fighterTop(fighter, size);
 
@@ -120,6 +131,55 @@ function drawBackground() {
   }
 }
 
+// Break text into lines that fit `maxWidth` game units
+function wrapText(text, maxWidth) {
+  const lines = [];
+  let line = "";
+  text.split(" ").forEach(word => {
+    const attempt = line ? line + " " + word : word;
+    if (ctx.measureText(attempt).width > maxWidth && line) {
+      lines.push(line);
+      line = word;
+    } else {
+      line = attempt;
+    }
+  });
+  lines.push(line);
+  return lines;
+}
+
+// The enemy's speech bubble, above its health bar, fading out at the end
+function drawSpeechBubble(size) {
+  if (speech === null || enemy.maxHp === 0) {
+    return;
+  }
+  ctx.font = SPEECH_FONT;
+  const lines = wrapText(speech.text, 104);
+  const width = Math.max(...lines.map(line => ctx.measureText(line).width)) + 10;
+  const height = lines.length * 9 + 6;
+  const tailX = enemy.x + 8;
+  const x = Math.min(Math.max(tailX - width / 2, 4), GAME_W - width - 4);  // stay on screen
+  const y = fighterTop(enemy, size) - (enemy.boss ? 18 : 12) - 20 - height;  // clear of the health number
+
+  ctx.globalAlpha = Math.min(1, speech.life / 300);  // fade out over the last 0.3s
+  ctx.fillStyle = "#05070a";
+  ctx.fillRect(x - 1, y - 1, width + 2, height + 2);  // dark outline
+  ctx.fillStyle = "#f4f1e8";
+  ctx.fillRect(x, y, width, height);
+  ctx.beginPath();  // the tail pointing down at the enemy
+  ctx.moveTo(tailX - 4, y + height);
+  ctx.lineTo(tailX + 4, y + height);
+  ctx.lineTo(tailX, y + height + 5);
+  ctx.closePath();
+  ctx.fill();
+
+  ctx.fillStyle = "#05070a";
+  ctx.textAlign = "left";
+  lines.forEach((line, i) => ctx.fillText(line, x + 5, y + 9 + i * 9));
+  ctx.globalAlpha = 1;
+  ctx.font = FONT;
+}
+
 function drawXpBar() {
   const x = 8, y = 166, width = GAME_W - 16;
   const fill = save.xp / xpToNextLevel();
@@ -160,6 +220,7 @@ function draw() {
     drawFighter(enemy, enemySize, true);  // enemies face left, toward the player
     drawHealthBar(player, 16);
     drawHealthBar(enemy, enemySize);
+    drawSpeechBubble(enemySize);
   }
 
   if (currentMode) {
@@ -186,7 +247,16 @@ function update(dt) {
   [player, enemy].forEach(fighter => {
     fighter.flash = Math.max(fighter.flash - dt, 0);
     fighter.shake = Math.max(fighter.shake - dt, 0);
+    fighter.lunge = Math.max(fighter.lunge - dt, 0);
+    fighter.dodge = Math.max(fighter.dodge - dt, 0);
   });
+
+  if (speech !== null) {
+    speech.life -= dt;
+    if (speech.life <= 0) {
+      speech = null;
+    }
+  }
 
   floatingTexts.forEach(text => {
     text.life -= dt;

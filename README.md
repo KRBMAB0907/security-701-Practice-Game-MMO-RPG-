@@ -11,7 +11,9 @@ It fits any screen: laptops and desktops on Windows, Linux or Mac, tablets, and 
 - **Pick a class:** Defender (tank), Analyst (support, heals on correct answers) or Cryptographer (high damage, low health). Switching later costs 20% of your levels.
 - **Pick a difficulty:** Fun (no timer), Learner (60 seconds per question) or Hard (30 seconds, tougher enemies).
 - **Choose a skill.** Each skill is tied to an exam topic, and using it means answering a question on that topic.
-- **Answer correctly** and your skill hits. Answer wrong or run out of time and the enemy hits you. Every answer shows an explanation, so mistakes still teach.
+- **Answer correctly** and your skill hits. Answer wrong or run out of time and your attack misses. Every answer shows an explanation, so mistakes still teach.
+- **Then the enemy attacks.** Every turn the enemy swings back, and each mode sets how often it lands (Fun 50%, Learner 65%, Hard 75%; bosses +10%). When it misses, you dodge.
+- **Enemies talk back.** The battle log narrates each hit and miss, and enemies taunt you in a speech bubble with lines about the exam topic they stand for.
 - **Hit weak points.** Enemies are weak to certain topics, and matching skills deal 1.5x damage. Bosses change weakness halfway through the fight.
 - **Collect loot.** Enemies drop gear in five tiers, from Common to Legendary: tools boost damage, armor boosts health, and modules add time to the question timer. Equip drops right after a battle, see your gear on a Minecraft-style equipment screen, and watch your armor appear on your character. Legendaries have special effects, like removing a wrong answer from every question. Hard mode finds rare gear more often.
 - **Retro pixel art.** Each area has its own scene, every class has its own sprite, and enemies come in 10 body types tinted to look different. Bosses wear crowns.
@@ -53,9 +55,10 @@ js/                     the game code, one file per job (loaded in this order)
   state.js              game state and the two fighters
   storage.js            loading data files, saving progress
   leveling.js           XP, leveling and the death penalty
-  sprites.js            loading, tinting and animating the pixel art
   classes.js            picking and switching classes
   loot.js               drops, gear and the gear screen
+  dialogue.js           battle narration and enemy taunts
+  sprites.js            loading, tinting and animating the pixel art
   render.js             drawing the canvas and the game loop
   map.js                screens, the map and unlocking
   combat.js             skills, weaknesses, damage, winning and losing
@@ -69,12 +72,16 @@ data/
   areas/                one file per built area: its skills, enemies and zones
   classes.json          class stats and favored skills
   loot.json             loot tiers, drop chances and item names
+  dialogue.json         narration lines and taunts for every topic
   questions/            question bank, one file per domain
 assets/
   sprites/              class, enemy and item sprites, armor overlays and the boss crown
   backgrounds/          one scene per area
 docs/
   ART.md                how to edit the art in Piskel
+  HANDOFF.md            where the project stands and what's next
+tests/                  browser tests and balance runs (see tests/README.md)
+CLAUDE.md               notes for Claude Code when working on this project
 tools/
   check_questions.py    checks the question bank for mistakes
   check_game_data.py    checks areas, zones, enemies, skills, classes and art link up

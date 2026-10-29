@@ -58,6 +58,12 @@ function enemyDamage() {
   return Math.round(damage);
 }
 
+// How likely the enemy's attack is to land, from 0 to 1
+function enemyHitChance() {
+  const chance = currentMode.hitChance + (enemy.boss ? BOSS_HIT_BONUS : 0) + (enemy.accuracy || 0);
+  return Math.min(chance, MAX_HIT_CHANCE);
+}
+
 // What to say after clearing a zone's last enemy
 function clearedZoneMessage(area) {
   const isFinale = area.zones.indexOf(currentZone) === area.zones.length - 1;
@@ -109,6 +115,7 @@ function startFight() {
   enemy.phases = type.phases;
   enemy.damageScale = type.damageScale;
   enemy.xp = type.xp;
+  enemy.accuracy = type.accuracy || 0;  // optional per-enemy hit chance bonus in the data
   enemy.maxHp = Math.round(type.hp * currentMode.enemyHpScale);
   enemy.hp = enemy.maxHp;
 
@@ -122,12 +129,15 @@ function startFight() {
   fightOver = false;
   fightWon = false;
   failoverUsed = false;
+  turnInProgress = false;
   floatingTexts = [];
   setLootMessage(null);
   document.getElementById("mode-label").textContent = "Mode: " + currentMode.label;
 
   const intro = enemy.boss ? "BOSS: " + enemy.name + " blocks the way!" : "A " + enemy.name + " appears!";
-  setLog(intro + " Weak to " + topicName(currentWeakness()) + ".");
+  const hitPercent = Math.round(enemyHitChance() * 100);
+  setLog(intro + " Weak to " + topicName(currentWeakness()) + ". It hits " + hitPercent + "% of the time.");
+  enemyTaunt("intro");
   showSkillChoice();
 }
 
@@ -185,13 +195,14 @@ function pickQuestion(topics) {
   return question;
 }
 
-// Called after a correct answer
+// Your turn after a correct answer. Returns what happened, for the log.
 function playerAttacks() {
   const weaknessBefore = currentWeakness();
+  const weakPoint = hitsWeakPoint(currentSkill);
   const damage = skillDamage(currentSkill);
   hit(enemy, damage, "#00ff9c");
 
-  let message = currentSkill.name + " hits for " + damage + " damage!";
+  let message = narrate(weakPoint ? "weakHit" : "playerHit", { skill: currentSkill.name, enemy: enemy.name, damage: damage });
 
   // Analysts heal a little with every correct answer
   const healed = heal(player, currentClass().healOnCorrect);
@@ -201,12 +212,31 @@ function playerAttacks() {
 
   if (enemy.hp > 0 && currentWeakness() !== weaknessBefore) {
     message += " The " + enemy.name + " shifts! Now weak to " + topicName(currentWeakness()) + ".";
+    enemyTaunt("phase");
   }
-  setLog(message);
+  return message;
 }
 
-// Called after a wrong answer or timeout
+// Your turn after a wrong answer or running out of time
+function playerMisses(timedOut) {
+  floatingTexts.push({ value: "MISS", x: enemy.x + 8, y: enemy.y - 34, color: "#a8d5c0", life: 900, maxLife: 900 });
+  return narrate(timedOut ? "timeout" : "playerMiss", { skill: currentSkill.name, enemy: enemy.name });
+}
+
+// The enemy's turn: it attacks every turn, and its hit chance decides
+// whether the attack lands. Returns what happened, for the log.
 function enemyAttacks() {
+  enemy.lunge = LUNGE_MS;
+
+  if (Math.random() >= enemyHitChance()) {
+    player.dodge = DODGE_MS;
+    floatingTexts.push({ value: "MISS", x: player.x + 8, y: player.y - 34, color: "#a8d5c0", life: 900, maxLife: 900 });
+    if (Math.random() < 0.4) {
+      enemyTaunt("miss");
+    }
+    return narrate("enemyMiss", { enemy: enemy.name });
+  }
+
   let damage = enemyDamage();
   let failoverText = "";
 
@@ -218,7 +248,41 @@ function enemyAttacks() {
   }
 
   hit(player, damage, "#ff3864");
-  setLog(currentSkill.name + " fizzles! The " + enemy.name + " hits you for " + damage + "." + failoverText);
+  if (Math.random() < 0.5) {
+    enemyTaunt("hit");
+  }
+  return narrate("enemyHit", { enemy: enemy.name, damage: damage }) + failoverText;
+}
+
+// After the whole turn: did someone win, or does the fight go on?
+function finishTurn() {
+  turnInProgress = false;
+  if (enemy.hp <= 0) {
+    winFight();
+  } else if (player.hp <= 0) {
+    loseFight();
+  } else {
+    const nextButton = document.getElementById("next-button");
+    nextButton.textContent = "Continue";
+    nextButton.hidden = false;
+  }
+}
+
+// One full turn: your attack (or miss) right away, then after a short
+// pause the enemy's attack, so the exchange reads like a real fight.
+function playTurn(correct, timedOut) {
+  turnInProgress = true;
+  const yourTurn = correct ? playerAttacks() : playerMisses(timedOut);
+  setLog(yourTurn);
+
+  if (enemy.hp <= 0) {
+    finishTurn();  // the enemy is defeated, so it doesn't get to attack
+    return;
+  }
+  setTimeout(() => {
+    setLog(yourTurn + " " + enemyAttacks());
+    finishTurn();
+  }, ENEMY_TURN_DELAY_MS);
 }
 
 // Shows what dropped: its icon, its stats compared with what you have

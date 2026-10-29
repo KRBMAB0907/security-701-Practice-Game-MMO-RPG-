@@ -1,0 +1,113 @@
+{
+  "narration": {
+    "playerHit": [
+      "{skill} hits the {enemy} for {damage}!",
+      "{skill} lands cleanly: {damage} damage!",
+      "Your {skill} connects for {damage}!"
+    ],
+    "weakHit": [
+      "Weak point! {skill} tears into the {enemy} for {damage}!",
+      "Critical match! {skill} deals {damage}!",
+      "{skill} exploits the weakness for {damage}!"
+    ],
+    "playerMiss": [
+      "Wrong answer: your {skill} misses.",
+      "{skill} fizzles. The {enemy} shrugs it off.",
+      "Your {skill} goes wide."
+    ],
+    "timeout": [
+      "Too slow! {skill} never fires.",
+      "Time's up: {skill} fizzles."
+    ],
+    "enemyHit": [
+      "The {enemy} hits you for {damage}.",
+      "The {enemy} strikes back: {damage} damage.",
+      "Ouch! The {enemy} deals {damage}."
+    ],
+    "enemyMiss": [
+      "The {enemy} lunges, but you sidestep it!",
+      "The {enemy}'s attack goes wide!",
+      "You dodge the {enemy}!"
+    ]
+  },
+
+  "genericTaunts": {
+    "intro": ["You don't stand a chance.", "Another analyst? How cute.", "Let's see what you know."],
+    "hit": ["Too easy!", "Did that hurt?", "Study harder!"],
+    "miss": ["Hold still!", "Lucky dodge...", "Grr!"],
+    "phase": ["You think you've won? Think again!", "Time to change tactics!"]
+  },
+
+  "taunts": {
+    "control-categories": ["Your controls are all in the wrong category!", "Technical? Physical? You can't even tell."],
+    "control-types": ["No preventive control can stop me!", "Your controls only detect me after the fact."],
+    "cia-triad": ["I'll tamper with your data. Integrity is overrated.", "Confidential? Not for long."],
+    "aaa": ["Who needs authentication anyway?", "Nobody's keeping an account of what I do."],
+    "gap-analysis": ["Your security has gaps everywhere.", "Mind the gap... I'm already in it."],
+    "zero-trust": ["You trusted me because I was inside!", "Implicit trust is my favorite door."],
+    "physical-security": ["I'll just follow someone through the door.", "Your fence has a hole in it."],
+    "deception": ["Your honeypot can't fool me!", "I see through your decoys."],
+    "change-process": ["Approval? I deploy straight to production!", "Who needs a backout plan?"],
+    "change-technical": ["Restart the server mid-day? Why not!", "I broke three dependencies. Oops."],
+    "change-documentation": ["Documentation is for the weak!", "Version control? Never heard of it."],
+    "encryption": ["Your secrets travel in plain text!", "Your keys are far too short."],
+    "pki-certificates": ["My certificate looks real enough, right?", "Revoked? Nobody checks the CRL."],
+    "crypto-tools": ["Keys stored in a text file? Thank you!", "No HSM? Your keys are mine."],
+    "hashing-integrity": ["Unsalted hashes, how delicious.", "I found a collision!"],
+    "obfuscation": ["You'll never find what I've hidden.", "My payload hides in plain sight."],
+    "threat-actors": ["You don't even know who I am.", "I've got a nation behind me."],
+    "threat-motivations": ["It's all about the money.", "I do this for the cause!"],
+    "threat-vectors": ["Your default password still works!", "So many open ports, so little time."],
+    "social-engineering": ["Just click the link...", "This is IT. I need your password, urgently."],
+    "app-vulnerabilities": ["' OR 1=1 -- and I'm in!", "Your buffer overflows so nicely."],
+    "system-vulnerabilities": ["Zero-day, zero chance!", "That system is end of life. Like you."],
+    "malware": ["Your files are encrypted. Pay up!", "I spread myself. No clicks needed."],
+    "network-attacks": ["I'm right in the middle of your traffic.", "Flood the network!"],
+    "app-attacks": ["I'll just replay your session.", "../../../ here I come!"],
+    "password-crypto-attacks": ["Password123? Sprayed it.", "Brute force never gets tired."],
+    "indicators": ["You'll never notice I'm here.", "Logs? What logs?"],
+    "mitigations": ["Your network is wide open and flat!", "Least privilege? I have admin."],
+    "hardening": ["Every unused service is a door for me.", "You never changed the defaults."],
+    "architecture-models": ["Who patches the cloud? Not you!", "Your containers share a kernel..."],
+    "specialized-systems": ["Your smart thermostat works for me now.", "SCADA systems never get patched."],
+    "network-security": ["No DMZ? Straight to your servers!", "Your firewall fails open."],
+    "secure-remote-access": ["Split tunneling? Thanks for the side door!", "Your VPN is still using defaults."],
+    "data-classification": ["Everything's labeled public? Perfect.", "Which data is sensitive? You don't know."],
+    "data-protection": ["Your data at rest isn't encrypted.", "I'll scrape it right out of memory."],
+    "resilience": ["One server, one failure, total outage!", "No failover? Lights out."],
+    "backups": ["When did you last test a restore?", "Your backups are on the same network!"],
+    "secure-baselines": ["Your configs have drifted far away.", "There is no baseline!"],
+    "wireless-mobile": ["Connect to my free Wi-Fi!", "That phone is jailbroken. Lovely."],
+    "app-security": ["You didn't validate the input!", "Unsigned code runs just fine."],
+    "asset-management": ["You don't even know I'm on your network.", "Who owns that server? Nobody."],
+    "asset-disposal": ["You threw out drives without wiping them.", "Formatted isn't erased!"],
+    "vuln-identification": ["Your scanner missed me again.", "Just a false positive, ignore me..."],
+    "vuln-management": ["That CVE has been open for months.", "Patch it next quarter, right?"],
+    "monitoring": ["Too many alerts. You'll never see mine.", "Your SIEM is asleep."],
+    "monitoring-tools": ["Nobody is watching the NetFlow.", "SNMPv1? I can read everything."],
+    "security-tools": ["Your IDS doesn't have my signature.", "Your firewall allows any-any!"],
+    "email-security": ["No DMARC? I'll send as your CEO.", "Your SPF record is empty."],
+    "identity-federation": ["Old accounts never get deleted.", "One stolen login unlocks everything."],
+    "access-control-models": ["Everyone here has full access.", "Permissions? Everyone gets admin."],
+    "mfa-passwords": ["No MFA? Just the password, then.", "Your admins share one password."],
+    "automation": ["Do it all by hand. Slowly.", "No playbook? Panic, then."],
+    "automation-considerations": ["Your script just ran on every server. Oops.", "Nobody maintains that automation."],
+    "incident-response": ["No response plan? Excellent.", "By the time you contain me, I've spread."],
+    "forensics": ["The evidence? Already tampered with.", "Your chain of custody is broken."],
+    "investigation-data": ["I deleted the logs. Good luck.", "Your clocks don't even match!"],
+    "investigation-sources": ["No packet capture, no proof.", "The metadata won't help you."],
+    "governance": ["Policies? Nobody reads those.", "Your policy is ten years old."],
+    "governance-roles": ["Who owns this data? No one!", "Nobody is accountable here."],
+    "risk-analysis": ["You never wrote me in the risk register.", "Impact? Likelihood? Just guess!"],
+    "risk-strategies": ["You accepted me without knowing it.", "No insurance? How brave."],
+    "business-impact": ["How long can you stay down? Let's find out.", "Your RTO is a fantasy."],
+    "third-party-risk": ["Your vendor let me in.", "Nobody vetted your suppliers."],
+    "vendor-agreements": ["No NDA? I'll share everything.", "The SLA? Unenforceable."],
+    "compliance-privacy": ["Enjoy the fines!", "Compliance is just paperwork, right?"],
+    "privacy": ["I'll sell all that personal data.", "Consent? I didn't ask."],
+    "audits-assessments": ["The auditors will never find me.", "Your self-assessment is all checkmarks."],
+    "penetration-testing": ["I tested outside my scope.", "The rules of engagement don't apply to me."],
+    "security-awareness": ["Your users will click anything.", "Training? Once a year? Ha!"],
+    "awareness-topics": ["Is that a password on a sticky note?", "Nice screen. I can read it from here."]
+  }
+}

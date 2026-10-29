@@ -38,27 +38,16 @@ function checkAnswer(question, chosenIndex) {
   buttons[question.answer].classList.add("correct");
 
   const feedback = document.getElementById("feedback");
+  const correct = chosenIndex === question.answer;
 
-  if (chosenIndex === question.answer) {
+  if (correct) {
     feedback.textContent = "Correct! " + question.explanation;
-    playerAttacks();
+  } else if (chosenIndex === null) {
+    feedback.textContent = "Time's up! " + question.explanation;
   } else {
-    if (chosenIndex === null) {
-      feedback.textContent = "Time's up! " + question.explanation;
-    } else {
-      buttons[chosenIndex].classList.add("wrong");
-      feedback.textContent = "Not quite. " + question.explanation;
-    }
-    enemyAttacks();
+    buttons[chosenIndex].classList.add("wrong");
+    feedback.textContent = "Not quite. " + question.explanation;
   }
 
-  if (enemy.hp <= 0) {
-    winFight();
-  } else if (player.hp <= 0) {
-    loseFight();
-  } else {
-    const nextButton = document.getElementById("next-button");
-    nextButton.textContent = "Continue";
-    nextButton.hidden = false;
-  }
+  playTurn(correct, chosenIndex === null);  // see combat.js
 }
