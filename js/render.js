@@ -3,6 +3,26 @@
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 
+// The game is designed in "game units": a 320x180 screen. Everything is
+// positioned in those units. The canvas itself is drawn at the real size
+// it appears on screen, and renderScale converts game units to real pixels.
+// Result: crisp, smooth text, while sprites are still scaled up as chunky
+// pixels on purpose (image smoothing off) for the retro look.
+const GAME_W = 320;
+const GAME_H = 180;
+const FONT = "8px monospace";  // 8 game units tall, drawn sharp at any size
+let renderScale = 1;
+
+function resizeCanvas() {
+  const pixelRatio = window.devicePixelRatio || 1;  // 2 on Retina screens
+  const width = Math.max(GAME_W, Math.round(canvas.clientWidth * pixelRatio));
+  canvas.width = width;
+  canvas.height = Math.round(width * GAME_H / GAME_W);
+  renderScale = canvas.width / GAME_W;
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
+
 const FLOOR_Y = 128;      // where fighters stand
 const BOSS_SIZE = 32;     // bosses are drawn at 2x (16px art x 2 stays crisp)
 let animationTime = 0;    // total milliseconds, drives the idle animation
@@ -10,7 +30,7 @@ let animationTime = 0;    // total milliseconds, drives the idle animation
 // Text with a 1px dark shadow, so it stays readable over the backgrounds
 function shadowText(text, x, y, color) {
   ctx.fillStyle = "#05070a";
-  ctx.fillText(text, x + 1, y + 1);
+  ctx.fillText(text, x + 0.6, y + 0.6);
   ctx.fillStyle = color;
   ctx.fillText(text, x, y);
 }
@@ -33,7 +53,7 @@ function drawHealthBar(fighter, size) {
   ctx.fillStyle = fill > 0.3 ? "#00ff9c" : "#ff3864";  // red when low
   ctx.fillRect(x, y, Math.round(width * fill), 5);
 
-  ctx.font = "8px monospace";
+  ctx.font = FONT;
   ctx.textAlign = "center";
   shadowText(Math.max(fighter.hp, 0) + "/" + fighter.maxHp, fighter.x + 8, y - 3, "#d8f3e8");
 }
@@ -78,17 +98,17 @@ function drawBackground() {
   const background = area ? getImage(backgroundPath(area.id)) : null;
 
   if (background !== null) {
-    ctx.drawImage(background, 0, 0);
+    ctx.drawImage(background, 0, 0, GAME_W, GAME_H);
   } else {
     ctx.fillStyle = "#0a0e14";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillRect(0, 0, GAME_W, GAME_H);
     ctx.fillStyle = "#1c2733";
-    ctx.fillRect(0, FLOOR_Y, canvas.width, 2);
+    ctx.fillRect(0, FLOOR_Y, GAME_W, 2);
   }
 }
 
 function drawXpBar() {
-  const x = 8, y = 166, width = canvas.width - 16;
+  const x = 8, y = 166, width = GAME_W - 16;
   const fill = save.xp / xpToNextLevel();
   ctx.fillStyle = "#05070a";
   ctx.fillRect(x - 1, y - 1, width + 2, 5);
@@ -97,26 +117,29 @@ function drawXpBar() {
   ctx.fillStyle = "#ffd166";
   ctx.fillRect(x, y, Math.round(width * fill), 3);
 
-  ctx.font = "8px monospace";
+  ctx.font = FONT;
   ctx.textAlign = "left";
   shadowText("Lv " + save.level + "  XP " + save.xp + "/" + xpToNextLevel(), x, y - 4, "#ffd166");
 }
 
 function draw() {
+  // Work in game units: scale everything up to the canvas's real size
+  ctx.setTransform(renderScale, 0, 0, renderScale, 0, 0);
+  ctx.imageSmoothingEnabled = false;  // pixel art stays sharp and blocky
   drawBackground();
-  ctx.font = "8px monospace";
+  ctx.font = FONT;
 
   if (currentZone && enemy.maxHp > 0) {
     // Zone name and progress across the top
     ctx.textAlign = "center";
-    shadowText(currentZone.name + "  " + (enemyIndex + 1) + "/" + currentZone.enemies.length, canvas.width / 2, 14, "#a8d5c0");
+    shadowText(currentZone.name + "  " + (enemyIndex + 1) + "/" + currentZone.enemies.length, GAME_W / 2, 14, "#a8d5c0");
 
     ctx.textAlign = "left";
     shadowText(player.name, 8, 28, "#d8f3e8");
     ctx.textAlign = "right";
-    shadowText(enemy.name, canvas.width - 8, 28, enemy.boss ? "#ffd166" : "#d8f3e8");
+    shadowText(enemy.name, GAME_W - 8, 28, enemy.boss ? "#ffd166" : "#d8f3e8");
     if (enemy.phases) {
-      shadowText("Phase " + (currentPhase() + 1) + "/" + enemy.phases.length, canvas.width - 8, 40, "#a8d5c0");
+      shadowText("Phase " + (currentPhase() + 1) + "/" + enemy.phases.length, GAME_W - 8, 40, "#a8d5c0");
     }
 
     const enemySize = enemy.boss ? BOSS_SIZE : 16;
