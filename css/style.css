@@ -4,23 +4,46 @@
   display: none !important;
 }
 
+/* ---------------------------------------------------------------
+   Layout: the page is exactly the size of the window, so the game never
+   needs page scrolling. 100dvh ("dynamic viewport height") matches the
+   visible window even on phones, where the address bar slides in and
+   out; plain 100vh is the fallback for older browsers.
+
+   Tall screens (phones held upright): game screen on top, panel below.
+   Wide screens (laptops, desktops, phones sideways): side by side.
+   Menus scroll inside their own panel; battles are shrunk to fit by
+   js/layout.js so they never need scrolling.
+   --------------------------------------------------------------- */
+html {
+  height: 100%;
+}
+
 body {
   margin: 0;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  overscroll-behavior: none;
+  box-sizing: border-box;
   background: #05070a;
   color: #d8f3e8;
   font-family: monospace;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  padding: 16px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
+  justify-items: center;
+  gap: 12px;
+  padding: 12px;
 }
 
+/* Tall screens: the game screen takes at most about 40% of the height */
 #game {
-  width: 100%;
-  max-width: 960px;
+  grid-row: 1;
+  width: min(100%, 960px, calc((100dvh - 24px) * 0.4 * 16 / 9));
   aspect-ratio: 16 / 9;
   border: 2px solid #00ff9c;
+  box-sizing: border-box;
 }
 
 #status,
@@ -29,9 +52,53 @@ body {
 #map-panel,
 #gear-panel,
 #battle-panel {
+  grid-row: 2;
   width: 100%;
   max-width: 960px;
+  min-height: 0;
+  overflow-y: auto;
   font-size: 18px;
+  box-sizing: border-box;
+}
+
+/* Wide screens: game screen on the left, panel on the right */
+@media (min-aspect-ratio: 5/4) {
+  body {
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
+    justify-items: stretch;
+    align-items: start;
+  }
+
+  #game {
+    grid-row: 1;
+    grid-column: 1;
+    width: min(60vw, 960px, calc((100dvh - 24px) * 16 / 9));
+  }
+
+  #status,
+  #mode-panel,
+  #class-panel,
+  #map-panel,
+  #gear-panel,
+  #battle-panel {
+    grid-row: 1;
+    grid-column: 2;
+    max-width: none;
+    height: 100%;
+  }
+}
+
+/* Smaller base text on small screens (menus still scroll if needed) */
+@media (max-width: 600px), (max-height: 500px) {
+  #status,
+  #mode-panel,
+  #class-panel,
+  #map-panel,
+  #gear-panel,
+  #battle-panel {
+    font-size: 15px;
+  }
 }
 
 #mode-panel button,
@@ -43,8 +110,8 @@ body {
 #map-button {
   display: block;
   width: 100%;
-  margin: 8px 0;
-  padding: 12px;
+  margin: 0.45em 0;
+  padding: 0.6em 0.7em;
   font: inherit;
   text-align: left;
   background: #0a0e14;
@@ -53,9 +120,79 @@ body {
   cursor: pointer;
 }
 
+/* Short phones held upright: a slightly smaller game screen */
+@media (max-aspect-ratio: 5/4) and (max-height: 700px) {
+  #game {
+    width: min(100%, calc((100dvh - 24px) * 0.33 * 16 / 9));
+  }
+}
+
+/* Short screens (phones held sideways): give the question side more room */
+@media (max-height: 500px) {
+  body {
+    gap: 8px;
+    padding: 8px;
+  }
+
+  #mode-label {
+    display: none;  /* the mode is shown on the map anyway */
+  }
+
+  #choices {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 0.4em;
+  }
+
+  #mode-panel button,
+  #class-list button,
+  #zone-list button,
+  #skills button,
+  #choices button,
+  #next-button,
+  #map-button {
+    margin: 0.2em 0;
+    padding: 0.35em 0.55em;
+  }
+}
+
+/* Small screens: skill buttons show just the name, damage and WEAK POINT
+   tag; the one-line descriptions are hidden to save space */
+@media (max-height: 500px), (max-width: 420px) and (max-height: 760px) {
+  #battle-panel #skills button small {
+    display: none;  /* extra #battle-panel makes this beat the general rule below */
+  }
+}
+
+@media (max-height: 500px) and (min-aspect-ratio: 5/4) {
+  #game {
+    width: min(42vw, calc((100dvh - 16px) * 16 / 9));
+  }
+}
+
+/* Battle panel: tighter spacing, all in em so it shrinks with the text */
+#battle-panel p {
+  margin: 0.4em 0;
+}
+
+#skills {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 10em), 1fr));
+  column-gap: 0.5em;
+}
+
+#skills button {
+  margin: 0.25em 0;
+}
+
+#loot-message .item-icon {
+  width: 2.4em !important;
+  height: 2.4em !important;
+}
+
 #mode-label {
   color: #7fa894;
-  margin: 0 0 8px;
+  margin-top: 0 !important;
 }
 
 #battle-log {
@@ -68,7 +205,7 @@ body {
 #class-list button small {
   display: block;
   color: #7fa894;
-  margin-top: 4px;
+  margin-top: 0.2em;
 }
 
 #skills button:hover,
@@ -119,12 +256,12 @@ body {
 #timer {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 0.6em;
 }
 
 #timer-track {
   flex: 1;
-  height: 12px;
+  height: 0.6em;
   border: 2px solid #00ff9c;
 }
 
@@ -149,22 +286,22 @@ body {
 #loot-message {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin: 8px 0;
+  gap: 0.6em;
+  margin: 0.4em 0;
 }
 
 #loot-message small {
   display: block;
   color: #a8d5c0;
-  margin: 2px 0 6px;
+  margin: 0.1em 0 0.3em;
 }
 
 #loot-message button,
 .gear-item button {
-  padding: 6px 12px;
-  margin-right: 8px;
+  padding: 0.35em 0.7em;
+  margin-right: 0.5em;
   font: inherit;
-  font-size: 14px;
+  font-size: 0.8em;
   background: #0a0e14;
   color: #d8f3e8;
   border: 1px solid #00ff9c;

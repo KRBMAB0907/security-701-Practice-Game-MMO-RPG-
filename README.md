@@ -4,6 +4,8 @@ A free, browser-based RPG that helps you study for the **CompTIA Security+ (SY0-
 
 **[Play it here](https://krbmab0907.github.io/security-701-Practice-Game-MMO-RPG-/)** (no account or install needed)
 
+It fits any screen: laptops and desktops on Windows, Linux or Mac, tablets, and phones in either orientation. Battles always fit on screen without scrolling.
+
 ## How it plays
 
 - **Pick a class:** Defender (tank), Analyst (support, heals on correct answers) or Cryptographer (high damage, low health). Switching later costs 20% of your levels.
@@ -59,6 +61,7 @@ js/                     the game code, one file per job (loaded in this order)
   combat.js             skills, weaknesses, damage, winning and losing
   timer.js              the question countdown
   questions.js          showing questions and checking answers
+  layout.js             shrinks battles to fit the screen
   main.js               starting the game (loads last)
 data/
   topics.json           every domain, objective and topic

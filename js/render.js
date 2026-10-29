@@ -22,6 +22,11 @@ function resizeCanvas() {
 }
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
+// Also catch size changes the window "resize" event misses, like turning a
+// phone or the layout switching between stacked and side by side
+if (window.ResizeObserver) {
+  new ResizeObserver(resizeCanvas).observe(canvas);
+}
 
 const FLOOR_Y = 128;      // where fighters stand
 const BOSS_SIZE = 32;     // bosses are drawn at 2x (16px art x 2 stays crisp)
