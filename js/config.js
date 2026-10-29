@@ -6,13 +6,14 @@
 //   time         seconds per question (null = no timer)
 //   playerHp     your starting health at level 1
 //   enemyHpScale multiplies every enemy's health (0.75 = 25% less)
-//   enemyDamage  how hard an enemy hits (enemies attack every turn)
+//   enemyDamage  how hard a normal enemy hits at level 1 (it grows with the
+//                zone's level, see enemyDamage() in js/combat.js)
 //   hitChance    how often an enemy's attack lands (0.65 = 65%)
 // ---------------------------------------------------------------
 const MODES = {
-  fun:     { label: "Fun",     time: null, playerHp: 100, enemyHpScale: 0.75, enemyDamage: 6,  hitChance: 0.5 },
-  learner: { label: "Learner", time: 60,   playerHp: 100, enemyHpScale: 1,    enemyDamage: 9,  hitChance: 0.65 },
-  hard:    { label: "Hard",    time: 30,   playerHp: 80,  enemyHpScale: 1,    enemyDamage: 13, hitChance: 0.75 }
+  fun:     { label: "Fun",     time: null, playerHp: 100, enemyHpScale: 0.75, enemyDamage: 13, hitChance: 0.5 },
+  learner: { label: "Learner", time: 60,   playerHp: 100, enemyHpScale: 1,    enemyDamage: 15, hitChance: 0.65 },
+  hard:    { label: "Hard",    time: 30,   playerHp: 80,  enemyHpScale: 1,    enemyDamage: 14, hitChance: 0.75 }
 };
 
 // ---------------------------------------------------------------

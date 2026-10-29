@@ -64,7 +64,7 @@
     { "id": "iot-swarm", "name": "IoT Swarm", "sprite": "swarm", "hp": 240, "xp": 85, "weakness": "specialized-systems", "color": "#c5e1a5" },
     {
       "id": "hypervisor-tyrant", "name": "Hypervisor Tyrant", "sprite": "wraith", "hp": 440, "xp": 240,
-      "boss": true, "damageScale": 1.5, "phases": ["architecture-models", "specialized-systems"], "color": "#29b6f6"
+      "boss": true, "damageScale": 1.2, "phases": ["architecture-models", "specialized-systems"], "color": "#29b6f6"
     },
 
     { "id": "port-prowler", "name": "Port Prowler", "sprite": "gremlin", "hp": 235, "xp": 85, "weakness": "network-security", "color": "#ef9a9a" },
@@ -73,7 +73,7 @@
     { "id": "vpn-hijacker", "name": "VPN Hijacker", "sprite": "crawler", "hp": 245, "xp": 90, "weakness": "secure-remote-access", "color": "#7e57c2" },
     {
       "id": "perimeter-breaker", "name": "Perimeter Breaker", "sprite": "drone", "hp": 455, "xp": 250,
-      "boss": true, "damageScale": 1.5, "phases": ["secure-remote-access", "network-security"], "color": "#ff7043"
+      "boss": true, "damageScale": 1.2, "phases": ["secure-remote-access", "network-security"], "color": "#ff7043"
     },
 
     { "id": "data-hoarder", "name": "Data Hoarder", "sprite": "slime", "hp": 240, "xp": 90, "weakness": "data-classification", "color": "#ffe082" },
@@ -82,7 +82,7 @@
     { "id": "memory-scraper", "name": "Memory Scraper", "sprite": "crawler", "hp": 255, "xp": 95, "weakness": "data-protection", "color": "#f48fb1" },
     {
       "id": "leak-leviathan", "name": "Leak Leviathan", "sprite": "serpent", "hp": 470, "xp": 260,
-      "boss": true, "damageScale": 1.5, "phases": ["data-classification", "data-protection"], "color": "#26c6da"
+      "boss": true, "damageScale": 1.2, "phases": ["data-classification", "data-protection"], "color": "#26c6da"
     },
 
     { "id": "single-point-wraith", "name": "Single Point Wraith", "sprite": "wraith", "hp": 245, "xp": 95, "weakness": "resilience", "color": "#b0bec5" },
@@ -91,12 +91,12 @@
     { "id": "corrupted-archive", "name": "Corrupted Archive", "sprite": "slime", "hp": 260, "xp": 95, "weakness": "backups", "color": "#a1887f" },
     {
       "id": "blackout-behemoth", "name": "Blackout Behemoth", "sprite": "golem", "hp": 495, "xp": 270,
-      "boss": true, "damageScale": 1.5, "phases": ["backups", "resilience"], "color": "#607d8b"
+      "boss": true, "damageScale": 1.2, "phases": ["backups", "resilience"], "color": "#607d8b"
     },
 
     {
       "id": "the-architect", "name": "The Architect", "sprite": "wraith", "hp": 730, "xp": 500,
-      "boss": true, "damageScale": 1.75,
+      "boss": true, "damageScale": 1.35,
       "phases": ["specialized-systems", "secure-remote-access", "data-classification", "resilience"],
       "color": "#e0e0e0"
     }

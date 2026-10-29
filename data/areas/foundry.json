@@ -141,7 +141,7 @@
       "hp": 150,
       "xp": 80,
       "boss": true,
-      "damageScale": 1.5,
+      "damageScale": 1.2,
       "phases": ["control-types", "control-categories"],
       "color": "#ffd166"
     },
@@ -188,7 +188,7 @@
       "hp": 170,
       "xp": 100,
       "boss": true,
-      "damageScale": 1.5,
+      "damageScale": 1.2,
       "phases": ["physical-security", "aaa"],
       "color": "#ffb74d"
     },
@@ -235,7 +235,7 @@
       "hp": 190,
       "xp": 120,
       "boss": true,
-      "damageScale": 1.5,
+      "damageScale": 1.2,
       "phases": ["change-technical", "change-documentation"],
       "color": "#ff7043"
     },
@@ -282,7 +282,7 @@
       "hp": 210,
       "xp": 140,
       "boss": true,
-      "damageScale": 1.5,
+      "damageScale": 1.2,
       "phases": ["crypto-tools", "pki-certificates"],
       "color": "#ce93d8"
     },
@@ -293,7 +293,7 @@
       "hp": 300,
       "xp": 250,
       "boss": true,
-      "damageScale": 1.75,
+      "damageScale": 1.35,
       "phases": ["control-types", "zero-trust", "change-technical", "hashing-integrity"],
       "color": "#ffd700"
     }

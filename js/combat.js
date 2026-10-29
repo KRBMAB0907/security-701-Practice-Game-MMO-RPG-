@@ -50,11 +50,15 @@ function skillDamage(skill) {
   return Math.round(damage);
 }
 
-// Enemy damage = mode damage x boss multiplier x your class's defense
-// Enemy damage = mode damage x area difficulty x boss multiplier x your class's defense
+// Enemy damage = mode damage x zone level scale x boss multiplier x your class's defense
+// Enemies grow at the same pace as your base health, so an average player
+// dies in about the same number of hits in every zone (Learner: 7 from a
+// normal enemy). Being above the zone's level still helps, since you have
+// more health than the zone expects. Try numbers with tests/damage_calc.py.
 function enemyDamage() {
-  const areaScale = areaOf(currentZone).enemyDamageScale || 1;
-  const damage = currentMode.enemyDamage * areaScale * (enemy.damageScale || 1) * currentClass().damageTakenScale;
+  const zoneHp = currentMode.playerHp + (currentZone.level - 1) * HP_PER_LEVEL;
+  const levelScale = zoneHp / currentMode.playerHp;
+  const damage = currentMode.enemyDamage * levelScale * (enemy.damageScale || 1) * currentClass().damageTakenScale;
   return Math.round(damage);
 }
 

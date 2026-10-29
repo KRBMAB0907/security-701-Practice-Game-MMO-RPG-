@@ -12,14 +12,14 @@ health: "turns you survive" (hits / enemy hit chance) against "turns to win"
 Run from anywhere:
     python tests/damage_calc.py           # summary per area
     python tests/damage_calc.py --full    # every zone
-    python tests/damage_calc.py --current # the game's formula as it is now
+    python tests/damage_calc.py --old     # the formula before the level scaling
 """
 import json, math, os, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # ---------------------------------------------------------------
-# Numbers to try out. Change these, run again, compare.
+# Numbers to try out (they match the game now). Change, run, compare.
 # ---------------------------------------------------------------
 # Same fields as MODES in js/config.js
 MODES = {
@@ -27,11 +27,11 @@ MODES = {
     "learner": {"playerHp": 100, "enemyHpScale": 1,    "enemyDamage": 15, "hitChance": 0.65},
     "hard":    {"playerHp": 80,  "enemyHpScale": 1,    "enemyDamage": 14, "hitChance": 0.75},
 }
-SUB_BOSS_DAMAGE = 1.25  # in the data now: 1.5
-FINALE_DAMAGE = 1.6     # in the data now: 1.75
+SUB_BOSS_DAMAGE = 1.2  # "damageScale" of bosses in data/areas/*.json
+FINALE_DAMAGE = 1.35   # "damageScale" of each area's last boss
 
-# The game's numbers as they are now (js/config.js, data/areas.json), for --current
-CURRENT_MODES = {
+# The old numbers, before enemy damage grew with zone level, for --old
+OLD_MODES = {
     "fun":     {"playerHp": 100, "enemyHpScale": 0.75, "enemyDamage": 6,  "hitChance": 0.5},
     "learner": {"playerHp": 100, "enemyHpScale": 1,    "enemyDamage": 9,  "hitChance": 0.65},
     "hard":    {"playerHp": 80,  "enemyHpScale": 1,    "enemyDamage": 13, "hitChance": 0.75},
@@ -39,9 +39,9 @@ CURRENT_MODES = {
 
 # Targets: hits to die (normal, sub-boss, finale)
 TARGETS = {
-    "fun":     {"normal": (8, 8), "sub-boss": (6, 7), "finale": (5, 5)},
-    "learner": {"normal": (7, 7), "sub-boss": (6, 6), "finale": (4, 5)},
-    "hard":    {"normal": (6, 6), "sub-boss": (5, 5), "finale": (4, 4)},
+    "fun":     {"normal": (8, 8), "sub-boss": (6, 7), "finale": (6, 6)},
+    "learner": {"normal": (7, 7), "sub-boss": (6, 6), "finale": (5, 6)},
+    "hard":    {"normal": (6, 6), "sub-boss": (5, 5), "finale": (5, 5)},
 }
 
 # Fixed game constants (js/config.js)
@@ -62,14 +62,19 @@ def player_hp(mode, level):
     return mode["playerHp"] + (level - 1) * HP_PER_LEVEL
 
 
-def enemy_damage_now(mode, area, enemy):
-    # The current enemyDamage() in js/combat.js: a fixed step per area
-    return round(mode["enemyDamage"] * area.get("enemyDamageScale", 1) * enemy.get("damageScale", 1))
+# Old per-area steps (they used to be "enemyDamageScale" in data/areas.json)
+OLD_AREA_SCALE = {"foundry": 1, "breach-wastes": 1.3, "citadel": 1.9, "operations-deep": 2.4, "council-spire": 2.9}
+OLD_BOSS_SCALE = {"normal": 1, "sub-boss": 1.5, "finale": 1.75}
 
 
-def enemy_damage_proposed(mode, zone_level, kind):
-    # Option A: enemy damage grows with the zone's level at the same pace as
-    # your base health, so the number of hits to kill you stays the same
+def enemy_damage_old(mode, area, kind):
+    # The old enemyDamage(): a fixed step per area
+    return round(mode["enemyDamage"] * OLD_AREA_SCALE[area["id"]] * OLD_BOSS_SCALE[kind])
+
+
+def enemy_damage_new(mode, zone_level, kind):
+    # Same as enemyDamage() in js/combat.js: enemy damage grows with the zone's
+    # level at the same pace as your base health, so hits to die stay the same
     level_scale = player_hp(mode, zone_level) / mode["playerHp"]
     boss_scale = {"normal": 1, "sub-boss": SUB_BOSS_DAMAGE, "finale": FINALE_DAMAGE}[kind]
     return round(mode["enemyDamage"] * level_scale * boss_scale)
@@ -82,10 +87,10 @@ def kind_of(enemy, finale_id):
 
 
 def main():
-    current = "--current" in sys.argv
+    old = "--old" in sys.argv
     full = "--full" in sys.argv
-    modes = CURRENT_MODES if current else MODES
-    print("Formula:", "CURRENT (game as it is now)" if current else "PROPOSED (Option A)")
+    modes = OLD_MODES if old else MODES
+    print("Formula:", "OLD (fixed step per area)" if old else "NEW (grows with zone level)")
     print("Average player: Analyst, no armor, at the zone's level, %d%% accuracy" % (ACCURACY * 100))
     print("Each cell: hits to die  [turns you survive / turns to win]  * = outside target\n")
 
@@ -107,10 +112,10 @@ def main():
                 for enemy_id in zone["enemies"]:
                     enemy = enemies[enemy_id]
                     kind = kind_of(enemy, finale_id)
-                    if current:
-                        dmg = enemy_damage_now(mode, area, enemy)
+                    if old:
+                        dmg = enemy_damage_old(mode, area, kind)
                     else:
-                        dmg = enemy_damage_proposed(mode, level, kind)
+                        dmg = enemy_damage_new(mode, level, kind)
                     hits = math.ceil(hp / dmg)
                     chance = min(mode["hitChance"] + (BOSS_HIT_BONUS if enemy.get("boss") else 0), MAX_HIT_CHANCE)
                     survive = hits / chance

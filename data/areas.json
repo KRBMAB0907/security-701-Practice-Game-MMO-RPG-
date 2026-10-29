@@ -5,40 +5,35 @@
       "name": "The Foundry",
       "domain": 1,
       "file": "data/areas/foundry.json",
-      "questions": "data/questions/domain1.json",
-      "enemyDamageScale": 1
+      "questions": "data/questions/domain1.json"
     },
     {
       "id": "breach-wastes",
       "name": "The Breach Wastes",
       "domain": 2,
       "file": "data/areas/breach-wastes.json",
-      "questions": "data/questions/domain2.json",
-      "enemyDamageScale": 1.3
+      "questions": "data/questions/domain2.json"
     },
     {
       "id": "citadel",
       "name": "The Citadel",
       "domain": 3,
       "file": "data/areas/citadel.json",
-      "questions": "data/questions/domain3.json",
-      "enemyDamageScale": 1.9
+      "questions": "data/questions/domain3.json"
     },
     {
       "id": "operations-deep",
       "name": "The Operations Deep",
       "domain": 4,
       "file": "data/areas/operations-deep.json",
-      "questions": "data/questions/domain4.json",
-      "enemyDamageScale": 2.4
+      "questions": "data/questions/domain4.json"
     },
     {
       "id": "council-spire",
       "name": "The Council Spire",
       "domain": 5,
       "file": "data/areas/council-spire.json",
-      "questions": "data/questions/domain5.json",
-      "enemyDamageScale": 2.9
+      "questions": "data/questions/domain5.json"
     }
   ]
 }

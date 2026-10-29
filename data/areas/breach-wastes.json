@@ -99,7 +99,7 @@
     { "id": "insider-mole", "name": "Insider Mole", "sprite": "ghost", "hp": 130, "xp": 60, "weakness": "threat-motivations", "color": "#a1887f" },
     {
       "id": "nation-state-phantom", "name": "Nation-State Phantom", "sprite": "ghost", "hp": 260, "xp": 170,
-      "boss": true, "damageScale": 1.5, "phases": ["threat-actors", "threat-motivations"], "color": "#ef5350"
+      "boss": true, "damageScale": 1.2, "phases": ["threat-actors", "threat-motivations"], "color": "#ef5350"
     },
 
     { "id": "phish-swarm", "name": "Phish Swarm", "sprite": "swarm", "hp": 120, "xp": 55, "weakness": "social-engineering", "color": "#4dd0e1" },
@@ -108,7 +108,7 @@
     { "id": "rogue-usb", "name": "Rogue USB", "sprite": "drone", "hp": 135, "xp": 60, "weakness": "threat-vectors", "color": "#ba68c8" },
     {
       "id": "pretext-puppeteer", "name": "Pretext Puppeteer", "sprite": "drone", "hp": 270, "xp": 180,
-      "boss": true, "damageScale": 1.5, "phases": ["social-engineering", "threat-vectors"], "color": "#ffca28"
+      "boss": true, "damageScale": 1.2, "phases": ["social-engineering", "threat-vectors"], "color": "#ffca28"
     },
 
     { "id": "overflow-beast", "name": "Overflow Beast", "sprite": "golem", "hp": 130, "xp": 60, "weakness": "app-vulnerabilities", "color": "#ff7043" },
@@ -117,7 +117,7 @@
     { "id": "misconfig-hydra", "name": "Misconfig Hydra", "sprite": "serpent", "hp": 145, "xp": 65, "weakness": "system-vulnerabilities", "color": "#81c784" },
     {
       "id": "zero-day-specter", "name": "Zero-Day Specter", "sprite": "ghost", "hp": 280, "xp": 190,
-      "boss": true, "damageScale": 1.5, "phases": ["system-vulnerabilities", "app-vulnerabilities"], "color": "#e0e0e0"
+      "boss": true, "damageScale": 1.2, "phases": ["system-vulnerabilities", "app-vulnerabilities"], "color": "#e0e0e0"
     },
 
     { "id": "ransomware-brute", "name": "Ransomware Brute", "sprite": "golem", "hp": 140, "xp": 65, "weakness": "malware", "color": "#e74c49" },
@@ -126,7 +126,7 @@
     { "id": "password-sprayer", "name": "Password Sprayer", "sprite": "swarm", "hp": 145, "xp": 70, "weakness": "password-crypto-attacks", "color": "#ffb74d" },
     {
       "id": "botnet-herder", "name": "Botnet Herder", "sprite": "swarm", "hp": 300, "xp": 200,
-      "boss": true, "damageScale": 1.5, "phases": ["indicators", "network-attacks", "malware"], "color": "#8d6e63"
+      "boss": true, "damageScale": 1.2, "phases": ["indicators", "network-attacks", "malware"], "color": "#8d6e63"
     },
 
     { "id": "lateral-crawler", "name": "Lateral Crawler", "sprite": "crawler", "hp": 145, "xp": 70, "weakness": "mitigations", "color": "#26a69a" },
@@ -135,12 +135,12 @@
     { "id": "default-config-ghoul", "name": "Default Config Ghoul", "sprite": "drone", "hp": 150, "xp": 75, "weakness": "hardening", "color": "#9e9d24" },
     {
       "id": "attack-surface-titan", "name": "Attack Surface Titan", "sprite": "golem", "hp": 310, "xp": 210,
-      "boss": true, "damageScale": 1.5, "phases": ["hardening", "mitigations"], "color": "#5c6bc0"
+      "boss": true, "damageScale": 1.2, "phases": ["hardening", "mitigations"], "color": "#5c6bc0"
     },
 
     {
       "id": "breach-lord", "name": "The Breach Lord", "sprite": "wraith", "hp": 480, "xp": 400,
-      "boss": true, "damageScale": 1.75,
+      "boss": true, "damageScale": 1.35,
       "phases": ["threat-motivations", "social-engineering", "app-vulnerabilities", "malware", "hardening"],
       "color": "#ff3960"
     }
