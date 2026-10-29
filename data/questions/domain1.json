@@ -954,6 +954,188 @@
       ],
       "answer": 3,
       "explanation": "Cameras are mostly detective, recording events to review, and visible cameras also act as a deterrent."
+    },
+    {
+      "id": "d1-069",
+      "objective": "1.3",
+      "topic": "change-documentation",
+      "question": "Which tool keeps a full history of changes to configuration files, including who made each change and when?",
+      "choices": [
+        "Load balancer",
+        "Data masking",
+        "Captive portal",
+        "Version control"
+      ],
+      "answer": 3,
+      "explanation": "Version control records every revision, so teams can see exactly what changed, who changed it, and roll back if needed."
+    },
+    {
+      "id": "d1-070",
+      "objective": "1.3",
+      "topic": "change-documentation",
+      "question": "A technician fixes a server by changing a setting but never records the change. What is the main risk?",
+      "choices": [
+        "The server will immediately shut down",
+        "Future troubleshooting and audits rely on documentation that no longer matches reality",
+        "The backout plan will run by itself",
+        "The change will automatically be undone"
+      ],
+      "answer": 1,
+      "explanation": "Undocumented changes create confusion. The next person to work on the system is misled, and auditors cannot verify the configuration."
+    },
+    {
+      "id": "d1-071",
+      "objective": "1.3",
+      "topic": "change-documentation",
+      "question": "A change alters how staff perform a routine task. What else should be updated?",
+      "choices": [
+        "The standard operating procedures and related documentation",
+        "Only the asset tag on the server",
+        "The company logo",
+        "Nothing, as long as the change succeeded"
+      ],
+      "answer": 0,
+      "explanation": "Procedures must reflect the new way of working. Otherwise staff keep following old steps that may now be wrong or insecure."
+    },
+    {
+      "id": "d1-072",
+      "objective": "1.4",
+      "topic": "encryption",
+      "question": "Full-disk encryption mainly protects data when:",
+      "choices": [
+        "Data is travelling across the internet",
+        "A user clicks a phishing link",
+        "A laptop is lost or stolen while powered off",
+        "An attacker is already logged in to the running system"
+      ],
+      "answer": 2,
+      "explanation": "Full-disk encryption protects data at rest. Once the system is running and unlocked, the data is decrypted for use."
+    },
+    {
+      "id": "d1-073",
+      "objective": "1.4",
+      "topic": "encryption",
+      "question": "Why does HTTPS use asymmetric encryption to exchange a key, then symmetric encryption for the rest of the session?",
+      "choices": [
+        "Asymmetric encryption is faster for large amounts of data",
+        "Asymmetric encryption safely shares the key, and symmetric encryption is much faster for bulk data",
+        "It means no keys are ever needed",
+        "Symmetric encryption cannot protect data"
+      ],
+      "answer": 1,
+      "explanation": "This hybrid approach gets the best of both: secure key exchange from asymmetric crypto and speed from symmetric crypto."
+    },
+    {
+      "id": "d1-074",
+      "objective": "1.4",
+      "topic": "encryption",
+      "question": "What is the general effect of using a longer encryption key with the same algorithm?",
+      "choices": [
+        "The data gets smaller",
+        "The algorithm becomes symmetric",
+        "Encryption becomes reversible without a key",
+        "Brute-force attacks become much harder, at some cost in performance"
+      ],
+      "answer": 3,
+      "explanation": "Each extra bit doubles the number of possible keys, which greatly increases the work needed to guess the right one."
+    },
+    {
+      "id": "d1-075",
+      "objective": "1.4",
+      "topic": "crypto-tools",
+      "question": "Which cloud service centrally creates, stores, rotates and controls access to encryption keys for many applications?",
+      "choices": [
+        "Key management system (KMS)",
+        "Web application firewall (WAF)",
+        "Trusted Platform Module (TPM)",
+        "Certificate revocation list (CRL)"
+      ],
+      "answer": 0,
+      "explanation": "A KMS centralizes key management, so keys are not scattered across application code and configuration files."
+    },
+    {
+      "id": "d1-076",
+      "objective": "1.4",
+      "topic": "crypto-tools",
+      "question": "What is a secure enclave?",
+      "choices": [
+        "A list of trusted certificate authorities",
+        "A network segment for guests",
+        "A protected area of a processor that runs sensitive code isolated from the main operating system",
+        "A locked server room"
+      ],
+      "answer": 2,
+      "explanation": "Secure enclaves keep secrets, such as biometric data or keys, protected even if the main operating system is compromised."
+    },
+    {
+      "id": "d1-077",
+      "objective": "1.4",
+      "topic": "obfuscation",
+      "question": "Developers need realistic test data, so customer names in a database copy are replaced with believable fake names. What is this?",
+      "choices": [
+        "Key stretching",
+        "Steganography",
+        "Digital signing",
+        "Data masking"
+      ],
+      "answer": 3,
+      "explanation": "Data masking hides real values while keeping data usable, which is ideal for testing and training environments."
+    },
+    {
+      "id": "d1-078",
+      "objective": "1.4",
+      "topic": "obfuscation",
+      "question": "Obfuscating an application's source code makes it:",
+      "choices": [
+        "Harder for people to read and reverse engineer, without changing what it does",
+        "Impossible to execute",
+        "Run much faster",
+        "Automatically encrypted with AES"
+      ],
+      "answer": 0,
+      "explanation": "Code obfuscation makes the logic confusing to read. It slows attackers down but is not a substitute for real encryption."
+    },
+    {
+      "id": "d1-079",
+      "objective": "1.4",
+      "topic": "pki-certificates",
+      "question": "In a public key infrastructure (PKI), which entity issues and digitally signs certificates?",
+      "choices": [
+        "Web browser",
+        "Key escrow agent",
+        "Certificate authority (CA)",
+        "Registration server"
+      ],
+      "answer": 2,
+      "explanation": "The CA vouches for the identity in a certificate by signing it. Clients trust certificates that chain back to a CA they trust."
+    },
+    {
+      "id": "d1-080",
+      "objective": "1.4",
+      "topic": "pki-certificates",
+      "question": "What is the main drawback of a self-signed certificate on a public website?",
+      "choices": [
+        "It cannot encrypt traffic",
+        "Browsers do not trust it by default, because no trusted CA vouches for it",
+        "It reveals the private key",
+        "It expires after one day"
+      ],
+      "answer": 1,
+      "explanation": "Self-signed certificates still encrypt traffic, but visitors get warnings because the identity has not been verified by a trusted third party."
+    },
+    {
+      "id": "d1-081",
+      "objective": "1.4",
+      "topic": "hashing-integrity",
+      "question": "What makes a blockchain's open public ledger resistant to tampering?",
+      "choices": [
+        "Its data is encrypted with one shared password",
+        "It is stored on a single secure server",
+        "Each block contains the hash of the block before it, so changing one block breaks the chain",
+        "Only administrators can read it"
+      ],
+      "answer": 2,
+      "explanation": "Altering an old block changes its hash, which no longer matches the next block. The ledger is also copied across many participants, so tampering is easy to spot."
     }
   ]
 }

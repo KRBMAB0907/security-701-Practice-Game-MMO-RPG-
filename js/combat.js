@@ -5,10 +5,18 @@ function topicName(topicId) {
   return topicNames[topicId] || topicId;
 }
 
-// Bosses change weakness at half health (their "phases")
+// Bosses change weakness as they lose health. Their health bar is split
+// evenly into phases: 2 phases switch at half health, 4 phases switch
+// at 75%, 50% and 25%, and so on.
+function currentPhase() {
+  const damageTaken = 1 - enemy.hp / enemy.maxHp;  // 0 at full health, 1 when defeated
+  const phase = Math.floor(damageTaken * enemy.phases.length);
+  return Math.min(phase, enemy.phases.length - 1);  // stay on the last phase at 0 health
+}
+
 function currentWeakness() {
   if (enemy.phases) {
-    return enemy.hp > enemy.maxHp / 2 ? enemy.phases[0] : enemy.phases[1];
+    return enemy.phases[currentPhase()];
   }
   return enemy.weakness;
 }
@@ -185,7 +193,11 @@ function winFight() {
       save.clearedZones.push(currentZone.id);
       writeSave();
     }
-    setLog(currentZone.name + " cleared! +" + enemy.xp + " XP." + levelUp + " The next sub-zone is unlocked.");
+    const isLastZone = zones.indexOf(currentZone) === zones.length - 1;
+    const unlockText = isLastZone
+      ? " THE FOUNDRY IS COMPLETE! You have mastered Domain 1: General Security Concepts."
+      : " The next sub-zone is unlocked.";
+    setLog(currentZone.name + " cleared! +" + enemy.xp + " XP." + levelUp + unlockText);
     nextButton.hidden = true;
   } else {
     setLog("Victory! +" + enemy.xp + " XP." + levelUp);

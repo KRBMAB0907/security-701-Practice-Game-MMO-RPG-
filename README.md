@@ -19,7 +19,7 @@ The five areas follow the five SY0-701 domains:
 
 | Area | Domain | Exam weight | Status |
 | --- | --- | --- | --- |
-| The Foundry | 1.0 General Security Concepts | 12% | Playable: Controls Yard (1.1), Core Sanctum (1.2) |
+| The Foundry | 1.0 General Security Concepts | 12% | Playable: all four sub-zones plus the Foundry Heart finale |
 | The Breach Wastes | 2.0 Threats, Vulnerabilities, and Mitigations | 22% | Planned |
 | The Citadel | 3.0 Security Architecture | 18% | Planned |
 | The Operations Deep | 4.0 Security Operations | 28% | Planned |

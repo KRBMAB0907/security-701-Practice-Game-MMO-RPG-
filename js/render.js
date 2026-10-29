@@ -63,6 +63,10 @@ function draw() {
     ctx.textAlign = "right";
     ctx.fillStyle = enemy.boss ? "#ffd166" : "#d8f3e8";
     ctx.fillText(enemy.name, canvas.width - 8, 28);
+    if (enemy.phases) {
+      ctx.fillStyle = "#7fa894";
+      ctx.fillText("Phase " + (currentPhase() + 1) + "/" + enemy.phases.length, canvas.width - 8, 40);
+    }
 
     drawFighter(player, 16);
     drawFighter(enemy, enemy.boss ? 24 : 16);

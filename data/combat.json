@@ -48,6 +48,62 @@
       "topics": ["physical-security", "gap-analysis"],
       "damage": 22,
       "description": "Find the gaps in physical defenses."
+    },
+    {
+      "id": "rollback-plan",
+      "name": "Rollback Plan",
+      "topics": ["change-process"],
+      "damage": 24,
+      "description": "Follow the change process: approvals, testing and backout plans."
+    },
+    {
+      "id": "impact-scan",
+      "name": "Impact Scan",
+      "topics": ["change-technical"],
+      "damage": 26,
+      "description": "Spot the technical side effects of a change."
+    },
+    {
+      "id": "version-lock",
+      "name": "Version Lock",
+      "topics": ["change-documentation"],
+      "damage": 26,
+      "description": "Keep documentation and version history accurate."
+    },
+    {
+      "id": "key-exchange",
+      "name": "Key Exchange",
+      "topics": ["encryption"],
+      "damage": 26,
+      "description": "Choose the right keys and encryption."
+    },
+    {
+      "id": "certificate-seal",
+      "name": "Certificate Seal",
+      "topics": ["pki-certificates"],
+      "damage": 26,
+      "description": "Master PKI and certificates."
+    },
+    {
+      "id": "hash-strike",
+      "name": "Hash Strike",
+      "topics": ["hashing-integrity"],
+      "damage": 26,
+      "description": "Hashing, salting and digital signatures."
+    },
+    {
+      "id": "key-vault",
+      "name": "Key Vault",
+      "topics": ["crypto-tools"],
+      "damage": 24,
+      "description": "Protect keys with TPMs, HSMs and key managers."
+    },
+    {
+      "id": "stego-veil",
+      "name": "Stego Veil",
+      "topics": ["obfuscation"],
+      "damage": 24,
+      "description": "See through steganography, tokenization and masking."
     }
   ],
   "enemies": [
@@ -126,6 +182,100 @@
       "damageScale": 1.5,
       "phases": ["physical-security", "aaa"],
       "color": "#ffb74d"
+    },
+    {
+      "id": "rogue-change",
+      "name": "Rogue Change",
+      "hp": 80,
+      "xp": 30,
+      "weakness": "change-process",
+      "color": "#f06292"
+    },
+    {
+      "id": "scope-creep",
+      "name": "Scope Creep",
+      "hp": 85,
+      "xp": 35,
+      "weakness": "change-technical",
+      "color": "#81c784"
+    },
+    {
+      "id": "undocumented-patch",
+      "name": "Undocumented Patch",
+      "hp": 90,
+      "xp": 35,
+      "weakness": "change-documentation",
+      "color": "#90a4ae"
+    },
+    {
+      "id": "shadow-deployer",
+      "name": "Shadow Deployer",
+      "hp": 95,
+      "xp": 40,
+      "weakness": "change-process",
+      "color": "#7986cb"
+    },
+    {
+      "id": "outage-overlord",
+      "name": "Outage Overlord",
+      "hp": 190,
+      "xp": 120,
+      "boss": true,
+      "damageScale": 1.5,
+      "phases": ["change-technical", "change-documentation"],
+      "color": "#ff7043"
+    },
+    {
+      "id": "plaintext-leaker",
+      "name": "Plaintext Leaker",
+      "hp": 90,
+      "xp": 35,
+      "weakness": "encryption",
+      "color": "#4db6ac"
+    },
+    {
+      "id": "forged-certificate",
+      "name": "Forged Certificate",
+      "hp": 95,
+      "xp": 40,
+      "weakness": "pki-certificates",
+      "color": "#ba68c8"
+    },
+    {
+      "id": "hash-collider",
+      "name": "Hash Collider",
+      "hp": 100,
+      "xp": 40,
+      "weakness": "hashing-integrity",
+      "color": "#e57373"
+    },
+    {
+      "id": "hidden-payload",
+      "name": "Hidden Payload",
+      "hp": 100,
+      "xp": 45,
+      "weakness": "obfuscation",
+      "color": "#a1887f"
+    },
+    {
+      "id": "rogue-ca",
+      "name": "Rogue Certificate Authority",
+      "hp": 210,
+      "xp": 140,
+      "boss": true,
+      "damageScale": 1.5,
+      "phases": ["crypto-tools", "pki-certificates"],
+      "color": "#ce93d8"
+    },
+    {
+      "id": "foundry-overseer",
+      "name": "Foundry Overseer",
+      "hp": 300,
+      "xp": 250,
+      "boss": true,
+      "damageScale": 1.75,
+      "phases": ["control-types", "zero-trust", "change-technical", "hashing-integrity"],
+      "color": "#ffd700"
     }
   ],
   "zones": [
@@ -147,15 +297,22 @@
       "id": "change-gate",
       "name": "Change Gate",
       "objective": "1.3",
-      "skills": [],
-      "enemies": []
+      "skills": ["rollback-plan", "impact-scan", "version-lock"],
+      "enemies": ["rogue-change", "scope-creep", "undocumented-patch", "shadow-deployer", "outage-overlord"]
     },
     {
       "id": "cipher-vault",
       "name": "Cipher Vault",
       "objective": "1.4",
-      "skills": [],
-      "enemies": []
+      "skills": ["key-exchange", "certificate-seal", "hash-strike", "key-vault", "stego-veil"],
+      "enemies": ["plaintext-leaker", "forged-certificate", "hash-collider", "hidden-payload", "rogue-ca"]
+    },
+    {
+      "id": "foundry-heart",
+      "name": "Foundry Heart",
+      "objective": "1.1-1.4",
+      "skills": ["firewall-rule", "patch-deploy", "integrity-check", "zero-trust-verify", "rollback-plan", "impact-scan", "key-exchange", "hash-strike"],
+      "enemies": ["foundry-overseer"]
     }
   ]
 }
