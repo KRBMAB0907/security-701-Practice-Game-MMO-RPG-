@@ -74,6 +74,9 @@ function clearedZoneMessage(area) {
     } else {
       message += " " + nextArea.name + " is coming soon.";
     }
+  } else {
+    // The last area: the whole game is complete
+    message += " YOU HAVE CONQUERED ALL FIVE DOMAINS OF SECURITY+! Replay any zone on Hard mode to sharpen your weak spots, and good luck on the exam!";
   }
   return message;
 }

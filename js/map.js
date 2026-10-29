@@ -65,8 +65,10 @@ function showMap() {
     selectedArea = latestPlayableArea();
   }
 
+  const allMastered = areas.every(area => isAreaComplete(area));
   document.getElementById("player-summary").textContent =
-    currentClass().name + " · Level " + save.level + " · XP " + save.xp + "/" + xpToNextLevel() + " · Mode: " + currentMode.label;
+    currentClass().name + " · Level " + save.level + " · XP " + save.xp + "/" + xpToNextLevel() + " · Mode: " + currentMode.label +
+    (allMastered ? " · ALL FIVE DOMAINS MASTERED" : "");
   document.getElementById("gear-button").textContent = "Gear (" + save.inventory.length + ")";
 
   showAreaTabs();

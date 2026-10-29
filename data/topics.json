@@ -227,7 +227,8 @@
           "id": "5.1",
           "title": "Summarize elements of effective security governance",
           "topics": [
-            { "id": "governance", "name": "Policies, standards and governance roles" }
+            { "id": "governance", "name": "Policies, standards and procedures" },
+            { "id": "governance-roles", "name": "Governance structures and data roles" }
           ]
         },
         {
@@ -243,28 +244,32 @@
           "id": "5.3",
           "title": "Explain the processes associated with third-party risk assessment and management",
           "topics": [
-            { "id": "third-party-risk", "name": "Third-party risk and agreements" }
+            { "id": "third-party-risk", "name": "Vendor assessment and monitoring" },
+            { "id": "vendor-agreements", "name": "Agreement types" }
           ]
         },
         {
           "id": "5.4",
           "title": "Summarize elements of effective security compliance",
           "topics": [
-            { "id": "compliance-privacy", "name": "Compliance and privacy" }
+            { "id": "compliance-privacy", "name": "Compliance reporting and consequences" },
+            { "id": "privacy", "name": "Privacy" }
           ]
         },
         {
           "id": "5.5",
           "title": "Explain types and purposes of audits and assessments",
           "topics": [
-            { "id": "audits-assessments", "name": "Audits, assessments and penetration testing" }
+            { "id": "audits-assessments", "name": "Audits and assessments" },
+            { "id": "penetration-testing", "name": "Penetration testing" }
           ]
         },
         {
           "id": "5.6",
           "title": "Given a scenario, implement security awareness practices",
           "topics": [
-            { "id": "security-awareness", "name": "Security awareness training" }
+            { "id": "security-awareness", "name": "Running an awareness program" },
+            { "id": "awareness-topics", "name": "Safe everyday security habits" }
           ]
         }
       ]

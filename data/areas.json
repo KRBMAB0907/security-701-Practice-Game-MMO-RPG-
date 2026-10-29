@@ -36,7 +36,7 @@
       "id": "council-spire",
       "name": "The Council Spire",
       "domain": 5,
-      "file": null,
+      "file": "data/areas/council-spire.json",
       "questions": "data/questions/domain5.json",
       "enemyDamageScale": 2.9
     }

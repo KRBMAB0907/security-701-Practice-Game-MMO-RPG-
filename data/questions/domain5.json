@@ -62,7 +62,7 @@
     {
       "id": "d5-005",
       "objective": "5.1",
-      "topic": "governance",
+      "topic": "governance-roles",
       "question": "Which role is ultimately accountable for a set of data, including deciding how it is classified?",
       "choices": [
         "Data custodian",
@@ -76,7 +76,7 @@
     {
       "id": "d5-006",
       "objective": "5.1",
-      "topic": "governance",
+      "topic": "governance-roles",
       "question": "Which role carries out the day-to-day protection of data, such as running backups and applying access controls?",
       "choices": [
         "Data owner",
@@ -90,7 +90,7 @@
     {
       "id": "d5-007",
       "objective": "5.1",
-      "topic": "governance",
+      "topic": "governance-roles",
       "question": "A payroll company processes employee data on behalf of another company that decides how that data is used. What is the payroll company's role?",
       "choices": [
         "Data controller",
@@ -104,7 +104,7 @@
     {
       "id": "d5-008",
       "objective": "5.1",
-      "topic": "governance",
+      "topic": "governance-roles",
       "question": "In a centralized governance structure, security decisions are:",
       "choices": [
         "Left to individual employees",
@@ -244,7 +244,7 @@
     {
       "id": "d5-018",
       "objective": "5.3",
-      "topic": "third-party-risk",
+      "topic": "vendor-agreements",
       "question": "Which agreement defines measurable performance a vendor must meet, such as 99.9% uptime?",
       "choices": [
         "Service level agreement (SLA)",
@@ -258,7 +258,7 @@
     {
       "id": "d5-019",
       "objective": "5.3",
-      "topic": "third-party-risk",
+      "topic": "vendor-agreements",
       "question": "Two organizations write down a mutual intention to work together, but it is not usually legally binding. What is this?",
       "choices": [
         "Service level agreement (SLA)",
@@ -272,7 +272,7 @@
     {
       "id": "d5-020",
       "objective": "5.3",
-      "topic": "third-party-risk",
+      "topic": "vendor-agreements",
       "question": "Which agreement legally requires a vendor to keep the company's confidential information secret?",
       "choices": [
         "Statement of work (SOW)",
@@ -286,7 +286,7 @@
     {
       "id": "d5-021",
       "objective": "5.3",
-      "topic": "third-party-risk",
+      "topic": "vendor-agreements",
       "question": "A company signs one agreement with a vendor that sets the general terms for all future projects together. What is this?",
       "choices": [
         "Memorandum of understanding (MOU)",
@@ -300,7 +300,7 @@
     {
       "id": "d5-022",
       "objective": "5.3",
-      "topic": "third-party-risk",
+      "topic": "vendor-agreements",
       "question": "Which document describes the specific tasks, deliverables and timeline for one project with a vendor?",
       "choices": [
         "Master service agreement (MSA)",
@@ -370,7 +370,7 @@
     {
       "id": "d5-027",
       "objective": "5.4",
-      "topic": "compliance-privacy",
+      "topic": "privacy",
       "question": "Under GDPR, a customer asks a company to delete all their personal data. Which right is this?",
       "choices": [
         "The right to non-repudiation",
@@ -384,7 +384,7 @@
     {
       "id": "d5-028",
       "objective": "5.4",
-      "topic": "compliance-privacy",
+      "topic": "privacy",
       "question": "Under privacy laws, what is a data subject?",
       "choices": [
         "The regulator enforcing the law",
@@ -398,7 +398,7 @@
     {
       "id": "d5-029",
       "objective": "5.4",
-      "topic": "compliance-privacy",
+      "topic": "privacy",
       "question": "Why must a US-based online store that sells to customers in the EU follow GDPR?",
       "choices": [
         "GDPR applies only to companies headquartered in Europe",
@@ -454,7 +454,7 @@
     {
       "id": "d5-033",
       "objective": "5.4",
-      "topic": "compliance-privacy",
+      "topic": "privacy",
       "question": "Which privacy practice means collecting only the personal data truly needed for a purpose?",
       "choices": [
         "Data aggregation",
@@ -496,7 +496,7 @@
     {
       "id": "d5-036",
       "objective": "5.5",
-      "topic": "audits-assessments",
+      "topic": "penetration-testing",
       "question": "Penetration testers are given full network diagrams, source code and credentials before testing. What type of environment is this?",
       "choices": [
         "Unknown environment",
@@ -510,7 +510,7 @@
     {
       "id": "d5-037",
       "objective": "5.5",
-      "topic": "audits-assessments",
+      "topic": "penetration-testing",
       "question": "Penetration testers receive no information about the target, just like a real outside attacker. What type of environment is this?",
       "choices": [
         "Integrated environment",
@@ -524,7 +524,7 @@
     {
       "id": "d5-038",
       "objective": "5.5",
-      "topic": "audits-assessments",
+      "topic": "penetration-testing",
       "question": "Testers are given some information, such as a list of IP ranges, but not full details. What type of environment is this?",
       "choices": [
         "Unknown environment",
@@ -538,7 +538,7 @@
     {
       "id": "d5-039",
       "objective": "5.5",
-      "topic": "audits-assessments",
+      "topic": "penetration-testing",
       "question": "A tester gathers information from public websites and social media without directly touching the target's systems. What is this?",
       "choices": [
         "Privilege escalation",
@@ -552,7 +552,7 @@
     {
       "id": "d5-040",
       "objective": "5.5",
-      "topic": "audits-assessments",
+      "topic": "penetration-testing",
       "question": "A tester tries to get into a building by tailgating staff and picking locks. What type of penetration test is this?",
       "choices": [
         "Code review",
@@ -608,7 +608,7 @@
     {
       "id": "d5-044",
       "objective": "5.6",
-      "topic": "security-awareness",
+      "topic": "awareness-topics",
       "question": "Which password practice should security awareness training encourage?",
       "choices": [
         "Using a password manager with a unique password for each account",
@@ -622,7 +622,7 @@
     {
       "id": "d5-045",
       "objective": "5.6",
-      "topic": "security-awareness",
+      "topic": "awareness-topics",
       "question": "An employee finds a USB drive labeled Salaries in the parking lot. What should they do?",
       "choices": [
         "Hand it to the security or IT team without plugging it in",
@@ -636,7 +636,7 @@
     {
       "id": "d5-046",
       "objective": "5.6",
-      "topic": "security-awareness",
+      "topic": "awareness-topics",
       "question": "Why should employees avoid posting details about internal systems or upcoming projects on social media?",
       "choices": [
         "It violates copyright law",
@@ -678,7 +678,7 @@
     {
       "id": "d5-049",
       "objective": "5.6",
-      "topic": "security-awareness",
+      "topic": "awareness-topics",
       "question": "Which topic is especially important in security training for remote and hybrid workers?",
       "choices": [
         "How to badge into the office lobby",
@@ -688,6 +688,580 @@
       ],
       "answer": 3,
       "explanation": "Remote work moves the workplace outside corporate defenses, so home network security and safe connections matter more."
+    },
+    {
+      "id": "d5-050",
+      "objective": "5.1",
+      "topic": "governance",
+      "question": "Which document states management's high-level security goals and expectations for the organization?",
+      "choices": [
+        "Procedure",
+        "Work order",
+        "Guideline",
+        "Policy"
+      ],
+      "answer": 3,
+      "explanation": "Policies set direction and intent. Standards, procedures and guidelines fill in the specific details beneath them."
+    },
+    {
+      "id": "d5-051",
+      "objective": "5.1",
+      "topic": "governance",
+      "question": "A company rewrites several security policies because a new national privacy law takes effect. What drove this change?",
+      "choices": [
+        "A change in office layout",
+        "A hardware upgrade",
+        "An external consideration: a new legal and regulatory requirement",
+        "An internal staffing change"
+      ],
+      "answer": 2,
+      "explanation": "Governance must respond to external considerations such as regulations, laws and industry standards, at local, national and global levels."
+    },
+    {
+      "id": "d5-052",
+      "objective": "5.1",
+      "topic": "governance",
+      "question": "Why should security policies be reviewed and revised on a regular schedule?",
+      "choices": [
+        "Because auditors forbid policies older than a month",
+        "To keep them current with changing threats, laws, technology and business needs",
+        "To make them longer each year",
+        "Because old policies expire automatically"
+      ],
+      "answer": 1,
+      "explanation": "Monitoring and revision keep governance documents accurate. An outdated policy can require the wrong things."
+    },
+    {
+      "id": "d5-053",
+      "objective": "5.1",
+      "topic": "governance-roles",
+      "question": "Under privacy laws, which role decides why and how personal data is processed?",
+      "choices": [
+        "Data controller",
+        "Data processor",
+        "Data subject",
+        "Data custodian"
+      ],
+      "answer": 0,
+      "explanation": "The controller sets the purpose and means of processing. Processors act on the controller's instructions."
+    },
+    {
+      "id": "d5-054",
+      "objective": "5.1",
+      "topic": "governance-roles",
+      "question": "A group of senior leaders meets regularly to oversee the organization's security strategy and approve major decisions. What is this?",
+      "choices": [
+        "A help desk",
+        "A change window",
+        "A governance committee or board",
+        "A red team"
+      ],
+      "answer": 2,
+      "explanation": "Boards and committees are governance structures that provide oversight and accountability for security."
+    },
+    {
+      "id": "d5-055",
+      "objective": "5.1",
+      "topic": "governance-roles",
+      "question": "In a decentralized governance structure, security decisions are:",
+      "choices": [
+        "Made by one central security team",
+        "Made only by outside auditors",
+        "Never made at all",
+        "Made by individual business units or departments"
+      ],
+      "answer": 3,
+      "explanation": "Decentralized governance gives units flexibility but can lead to inconsistent security across the organization."
+    },
+    {
+      "id": "d5-056",
+      "objective": "5.1",
+      "topic": "governance-roles",
+      "question": "What is a data steward mainly responsible for?",
+      "choices": [
+        "Owning the business that created the data",
+        "Data quality and making sure data is handled according to policy",
+        "Writing laws about data",
+        "Building the company's network"
+      ],
+      "answer": 1,
+      "explanation": "Stewards and custodians manage data day to day, keeping it accurate, protected and properly used."
+    },
+    {
+      "id": "d5-057",
+      "objective": "5.2",
+      "topic": "risk-analysis",
+      "question": "Rating risks as high, medium or low, rather than in dollar amounts, is an example of which kind of risk assessment?",
+      "choices": [
+        "Financial-only",
+        "Annualized",
+        "Qualitative",
+        "Quantitative"
+      ],
+      "answer": 2,
+      "explanation": "Qualitative assessments use categories and judgment. Quantitative assessments use numbers like SLE and ALE."
+    },
+    {
+      "id": "d5-058",
+      "objective": "5.2",
+      "topic": "risk-analysis",
+      "question": "The amount of risk an organization is willing to accept in pursuit of its goals is called its:",
+      "choices": [
+        "Exposure factor",
+        "Recovery point objective",
+        "Risk register",
+        "Risk appetite"
+      ],
+      "answer": 3,
+      "explanation": "Risk appetite guides decisions. An organization with a low appetite will spend more to reduce risks."
+    },
+    {
+      "id": "d5-059",
+      "objective": "5.2",
+      "topic": "risk-strategies",
+      "question": "A company installs a firewall and endpoint protection to reduce the chance of a breach. Which risk strategy is this?",
+      "choices": [
+        "Mitigate",
+        "Accept",
+        "Avoid",
+        "Transfer"
+      ],
+      "answer": 0,
+      "explanation": "Mitigation reduces the likelihood or impact of a risk by adding controls."
+    },
+    {
+      "id": "d5-060",
+      "objective": "5.2",
+      "topic": "risk-strategies",
+      "question": "A legacy system is formally allowed to break the password policy for six months while a replacement is built. What is this?",
+      "choices": [
+        "A penetration test",
+        "A documented exception",
+        "Risk transfer",
+        "Risk avoidance"
+      ],
+      "answer": 1,
+      "explanation": "An exception (or exemption) is a form of risk acceptance. It should be documented, approved and time-limited."
+    },
+    {
+      "id": "d5-061",
+      "objective": "5.2",
+      "topic": "business-impact",
+      "question": "Which metric measures the average time a system runs between failures?",
+      "choices": [
+        "Mean time between failures (MTBF)",
+        "Recovery time objective (RTO)",
+        "Annualized rate of occurrence (ARO)",
+        "Mean time to repair (MTTR)"
+      ],
+      "answer": 0,
+      "explanation": "A higher MTBF means a more reliable system. MTTR measures how long repairs take."
+    },
+    {
+      "id": "d5-062",
+      "objective": "5.2",
+      "topic": "business-impact",
+      "question": "What is the main purpose of a business impact analysis (BIA)?",
+      "choices": [
+        "To test employees with phishing emails",
+        "To scan for vulnerabilities",
+        "To choose a new logo",
+        "To identify critical business functions and the impact of losing them"
+      ],
+      "answer": 3,
+      "explanation": "A BIA tells the organization what matters most and how quickly it must be recovered, which sets RTOs and RPOs."
+    },
+    {
+      "id": "d5-063",
+      "objective": "5.3",
+      "topic": "third-party-risk",
+      "question": "After signing a contract, a company keeps checking the vendor's security, such as reviewing audit reports each year. What is this?",
+      "choices": [
+        "Risk avoidance",
+        "Vendor monitoring",
+        "Decommissioning",
+        "Due diligence before selection"
+      ],
+      "answer": 1,
+      "explanation": "A vendor's security can change over time, so oversight continues for as long as the relationship lasts."
+    },
+    {
+      "id": "d5-064",
+      "objective": "5.3",
+      "topic": "third-party-risk",
+      "question": "A company sends potential vendors a detailed list of questions about their security controls. What is this tool called?",
+      "choices": [
+        "A penetration test",
+        "A service level agreement",
+        "A security questionnaire",
+        "A non-disclosure agreement"
+      ],
+      "answer": 2,
+      "explanation": "Questionnaires gather consistent information about vendors' security, which helps compare and assess them."
+    },
+    {
+      "id": "d5-065",
+      "objective": "5.3",
+      "topic": "third-party-risk",
+      "question": "A company checks not only its vendor's security, but also the security of the companies that vendor relies on. What is this?",
+      "choices": [
+        "Load balancing",
+        "Data masking",
+        "Risk avoidance",
+        "Supply chain analysis"
+      ],
+      "answer": 3,
+      "explanation": "Supply chain risk extends beyond direct vendors. A weak supplier further down the chain can still lead to a breach."
+    },
+    {
+      "id": "d5-066",
+      "objective": "5.3",
+      "topic": "third-party-risk",
+      "question": "A cloud vendor shares an independent auditor's report on its security controls. Why is this useful to customers?",
+      "choices": [
+        "It guarantees the vendor will never be breached",
+        "It provides trusted evidence about the vendor's controls without each customer auditing them",
+        "It is required to create a password",
+        "It replaces the customer's own security program"
+      ],
+      "answer": 1,
+      "explanation": "Independent assessments, such as SOC 2 reports, let many customers rely on one thorough, trusted review."
+    },
+    {
+      "id": "d5-067",
+      "objective": "5.3",
+      "topic": "vendor-agreements",
+      "question": "Two companies agree to work together as partners, sharing profits and responsibilities. Which agreement defines this?",
+      "choices": [
+        "Non-disclosure agreement (NDA)",
+        "Acceptable use policy (AUP)",
+        "Business partnership agreement (BPA)",
+        "Service level agreement (SLA)"
+      ],
+      "answer": 2,
+      "explanation": "A BPA sets out each partner's responsibilities, contributions and share of profits or losses."
+    },
+    {
+      "id": "d5-068",
+      "objective": "5.3",
+      "topic": "vendor-agreements",
+      "question": "Which agreement is more formal than an MOU and clearly defines each party's responsibilities?",
+      "choices": [
+        "Memorandum of agreement (MOA)",
+        "Acceptable use policy (AUP)",
+        "Privacy notice",
+        "Memorandum of understanding (MOU)"
+      ],
+      "answer": 0,
+      "explanation": "An MOA spells out specific responsibilities, while an MOU mostly records shared intentions."
+    },
+    {
+      "id": "d5-069",
+      "objective": "5.3",
+      "topic": "vendor-agreements",
+      "question": "Why should security requirements be written into vendor contracts?",
+      "choices": [
+        "So the vendor is legally obligated to meet them",
+        "Because contracts cannot be enforced",
+        "So the vendor can ignore them",
+        "To make the contract shorter"
+      ],
+      "answer": 0,
+      "explanation": "Requirements in the contract can be enforced. Verbal promises cannot."
+    },
+    {
+      "id": "d5-070",
+      "objective": "5.4",
+      "topic": "compliance-privacy",
+      "question": "A company uses automated tools to continuously check its systems against regulatory requirements. What is this?",
+      "choices": [
+        "Penetration testing",
+        "Automated compliance monitoring",
+        "Data masking",
+        "Risk avoidance"
+      ],
+      "answer": 1,
+      "explanation": "Automation catches compliance drift quickly, instead of waiting for the next annual audit."
+    },
+    {
+      "id": "d5-071",
+      "objective": "5.4",
+      "topic": "compliance-privacy",
+      "question": "A healthcare provider repeatedly ignores required security regulations. Besides fines, what serious consequence could follow?",
+      "choices": [
+        "Faster network speeds",
+        "Automatic certification",
+        "Losing its license or ability to operate",
+        "A free security upgrade"
+      ],
+      "answer": 2,
+      "explanation": "Non-compliance can bring sanctions and loss of licenses, along with fines and reputational damage."
+    },
+    {
+      "id": "d5-072",
+      "objective": "5.4",
+      "topic": "compliance-privacy",
+      "question": "A company fails a PCI DSS assessment, and a business partner ends their contract as a result. What type of consequence is this?",
+      "choices": [
+        "A data sovereignty issue",
+        "A technical vulnerability",
+        "A risk transfer",
+        "A contractual impact"
+      ],
+      "answer": 3,
+      "explanation": "Partners and customers often require compliance in their contracts, so failing it can cost business relationships."
+    },
+    {
+      "id": "d5-073",
+      "objective": "5.4",
+      "topic": "privacy",
+      "question": "Why should an organization keep an inventory of the personal data it holds?",
+      "choices": [
+        "It replaces the need for encryption",
+        "It makes databases faster",
+        "You cannot protect, retain or delete personal data properly if you don't know where it is",
+        "Privacy laws forbid inventories"
+      ],
+      "answer": 2,
+      "explanation": "A data inventory supports retention rules, deletion requests and breach response."
+    },
+    {
+      "id": "d5-074",
+      "objective": "5.4",
+      "topic": "privacy",
+      "question": "Why might a global company have to follow different privacy rules in different countries?",
+      "choices": [
+        "Companies can choose any law they like",
+        "Privacy laws vary by country and region",
+        "Every country uses identical privacy laws",
+        "Privacy laws only apply in the US"
+      ],
+      "answer": 1,
+      "explanation": "Local, regional, national and global laws can all apply, depending on where people and data are located."
+    },
+    {
+      "id": "d5-075",
+      "objective": "5.4",
+      "topic": "privacy",
+      "question": "Personal data such as names, home addresses and Social Security numbers is commonly called:",
+      "choices": [
+        "Metadata",
+        "Intellectual property",
+        "Public data",
+        "Personally identifiable information (PII)"
+      ],
+      "answer": 3,
+      "explanation": "PII can identify a specific person, so laws and policies require it to be carefully protected."
+    },
+    {
+      "id": "d5-076",
+      "objective": "5.4",
+      "topic": "privacy",
+      "question": "Names in a research dataset are replaced with random IDs that can be linked back to people only with a separately protected key. What is this?",
+      "choices": [
+        "Pseudonymization",
+        "Data sovereignty",
+        "Hashing with salt",
+        "Anonymization"
+      ],
+      "answer": 0,
+      "explanation": "Pseudonymized data can be re-identified with the key. Fully anonymized data cannot be linked back at all."
+    },
+    {
+      "id": "d5-077",
+      "objective": "5.5",
+      "topic": "audits-assessments",
+      "question": "A government regulator inspects a bank to confirm it follows financial security rules. What type of assessment is this?",
+      "choices": [
+        "Tabletop exercise",
+        "Bug bounty",
+        "Internal self-assessment",
+        "Regulatory examination"
+      ],
+      "answer": 3,
+      "explanation": "Regulators can examine organizations they oversee, and the results can lead to required fixes or penalties."
+    },
+    {
+      "id": "d5-078",
+      "objective": "5.5",
+      "topic": "audits-assessments",
+      "question": "A department uses a checklist to evaluate its own security controls before the official audit. What is this?",
+      "choices": [
+        "Self-assessment",
+        "External audit",
+        "Physical penetration test",
+        "Regulatory examination"
+      ],
+      "answer": 0,
+      "explanation": "Self-assessments find and fix issues early, and help prepare for formal audits."
+    },
+    {
+      "id": "d5-079",
+      "objective": "5.5",
+      "topic": "audits-assessments",
+      "question": "After an audit, the auditor formally states that the organization's controls are effective. What is this called?",
+      "choices": [
+        "Exception",
+        "Escalation",
+        "Attestation",
+        "Remediation"
+      ],
+      "answer": 2,
+      "explanation": "An attestation is a formal statement that can be shared with regulators, customers or partners as proof of good controls."
+    },
+    {
+      "id": "d5-080",
+      "objective": "5.5",
+      "topic": "audits-assessments",
+      "question": "Which group inside an organization oversees internal audits and reviews their findings?",
+      "choices": [
+        "Change advisory board",
+        "Audit committee",
+        "Red team",
+        "Help desk"
+      ],
+      "answer": 1,
+      "explanation": "The audit committee gives independent oversight of the audit process, usually reporting to the board."
+    },
+    {
+      "id": "d5-081",
+      "objective": "5.5",
+      "topic": "penetration-testing",
+      "question": "A tester scans the target's servers and probes open ports directly. What type of reconnaissance is this?",
+      "choices": [
+        "Dumpster diving",
+        "Passive reconnaissance",
+        "OSINT only",
+        "Active reconnaissance"
+      ],
+      "answer": 3,
+      "explanation": "Active reconnaissance interacts with the target's systems, so it can be detected. Passive reconnaissance never touches them."
+    },
+    {
+      "id": "d5-082",
+      "objective": "5.5",
+      "topic": "penetration-testing",
+      "question": "During an exercise, one team plays the attacker and tries to break in. What type of testing is this?",
+      "choices": [
+        "Self-assessment",
+        "Offensive testing (red team)",
+        "Compliance reporting",
+        "Defensive testing (blue team)"
+      ],
+      "answer": 1,
+      "explanation": "Offensive testing simulates real attackers. Defensive testing focuses on detecting and stopping them."
+    },
+    {
+      "id": "d5-083",
+      "objective": "5.5",
+      "topic": "penetration-testing",
+      "question": "Attackers and defenders work side by side during a test, sharing what they find in real time. What type of testing is this?",
+      "choices": [
+        "Passive reconnaissance",
+        "Unknown environment test",
+        "Integrated testing (purple team)",
+        "External audit"
+      ],
+      "answer": 2,
+      "explanation": "Integrated testing helps defenders improve immediately by learning exactly how the attackers operated."
+    },
+    {
+      "id": "d5-084",
+      "objective": "5.6",
+      "topic": "security-awareness",
+      "question": "Which is a common sign of a phishing email that training should teach people to spot?",
+      "choices": [
+        "An urgent request from a sender address that doesn't match the real organization",
+        "An email with no links or attachments from your manager",
+        "A normal newsletter you subscribed to",
+        "A message from a coworker about lunch"
+      ],
+      "answer": 0,
+      "explanation": "Urgency, pressure and mismatched or look-alike addresses are classic phishing warning signs."
+    },
+    {
+      "id": "d5-085",
+      "objective": "5.6",
+      "topic": "security-awareness",
+      "question": "Why should security awareness training be repeated regularly, not just given once at hiring?",
+      "choices": [
+        "It is only needed for new employees",
+        "Training expires legally after one day",
+        "Repeating training replaces technical controls",
+        "Threats change and people forget, so regular refreshers keep skills sharp"
+      ],
+      "answer": 3,
+      "explanation": "Ongoing training, plus updates on new threats, keeps security habits strong over time."
+    },
+    {
+      "id": "d5-086",
+      "objective": "5.6",
+      "topic": "security-awareness",
+      "question": "Why might the finance team get extra, specialized awareness training?",
+      "choices": [
+        "They manage the firewall",
+        "They use different computers",
+        "They are common targets for invoice scams and fraudulent wire transfer requests",
+        "They never receive email"
+      ],
+      "answer": 2,
+      "explanation": "Role-based training focuses on the specific threats each group faces, making it more effective."
+    },
+    {
+      "id": "d5-087",
+      "objective": "5.6",
+      "topic": "awareness-topics",
+      "question": "What does a clean desk policy ask employees to do?",
+      "choices": [
+        "Lock away sensitive papers and devices when they leave their desk",
+        "Clean their keyboard daily",
+        "Leave documents out for easy sharing",
+        "Remove all personal photos"
+      ],
+      "answer": 0,
+      "explanation": "A clean desk keeps sensitive information away from visitors, cleaners and anyone passing by."
+    },
+    {
+      "id": "d5-088",
+      "objective": "5.6",
+      "topic": "awareness-topics",
+      "question": "Training reminds employees to double-check email recipients before sending. What is this mainly meant to prevent?",
+      "choices": [
+        "Spam filters failing",
+        "Accidental data leaks to the wrong people",
+        "Network slowdowns",
+        "Password expiration"
+      ],
+      "answer": 1,
+      "explanation": "Many leaks are unintentional. Simple habits like checking recipients prevent sensitive data from going to the wrong place."
+    },
+    {
+      "id": "d5-089",
+      "objective": "5.6",
+      "topic": "awareness-topics",
+      "question": "An employee works on a confidential report on a crowded train. What risk should they watch out for?",
+      "choices": [
+        "Tailgating into the office",
+        "Shoulder surfing: people reading their screen",
+        "Port scanning",
+        "DNS poisoning"
+      ],
+      "answer": 1,
+      "explanation": "Privacy screens and awareness of who can see your screen protect information in public places."
+    },
+    {
+      "id": "d5-090",
+      "objective": "5.6",
+      "topic": "awareness-topics",
+      "question": "Where should employees go when they are unsure whether something is allowed under company security rules?",
+      "choices": [
+        "Nowhere, they should just guess",
+        "Their personal social media",
+        "The company's security policies and handbook, or the security team",
+        "A random internet forum"
+      ],
+      "answer": 2,
+      "explanation": "Good awareness programs make policies easy to find and encourage people to ask the security team when unsure."
     }
   ]
 }

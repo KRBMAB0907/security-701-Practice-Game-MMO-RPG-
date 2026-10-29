@@ -24,9 +24,9 @@ The five areas follow the five SY0-701 domains:
 | The Breach Wastes | 2.0 Threats, Vulnerabilities, and Mitigations | 22% | Playable: 5 sub-zones plus the Breach Core finale |
 | The Citadel | 3.0 Security Architecture | 18% | Playable: 4 sub-zones plus the Citadel Keep finale |
 | The Operations Deep | 4.0 Security Operations | 28% | Playable: 9 sub-zones plus the Operations Core finale |
-| The Council Spire | 5.0 Security Program Management and Oversight | 20% | Planned |
+| The Council Spire | 5.0 Security Program Management and Oversight | 20% | Playable: 6 sub-zones plus the Spire Summit finale |
 
-Clearing an area's finale unlocks the next area. The question bank already covers all 28 exam objectives (300+ questions), so new areas are built on top of it.
+Clearing an area's finale unlocks the next area. All five areas are playable, backed by 450 original questions covering all 28 exam objectives (at least 15 each).
 
 ## Run it on your own computer
 
