@@ -221,6 +221,8 @@ function showEquipSlots() {
 
 function showGear() {
   showPanel("gear-panel");
+  floatingTexts = [];  // the last fight's damage numbers don't belong on the Gear screen
+  speech = null;
   showEquipSlots();
 
   document.getElementById("gear-summary").textContent =

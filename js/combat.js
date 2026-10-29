@@ -315,6 +315,7 @@ function finishTurn() {
 // pause the enemy's attack, so the exchange reads like a real fight.
 function playTurn(correct, timedOut) {
   turnInProgress = true;
+  floatingTexts = [];  // clear last turn's numbers, so an old "MISS" can't linger on the win screen
   const yourTurn = correct ? playerAttacks() : playerMisses(timedOut);
   setLog(yourTurn);
 
@@ -388,6 +389,7 @@ function xpReward() {
 function winFight() {
   fightOver = true;
   fightWon = true;
+  speech = null;  // a defeated enemy stops talking
   const xp = xpReward();
   const levelUp = gainXp(xp);
   const drop = rollDrop();

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges">
+  <!-- Browser tab icon: a pixel shield in the game's green, drawn as squares so it stays crisp -->
+  <rect width="16" height="16" fill="#05070a"/>
+  <path fill="#00ff9c" d="M2 2h12v7h-1v2h-1v1h-1v1h-1v1H6v-1H5v-1H4v-1H3V9H2z"/>
+  <path fill="#05070a" d="M4 4h8v5h-1v1h-1v1H6v-1H5V9H4z"/>
+  <path fill="#00ff9c" d="M7 5h2v2h1v3H6V7h1z"/>
+</svg>
