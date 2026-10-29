@@ -48,6 +48,16 @@
     <button id="map-button" hidden>Back to map</button>
   </div>
 
+  <!-- Order matters: settings and state first, main.js (which starts the game) last -->
+  <script src="js/config.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/leveling.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/combat.js"></script>
+  <script src="js/timer.js"></script>
+  <script src="js/questions.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
