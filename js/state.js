@@ -11,7 +11,10 @@ let classes = [];
 
 // A brand-new save: also used by "Reset progress"
 function newSave() {
-  return { level: 1, xp: 0, clearedZones: [], classId: null };
+  return {
+    level: 1, xp: 0, clearedZones: [], classId: null,
+    inventory: [], equipped: { tool: null, armor: null, module: null }, nextItemId: 1
+  };
 }
 
 // Saved progress (kept in the browser between visits)
@@ -27,6 +30,8 @@ let fightOver = false;
 let fightWon = false;
 let timerId = null;
 let timeLeft = 0;
+let questionTime = 0;     // full time for the current question, including gear bonus
+let failoverUsed = false; // the Failover Core legendary works once per fight
 
 // The two fighters. flash and shake count down in milliseconds.
 const player = { name: "You", hp: 100, maxHp: 100, x: 48,  y: 112, color: "#00ff9c", flash: 0, shake: 0 };

@@ -28,6 +28,7 @@ body {
 #mode-panel,
 #class-panel,
 #map-panel,
+#gear-panel,
 #battle-panel {
   width: 100%;
   max-width: 960px;
@@ -145,3 +146,48 @@ body {
 
 #choices button.correct { background: #0b3d2a; }
 #choices button.wrong   { background: #4a1020; }
+/* Loot message after a fight, colored by tier in the code */
+#loot-message {
+  min-height: 1.2em;
+  font-weight: bold;
+}
+
+/* A wrong answer removed by the Elimination Engine legendary */
+#choices button.eliminated {
+  text-decoration: line-through;
+  opacity: 0.4;
+}
+
+/* Gear screen: one row per item */
+#gear-summary {
+  color: #ffd166;
+}
+
+.gear-item {
+  border: 2px solid #1c2733;
+  padding: 10px 12px;
+  margin: 8px 0;
+}
+
+.gear-item small {
+  display: block;
+  color: #7fa894;
+  margin: 4px 0 8px;
+}
+
+.gear-item button {
+  padding: 6px 12px;
+  margin-right: 8px;
+  font: inherit;
+  font-size: 14px;
+  background: #0a0e14;
+  color: #d8f3e8;
+  border: 1px solid #00ff9c;
+  cursor: pointer;
+}
+
+.gear-item button:disabled {
+  border-color: #33413a;
+  color: #5d6f66;
+  cursor: not-allowed;
+}

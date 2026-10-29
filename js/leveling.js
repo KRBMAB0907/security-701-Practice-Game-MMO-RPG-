@@ -4,10 +4,10 @@ function xpToNextLevel() {
   return save.level * XP_PER_LEVEL;
 }
 
-// Base health from the mode and level, then scaled by your class
+// Base health from the mode and level, scaled by your class, plus armor
 function playerMaxHp() {
   const base = currentMode.playerHp + (save.level - 1) * HP_PER_LEVEL;
-  return Math.round(base * currentClass().hpScale);
+  return Math.round(base * currentClass().hpScale) + gearBonus("hp");
 }
 
 // Returns a message if the player leveled up, otherwise ""

@@ -1,0 +1,53 @@
+{
+  "dropChance": 0.4,
+  "bossDropChance": 1,
+  "hardModeRareBonus": 2,
+  "inventoryLimit": 24,
+
+  "slots": [
+    { "id": "tool",   "name": "Tool",   "stat": "damage", "label": "skill damage" },
+    { "id": "armor",  "name": "Armor",  "stat": "hp",     "label": "max health" },
+    { "id": "module", "name": "Module", "stat": "time",   "label": "seconds per question" }
+  ],
+
+  "tiers": [
+    { "id": "common",    "name": "Common",    "color": "#c8d6cf", "weight": 50, "rare": false, "levelOffset": 0, "stats": { "damage": 5,  "hp": 10, "time": 4 } },
+    { "id": "uncommon",  "name": "Uncommon",  "color": "#00ff9c", "weight": 28, "rare": false, "levelOffset": 0, "stats": { "damage": 10, "hp": 20, "time": 7 } },
+    { "id": "rare",      "name": "Rare",      "color": "#4fc3f7", "weight": 15, "rare": true,  "levelOffset": 1, "stats": { "damage": 15, "hp": 30, "time": 10 } },
+    { "id": "epic",      "name": "Epic",      "color": "#e040fb", "weight": 6,  "rare": true,  "levelOffset": 2, "stats": { "damage": 22, "hp": 45, "time": 14 } },
+    { "id": "legendary", "name": "Legendary", "color": "#ffb300", "weight": 1,  "rare": true,  "levelOffset": 3, "stats": { "damage": 30, "hp": 60, "time": 18 } }
+  ],
+
+  "bases": [
+    { "slot": "tool",   "name": "Packet Analyzer" },
+    { "slot": "tool",   "name": "Port Scanner" },
+    { "slot": "tool",   "name": "Hex Editor" },
+    { "slot": "armor",  "name": "Hardened Kernel" },
+    { "slot": "armor",  "name": "Firewall Plating" },
+    { "slot": "armor",  "name": "Encrypted Shell" },
+    { "slot": "module", "name": "Overclock Chip" },
+    { "slot": "module", "name": "Cache Module" },
+    { "slot": "module", "name": "Latency Buffer" }
+  ],
+
+  "legendaries": [
+    {
+      "slot": "tool",
+      "name": "Insight Lens",
+      "effect": "insight",
+      "effectText": "Weak points take an extra +0.5x damage."
+    },
+    {
+      "slot": "armor",
+      "name": "Failover Core",
+      "effect": "failover",
+      "effectText": "Once per fight, survive a hit that would defeat you, with 1 health."
+    },
+    {
+      "slot": "module",
+      "name": "Elimination Engine",
+      "effect": "eliminate",
+      "effectText": "Removes one wrong answer from every question."
+    }
+  ]
+}

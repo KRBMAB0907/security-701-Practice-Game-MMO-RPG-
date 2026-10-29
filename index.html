@@ -32,14 +32,24 @@
     <div id="zone-list"></div>
     <div class="small-buttons">
       <button id="change-mode-button">Change difficulty</button>
+      <button id="gear-button">Gear</button>
       <button id="change-class-button">Change class</button>
       <button id="reset-button">Reset progress</button>
+    </div>
+  </div>
+
+  <div id="gear-panel" hidden>
+    <p id="gear-summary"></p>
+    <div id="gear-list"></div>
+    <div class="small-buttons">
+      <button id="gear-back-button">Back to map</button>
     </div>
   </div>
 
   <div id="battle-panel" hidden>
     <p id="mode-label"></p>
     <p id="battle-log"></p>
+    <p id="loot-message"></p>
 
     <div id="skills"></div>
 
@@ -63,6 +73,7 @@
   <script src="js/storage.js"></script>
   <script src="js/leveling.js"></script>
   <script src="js/classes.js"></script>
+  <script src="js/loot.js"></script>
   <script src="js/render.js"></script>
   <script src="js/map.js"></script>
   <script src="js/combat.js"></script>

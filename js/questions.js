@@ -16,6 +16,16 @@ function showQuestion(question) {
     choicesDiv.appendChild(button);
   });
 
+  // Elimination Engine legendary: knock out one random wrong answer.
+  // The button stays in place (disabled) so answer numbers still line up.
+  if (hasEffect("eliminate")) {
+    const wrongIndexes = question.choices.map((_, index) => index).filter(index => index !== question.answer);
+    const removed = randomFrom(wrongIndexes);
+    const button = choicesDiv.children[removed];
+    button.disabled = true;
+    button.classList.add("eliminated");
+  }
+
   startTimer(question);
 }
 

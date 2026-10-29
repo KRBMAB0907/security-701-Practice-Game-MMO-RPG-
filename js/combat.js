@@ -39,11 +39,13 @@ function skillDamage(skill) {
   const playerClass = currentClass();
   let damage = skill.damage * (1 + (save.level - 1) * DAMAGE_PER_LEVEL);
   damage *= playerClass.damageScale;
+  damage *= 1 + gearBonus("damage") / 100;  // tool gear, e.g. +15%
   if (isFavored(skill)) {
     damage *= FAVORED_SKILL_BONUS;
   }
   if (hitsWeakPoint(skill)) {
-    damage *= playerClass.weaknessMultiplier;
+    // The Insight Lens legendary adds +0.5x on top of the class's multiplier
+    damage *= playerClass.weaknessMultiplier + (hasEffect("insight") ? 0.5 : 0);
   }
   return Math.round(damage);
 }
@@ -92,7 +94,9 @@ function startFight() {
 
   fightOver = false;
   fightWon = false;
+  failoverUsed = false;
   floatingTexts = [];
+  setLootMessage(null);
   document.getElementById("mode-label").textContent = "Mode: " + currentMode.label;
 
   const intro = enemy.boss ? "BOSS: " + enemy.name + " blocks the way!" : "A " + enemy.name + " appears!";
@@ -176,15 +180,44 @@ function playerAttacks() {
 
 // Called after a wrong answer or timeout
 function enemyAttacks() {
-  const damage = enemyDamage();
+  let damage = enemyDamage();
+  let failoverText = "";
+
+  // Failover Core legendary: once per fight, a lethal hit leaves you at 1 health
+  if (damage >= player.hp && hasEffect("failover") && !failoverUsed) {
+    damage = player.hp - 1;
+    failoverUsed = true;
+    failoverText = " Your Failover Core kicks in and keeps you standing with 1 health!";
+  }
+
   hit(player, damage, "#ff3864");
-  setLog(currentSkill.name + " fizzles! The " + enemy.name + " hits you for " + damage + ".");
+  setLog(currentSkill.name + " fizzles! The " + enemy.name + " hits you for " + damage + "." + failoverText);
+}
+
+// Shows what dropped, in the tier's color. Pass null to clear it.
+function setLootMessage(drop) {
+  const message = document.getElementById("loot-message");
+  if (drop === null) {
+    message.textContent = "";
+    return;
+  }
+  const tier = tierById(drop.item.tier);
+  message.style.color = tier.color;
+  // Legendary names don't include the tier ("Failover Core"), so add it
+  const name = drop.item.tier === "legendary" ? "Legendary " + drop.item.name : drop.item.name;
+  message.textContent = drop.kept
+    ? "LOOT: " + name + " (" + describeStat(drop.item) + ", requires level " + drop.item.level + ")"
+    : "Your gear bag is full, so the " + drop.item.name + " was left behind. Discard something on the Gear screen.";
 }
 
 function winFight() {
   fightOver = true;
   fightWon = true;
   const levelUp = gainXp(enemy.xp);
+  const drop = rollDrop();
+  if (drop !== null) {
+    setLootMessage(drop);
+  }
   const isLastEnemy = enemyIndex === currentZone.enemies.length - 1;
   const nextButton = document.getElementById("next-button");
 

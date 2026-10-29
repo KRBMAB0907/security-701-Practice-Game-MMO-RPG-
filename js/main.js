@@ -25,11 +25,12 @@ async function start() {
     // Load all the files at the same time and wait for all to finish.
     // The Foundry only needs Domain 1 questions; later areas will load
     // their own domain file from data/questions/.
-    const [topicData, questionData, combatData, classData] = await Promise.all([
+    const [topicData, questionData, combatData, classData, lootData] = await Promise.all([
       loadJson("data/topics.json"),
       loadJson("data/questions/domain1.json"),
       loadJson("data/combat.json"),
-      loadJson("data/classes.json")
+      loadJson("data/classes.json"),
+      loadJson("data/loot.json")
     ]);
 
     // Flatten domains -> objectives -> topics into one id -> name lookup
@@ -46,6 +47,7 @@ async function start() {
     enemyTypes = combatData.enemies;
     zones = combatData.zones;
     classes = classData.classes;
+    lootTable = lootData;
 
     status.hidden = true;
     showPanel("mode-panel");

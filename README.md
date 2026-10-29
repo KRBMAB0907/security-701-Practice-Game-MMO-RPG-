@@ -11,6 +11,7 @@ A free, browser-based RPG that helps you study for the **CompTIA Security+ (SY0-
 - **Choose a skill.** Each skill is tied to an exam topic, and using it means answering a question on that topic.
 - **Answer correctly** and your skill hits. Answer wrong or run out of time and the enemy hits you. Every answer shows an explanation, so mistakes still teach.
 - **Hit weak points.** Enemies are weak to certain topics, and matching skills deal 1.5x damage. Bosses change weakness halfway through the fight.
+- **Collect loot.** Enemies drop gear in five tiers, from Common to Legendary: tools boost damage, armor boosts health, and modules add time to the question timer. Legendaries have special effects, like removing a wrong answer from every question. Hard mode finds rare gear more often.
 - **Level up and unlock areas.** Clear a sub-zone's boss to unlock the next one. Progress saves in your browser.
 
 ## World map
@@ -50,6 +51,7 @@ js/                     the game code, one file per job (loaded in this order)
   storage.js            loading data files, saving progress
   leveling.js           XP, leveling and the death penalty
   classes.js            picking and switching classes
+  loot.js               drops, gear and the gear screen
   render.js             drawing the canvas and the game loop
   map.js                screens, the map and unlocking
   combat.js             skills, weaknesses, damage, winning and losing
@@ -60,6 +62,7 @@ data/
   topics.json           every domain, objective and topic
   combat.json           skills, enemies and zones
   classes.json          class stats and favored skills
+  loot.json             loot tiers, drop chances and item names
   questions/            question bank, one file per domain
 tools/
   check_questions.py    checks the question bank for mistakes

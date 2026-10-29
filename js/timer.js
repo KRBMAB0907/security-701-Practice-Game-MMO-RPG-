@@ -8,7 +8,7 @@ function stopTimer() {
 }
 
 function updateTimerDisplay() {
-  const percent = (timeLeft / currentMode.time) * 100;
+  const percent = (timeLeft / questionTime) * 100;
   const bar = document.getElementById("timer-bar");
   bar.style.width = percent + "%";
   bar.classList.toggle("low", timeLeft <= LOW_TIME_WARNING);
@@ -27,7 +27,8 @@ function startTimer(question) {
   }
 
   timerBox.hidden = false;
-  timeLeft = currentMode.time;
+  questionTime = currentMode.time + gearBonus("time");  // module gear adds seconds
+  timeLeft = questionTime;
   updateTimerDisplay();
 
   // setInterval runs the function every 1000 milliseconds (1 second)
