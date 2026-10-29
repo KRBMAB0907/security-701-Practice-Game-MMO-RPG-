@@ -14,3 +14,36 @@ body {
   image-rendering: pixelated;
   border: 2px solid #00ff9c;
 }
+body {
+  margin: 0;
+  background: #05070a;
+  color: #d8f3e8;
+  font-family: monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+}
+
+#question-panel {
+  width: 100%;
+  max-width: 960px;
+  font-size: 18px;
+}
+
+#choices button, #next-button {
+  display: block;
+  width: 100%;
+  margin: 8px 0;
+  padding: 12px;
+  font: inherit;
+  text-align: left;
+  background: #0a0e14;
+  color: #d8f3e8;
+  border: 2px solid #00ff9c;
+  cursor: pointer;
+}
+
+#choices button.correct { background: #0b3d2a; }
+#choices button.wrong   { background: #4a1020; }
