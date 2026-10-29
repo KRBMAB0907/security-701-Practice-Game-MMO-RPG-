@@ -46,6 +46,7 @@ These play each zone many times as simulated players (different classes, modes a
 | `balance_operations_deep.py` | The Operations Deep | 10+ min |
 | `balance_council_spire.py` | The Council Spire | 10+ min |
 | `balance_finales.py` | Tries needed for the last two finales on Hard | several min |
+| `damage_calc.py` | No browser: hits to die in every zone, to try numbers before changing the game | seconds |
 
 ## Notes for writing new tests
 
