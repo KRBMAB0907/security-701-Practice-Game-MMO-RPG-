@@ -23,6 +23,7 @@ const DAMAGE_PER_LEVEL = 0.1;     // +10% skill damage per level above 1
 const HP_PER_LEVEL = 10;          // extra max health per level
 const XP_PER_LEVEL = 50;          // level N needs N x 50 XP to level up
 const DEATH_XP_LOSS = 0.25;       // dying costs 25% of the current XP bar
+const RECENT_QUESTION_MEMORY = 6; // how many recent questions to avoid repeating
 const SAVE_KEY = "secplus-rpg-save";
 
 // Animation timings (milliseconds)
@@ -44,7 +45,7 @@ let currentMode = null;
 let currentZone = null;
 let enemyIndex = 0;       // which enemy in the zone we're fighting
 let currentSkill = null;
-let lastQuestionId = null;
+let recentQuestionIds = [];  // the last few questions asked, to avoid repeats
 let fightOver = false;
 let fightWon = false;
 let timerId = null;
@@ -322,9 +323,22 @@ function currentWeakness() {
   return enemy.weakness;
 }
 
+// True if this skill uses the topic the enemy is currently weak to
+function hitsWeakPoint(skill) {
+  return skill.topics.includes(currentWeakness());
+}
+
+// Only the skills this zone allows (all skills if the zone lists none)
+function zoneSkills() {
+  if (!currentZone.skills || currentZone.skills.length === 0) {
+    return skills;
+  }
+  return skills.filter(skill => currentZone.skills.includes(skill.id));
+}
+
 function skillDamage(skill) {
   let damage = skill.damage * (1 + (save.level - 1) * DAMAGE_PER_LEVEL);
-  if (skill.topic === currentWeakness()) {
+  if (hitsWeakPoint(skill)) {
     damage *= WEAKNESS_MULTIPLIER;
   }
   return Math.round(damage);
@@ -382,9 +396,9 @@ function showSkillChoice() {
   skillsDiv.innerHTML = "";
   skillsDiv.hidden = false;
 
-  skills.forEach(skill => {
+  zoneSkills().forEach(skill => {
     const button = document.createElement("button");
-    const weakPoint = skill.topic === currentWeakness();
+    const weakPoint = hitsWeakPoint(skill);
     button.textContent = skill.name + " (" + skillDamage(skill) + " damage)" + (weakPoint ? " - WEAK POINT!" : "");
     button.classList.toggle("weak-point", weakPoint);
 
@@ -401,17 +415,23 @@ function useSkill(skill) {
   currentSkill = skill;
   document.getElementById("skills").hidden = true;
   setLog("You ready " + skill.name + "...");
-  showQuestion(pickQuestion(skill.topic));
+  showQuestion(pickQuestion(skill.topics));
 }
 
-// A random question on the skill's topic, avoiding an instant repeat
-function pickQuestion(topic) {
-  let pool = questions.filter(q => q.topic === topic && q.id !== lastQuestionId);
+// A random question on any of the skill's topics, preferring ones the
+// player hasn't seen recently so small topics don't repeat back to back
+function pickQuestion(topics) {
+  const matching = questions.filter(q => topics.includes(q.topic));
+  let pool = matching.filter(q => !recentQuestionIds.includes(q.id));
   if (pool.length === 0) {
-    pool = questions.filter(q => q.topic === topic);
+    pool = matching;  // every one was seen recently, so allow repeats
   }
   const question = pool[Math.floor(Math.random() * pool.length)];
-  lastQuestionId = question.id;
+
+  recentQuestionIds.push(question.id);
+  if (recentQuestionIds.length > RECENT_QUESTION_MEMORY) {
+    recentQuestionIds.shift();  // forget the oldest
+  }
   return question;
 }
 

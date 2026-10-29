@@ -842,6 +842,118 @@
       ],
       "answer": 0,
       "explanation": "A token has no mathematical link to the real data, so a stolen token is useless without access to the secure vault."
+    },
+    {
+      "id": "d1-061",
+      "objective": "1.2",
+      "topic": "deception",
+      "question": "A security team sets up a decoy server that looks like a real customer database, to attract attackers and study their methods. What is this?",
+      "choices": [
+        "Honeyfile",
+        "Jump server",
+        "Proxy server",
+        "Honeypot"
+      ],
+      "answer": 3,
+      "explanation": "A honeypot is a single decoy system. Since no legitimate user needs it, any activity on it is suspicious and worth studying."
+    },
+    {
+      "id": "d1-062",
+      "objective": "1.2",
+      "topic": "deception",
+      "question": "A security team builds a whole network of decoy servers and workstations designed to look like a real environment. What is this called?",
+      "choices": [
+        "VLAN",
+        "Screened subnet",
+        "Honeynet",
+        "Honeyfile"
+      ],
+      "answer": 2,
+      "explanation": "A honeynet is a group of honeypots. It keeps attackers busy longer and shows how they move between systems."
+    },
+    {
+      "id": "d1-063",
+      "objective": "1.2",
+      "topic": "deception",
+      "question": "A fake API key is placed in a code repository. If anyone ever tries to use it, the security team is alerted. What is this?",
+      "choices": [
+        "Session cookie",
+        "Honeytoken",
+        "Wildcard certificate",
+        "Honeynet"
+      ],
+      "answer": 1,
+      "explanation": "A honeytoken is fake data that has no legitimate use, so any attempt to use it reveals that someone stole it."
+    },
+    {
+      "id": "d1-064",
+      "objective": "1.2",
+      "topic": "zero-trust",
+      "question": "In a Zero Trust architecture, which component carries out the access decision by allowing or blocking the connection?",
+      "choices": [
+        "Policy engine",
+        "Policy administrator",
+        "Threat intelligence feed",
+        "Policy enforcement point"
+      ],
+      "answer": 3,
+      "explanation": "The policy engine decides, the policy administrator passes the decision along, and the policy enforcement point in the data plane enforces it."
+    },
+    {
+      "id": "d1-065",
+      "objective": "1.2",
+      "topic": "zero-trust",
+      "question": "In Zero Trust, what is the goal of threat scope reduction?",
+      "choices": [
+        "Removing the need for authentication",
+        "Limiting access so a compromised account or device can reach as little as possible",
+        "Reducing the number of firewalls",
+        "Allowing all internal traffic"
+      ],
+      "answer": 1,
+      "explanation": "By giving each user and device only the access it needs, an attacker who compromises one account cannot move freely through the network."
+    },
+    {
+      "id": "d1-066",
+      "objective": "1.2",
+      "topic": "gap-analysis",
+      "question": "After completing a gap analysis, what does an organization usually create next?",
+      "choices": [
+        "A plan to close the gaps between current and required security",
+        "A new company logo",
+        "A backup of all workstations",
+        "A list of employee birthdays"
+      ],
+      "answer": 0,
+      "explanation": "A gap analysis identifies what is missing. The next step is a prioritized plan to reach the desired state."
+    },
+    {
+      "id": "d1-067",
+      "objective": "1.2",
+      "topic": "physical-security",
+      "question": "Bollards placed in front of a building's entrance are mainly used to:",
+      "choices": [
+        "Check employees' identity badges",
+        "Detect motion inside the building",
+        "Stop vehicles from driving into the building",
+        "Encrypt data in the building"
+      ],
+      "answer": 2,
+      "explanation": "Bollards are sturdy posts that block vehicles while still letting people walk through."
+    },
+    {
+      "id": "d1-068",
+      "objective": "1.2",
+      "topic": "physical-security",
+      "question": "What is a main security benefit of video surveillance (CCTV)?",
+      "choices": [
+        "It patches vulnerable systems",
+        "It prevents phishing emails",
+        "It encrypts network traffic",
+        "It records activity for review and can discourage intruders"
+      ],
+      "answer": 3,
+      "explanation": "Cameras are mostly detective, recording events to review, and visible cameras also act as a deterrent."
     }
   ]
 }
