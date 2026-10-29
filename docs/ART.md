@@ -9,6 +9,8 @@ All the art is plain PNG files, so you can redraw anything in [Piskel](https://w
 | Player classes | `assets/sprites/classes/<class id>.png` | 32x16 (2 frames) |
 | Enemy bodies | `assets/sprites/enemies/<body>.png` | 32x16 (2 frames) |
 | Boss crown | `assets/sprites/crown.png` | 10x5 |
+| Item icons | `assets/sprites/items/<icon>.png` | 16x16 (1 frame) |
+| Armor worn on a class | `assets/sprites/armor/<armor icon>-<class id>.png` | 32x16 (2 frames) |
 | Area scenes | `assets/backgrounds/<area id>.png` | 320x180 |
 
 **Sprite sheets have 2 frames side by side,** each 16x16 pixels. The game swaps between them every 0.4 seconds for the idle animation. Frame 2 is usually the same drawing raised by 1 pixel, so the character bobs.
@@ -22,7 +24,13 @@ Enemy sprites are **grayscale**. The game multiplies each pixel by the enemy's `
 - **Black** stays black, which is good for outlines and eyes.
 - Any real color you use gets mixed with the tint, so stick to grays.
 
+The same goes for **regular item icons and armor overlays**: they're grayscale and get tinted by the item's tier color (Common, Uncommon, Rare, Epic). **Legendary** icons and armor (`insight-lens`, `failover-core`, `elimination-engine`) are full color and never tinted.
+
 Class sprites and backgrounds are **not tinted**, so use any colors you like.
+
+## Armor overlays
+
+Armor is drawn on top of the class sprite, so each armor needs one overlay per class, drawn to fit that class's torso. Only paint the armor pixels and leave the rest transparent. Keep both frames lined up with the class sheet so the armor bobs with the body. If you redraw a class sprite, check its armor overlays still fit.
 
 Draw everything **facing right**. The game flips enemies so they face the player.
 

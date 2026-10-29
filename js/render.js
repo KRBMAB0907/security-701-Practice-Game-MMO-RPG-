@@ -81,7 +81,15 @@ function drawFighter(fighter, size, flip) {
     ctx.fillStyle = fighter.flash > 0 ? "#ffffff" : fighter.color;
     ctx.fillRect(x, y, size, size);
   } else {
-    drawFrame(sheet, idleFrame(animationTime), x, y, size, flip);
+    const frame = idleFrame(animationTime);
+    drawFrame(sheet, frame, x, y, size, flip);
+    // The player's equipped armor, drawn over the body on the same frame
+    if (fighter === player) {
+      const armor = armorSheet(fighter.flash > 0);
+      if (armor !== null) {
+        drawFrame(armor, frame, x, y, size, flip);
+      }
+    }
   }
 
   // Bosses wear a crown, centred above their head
@@ -160,6 +168,11 @@ function draw() {
     shadowText(text.value, text.x, text.y, text.color);
   });
   ctx.globalAlpha = 1;
+
+  // The character on the Gear screen animates too
+  if (!document.getElementById("gear-panel").hidden) {
+    drawPaperDoll();
+  }
 }
 
 // Move the animations forward by dt milliseconds

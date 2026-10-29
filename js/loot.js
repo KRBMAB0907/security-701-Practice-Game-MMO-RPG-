@@ -54,6 +54,7 @@ function makeItem(tier, zoneLevel) {
     name: isLegendary ? base.name : tier.name + " " + base.name,
     tier: tier.id,
     slot: base.slot,
+    icon: base.icon,
     stat: slot.stat,
     value: Math.round(tier.stats[slot.stat] * (1 + (level - 1) * LEVEL_STAT_BONUS)),
     level: level,
@@ -118,12 +119,19 @@ function isEquipped(item) {
   return save.equipped[item.slot] === item.id;
 }
 
-function equip(item) {
+// Equip an item, replacing whatever was in its slot. Returns false if
+// your level is too low. Used by the Gear screen and the after-battle button.
+function equipItem(item) {
   if (item.level > save.level) {
-    return;  // the button is disabled too, but never trust the button alone
+    return false;  // the buttons are disabled too, but never trust the button alone
   }
   save.equipped[item.slot] = item.id;
   writeSave();
+  return true;
+}
+
+function equip(item) {
+  equipItem(item);
   showGear();
 }
 
@@ -155,8 +163,61 @@ function describeStat(item) {
 // The gear screen
 // ---------------------------------------------------------------
 
+// The character on the Gear screen, wearing their armor (like Minecraft's
+// inventory). render.js calls this every frame so it animates.
+function drawPaperDoll() {
+  const doll = document.getElementById("doll-canvas");
+  const dollCtx = doll.getContext("2d");
+  dollCtx.clearRect(0, 0, doll.width, doll.height);
+  const playerClass = currentClass();
+  if (playerClass === undefined) {
+    return;
+  }
+  const body = getImage(classSpritePath(playerClass.id));
+  const frame = idleFrame(animationTime);
+  if (body === null) {
+    dollCtx.fillStyle = playerClass.color;  // fallback while the image loads
+    dollCtx.fillRect(4, 4, 8, 12);
+    return;
+  }
+  drawFrame(body, frame, 0, 0, SPRITE_SIZE, false, dollCtx);
+  const armor = armorSheet(false);
+  if (armor !== null) {
+    drawFrame(armor, frame, 0, 0, SPRITE_SIZE, false, dollCtx);
+  }
+}
+
+// The Tool, Armor and Module slots beside the character
+function showEquipSlots() {
+  const slots = document.getElementById("doll-slots");
+  slots.innerHTML = "";
+  lootTable.slots.forEach(slot => {
+    const item = findItem(save.equipped[slot.id]) || null;
+    const row = document.createElement("div");
+    row.className = "doll-slot";
+    row.appendChild(makeIconCanvas(item, 48));
+
+    const text = document.createElement("div");
+    const label = document.createElement("strong");
+    label.textContent = slot.name;
+    text.appendChild(label);
+    const detail = document.createElement("small");
+    if (item === null) {
+      detail.textContent = "Empty";
+    } else {
+      detail.textContent = item.name + " · " + describeStat(item) +
+        (item.level > save.level ? " · inactive until level " + item.level : "");
+      detail.style.color = tierById(item.tier).color;
+    }
+    text.appendChild(detail);
+    row.appendChild(text);
+    slots.appendChild(row);
+  });
+}
+
 function showGear() {
   showPanel("gear-panel");
+  showEquipSlots();
 
   document.getElementById("gear-summary").textContent =
     "Gear bonuses: +" + gearBonus("damage") + "% skill damage, +" + gearBonus("hp") +
@@ -178,11 +239,14 @@ function showGear() {
   sorted.forEach(item => {
     const row = document.createElement("div");
     row.className = "gear-item";
+    row.appendChild(makeIconCanvas(item, 40));
+    const info = document.createElement("div");
+    row.appendChild(info);
 
     const name = document.createElement("strong");
     name.textContent = item.name + (isEquipped(item) ? " [equipped]" : "");
     name.style.color = tierById(item.tier).color;
-    row.appendChild(name);
+    info.appendChild(name);
 
     const details = document.createElement("small");
     let text = slotById(item.slot).name + " · " + describeStat(item) + " · Requires level " + item.level;
@@ -193,7 +257,7 @@ function showGear() {
       text += " · (your level is too low)";
     }
     details.textContent = text;
-    row.appendChild(details);
+    info.appendChild(details);
 
     const equipButton = document.createElement("button");
     if (isEquipped(item)) {
@@ -204,12 +268,12 @@ function showGear() {
       equipButton.disabled = item.level > save.level;
       equipButton.addEventListener("click", () => equip(item));
     }
-    row.appendChild(equipButton);
+    info.appendChild(equipButton);
 
     const discardButton = document.createElement("button");
     discardButton.textContent = "Discard";
     discardButton.addEventListener("click", () => discard(item));
-    row.appendChild(discardButton);
+    info.appendChild(discardButton);
 
     list.appendChild(row);
   });

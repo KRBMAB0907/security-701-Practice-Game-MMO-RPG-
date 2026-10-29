@@ -221,20 +221,52 @@ function enemyAttacks() {
   setLog(currentSkill.name + " fizzles! The " + enemy.name + " hits you for " + damage + "." + failoverText);
 }
 
-// Shows what dropped, in the tier's color. Pass null to clear it.
+// Shows what dropped: its icon, its stats compared with what you have
+// equipped, and an "Equip now" button. Pass null to clear it.
 function setLootMessage(drop) {
-  const message = document.getElementById("loot-message");
+  const box = document.getElementById("loot-message");
+  box.innerHTML = "";
   if (drop === null) {
-    message.textContent = "";
     return;
   }
-  const tier = tierById(drop.item.tier);
-  message.style.color = tier.color;
+  const item = drop.item;
+  const tier = tierById(item.tier);
+  box.appendChild(makeIconCanvas(item, 40));
+
+  const info = document.createElement("div");
+  const title = document.createElement("strong");
   // Legendary names don't include the tier ("Failover Core"), so add it
-  const name = drop.item.tier === "legendary" ? "Legendary " + drop.item.name : drop.item.name;
-  message.textContent = drop.kept
-    ? "LOOT: " + name + " (" + describeStat(drop.item) + ", requires level " + drop.item.level + ")"
-    : "Your gear bag is full, so the " + drop.item.name + " was left behind. Discard something on the Gear screen.";
+  title.textContent = "LOOT: " + (item.tier === "legendary" ? "Legendary " + item.name : item.name);
+  title.style.color = tier.color;
+  info.appendChild(title);
+
+  const details = document.createElement("small");
+  if (!drop.kept) {
+    details.textContent = "Your gear bag is full, so it was left behind. Discard something on the Gear screen.";
+  } else {
+    const current = findItem(save.equipped[item.slot]);
+    details.textContent = describeStat(item) + " · requires level " + item.level + " · " +
+      (current ? "you have: " + current.name + " (" + describeStat(current) + ")" : "your " + slotById(item.slot).name + " slot is empty");
+  }
+  info.appendChild(details);
+
+  if (drop.kept) {
+    const button = document.createElement("button");
+    if (item.level > save.level) {
+      button.textContent = "Reach level " + item.level + " to equip";
+      button.disabled = true;
+    } else {
+      button.textContent = "Equip now";
+      button.addEventListener("click", () => {
+        equipItem(item);
+        button.textContent = "Equipped!";
+        button.disabled = true;
+        details.textContent = describeStat(item) + " · equipped";
+      });
+    }
+    info.appendChild(button);
+  }
+  box.appendChild(info);
 }
 
 function winFight() {

@@ -19,33 +19,36 @@
   ],
 
   "bases": [
-    { "slot": "tool",   "name": "Packet Analyzer" },
-    { "slot": "tool",   "name": "Port Scanner" },
-    { "slot": "tool",   "name": "Hex Editor" },
-    { "slot": "armor",  "name": "Hardened Kernel" },
-    { "slot": "armor",  "name": "Firewall Plating" },
-    { "slot": "armor",  "name": "Encrypted Shell" },
-    { "slot": "module", "name": "Overclock Chip" },
-    { "slot": "module", "name": "Cache Module" },
-    { "slot": "module", "name": "Latency Buffer" }
+    { "slot": "tool",   "name": "Packet Analyzer",  "icon": "packet-analyzer" },
+    { "slot": "tool",   "name": "Port Scanner",     "icon": "port-scanner" },
+    { "slot": "tool",   "name": "Hex Editor",       "icon": "hex-editor" },
+    { "slot": "armor",  "name": "Hardened Kernel",  "icon": "hardened-kernel" },
+    { "slot": "armor",  "name": "Firewall Plating", "icon": "firewall-plating" },
+    { "slot": "armor",  "name": "Encrypted Shell",  "icon": "encrypted-shell" },
+    { "slot": "module", "name": "Overclock Chip",   "icon": "overclock-chip" },
+    { "slot": "module", "name": "Cache Module",     "icon": "cache-module" },
+    { "slot": "module", "name": "Latency Buffer",   "icon": "latency-buffer" }
   ],
 
   "legendaries": [
     {
       "slot": "tool",
       "name": "Insight Lens",
+      "icon": "insight-lens",
       "effect": "insight",
       "effectText": "Weak points take an extra +0.5x damage."
     },
     {
       "slot": "armor",
       "name": "Failover Core",
+      "icon": "failover-core",
       "effect": "failover",
       "effectText": "Once per fight, survive a hit that would defeat you, with 1 health."
     },
     {
       "slot": "module",
       "name": "Elimination Engine",
+      "icon": "elimination-engine",
       "effect": "eliminate",
       "effectText": "Removes one wrong answer from every question."
     }

@@ -145,10 +145,74 @@ body {
 
 #choices button.correct { background: #0b3d2a; }
 #choices button.wrong   { background: #4a1020; }
-/* Loot message after a fight, colored by tier in the code */
+/* Loot message after a fight: icon, details and an Equip now button */
 #loot-message {
-  min-height: 1.2em;
-  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 8px 0;
+}
+
+#loot-message small {
+  display: block;
+  color: #a8d5c0;
+  margin: 2px 0 6px;
+}
+
+#loot-message button,
+.gear-item button {
+  padding: 6px 12px;
+  margin-right: 8px;
+  font: inherit;
+  font-size: 14px;
+  background: #0a0e14;
+  color: #d8f3e8;
+  border: 1px solid #00ff9c;
+  cursor: pointer;
+}
+
+#loot-message button:disabled {
+  border-color: #33413a;
+  color: #7fa894;
+  cursor: default;
+}
+
+/* Item icons: 16x16 pixel art shown big, with a tier-colored frame */
+.item-icon {
+  flex-shrink: 0;
+  image-rendering: pixelated;
+  background: #0a0e14;
+  border: 2px solid #33413a;
+  padding: 2px;
+}
+
+/* Minecraft-style equipment view at the top of the Gear screen */
+#paper-doll {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 12px;
+}
+
+#doll-canvas {
+  width: 128px;
+  height: 128px;
+  flex-shrink: 0;
+  image-rendering: pixelated;
+  background: #0a0e14;
+  border: 2px solid #33413a;
+}
+
+.doll-slot {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 8px 0;
+}
+
+.doll-slot small {
+  display: block;
+  color: #7fa894;
 }
 
 /* A wrong answer removed by the Elimination Engine legendary */
@@ -163,6 +227,9 @@ body {
 }
 
 .gear-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
   border: 2px solid #1c2733;
   padding: 10px 12px;
   margin: 8px 0;
@@ -172,17 +239,6 @@ body {
   display: block;
   color: #7fa894;
   margin: 4px 0 8px;
-}
-
-.gear-item button {
-  padding: 6px 12px;
-  margin-right: 8px;
-  font: inherit;
-  font-size: 14px;
-  background: #0a0e14;
-  color: #d8f3e8;
-  border: 1px solid #00ff9c;
-  cursor: pointer;
 }
 
 .gear-item button:disabled {

@@ -117,6 +117,21 @@ def main():
             if skill_id not in all_skills:
                 problems.append(f"class '{player_class['id']}' favors unknown skill '{skill_id}'")
 
+    # Gear art: every item type needs an icon, and every armor needs an overlay per class
+    loot = load("data/loot.json")
+    class_ids = [c["id"] for c in load("data/classes.json")["classes"]]
+    for item_type in loot["bases"] + loot["legendaries"]:
+        icon = item_type.get("icon")
+        if icon is None:
+            problems.append(f"loot item '{item_type['name']}' has no icon")
+            continue
+        if not (ROOT / "assets" / "sprites" / "items" / f"{icon}.png").exists():
+            problems.append(f"missing item icon assets/sprites/items/{icon}.png")
+        if item_type["slot"] == "armor":
+            for class_id in class_ids:
+                if not (ROOT / "assets" / "sprites" / "armor" / f"{icon}-{class_id}.png").exists():
+                    problems.append(f"missing armor overlay assets/sprites/armor/{icon}-{class_id}.png")
+
     print("Areas:")
     print("\n".join(summary))
 

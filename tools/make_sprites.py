@@ -7,6 +7,8 @@ Draws every sprite from the text grids below and saves them as PNGs:
   assets/sprites/classes/*.png   player classes (full color)
   assets/sprites/enemies/*.png   enemy bodies (grayscale, tinted in the game)
   assets/sprites/crown.png       drawn on top of bosses
+  assets/sprites/items/*.png     gear icons (regular ones grayscale, tinted by tier)
+  assets/sprites/armor/*.png     armor worn on each class (one per armor x class)
   assets/backgrounds/*.png       one scene per area
 
 Each sprite file is a sheet of 2 frames side by side (32x16 pixels):
@@ -340,6 +342,302 @@ def make_sheet(rows, palette):
 
 
 # ---------------------------------------------------------------
+# Item icons (16x16, one frame)
+# Regular items are grayscale and tinted by tier color in the game,
+# like enemies. Legendaries are full color and never tinted.
+# ---------------------------------------------------------------
+
+LEGENDARY_PALETTE = {
+    "o": (13, 17, 23), "k": (0, 0, 0), "y": (255, 209, 102), "Y": (199, 149, 44),
+    "w": (255, 255, 255), "b": (111, 247, 255), "B": (0, 160, 190), "r": (255, 56, 100),
+    "R": (170, 20, 60), "g": (154, 165, 177),
+}
+
+ITEMS = {
+    # --- tools ---
+    "packet-analyzer": (ENEMY_PALETTE, [
+        "................",
+        ".....oooo.......",
+        "....ommmmo......",
+        "...omddddmo.....",
+        "..omdlddddmo....",
+        "..omldddddmo....",
+        "..omddddddmo....",
+        "..omddddddmo....",
+        "...omddddmo.....",
+        "....ommmmdoo....",
+        ".....oooo.oddo..",
+        "...........oddo.",
+        "............oddo",
+        ".............oo.",
+        "................",
+        "................",
+    ]),
+    "port-scanner": (ENEMY_PALETTE, [
+        "................",
+        "...ooooooo......",
+        "..olllllllo.....",
+        ".olmmmmmmmlo....",
+        ".olmmmmmmmmo..o.",
+        "..olmmmmmmo..olo",
+        "...odmmmdo..olo.",
+        "....ooooo..olo..",
+        "......o...olo...",
+        ".....omo.olo....",
+        ".....ommoloo....",
+        "....ommmmmo.....",
+        "...odddddddo....",
+        "...ooooooooo....",
+        "................",
+        "................",
+    ]),
+    "hex-editor": (ENEMY_PALETTE, [
+        "................",
+        ".oooooooooooooo.",
+        ".oddddddddddddo.",
+        ".odkkkkkkkkkkdo.",
+        ".odkllkkllkkkdo.",
+        ".odkkkkkkkkkkdo.",
+        ".odklkllklllkdo.",
+        ".odkkkkkkkkkkdo.",
+        ".odklllkllkkkdo.",
+        ".odkkkkkkkkkkdo.",
+        ".oddddddddddddo.",
+        ".oooooooooooooo.",
+        "......omo.......",
+        "....ommmmmo.....",
+        "....ooooooo.....",
+        "................",
+    ]),
+    # --- armor ---
+    "hardened-kernel": (ENEMY_PALETTE, [
+        "................",
+        "..oooo....oooo..",
+        ".ollllo..ollllo.",
+        ".olmmmmoommmmlo.",
+        ".olmmmmmmmmmmlo.",
+        "..olmmkkkkmmlo..",
+        "...olmkllkmlo...",
+        "...olmkllkmlo...",
+        "...olmkkkkmlo...",
+        "...olmmmmmmlo...",
+        "...odmmmmmmdo...",
+        "...oddddddddo...",
+        "....oooooooo....",
+        "................",
+        "................",
+        "................",
+    ]),
+    "firewall-plating": (ENEMY_PALETTE, [
+        "................",
+        "..oooo....oooo..",
+        ".ollllo..ollllo.",
+        ".olmmmmoommmmlo.",
+        ".oddddddddddddo.",
+        "..olmmdmmmdmlo..",
+        "...oddddddddo...",
+        "...olmdmmmdlo...",
+        "...oddddddddo...",
+        "...oldmmmdmlo...",
+        "...oddddddddo...",
+        "...oddddddddo...",
+        "....oooooooo....",
+        "................",
+        "................",
+        "................",
+    ]),
+    "encrypted-shell": (ENEMY_PALETTE, [
+        "................",
+        "..oooo....oooo..",
+        ".ollllo..ollllo.",
+        ".olmmmmoommmmlo.",
+        ".olmmmmmmmmmmlo.",
+        "..olmmmkkmmmlo..",
+        "...olmkmmkmlo...",
+        "...olkkkkkklo...",
+        "...olkklkkklo...",
+        "...olkkkkkklo...",
+        "...odmmmmmmdo...",
+        "...oddddddddo...",
+        "....oooooooo....",
+        "................",
+        "................",
+        "................",
+    ]),
+    # --- modules ---
+    "overclock-chip": (ENEMY_PALETTE, [
+        "................",
+        "...o.o.o.o.o....",
+        "..ooooooooooo...",
+        ".ooddddddddddoo.",
+        "..odmmmmmmmmdo..",
+        ".oodmmmmlmmmdoo.",
+        "..odmmmllmmmdo..",
+        ".oodmmllllmmdoo.",
+        "..odmmmmllmmdo..",
+        ".oodmmmmlmmmdoo.",
+        "..odmmmmmmmmdo..",
+        ".ooddddddddddoo.",
+        "..ooooooooooo...",
+        "...o.o.o.o.o....",
+        "................",
+        "................",
+    ]),
+    "cache-module": (ENEMY_PALETTE, [
+        "................",
+        "................",
+        "................",
+        "oooooooooooooooo",
+        "ollllllllllllllo",
+        "omkkmkkmkkmkkmmo",
+        "omkkmkkmkkmkkmmo",
+        "ommmmmmmmmmmmmmo",
+        "oddddddddddddddo",
+        "oooooooooooooooo",
+        ".o.o.o.o.o.o.o..",
+        "................",
+        "................",
+        "................",
+        "................",
+        "................",
+    ]),
+    "latency-buffer": (ENEMY_PALETTE, [
+        "................",
+        "...oooooooooo...",
+        "...oddddddddo...",
+        "....olllllllo...",
+        "....olmmmmlo....",
+        ".....olmmlo.....",
+        "......olmo......",
+        "......omlo......",
+        ".....ommmmo.....",
+        "....ommllmmo....",
+        "....ommmmmmmo...",
+        "...oddddddddo...",
+        "...oooooooooo...",
+        "................",
+        "................",
+        "................",
+    ]),
+    # --- legendaries (full color) ---
+    "insight-lens": (LEGENDARY_PALETTE, [
+        "................",
+        ".....oooo.......",
+        "....oyyyyo......",
+        "...oybbbbyo.....",
+        "..oybwbbbbyo....",
+        "..oybbkkbbyo....",
+        "..oybbkkbbyo....",
+        "..oybbbbbbyo....",
+        "...oybbbbyo.....",
+        "....oyyyyYooo...",
+        ".....oooo.oYYo..",
+        "...........oYYo.",
+        "............oYYo",
+        ".............oo.",
+        "................",
+        "................",
+    ]),
+    "failover-core": (LEGENDARY_PALETTE, [
+        "................",
+        "..oooo....oooo..",
+        ".oyyyyo..oyyyyo.",
+        ".oyYYYYooYYYYyo.",
+        ".oyYYYYYYYYYYyo.",
+        "..oyYYobboYYyo..",
+        "...oyYbwbbYyo...",
+        "...oyYbbbbYyo...",
+        "...oyYobboYyo...",
+        "...oyYYYYYYyo...",
+        "...oYYYYYYYYo...",
+        "...oYYYYYYYYo...",
+        "....oooooooo....",
+        "................",
+        "................",
+        "................",
+    ]),
+    "elimination-engine": (LEGENDARY_PALETTE, [
+        "................",
+        "...o.o.o.o.o....",
+        "..ooooooooooo...",
+        ".ooYYYYYYYYYYoo.",
+        "..oYyyyyyyyyYo..",
+        ".ooYyrryyrryYoo.",
+        "..oYyyrrrryyYo..",
+        ".ooYyyyrryyyYoo.",
+        "..oYyyrrrryyYo..",
+        ".ooYyrryyrryYoo.",
+        "..oYyyyyyyyyYo..",
+        ".ooYYYYYYYYYYoo.",
+        "..ooooooooooo...",
+        "...o.o.o.o.o....",
+        "................",
+        "................",
+    ]),
+}
+
+# ---------------------------------------------------------------
+# Armor worn on the player
+# Each overlay repaints one class's torso with an armor pattern, plus
+# shoulder pads, so it fits that class's body exactly. Overlays are
+# 2-frame sheets like the class sprites, so they bob along with them.
+# ---------------------------------------------------------------
+
+# Torso area of each class grid: (first row, last row, first col, last col)
+TORSO = {
+    "defender": (6, 11, 5, 8),
+    "analyst": (7, 11, 3, 10),
+    "cryptographer": (9, 12, 2, 10),
+}
+
+def armor_pixel(armor, row, col, top, bottom, left, right):
+    """Which color an armor puts on one torso pixel."""
+    middle = (left + right) // 2
+    if armor == "hardened-kernel":
+        if row == top:
+            return "l"
+        if row == bottom:
+            return "d"
+        return "k" if col in (middle, middle + 1) and row in (top + 2, top + 3) else "m"
+    if armor == "firewall-plating":
+        if (row - top) % 2 == 1:
+            return "d"
+        return "d" if (col + (row - top) // 2 * 2) % 4 == 0 else "m"
+    if armor == "encrypted-shell":
+        if row == top:
+            return "l"
+        return "d" if (row + col) % 2 == 0 else "m"  # a scaled shell pattern
+    if armor == "failover-core":
+        if row == bottom:
+            return "Y"
+        return "b" if col in (middle, middle + 1) and row in (top + 2, top + 3) else "y"
+    raise ValueError(armor)
+
+def make_armor_overlay(armor, class_id):
+    _, class_rows = CLASSES[class_id]
+    top, bottom, left, right = TORSO[class_id]
+    palette = LEGENDARY_PALETTE if armor == "failover-core" else ENEMY_PALETTE
+    grid = [["."] * SIZE for _ in range(SIZE)]
+    for row in range(top, bottom + 1):
+        for col in range(left, right + 1):
+            if class_rows[row][col] in "aA":  # only the class's own clothing pixels
+                grid[row][col] = armor_pixel(armor, row, col, top, bottom, left, right)
+    # Shoulder pads just outside the top torso row
+    filled = [col for col in range(SIZE) if grid[top][col] != "."]
+    pad = "y" if armor == "failover-core" else "l"
+    for col in (min(filled) - 1, max(filled) + 1):
+        grid[top][col] = pad
+        grid[top + 1][col] = "Y" if armor == "failover-core" else "m"
+    frame = grid_to_image(["".join(row) for row in grid], palette, SIZE, SIZE)
+    sheet = Image.new("RGBA", (SIZE * 2, SIZE), (0, 0, 0, 0))
+    sheet.paste(frame, (0, 0))
+    sheet.paste(frame.crop((0, 1, SIZE, SIZE)), (SIZE, 0))  # same bob as the body
+    return sheet
+
+ARMOR_ICONS = ["hardened-kernel", "firewall-plating", "encrypted-shell", "failover-core"]
+
+
+# ---------------------------------------------------------------
 # Area backgrounds (320x180, the size of the game screen)
 # ---------------------------------------------------------------
 
@@ -462,7 +760,17 @@ def main():
     for name, painter in BACKGROUNDS.items():
         painter(random.Random(name)).save(out / "backgrounds" / f"{name}.png")
 
-    print(f"Saved {len(CLASSES)} class sprites, {len(ENEMIES)} enemy sprites, 1 crown, {len(BACKGROUNDS)} backgrounds.")
+    (out / "sprites" / "items").mkdir(parents=True, exist_ok=True)
+    for name, (item_palette, rows) in ITEMS.items():
+        grid_to_image(rows, item_palette, SIZE, SIZE).save(out / "sprites" / "items" / f"{name}.png")
+
+    (out / "sprites" / "armor").mkdir(parents=True, exist_ok=True)
+    for armor in ARMOR_ICONS:
+        for class_id in CLASSES:
+            make_armor_overlay(armor, class_id).save(out / "sprites" / "armor" / f"{armor}-{class_id}.png")
+
+    print(f"Saved {len(CLASSES)} class sprites, {len(ENEMIES)} enemy sprites, 1 crown, {len(BACKGROUNDS)} backgrounds,")
+    print(f"      {len(ITEMS)} item icons and {len(ARMOR_ICONS) * len(CLASSES)} armor overlays.")
 
 
 if __name__ == "__main__":
