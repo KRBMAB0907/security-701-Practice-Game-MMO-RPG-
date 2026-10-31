@@ -21,7 +21,7 @@ Costs (all in `data/camp.json`): forge 4 scrap of that tier; upgrade 6 scrap of 
 
 Files: new `data/camp.json`, `js/camp.js`, `tests/camp.py`, `assets/backgrounds/camp.png`, `assets/sprites/npcs/blacksmith.png` and `crafter.png`. Changed `index.html`, `css/style.css`, `js/state.js` (`save.materials`, `campData`), `js/loot.js` (`buildItem()` and `itemValue()` split out of `makeItem()` so crafting builds items the same way drops do), `js/render.js`, `js/sprites.js`, `js/map.js`, `js/main.js`, `tools/make_sprites.py`, `tools/check_game_data.py`, docs.
 
-**Tested 2026-10-31:** `tests/camp.py` (24 checks) passed; all 8 regression tests ran with no page errors; both checkers found no problems.
+**Tested 2026-10-31:** `tests/camp.py` (24 checks) passed; all 8 regression tests and the full playthrough (33 zones) ran with no page errors; both checkers found no problems.
 
 **Still to do:** Kaleb playtests the camp and the costs. Ideas he might want: a "smelt all Common" button, and whether forged gear should cost more since it's made at your level.
 
