@@ -182,7 +182,8 @@ function startFight() {
   enemy.accuracy = type.accuracy || 0;  // optional per-enemy hit chance bonus in the data
   // Later zones get tougher enemies, to keep up with your tree points and gear
   const levelGrowth = 1 + (currentZone.level - 1) * currentMode.enemyHpGrowth;
-  enemy.maxHp = Math.round(type.hp * currentMode.enemyHpScale * levelGrowth);
+  const bossScale = enemy.boss ? BOSS_HP_SCALE : 1;  // shorter boss fights (see config.js)
+  enemy.maxHp = Math.round(type.hp * currentMode.enemyHpScale * levelGrowth * bossScale);
   enemy.hp = enemy.maxHp;
 
   resetAscensionFight();  // streaks, blocks and once-per-fight saves start over

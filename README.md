@@ -15,7 +15,7 @@ It fits any screen: laptops and desktops on Windows, Linux or Mac, tablets, and 
 - **Then the enemy attacks.** Every turn the enemy swings back, and each mode sets how often it lands (Fun 50%, Learner 65%, Hard 75%; bosses +10%). When it misses, you dodge.
 - **Enemies talk back.** The battle log narrates each hit and miss, and enemies taunt you in a speech bubble with lines about the exam topic they stand for.
 - **Hit weak points.** Enemies are weak to certain topics, and matching skills deal 1.5x damage. Bosses change weakness halfway through the fight.
-- **Collect loot.** Enemies drop gear in five tiers, from Common to Legendary: tools boost damage, armor boosts health, and modules add time to the question timer. Equip drops right after a battle, see your gear on a Minecraft-style equipment screen, and watch your armor appear on your character. Legendaries have special effects, like removing a wrong answer from every question. Hard mode finds rare gear more often.
+- **Collect loot.** Enemies drop gear in five tiers, from Common to Legendary: tools boost damage, armor boosts health, and modules add time to the question timer. Equip drops right after a battle, see your gear on a Minecraft-style equipment screen, and watch your armor appear on your character. Legendaries have special effects, like removing a wrong answer from every question. Hard mode finds rare gear more often. Uncommon, Rare and Epic gear rolls random **affixes** named after security concepts (Salted, Zero-Day, of Reconnaissance...), some with risky downsides, and each area drops pieces of its own 3-piece **set** (CIA Triad, Cyber Kill Chain, Zero Trust Architecture...) with bonuses for wearing 2 or 3.
 - **Home camp.** Visit the Blacksmith to smelt gear you don't need into scrap (one kind per tier, and Legendary Cores from legendaries). Take the scrap to the Crafter to forge new gear of the type and tier you choose, upgrade an item one tier, bring an old item up to your level, or craft the legendary you want. **Su Root**, the trainer in the black hat, tracks your mastery of all 70 exam topics, lists the ones you keep missing, and runs no-risk drills on any topic.
 - **Retro pixel art.** Each area has its own scene, every class has its own sprite, and enemies come in 10 body types tinted to look different. Bosses wear crowns.
 - **Skill tree.** Every level gives a point to spend in a tree with five branches, one per exam domain. Each node is named after a Security+ concept and explains it (Confidentiality, Hardening, Defense in Depth...). Tiers open as you spend more, and a keystone at the bottom of each branch changes how you play, with a downside (only one allowed). Beating the final boss gives 3 bonus points. Taking points back costs levels, like switching class.
@@ -62,6 +62,7 @@ js/                     the game code, one file per job (loaded in this order)
   loot.js               drops, gear and the gear screen
   skilltree.js          skill tree points, bonuses and the tree screen
   ascension.js          ascendancies, their effects and the round board
+  affixes.js            random gear affixes and set items
   camp.js               the home camp: smelting and crafting
   mastery.js            topic mastery ranks, Su Root's tab and drills
   dialogue.js           battle narration and enemy taunts
@@ -78,7 +79,7 @@ data/
   areas.json            the 5 areas, in order, and which data files they use
   areas/                one file per built area: its skills, enemies and zones
   classes.json          class stats and favored skills
-  loot.json             loot tiers, drop chances and item names
+  loot.json             loot tiers, drop chances, item names, affixes and sets
   skilltree.json        skill tree branches and nodes
   ascension.json        the 6 ascendancies and their nodes
   camp.json             home camp scrap names, crafting costs and the camp people's lines

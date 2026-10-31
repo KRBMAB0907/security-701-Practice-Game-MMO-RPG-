@@ -4,11 +4,34 @@ Written 2026-10-29 when the work moved to Claude Code. Read `CLAUDE.md` first fo
 
 ## Status
 
-All five areas are built and playable from level 1 to the final boss: 33 zones, 144 enemies, 69 skills, 3 classes, a 30-node skill tree, 6 ascendancies (2 per class), loot in five tiers with legendaries, a home camp for smelting, crafting and topic mastery drills, pixel art for everything, and a screen layout that fits laptops, desktops and phones without scrolling.
+All five areas are built and playable from level 1 to the final boss: 33 zones, 144 enemies, 69 skills, 3 classes, a 30-node skill tree, 6 ascendancies (2 per class), loot in five tiers with legendaries, random affixes and 6 item sets, a home camp for smelting, crafting and topic mastery drills, pixel art for everything, and a screen layout that fits laptops, desktops and phones without scrolling.
 
-Last commit on GitHub: `a635dc2 Balance for tree and gear (WIP, balance runs pending)`. The ascension feature below isn't on `main` yet.
+Mastery, affixes, sets and the balance change below are on branch `claude/admiring-cerf-o62yoq`, not on `main` yet.
 
-## Latest feature: topic mastery and Su Root (built 2026-10-31 on branch claude/admiring-cerf-o62yoq, not on main yet)
+## Latest change: balance for 5-8 hits (2026-11-01, branch claude/admiring-cerf-o62yoq)
+
+Kaleb's target: **on Learner and Hard you die in 5-8 enemy hits**, for new players and for players with gear and tree points. Before this, built players took 8-12 hits from the second area on (affixes and sets add even more), while boss fights ran so long that the average player usually lost them. Kaleb picked "option 2": shorter boss fights, harder hits.
+
+- `ENEMY_DAMAGE_GROWTH` 0.7 -> **1.1** (enemy damage now grows a bit faster than base health, to keep up with gear and tree health)
+- `enemyDamage` Learner 15 -> **16**, Hard 14 -> **15** (Fun unchanged at 13)
+- New `BOSS_HP_SCALE = 0.75`: sub-bosses and finale bosses have 75% of their listed health (applied in `startFight`)
+
+`tests/damage_calc.py` now mirrors these, counts average affixes for the `--built` player, and its targets are 5-8 for Learner and Hard. Result: every area is inside 5-8 for both players (new: Learner 5-7, Hard 5-6; built: Learner 7-8, Hard 6-7). Fun got a little tougher late (sub-bosses 6 hits instead of 7) but its margins stay positive.
+
+**Balance run (`tests/balance_built.py`, real game): pending.** All 13 browser tests and the full playthrough (33 zones, 559 questions vs 610 before, since boss fights are shorter) passed with the new numbers.
+
+## Previous feature: affixes and set items (2026-11-01)
+
+Kaleb said yes to the affix and set ideas as proposed.
+
+- **Affixes:** Uncommon 1, Rare 2, Epic 3; Common and legendaries none (legendaries keep their identity). 17 normal affixes plus 3 risky ones (Unpatched, Legacy, Shadow IT: big upside with a downside, Rare+ only; Sandboxed is Rare+ too). Numbers are rolled from a range when the item is made. Name: tier + first prefix + base + first suffix ("Epic Salted Hex Editor of Deception"). The Gear and camp screens list every affix with its concept's one-line definition. Upgrading at the Crafter tops affixes up to the new tier's count.
+- **Sets:** CIA Triad (Foundry), Cyber Kill Chain (Breach Wastes), Zero Trust Architecture (Citadel), Incident Response Kit (Operations Deep), Governance Charter (Council Spire), PKI Chain of Trust (any area's finale boss). Pieces are Epic gear with fixed names, drawn in the set color (`setColor`) using the existing item art tinted (own art could be drawn in Piskel later). A drop in the set's area becomes a set piece 6% of the time (25% from bosses). Bonuses at 2 and 3 pieces worn.
+- **How:** every affix and set bonus uses a stat combat already knows from ascension, so `specialBonus(stat)` (ascension + gear) replaced `ascensionBonus(stat)` in combat; almost everything else is data in `data/loot.json`.
+- On small phones the loot message hides the affix line and long names end in "..." (the busiest battle screen stopped fitting at 360x640 otherwise); the Gear screen shows everything.
+
+Files: new `js/affixes.js`, `tests/affixes.py` (37 checks). Changed `data/loot.json`, `index.html`, `css/style.css`, `js/loot.js`, `js/combat.js`, `js/camp.js`, `js/sprites.js`, `js/leveling.js`, `js/timer.js`, `js/questions.js`, `js/ascension.js`, `tools/check_game_data.py`, `tests/camp.py`, docs.
+
+## Previous feature: topic mastery and Su Root (built 2026-10-31)
 
 Kaleb asked for topic mastery with a trainer at the home camp who shows it. He chose:
 
