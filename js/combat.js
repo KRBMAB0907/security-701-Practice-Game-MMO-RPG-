@@ -43,14 +43,14 @@ function skillDamage(skill, forceWeak) {
   damage *= playerClass.damageScale;
   damage *= 1 + gearBonus("damage") / 100;  // tool gear, e.g. +15%
   // Skill tree, ascension and topic mastery (see js/mastery.js) add together
-  damage *= 1 + (treeBonus("damage") + treeDomainDamage(skill) + ascensionBonus("damage") + masteryBonus(skill)) / 100;
+  damage *= 1 + (treeBonus("damage") + treeDomainDamage(skill) + specialBonus("damage") + masteryBonus(skill)) / 100;
   if (isFavored(skill)) {
     damage *= FAVORED_SKILL_BONUS;
   }
   if (forceWeak || hitsWeakPoint(skill)) {
     // The Insight Lens legendary, the skill tree and ascension add to the class's multiplier
     let multiplier = playerClass.weaknessMultiplier + (hasEffect("insight") ? 0.5 : 0) +
-      treeBonus("weakness") + ascensionBonus("weakness");
+      treeBonus("weakness") + specialBonus("weakness");
     if (hasKeystone("zero-trust")) {
       multiplier += ZERO_TRUST_WEAK_BONUS;
     }
@@ -66,12 +66,12 @@ function skillDamage(skill, forceWeak) {
   }
   // Ascension extras (see js/ascension.js)
   if (enemy.boss) {
-    damage *= 1 + ascensionBonus("bossDamage") / 100;
+    damage *= 1 + specialBonus("bossDamage") / 100;
   }
   const streak = Math.min(ascFight.streak || 0, STREAK_DAMAGE_MAX_STACKS);
-  damage *= 1 + ascensionBonus("streakDamage") * streak / 100;  // right answers in a row
+  damage *= 1 + specialBonus("streakDamage") * streak / 100;  // right answers in a row
   if (!ascFight.firstHitDone) {
-    damage *= 1 + ascensionBonus("firstHitBonus") / 100;
+    damage *= 1 + specialBonus("firstHitBonus") / 100;
   }
   return Math.round(damage);
 }
@@ -87,22 +87,22 @@ function enemyDamage() {
   const healthGrowth = zoneHp / currentMode.playerHp - 1;  // 0 at level 1
   const levelScale = 1 + healthGrowth * ENEMY_DAMAGE_GROWTH;
   let damage = currentMode.enemyDamage * levelScale * (enemy.damageScale || 1) * currentClass().damageTakenScale;
-  damage *= 1 - (treeBonus("defense") + ascensionBonus("defense")) / 100;  // e.g. Hardening: 3% less per point
+  damage *= 1 - (treeBonus("defense") + specialBonus("defense")) / 100;  // e.g. Hardening: 3% less per point
   if (hasKeystone("defense-in-depth")) {
     damage *= DEFENSE_IN_DEPTH_TAKEN;
   }
   // Ascension defenses (see js/ascension.js)
   if (enemy.boss) {
-    damage *= 1 - ascensionBonus("bossDefense") / 100;
+    damage *= 1 - specialBonus("bossDefense") / 100;
   }
   if (player.hp < player.maxHp / 2) {
-    damage *= 1 - ascensionBonus("lowHpDefense") / 100;
+    damage *= 1 - specialBonus("lowHpDefense") / 100;
   }
   if (ascFight.lastAnswer === "wrong") {
-    damage *= 1 - ascensionBonus("defenseAfterWrong") / 100;
+    damage *= 1 - specialBonus("defenseAfterWrong") / 100;
   }
-  if (ascensionBonus("maxHitPercent") > 0) {
-    damage = Math.min(damage, player.maxHp * ascensionBonus("maxHitPercent") / 100);
+  if (specialBonus("maxHitPercent") > 0) {
+    damage = Math.min(damage, player.maxHp * specialBonus("maxHitPercent") / 100);
   }
   return Math.round(damage);
 }
@@ -110,10 +110,10 @@ function enemyDamage() {
 // How likely the enemy's attack is to land, from 0 to 1
 function enemyHitChance() {
   let chance = currentMode.hitChance + (enemy.boss ? BOSS_HIT_BONUS : 0) + (enemy.accuracy || 0);
-  chance -= (treeBonus("dodge") + ascensionBonus("dodge")) / 100;  // e.g. Threat Intel: 2% less per point
+  chance -= (treeBonus("dodge") + specialBonus("dodge")) / 100;  // e.g. Threat Intel: 2% less per point
   chance -= (ascFight.revokeStacks || 0) / 100;  // the Revocation ascension node
   if (ascFight.lastAnswer === "right") {
-    chance -= ascensionBonus("dodgeAfterCorrect") / 100;  // the Correlation ascension node
+    chance -= specialBonus("dodgeAfterCorrect") / 100;  // the Correlation ascension node
   }
   if (hasKeystone("accept-the-risk")) {
     chance += ACCEPT_RISK_HIT;
@@ -274,7 +274,7 @@ function playerAttacks() {
   let extraText = "";
 
   // Wildcard Certificate ascension node: sometimes any hit counts as a weak point
-  if (!weakPoint && Math.random() * 100 < ascensionBonus("wildcard")) {
+  if (!weakPoint && Math.random() * 100 < specialBonus("wildcard")) {
     weakPoint = true;
     extraText += " Wildcard: it counts as a weak point!";
   }
@@ -291,10 +291,10 @@ function playerAttacks() {
 
   // Critical hits (Cipher Master ascension): a random chance, or every Nth right answer
   ascFight.rightAnswers++;
-  const everyN = ascensionBonus("critEveryN");
+  const everyN = specialBonus("critEveryN");
   const guaranteed = everyN > 0 && ascFight.rightAnswers % everyN === 0;
-  if (guaranteed || Math.random() * 100 < ascensionBonus("critChance")) {
-    damage = Math.round(damage * (CRIT_MULTIPLIER + ascensionBonus("critMultiplier")));
+  if (guaranteed || Math.random() * 100 < specialBonus("critChance")) {
+    damage = Math.round(damage * (CRIT_MULTIPLIER + specialBonus("critMultiplier")));
     extraText += " Critical hit!";
   }
   hit(enemy, damage, "#00ff9c");
@@ -304,18 +304,18 @@ function playerAttacks() {
   ascFight.lastHit = damage;
   ascFight.streak++;
   ascFight.lastAnswer = "right";
-  ascFight.revokeStacks = Math.min(ascFight.revokeStacks + ascensionBonus("dodgePerHit"), DODGE_PER_HIT_CAP);
+  ascFight.revokeStacks = Math.min(ascFight.revokeStacks + specialBonus("dodgePerHit"), DODGE_PER_HIT_CAP);
 
   let message = narrate(weakPoint ? "weakHit" : "playerHit", { skill: currentSkill.name, enemy: enemy.name, damage: damage }) + rapidText + extraText;
 
   // Healing on a right answer: Analysts, skill tree and ascension nodes all add up
-  let healing = currentClass().healOnCorrect + treeBonus("heal") + ascensionBonus("heal");
-  healing += Math.round(damage * ascensionBonus("lifesteal") / 100);
+  let healing = currentClass().healOnCorrect + treeBonus("heal") + specialBonus("heal");
+  healing += Math.round(damage * specialBonus("lifesteal") / 100);
   if (weakPoint) {
-    healing += Math.round(player.maxHp * ascensionBonus("weakHealPercent") / 100);
+    healing += Math.round(player.maxHp * specialBonus("weakHealPercent") / 100);
   }
   if (ascFight.streak % STREAK_HEAL_EVERY === 0) {
-    healing += Math.round(player.maxHp * ascensionBonus("streakHeal") / 100);
+    healing += Math.round(player.maxHp * specialBonus("streakHeal") / 100);
   }
   const healed = heal(player, healing);
   if (healed > 0) {
@@ -336,7 +336,7 @@ function playerMisses(timedOut) {
   let message = narrate(timedOut ? "timeout" : "playerMiss", { skill: currentSkill.name, enemy: enemy.name });
 
   // SOAR Playbook ascension node: a miss still does part of the damage
-  const partial = Math.round(skillDamage(currentSkill) * ascensionBonus("missDamage") / 100);
+  const partial = Math.round(skillDamage(currentSkill) * specialBonus("missDamage") / 100);
   if (partial > 0) {
     hit(enemy, partial, "#00ff9c");
     message += " Your playbook still deals " + partial + " damage.";
@@ -345,7 +345,7 @@ function playerMisses(timedOut) {
   }
 
   // Lessons Learned ascension node: a wrong answer heals a little
-  const healed = heal(player, ascensionBonus("healOnWrong"));
+  const healed = heal(player, specialBonus("healOnWrong"));
   if (healed > 0) {
     message += " You recover " + healed + " health.";
   }
@@ -378,7 +378,7 @@ function enemyAttacks() {
 
   // Fail-Safe and Key Escrow ascension nodes: once per fight, survive at 1 health.
   // This comes before the Failover Core, so with both you can survive twice.
-  if (damage >= player.hp && ascensionBonus("cheatDeath") > 0 && !ascFight.cheatDeathUsed) {
+  if (damage >= player.hp && specialBonus("cheatDeath") > 0 && !ascFight.cheatDeathUsed) {
     damage = player.hp - 1;
     ascFight.cheatDeathUsed = true;
     failoverText = " Your fail-safe kicks in and keeps you standing with 1 health!";
@@ -402,13 +402,13 @@ function enemyAttacks() {
 function enemyMissedEffects() {
   let text = "";
   // Countermeasure: strike back for part of your last hit
-  const counter = Math.round(ascFight.lastHit * ascensionBonus("counterOnMiss") / 100);
+  const counter = Math.round(ascFight.lastHit * specialBonus("counterOnMiss") / 100);
   if (counter > 0) {
     hit(enemy, counter, "#00ff9c");
     text += " You counter for " + counter + "!";
   }
   // Next-Gen Firewall: heal when an attack misses
-  const healed = heal(player, Math.round(player.maxHp * ascensionBonus("enemyMissHeal") / 100));
+  const healed = heal(player, Math.round(player.maxHp * specialBonus("enemyMissHeal") / 100));
   if (healed > 0) {
     text += " You recover " + healed + " health.";
   }
@@ -419,14 +419,14 @@ function enemyMissedEffects() {
 function enemyHitEffects(damage) {
   let text = "";
   // Stateful Inspection: the attacker takes part of the damage back
-  const thorns = Math.round(damage * ascensionBonus("thorns") / 100);
+  const thorns = Math.round(damage * specialBonus("thorns") / 100);
   if (thorns > 0) {
     hit(enemy, thorns, "#00ff9c");
     text += " The " + enemy.name + " takes " + thorns + " back.";
   }
   // Disk Image: once per fight, a big heal when your health gets low
   const low = player.hp > 0 && player.hp < player.maxHp * EMERGENCY_HEAL_BELOW;
-  if (low && ascensionBonus("emergencyHeal") > 0 && !ascFight.emergencyHealUsed) {
+  if (low && specialBonus("emergencyHeal") > 0 && !ascFight.emergencyHealUsed) {
     ascFight.emergencyHealUsed = true;
     heal(player, Math.round(player.maxHp * EMERGENCY_HEAL_TO) - player.hp);
     text += " Emergency restore: you're back to " + player.hp + " health!";
@@ -475,14 +475,19 @@ function setLootMessage(drop) {
     return;
   }
   const item = drop.item;
-  const tier = tierById(item.tier);
   box.appendChild(makeIconCanvas(item, 40));
 
   const info = document.createElement("div");
   const title = document.createElement("strong");
-  // Legendary names don't include the tier ("Failover Core"), so add it
-  title.textContent = "LOOT: " + (item.tier === "legendary" ? "Legendary " + item.name : item.name);
-  title.style.color = tier.color;
+  // Legendary and set names don't include the tier ("Failover Core"), so say what they are
+  let label = item.name;
+  if (item.set) {
+    label = "Set item: " + item.name;
+  } else if (item.tier === "legendary") {
+    label = "Legendary " + item.name;
+  }
+  title.textContent = "LOOT: " + label;
+  title.style.color = itemColor(item);
   info.appendChild(title);
 
   const details = document.createElement("small");
@@ -494,6 +499,16 @@ function setLootMessage(drop) {
       (current ? "you have: " + current.name + " (" + describeStat(current) + ")" : "your " + slotById(item.slot).name + " slot is empty");
   }
   info.appendChild(details);
+
+  // Affixes and set on their own line, e.g. "Salted: +5% skill damage".
+  // Small screens hide it to save room; the Gear screen always shows it.
+  const extras = describeExtras(item);
+  if (extras !== "") {
+    const extrasLine = document.createElement("small");
+    extrasLine.className = "loot-extras";
+    extrasLine.textContent = extras;
+    info.appendChild(extrasLine);
+  }
 
   if (drop.kept) {
     const button = document.createElement("button");
@@ -516,7 +531,7 @@ function setLootMessage(drop) {
 
 // XP for beating the current enemy, with skill tree and ascension bonuses
 function xpReward() {
-  let xp = enemy.xp * (1 + (treeBonus("xp") + ascensionBonus("xp")) / 100);
+  let xp = enemy.xp * (1 + (treeBonus("xp") + specialBonus("xp")) / 100);
   if (hasKeystone("accept-the-risk")) {
     xp *= ACCEPT_RISK_XP;
   }

@@ -49,11 +49,13 @@ function itemValue(tier, stat, level) {
 
 // A new item of one type ("base", e.g. Port Scanner) at a tier and level.
 // Drops pick a random base; the Crafter lets the player choose.
+// Set pieces pass a base with a "set" id: they keep their own name and
+// get no random affixes (their power is the set bonus, see affixes.js).
 function buildItem(base, tier, level) {
   const slot = slotById(base.slot);
-  return {
+  const item = {
     id: save.nextItemId++,
-    name: tier.id === "legendary" ? base.name : tier.name + " " + base.name,
+    name: base.name,
     tier: tier.id,
     slot: base.slot,
     icon: base.icon,
@@ -61,8 +63,15 @@ function buildItem(base, tier, level) {
     value: itemValue(tier, slot.stat, level),
     level: level,
     effect: base.effect || null,
-    effectText: base.effectText || null
+    effectText: base.effectText || null,
+    set: base.set || null,
+    affixes: []
   };
+  if (item.set === null) {
+    addAffixes(item);  // random affixes for Uncommon, Rare and Epic (affixes.js)
+    item.name = affixedName(item, base.name);
+  }
+  return item;
 }
 
 function makeItem(tier, zoneLevel) {
@@ -75,7 +84,7 @@ function makeItem(tier, zoneLevel) {
 // Called after winning a fight. Returns { item, kept } or null if nothing dropped.
 function rollDrop() {
   let chance = enemy.boss ? lootTable.bossDropChance : lootTable.dropChance;
-  chance += treeBonus("loot") / 100;  // e.g. Vendor Assessment: +3% per point
+  chance += (treeBonus("loot") + specialBonus("loot")) / 100;  // e.g. Vendor Assessment: +3% per point
   if (hasKeystone("accept-the-risk")) {
     chance += ACCEPT_RISK_LOOT;
   }
@@ -92,7 +101,9 @@ function rollDrop() {
     }
   }
 
-  const item = makeItem(tier, currentZone.level || 1);
+  // Sometimes the drop is a piece of the area's set instead (affixes.js)
+  const set = rollSetDrop();
+  const item = set !== null ? makeSetItem(set, currentZone.level || 1) : makeItem(tier, currentZone.level || 1);
   const kept = save.inventory.length < lootTable.inventoryLimit;
   if (kept) {
     save.inventory.push(item);
@@ -220,7 +231,7 @@ function showEquipSlots() {
     } else {
       detail.textContent = item.name + " · " + describeStat(item) +
         (item.level > save.level ? " · inactive until level " + item.level : "");
-      detail.style.color = tierById(item.tier).color;
+      detail.style.color = itemColor(item);
     }
     text.appendChild(detail);
     row.appendChild(text);
@@ -237,7 +248,8 @@ function showGear() {
   document.getElementById("gear-summary").textContent =
     "Gear bonuses: +" + gearBonus("damage") + "% skill damage, +" + gearBonus("hp") +
     " max health, +" + gearBonus("time") + " seconds per question" +
-    "  (bag: " + save.inventory.length + "/" + lootTable.inventoryLimit + ")";
+    "  (bag: " + save.inventory.length + "/" + lootTable.inventoryLimit + ")" +
+    (activeSetBonuses().length > 0 ? ". Set bonuses on: " + activeSetBonuses().map(bonus => bonus.text).join("; ") : "");
 
   const list = document.getElementById("gear-list");
   list.innerHTML = "";
@@ -260,7 +272,7 @@ function showGear() {
 
     const name = document.createElement("strong");
     name.textContent = item.name + (isEquipped(item) ? " [equipped]" : "");
-    name.style.color = tierById(item.tier).color;
+    name.style.color = itemColor(item);
     info.appendChild(name);
 
     const details = document.createElement("small");
@@ -273,6 +285,7 @@ function showGear() {
     }
     details.textContent = text;
     info.appendChild(details);
+    appendGearExtras(info, item);  // affixes and set bonuses (affixes.js)
 
     const equipButton = document.createElement("button");
     if (isEquipped(item)) {

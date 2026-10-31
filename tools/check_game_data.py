@@ -10,6 +10,7 @@ editing anything in data/areas/, data/areas.json, data/classes.json,
 data/loot.json, data/camp.json, data/skilltree.json or data/ascension.json.
 """
 import json
+import re
 import sys
 from collections import Counter
 from pathlib import Path
@@ -240,6 +241,59 @@ def main():
         if class_id not in covered_classes:
             problems.append(f"class '{class_id}' has no ascendancies in data/ascension.json")
     summary.append(f"  Ascension: {ascendancy_count} ascendancies, {len(ascension_ids)} nodes")
+
+    # Gear affixes and set items (js/affixes.js): they use the same stats as
+    # the skill tree and ascension, so every stat must be one combat knows
+    gear_stats = ascension_stats | {"loot"}
+    tier_ids = [tier["id"] for tier in loot["tiers"]]
+    slot_ids = [slot["id"] for slot in loot["slots"]]
+    for tier_id in tier_ids:
+        if tier_id not in loot["affixCount"]:
+            problems.append(f"data/loot.json: affixCount has nothing for tier '{tier_id}'")
+    affix_ids = set()
+    for affix in loot["affixes"]:
+        where = f"affix '{affix['id']}'"
+        if affix["id"] in affix_ids:
+            problems.append(f"{where} is used twice")
+        affix_ids.add(affix["id"])
+        if affix["kind"] not in {"prefix", "suffix"}:
+            problems.append(f"{where} has kind '{affix['kind']}' (must be prefix or suffix)")
+        if affix.get("minTier") is not None and affix["minTier"] not in tier_ids:
+            problems.append(f"{where} has unknown minTier '{affix['minTier']}'")
+        for field in ("name", "text", "concept"):
+            if not affix.get(field):
+                problems.append(f"{where} has no {field}")
+        for stat, value_range in affix["stats"].items():
+            if stat not in gear_stats:
+                problems.append(f"{where} has unknown stat '{stat}'")
+            if len(value_range) != 2 or value_range[0] > value_range[1]:
+                problems.append(f"{where}: stat '{stat}' needs [lowest, highest], got {value_range}")
+        for placeholder in re.findall(r"\{(\w+)\}", affix["text"]):
+            if placeholder not in affix["stats"]:
+                problems.append(f"{where}: text uses {{{placeholder}}} but has no such stat")
+    area_ids = {area["id"] for area in load("data/areas.json")["areas"]}
+    for item_set in loot["sets"]:
+        where = f"set '{item_set['id']}'"
+        if item_set["area"] not in area_ids | {"finale"}:
+            problems.append(f"{where} drops in unknown area '{item_set['area']}' (use an area id or \"finale\")")
+        if sorted(piece["slot"] for piece in item_set["pieces"]) != sorted(slot_ids):
+            problems.append(f"{where} needs exactly one piece for each slot: {', '.join(slot_ids)}")
+        for piece in item_set["pieces"]:
+            if not (ROOT / "assets" / "sprites" / "items" / f"{piece['icon']}.png").exists():
+                problems.append(f"{where}: piece '{piece['name']}' uses missing icon {piece['icon']}")
+            if piece["slot"] == "armor":
+                for class_id in class_ids:
+                    if not (ROOT / "assets" / "sprites" / "armor" / f"{piece['icon']}-{class_id}.png").exists():
+                        problems.append(f"{where}: missing armor overlay for '{piece['icon']}' on {class_id}")
+        for bonus in item_set["bonuses"]:
+            if not 1 <= bonus["pieces"] <= len(item_set["pieces"]):
+                problems.append(f"{where}: a bonus needs {bonus['pieces']} pieces, but the set has {len(item_set['pieces'])}")
+            for stat in bonus["stats"]:
+                if stat not in gear_stats:
+                    problems.append(f"{where}: bonus has unknown stat '{stat}'")
+            if not bonus.get("text"):
+                problems.append(f"{where}: a bonus has no text")
+    summary.append(f"  Gear: {len(loot['affixes'])} affixes, {len(loot['sets'])} sets")
 
     print("Areas:")
     print("\n".join(summary))

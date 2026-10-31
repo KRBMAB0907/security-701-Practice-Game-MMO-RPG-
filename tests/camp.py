@@ -96,18 +96,20 @@ try:
         pg.evaluate("save.materials.rare = 6; showCamp()")
         pg.click("#camp-content .gear-item:has-text('Rare Port Scanner') button:has-text('Upgrade')")
         scanner = pg.evaluate("findItem(1)")
-        check("upgraded to epic, same level", scanner["name"] == "Epic Port Scanner" and scanner["tier"] == "epic" and scanner["level"] == 4
+        # Upgrading also tops up random affixes to the new tier's count (Epic: 3), and they show in the name
+        check("upgraded to epic, same level", scanner["name"].startswith("Epic ") and "Port Scanner" in scanner["name"]
+              and len(scanner["affixes"]) == 3 and scanner["tier"] == "epic" and scanner["level"] == 4
               and scanner["value"] == pg.evaluate("itemValue(tierById('epic'), 'damage', 4)"), scanner)
         check("still equipped after upgrade", pg.evaluate("save.equipped.tool") == 1)
-        check("no upgrade button on epic", pg.query_selector("#camp-content .gear-item:has-text('Epic Port Scanner') button:has-text('Upgrade')") is None)
+        check("no upgrade button on epic", pg.query_selector("#camp-content .gear-item:has-text('Port Scanner') button:has-text('Upgrade')") is None)
 
         # Re-level: Epic Port Scanner level 4 -> 10 costs 2 epic
         pg.evaluate("save.materials.epic = 2; showCamp()")
-        pg.click("#camp-content .gear-item:has-text('Epic Port Scanner') button:has-text('Re-level')")
+        pg.click("#camp-content .gear-item:has-text('Port Scanner') button:has-text('Re-level')")
         scanner = pg.evaluate("findItem(1)")
         check("re-leveled to 10", scanner["level"] == 10 and scanner["value"] == pg.evaluate("itemValue(tierById('epic'), 'damage', 10)"), scanner)
         check("re-level paid", pg.evaluate("save.materials.epic") == 0)
-        check("no re-level button at your level", pg.query_selector("#camp-content .gear-item:has-text('Epic Port Scanner') button:has-text('Re-level')") is None)
+        check("no re-level button at your level", pg.query_selector("#camp-content .gear-item:has-text('Port Scanner') button:has-text('Re-level')") is None)
 
         # Full bag: forging is blocked
         pg.evaluate("""() => { while (save.inventory.length < lootTable.inventoryLimit) save.inventory.push(makeItem(tierById('common'), 1));

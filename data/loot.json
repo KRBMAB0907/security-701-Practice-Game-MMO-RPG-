@@ -52,5 +52,117 @@
       "effect": "eliminate",
       "effectText": "Removes one wrong answer from every question."
     }
+  ],
+
+  "_affixNote": "Random affixes on Uncommon, Rare and Epic gear. Each stat is [lowest, highest] and is rolled when the item drops. Stats use the same names as the skill tree and ascension (see js/ascension.js). {stat} in text shows the rolled number. minTier: the lowest tier that can roll it.",
+  "affixCount": { "common": 0, "uncommon": 1, "rare": 2, "epic": 3, "legendary": 0 },
+  "affixes": [
+    { "id": "salted",     "kind": "prefix", "name": "Salted",     "stats": { "damage": [3, 6] },          "text": "+{damage}% skill damage",                 "concept": "Salting: adding random data to a password before hashing it, so the same passwords hash differently." },
+    { "id": "hashed",     "kind": "prefix", "name": "Hashed",     "stats": { "weakness": [0.1, 0.2] },    "text": "Weak points take +{weakness}x damage",    "concept": "Hashing: turning data into a fixed-length fingerprint that changes if the data changes." },
+    { "id": "zero-day",   "kind": "prefix", "name": "Zero-Day",   "stats": { "firstHitBonus": [20, 40] }, "text": "Your first hit each fight deals +{firstHitBonus}%", "concept": "Zero-day: a flaw the vendor doesn't know about yet, so there's no patch for it." },
+    { "id": "tokenized",  "kind": "prefix", "name": "Tokenized",  "stats": { "heal": [2, 4] },            "text": "Heal {heal} health per right answer",     "concept": "Tokenization: swapping sensitive data for a random token that's useless if stolen." },
+    { "id": "escalated",  "kind": "prefix", "name": "Escalated",  "stats": { "bossDamage": [5, 10] },     "text": "+{bossDamage}% damage to bosses",         "concept": "Privilege escalation: gaining more access than you were given." },
+    { "id": "obfuscated", "kind": "prefix", "name": "Obfuscated", "stats": { "dodge": [2, 4] },           "text": "Enemies hit {dodge}% less often",         "concept": "Obfuscation: making code or data hard to read, to hide what it does." },
+    { "id": "sandboxed",  "kind": "prefix", "name": "Sandboxed",  "stats": { "blockHits": [1, 1] },       "text": "Blocks the first enemy hit each fight",   "concept": "Sandboxing: running something in an isolated space where it can't harm the system.", "minTier": "rare" },
+    { "id": "hardened",   "kind": "prefix", "name": "Hardened",   "stats": { "defense": [2, 4] },         "text": "Take {defense}% less damage",             "concept": "Hardening: shrinking a system's attack surface by removing what it doesn't need." },
+    { "id": "signed",     "kind": "prefix", "name": "Signed",     "stats": { "xp": [4, 8] },              "text": "+{xp}% XP",                               "concept": "Digital signature: proves who sent something and that it wasn't changed." },
+
+    { "id": "persistence",     "kind": "suffix", "name": "of Persistence",     "stats": { "streakDamage": [2, 4] },   "text": "+{streakDamage}% damage per right answer in a row (up to 5)", "concept": "Persistence: an attacker keeping access to a system over time." },
+    { "id": "least-privilege", "kind": "suffix", "name": "of Least Privilege", "stats": { "lowHpDefense": [8, 15] }, "text": "Take {lowHpDefense}% less damage below half health", "concept": "Least privilege: give each user only the access they need to do their job." },
+    { "id": "availability",    "kind": "suffix", "name": "of Availability",    "stats": { "time": [2, 4] },           "text": "+{time} seconds per question",          "concept": "Availability: systems and data are there when people need them." },
+    { "id": "exfiltration",    "kind": "suffix", "name": "of Exfiltration",    "stats": { "loot": [3, 6] },           "text": "+{loot}% gear drop chance",             "concept": "Exfiltration: secretly moving data out of a network." },
+    { "id": "reconnaissance",  "kind": "suffix", "name": "of Reconnaissance",  "stats": { "critChance": [3, 6] },     "text": "{critChance}% chance of a critical hit", "concept": "Reconnaissance: gathering information about a target before an attack." },
+    { "id": "countermeasures", "kind": "suffix", "name": "of Countermeasures", "stats": { "counterOnMiss": [15, 30] }, "text": "When an enemy misses, hit back for {counterOnMiss}% of your last hit", "concept": "Countermeasure: an action that reduces a threat or a vulnerability." },
+    { "id": "deception",       "kind": "suffix", "name": "of Deception",       "stats": { "thorns": [10, 20] },       "text": "Enemies that hit you take {thorns}% of the damage back", "concept": "Deception technology: decoys like honeypots that turn an attacker's moves against them." },
+    { "id": "redundancy",      "kind": "suffix", "name": "of Redundancy",      "stats": { "hp": [8, 15] },            "text": "+{hp} max health",                      "concept": "Redundancy: spare power, servers or links, so one failure doesn't stop everything." },
+
+    { "id": "unpatched", "kind": "prefix", "name": "Unpatched", "risky": true, "minTier": "rare", "stats": { "damage": [10, 14], "dodge": [-6, -4] },  "text": "+{damage}% skill damage, but enemies hit {dodge}% more often",    "concept": "Unpatched: a known flaw left unfixed. Useful to an attacker, dangerous to own." },
+    { "id": "legacy",    "kind": "prefix", "name": "Legacy",    "risky": true, "minTier": "rare", "stats": { "hp": [25, 35], "time": [-5, -3] },     "text": "+{hp} max health, but {time} fewer seconds per question",           "concept": "Legacy system: old technology still in use, often unsupported and hard to secure." },
+    { "id": "shadow-it", "kind": "prefix", "name": "Shadow IT", "risky": true, "minTier": "rare", "stats": { "loot": [12, 18], "defense": [-8, -5] }, "text": "+{loot}% gear drop chance, but take {defense}% more damage",       "concept": "Shadow IT: technology people use without the IT team's approval." }
+  ],
+
+  "_setNote": "Set items: 3 pieces each (Tool, Armor, Module). Pieces are Epic gear with a fixed name, drawn in setColor. They drop in their own area (area id), or from any area's finale boss (\"finale\"). Bonuses turn on when you wear that many pieces.",
+  "setColor": "#ff7043",
+  "setDropChance": 0.06,
+  "setBossDropChance": 0.25,
+  "sets": [
+    {
+      "id": "cia-triad", "name": "CIA Triad", "area": "foundry",
+      "concept": "The CIA triad: confidentiality, integrity and availability, the three goals of security.",
+      "pieces": [
+        { "slot": "tool",   "name": "Confidentiality Cipher", "icon": "hex-editor" },
+        { "slot": "armor",  "name": "Integrity Plate",        "icon": "firewall-plating" },
+        { "slot": "module", "name": "Availability Core",      "icon": "cache-module" }
+      ],
+      "bonuses": [
+        { "pieces": 2, "stats": { "damage": 10 }, "text": "+10% skill damage" },
+        { "pieces": 3, "stats": { "damage": 5, "hpPercent": 10, "time": 5 }, "text": "Balanced triad: +5% more damage, +10% max health and +5 seconds per question" }
+      ]
+    },
+    {
+      "id": "kill-chain", "name": "Cyber Kill Chain", "area": "breach-wastes",
+      "concept": "The Cyber Kill Chain: the steps of an attack, from reconnaissance to actions on objectives.",
+      "pieces": [
+        { "slot": "tool",   "name": "Recon Drone",       "icon": "port-scanner" },
+        { "slot": "armor",  "name": "Installation Rig",  "icon": "hardened-kernel" },
+        { "slot": "module", "name": "C2 Beacon",         "icon": "overclock-chip" }
+      ],
+      "bonuses": [
+        { "pieces": 2, "stats": { "firstHitBonus": 50 }, "text": "Your first hit each fight deals +50%" },
+        { "pieces": 3, "stats": { "streakDamage": 8 }, "text": "Each right answer in a row adds +8% damage (up to 5), a miss resets it" }
+      ]
+    },
+    {
+      "id": "zero-trust-architecture", "name": "Zero Trust Architecture", "area": "citadel",
+      "concept": "Zero trust: never trust, always verify. Every request is checked, even from inside the network.",
+      "pieces": [
+        { "slot": "tool",   "name": "Policy Engine",       "icon": "packet-analyzer" },
+        { "slot": "armor",  "name": "Microsegment Mesh",   "icon": "firewall-plating" },
+        { "slot": "module", "name": "Continuous Verifier", "icon": "latency-buffer" }
+      ],
+      "bonuses": [
+        { "pieces": 2, "stats": { "dodge": 5 }, "text": "Enemies hit 5% less often" },
+        { "pieces": 3, "stats": { "blockHits": 1 }, "text": "Never trust, always verify: the first enemy hit each fight is blocked" }
+      ]
+    },
+    {
+      "id": "incident-response-kit", "name": "Incident Response Kit", "area": "operations-deep",
+      "concept": "Incident response: preparation, detection, analysis, containment, eradication, recovery and lessons learned.",
+      "pieces": [
+        { "slot": "tool",   "name": "Triage Toolkit",  "icon": "hex-editor" },
+        { "slot": "armor",  "name": "Containment Suit", "icon": "encrypted-shell" },
+        { "slot": "module", "name": "Forensic Imager", "icon": "cache-module" }
+      ],
+      "bonuses": [
+        { "pieces": 2, "stats": { "heal": 5 }, "text": "Heal 5 health per right answer" },
+        { "pieces": 3, "stats": { "emergencyHeal": 1 }, "text": "Recovery: once per fight, when you drop below 30% health, heal back to 60%" }
+      ]
+    },
+    {
+      "id": "governance-charter", "name": "Governance Charter", "area": "council-spire",
+      "concept": "Governance: the policies, standards and oversight that steer an organization's security.",
+      "pieces": [
+        { "slot": "tool",   "name": "Audit Ledger",      "icon": "packet-analyzer" },
+        { "slot": "armor",  "name": "Compliance Mantle", "icon": "hardened-kernel" },
+        { "slot": "module", "name": "Policy Binder",     "icon": "latency-buffer" }
+      ],
+      "bonuses": [
+        { "pieces": 2, "stats": { "xp": 15 }, "text": "+15% XP" },
+        { "pieces": 3, "stats": { "missDamage": 25, "loot": 10 }, "text": "Due diligence: wrong answers still deal 25% damage, and +10% gear drop chance" }
+      ]
+    },
+    {
+      "id": "pki-chain", "name": "PKI Chain of Trust", "area": "finale",
+      "concept": "Chain of trust: each certificate is signed by the one above it, up to a trusted root CA.",
+      "pieces": [
+        { "slot": "tool",   "name": "Root CA Token",         "icon": "port-scanner" },
+        { "slot": "armor",  "name": "Certificate Chainmail", "icon": "encrypted-shell" },
+        { "slot": "module", "name": "Key Escrow Module",     "icon": "overclock-chip" }
+      ],
+      "bonuses": [
+        { "pieces": 2, "stats": { "critChance": 10 }, "text": "10% chance of a critical hit" },
+        { "pieces": 3, "stats": { "critChance": 10, "critMultiplier": 1 }, "text": "Signed by the root: +10% more crit chance, and critical hits deal 3x instead of 2x" }
+      ]
+    }
   ]
 }

@@ -109,7 +109,8 @@ function upgrade(item) {
   pay(cost);
   const oldName = item.name;
   item.tier = tier.id;
-  item.name = tier.name + " " + itemBase(item).name;
+  addAffixes(item);  // a higher tier gets one more random affix (affixes.js)
+  item.name = affixedName(item, itemBase(item).name);
   item.value = itemValue(tier, item.stat, item.level);
   writeSave();
   showCamp("Upgraded " + oldName + " to " + item.name + ".");
@@ -181,12 +182,13 @@ function campItemRow(list, item) {
 
   const name = document.createElement("strong");
   name.textContent = item.name + (isEquipped(item) ? " [equipped]" : "");
-  name.style.color = tierById(item.tier).color;
+  name.style.color = itemColor(item);
   info.appendChild(name);
 
   const details = document.createElement("small");
   details.textContent = slotById(item.slot).name + " · " + describeStat(item) + " · Level " + item.level;
   info.appendChild(details);
+  appendGearExtras(info, item);  // affixes and set bonuses (affixes.js)
 
   list.appendChild(row);
   return info;

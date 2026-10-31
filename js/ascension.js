@@ -83,7 +83,7 @@ function ascensionBonus(stat) {
 // this from startFight.
 function resetAscensionFight() {
   ascFight = {
-    blocksLeft: ascensionBonus("blockHits"),
+    blocksLeft: specialBonus("blockHits"),
     cheatDeathUsed: false,
     emergencyHealUsed: false,
     streak: 0,          // right answers in a row

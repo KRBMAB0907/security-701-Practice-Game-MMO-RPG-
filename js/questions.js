@@ -20,7 +20,7 @@ function showQuestion(question) {
   // knock out one random wrong answer.
   // The button stays in place (disabled) so answer numbers still line up.
   // Drills are honest practice, so they don't cross anything out.
-  if (drillTopic === null && (hasEffect("eliminate") || ascensionBonus("eliminate") > 0)) {
+  if (drillTopic === null && (hasEffect("eliminate") || specialBonus("eliminate") > 0)) {
     const wrongIndexes = question.choices.map((_, index) => index).filter(index => index !== question.answer);
     const removed = randomFrom(wrongIndexes);
     const button = choicesDiv.children[removed];

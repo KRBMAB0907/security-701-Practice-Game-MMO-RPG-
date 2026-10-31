@@ -153,7 +153,7 @@ function itemIcon(item) {
 
 // Regular items are grayscale art tinted by tier; legendaries have their own colors
 function gearImage(path, item) {
-  return item.tier === "legendary" ? getImage(path) : tinted(path, tierById(item.tier).color);
+  return item.tier === "legendary" ? getImage(path) : tinted(path, itemColor(item));
 }
 
 // A small canvas showing an item's icon, for the gear screen and loot messages.
@@ -168,7 +168,7 @@ function makeIconCanvas(item, cssSize) {
   if (item === null) {
     return icon;  // empty slot: just the frame
   }
-  icon.style.borderColor = tierById(item.tier).color;
+  icon.style.borderColor = itemColor(item);
 
   const iconCtx = icon.getContext("2d");
   const iconId = itemIcon(item);
@@ -176,7 +176,7 @@ function makeIconCanvas(item, cssSize) {
   if (image !== null) {
     iconCtx.drawImage(image, 0, 0);
   } else {
-    iconCtx.fillStyle = tierById(item.tier).color;  // fallback: a colored square
+    iconCtx.fillStyle = itemColor(item);  // fallback: a colored square
     iconCtx.fillRect(4, 4, 8, 8);
   }
   return icon;

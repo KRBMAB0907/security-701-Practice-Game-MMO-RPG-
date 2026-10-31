@@ -168,8 +168,21 @@ body {
 /* Small screens: skill buttons show just the name, damage and WEAK POINT
    tag; the one-line descriptions are hidden to save space */
 @media (max-height: 500px), (max-width: 420px) and (max-height: 760px) {
-  #battle-panel #skills button small {
+  #battle-panel #skills button small,
+  #battle-panel #loot-message small.loot-extras {
     display: none;  /* extra #battle-panel makes this beat the general rule below */
+  }
+
+  /* Long loot names (with affixes) stay on one line and end in "..." */
+  #loot-message > div {
+    min-width: 0;
+  }
+
+  #loot-message strong {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
@@ -855,4 +868,37 @@ body.tree-open #ascension-panel {
 .mastery-bar {
   height: 100%;
   background: #ffd166;
+}
+
+/* ---------------------------------------------------------------
+   Gear affixes and set items (js/affixes.js), under each item on the
+   Gear and camp screens. The italic part is what the name means.
+   --------------------------------------------------------------- */
+.gear-item small.affix,
+.gear-item small.set-line,
+.gear-item small.set-bonus {
+  margin: 0.1em 0;
+  color: #a8d5c0;
+}
+
+.gear-item small em {
+  color: #5d6f66;
+}
+
+/* Risky affixes have a downside, so they stand out */
+.gear-item small.affix.risky {
+  color: #ffb74d;
+}
+
+.gear-item small.set-line {
+  color: #ff7043;
+}
+
+.gear-item small.set-bonus {
+  color: #5d6f66;
+}
+
+/* A set bonus you have enough pieces for */
+.gear-item small.set-bonus.active {
+  color: #ffd166;
 }
