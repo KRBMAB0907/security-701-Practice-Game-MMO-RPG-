@@ -31,7 +31,7 @@ const ENEMY_DAMAGE_GROWTH = 1.1;  // enemy damage grows a bit faster than your b
                                   // to keep up with the health gear and the tree add.
                                   // Target: you die in about 5-8 hits on Learner and Hard
                                   // (check with tests/damage_calc.py and --built)
-const BOSS_HP_SCALE = 0.75;       // bosses have 75% of their listed health, so boss
+const BOSS_HP_SCALE = 0.85;       // bosses have 85% of their listed health, so boss
                                   // fights stay short enough to win now that enemies hit harder
 const XP_PER_LEVEL = 50;          // level N needs N x 50 XP to level up
 const DEATH_XP_LOSS = 0.25;       // dying costs 25% of the current XP bar

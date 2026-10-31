@@ -14,7 +14,7 @@ Kaleb's target: **on Learner and Hard you die in 5-8 enemy hits**, for new playe
 
 - `ENEMY_DAMAGE_GROWTH` 0.7 -> **1.1** (enemy damage now grows a bit faster than base health, to keep up with gear and tree health)
 - `enemyDamage` Learner 15 -> **16**, Hard 14 -> **15** (Fun unchanged at 13)
-- New `BOSS_HP_SCALE = 0.75`: sub-bosses and finale bosses have 75% of their listed health (applied in `startFight`)
+- New `BOSS_HP_SCALE`: sub-bosses and finale bosses have part of their listed health (applied in `startFight`). Started at 0.75; Kaleb raised it to **0.85** after the first balance run showed bosses dying in about 4 answers.
 
 `tests/damage_calc.py` now mirrors these, counts average affixes for the `--built` player, and its targets are 5-8 for Learner and Hard. Result: every area is inside 5-8 for both players (new: Learner 5-7, Hard 5-6; built: Learner 7-8, Hard 6-7). Fun got a little tougher late (sub-bosses 6 hits instead of 7) but its margins stay positive.
 
@@ -28,7 +28,7 @@ Kaleb's target: **on Learner and Hard you die in 5-8 enemy hits**, for new playe
 | Hard, Cryptographer 65% | 10 | 0 | 3.0 / 3.7-4.0 |
 | Hard, Defender 75% | 1 | 0 | 3.5 / 4.3-4.5 |
 
-Findings: the Operations Deep is now the hardest area (a difficulty spike), while the Council Spire is easier than it, because players arrive there at a higher level. Bosses take about 4 right answers (the old target in `balance_built.py` was 6-8), so `BOSS_HP_SCALE` 0.75 may be a bit low; 0.85 would lengthen boss fights. Open questions for Kaleb: smooth the Operations Deep spike? Raise boss health a little?
+Findings: the Operations Deep is now the hardest area (a difficulty spike), while the Council Spire is easier than it, because players arrive there at a higher level. Bosses take about 4 right answers (the old target in `balance_built.py` was 6-8), so `BOSS_HP_SCALE` 0.75 may be a bit low; 0.85 would lengthen boss fights. Kaleb's answers: **raise boss health** (done: 0.85) and **leave the Operations Deep as it is for now** (hard is fine).
 
 ## Previous feature: affixes and set items (2026-11-01)
 

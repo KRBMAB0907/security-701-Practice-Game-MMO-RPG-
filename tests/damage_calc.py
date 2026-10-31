@@ -36,7 +36,7 @@ FINALE_DAMAGE = 1.15   # "damageScale" of each area's last boss
 ENEMY_DAMAGE_GROWTH = 1.1
 # Bosses (sub-bosses and finales) have this much of their listed health
 # (BOSS_HP_SCALE in js/config.js). Lower = shorter boss fights.
-BOSS_HP_SCALE = 0.75
+BOSS_HP_SCALE = 0.85
 
 # The old numbers, before enemy damage grew with zone level, for --old
 OLD_MODES = {
