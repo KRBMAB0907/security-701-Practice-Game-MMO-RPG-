@@ -24,7 +24,9 @@ function newSave() {
     tree: {},  // skill tree points per node, e.g. { "integrity": 2 }
     ascendancy: null, ascension: {},  // chosen ascendancy and its taken nodes
     // Scrap from smelting at the home camp, one kind per loot tier
-    materials: { common: 0, uncommon: 0, rare: 0, epic: 0, legendary: 0 }
+    materials: { common: 0, uncommon: 0, rare: 0, epic: 0, legendary: 0 },
+    // Answers per exam topic, for mastery ranks, e.g. { "phishing": { right: 7, asked: 9 } }
+    mastery: {}
   };
 }
 
@@ -47,6 +49,9 @@ let failoverUsed = false; // the Failover Core legendary works once per fight
 let turnInProgress = false; // true while the enemy's attack is still playing out
 let questionShownAt = 0;  // when the current question appeared (for Rapid Response)
 let ascFight = {};        // ascension effects that count up during a fight (see js/ascension.js)
+let drillTopic = null;     // the topic being drilled with Su Root, or null in a normal fight
+let drillAsked = 0;        // questions asked so far in this drill
+let drillRight = 0;        // ...and how many were right
 
 // The two fighters. flash and shake count down in milliseconds.
 // spritePath is the image to draw; tint = true recolors it with `color`.

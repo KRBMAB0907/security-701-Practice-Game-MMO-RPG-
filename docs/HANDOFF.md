@@ -4,11 +4,33 @@ Written 2026-10-29 when the work moved to Claude Code. Read `CLAUDE.md` first fo
 
 ## Status
 
-All five areas are built and playable from level 1 to the final boss: 33 zones, 144 enemies, 69 skills, 3 classes, a 30-node skill tree, 6 ascendancies (2 per class), loot in five tiers with legendaries, a home camp for smelting and crafting, pixel art for everything, and a screen layout that fits laptops, desktops and phones without scrolling.
+All five areas are built and playable from level 1 to the final boss: 33 zones, 144 enemies, 69 skills, 3 classes, a 30-node skill tree, 6 ascendancies (2 per class), loot in five tiers with legendaries, a home camp for smelting, crafting and topic mastery drills, pixel art for everything, and a screen layout that fits laptops, desktops and phones without scrolling.
 
 Last commit on GitHub: `a635dc2 Balance for tree and gear (WIP, balance runs pending)`. The ascension feature below isn't on `main` yet.
 
-## Latest feature: home camp (merged into main 2026-10-31)
+## Latest feature: topic mastery and Su Root (built 2026-10-31 on branch claude/admiring-cerf-o62yoq, not on main yet)
+
+Kaleb asked for topic mastery with a trainer at the home camp who shows it. He chose:
+
+- **Small bonuses:** every right answer counts toward its topic (fights and drills). Ranks Novice 5, Practitioner 15, Expert 30, Master 50 right answers; each rank gives **+2% damage** with skills on that topic (max +8%; a skill uses its best topic). Numbers in `MASTERY_RANKS` / `MASTERY_DAMAGE_PER_RANK` in `js/config.js`. Added to the tree and ascension bonuses, not multiplied.
+- **Drills: yes.** "Drill" on any topic gives 5 questions on it with **no timer, no XP, no enemy and nothing crossed out** (Elimination Engine / Expert Witness are off in drills, so it's honest practice). Answers still count toward mastery. This is the camp's one exception to "no questions at camp": the menus stay calm, a drill only starts when you press Drill.
+- **The trainer is Su Root**, a hacker in a black hat with a green band. Third tab at camp ("Su Root: mastery and drills"). Shows a "Needs work" list (lowest accuracy, at least 3 answers, under 100%) and every topic grouped by domain in fold-out boxes, with rank, right/asked, accuracy, a bar to the next rank and a Drill button. During drills he talks in a speech bubble (lines in `data/camp.json`).
+- Rank-ups show in the answer explanation ("MASTERY UP: ... is now Novice").
+- Mastery isn't touched by switching class (it's what you know, not your character); "Reset progress" clears it with everything else.
+
+Files: new `js/mastery.js`, `tests/mastery.py`, `assets/sprites/npcs/su-root.png`. Changed `index.html`, `css/style.css`, `data/camp.json`, `js/config.js`, `js/state.js` (`save.mastery`, `drillTopic`), `js/camp.js` (third tab, speech bubble), `js/combat.js` (`masteryBonus` in `skillDamage`, buttons during drills), `js/questions.js` (`recordAnswer`, drill branch), `js/timer.js`, `js/render.js` (`drawSpeechBubble` now takes a speaker), `tools/make_sprites.py`, `tools/check_game_data.py`, docs. Only `su-root.png` was saved from `make_sprites.py`: running it rewrites every PNG, so the other files were put back unchanged.
+
+**Tested 2026-10-31:** `tests/mastery.py` (33 checks) passed; the other 10 browser tests and the full playthrough (33 zones) ran with no page errors; both checkers found no problems.
+
+**Still to do:** Kaleb playtests. Then gear affixes and set items (ideas below).
+
+### Ideas agreed to explore next: affixes and set items
+
+Affixes (Rare+ gear): prefix + base + "of" suffix, each a real concept with a one-line definition. Prefixes: Salted (+damage), Hashed (+weak point), Zero-Day (first hit +50%), Tokenized (heal on correct), Federated (+domain damage), Obfuscated (enemies hit less), Sandboxed (first hit taken halved), Hardened (less damage), Signed (+XP). Suffixes: of Persistence (heal), of Least Privilege (less damage), of Availability (+time), of Exfiltration (+drops), of Reconnaissance (+XP), of Lateral Movement (overkill carries over), of Rate Limiting (cap on a hit), of Redundancy (+health). Risky ones: Unpatched, Legacy, Shadow IT.
+
+Set items (3 pieces, bonus at 2 and 3, each drops in its own area): CIA Triad (Foundry), Cyber Kill Chain (Breach Wastes), Zero Trust Architecture (Citadel), Incident Response Kit (Operations Deep), Governance Charter (Council Spire), PKI Chain of Trust (any finale). Kaleb hasn't picked which yet.
+
+## Previous feature: home camp (merged into main 2026-10-31)
 
 Kaleb asked for a home camp with a Blacksmith who smelts gear down and a Crafter who uses the pieces to make new gear. He chose:
 
@@ -111,7 +133,7 @@ Finale tries on Hard (Cryptographer, 65%), five runs each: Operations Core 0, 4,
 
 - Fix anything from his playtest of the hit-chance version.
 - Turn on GitHub Pages, then the custom domain.
-- Quests for players who want direction (he agreed to these early on), and a study log that shows which topics the player keeps missing.
+- Quests for players who want direction (he agreed to these early on). (The study log is now Su Root's mastery tab.)
 - The balance pass once all new features are in, then maybe a Paragon-style endgame board.
 - More classes or multiclassing.
 - More questions per objective, especially the heavy domains (4.0 is 28% of the exam).

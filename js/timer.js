@@ -21,8 +21,8 @@ function startTimer(question) {
   stopTimer();
 
   const timerBox = document.getElementById("timer");
-  if (currentMode.time === null) {
-    timerBox.hidden = true;  // Fun mode: no timer at all
+  if (currentMode.time === null || drillTopic !== null) {
+    timerBox.hidden = true;  // Fun mode and Su Root's drills: no timer at all
     return;
   }
 

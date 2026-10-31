@@ -1,5 +1,6 @@
-// The home camp: the Blacksmith smelts gear into scrap, and the Crafter
-// turns scrap into gear. Scrap names and every cost live in data/camp.json.
+// The home camp: the Blacksmith smelts gear into scrap, the Crafter
+// turns scrap into gear, and Su Root trains you (his menu and drills are
+// in js/mastery.js). Scrap names and every cost live in data/camp.json.
 //
 // A cost is written as { tier: amount }, e.g. { "rare": 6 } means
 // 6 Rare Scrap, and { "legendary": 2, "epic": 4 } means 2 Legendary Cores
@@ -147,13 +148,16 @@ function showCamp(message) {
   document.getElementById("camp-message").textContent = message || "";
   document.getElementById("blacksmith-tab").classList.toggle("selected", campTab === "blacksmith");
   document.getElementById("crafter-tab").classList.toggle("selected", campTab === "crafter");
+  document.getElementById("trainer-tab").classList.toggle("selected", campTab === "su-root");
 
   const content = document.getElementById("camp-content");
   content.innerHTML = "";
   if (campTab === "blacksmith") {
     showBlacksmith(content);
-  } else {
+  } else if (campTab === "crafter") {
     showCrafter(content);
+  } else {
+    showTrainer(content);  // in mastery.js
   }
 }
 
@@ -338,6 +342,11 @@ function drawCamp() {
     }
   });
 
+  // Su Root talks during drills. Drawn last, so it sits on top of the names.
+  const talker = campData.npcs.find(npc => npc.id === campTab);
+  drawSpeechBubble({ x: talker.x, y: player.y }, 16);
+  ctx.textAlign = "center";
+
   shadowText("Home camp", GAME_W / 2, 14, "#a8d5c0");
 }
 
@@ -350,5 +359,9 @@ document.getElementById("blacksmith-tab").addEventListener("click", () => {
 });
 document.getElementById("crafter-tab").addEventListener("click", () => {
   campTab = "crafter";
+  showCamp();
+});
+document.getElementById("trainer-tab").addEventListener("click", () => {
+  campTab = "su-root";
   showCamp();
 });

@@ -42,7 +42,8 @@ function skillDamage(skill, forceWeak) {
   let damage = skill.damage * (1 + (save.level - 1) * DAMAGE_PER_LEVEL);
   damage *= playerClass.damageScale;
   damage *= 1 + gearBonus("damage") / 100;  // tool gear, e.g. +15%
-  damage *= 1 + (treeBonus("damage") + treeDomainDamage(skill) + ascensionBonus("damage")) / 100;
+  // Skill tree, ascension and topic mastery (see js/mastery.js) add together
+  damage *= 1 + (treeBonus("damage") + treeDomainDamage(skill) + ascensionBonus("damage") + masteryBonus(skill)) / 100;
   if (isFavored(skill)) {
     damage *= FAVORED_SKILL_BONUS;
   }
@@ -203,6 +204,7 @@ function startFight() {
   floatingTexts = [];
   setLootMessage(null);
   document.getElementById("mode-label").textContent = "Mode: " + currentMode.label;
+  document.getElementById("map-button").textContent = "Back to map";  // a drill changes it to "Back to camp"
 
   const intro = enemy.boss ? "BOSS: " + enemy.name + " blocks the way!" : "A " + enemy.name + " appears!";
   const hitPercent = Math.round(enemyHitChance() * 100);
@@ -564,7 +566,9 @@ function loseFight() {
 }
 
 document.getElementById("next-button").addEventListener("click", () => {
-  if (fightOver) {
+  if (drillTopic !== null) {
+    nextDrillQuestion();  // drilling with Su Root, not fighting (see js/mastery.js)
+  } else if (fightOver) {
     if (fightWon) {
       enemyIndex++;  // move on to the next enemy
     }
@@ -575,4 +579,11 @@ document.getElementById("next-button").addEventListener("click", () => {
   }
 });
 
-document.getElementById("map-button").addEventListener("click", showMap);
+// During a drill this button says "Back to camp" instead
+document.getElementById("map-button").addEventListener("click", () => {
+  if (drillTopic !== null) {
+    leaveDrill();
+  } else {
+    showMap();
+  }
+});

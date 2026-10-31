@@ -56,6 +56,20 @@ const DODGE_PER_HIT_CAP = 10;       // dodgePerHit can lower enemy hit chance by
 const EMERGENCY_HEAL_BELOW = 0.3;   // emergencyHeal triggers below 30% health...
 const EMERGENCY_HEAL_TO = 0.6;      // ...and heals you back up to 60%
 
+// Topic mastery and Su Root's drills (see js/mastery.js). Every right
+// answer on a topic counts toward its rank. Kept small on purpose: studying
+// should help, but levels, gear and the tree are still the main power.
+const MASTERY_RANKS = [
+  { name: "Novice",       correct: 5 },
+  { name: "Practitioner", correct: 15 },
+  { name: "Expert",       correct: 30 },
+  { name: "Master",       correct: 50 }
+];
+const MASTERY_DAMAGE_PER_RANK = 2; // +2% damage per rank with skills on that topic (Master = +8%)
+const DRILL_LENGTH = 5;            // questions in one drill with Su Root
+const NEEDS_WORK_MIN_ANSWERS = 3;  // a topic needs this many answers before Su Root judges it
+const NEEDS_WORK_COUNT = 5;        // how many weak topics the "Needs work" list shows
+
 // Keystones: each one is strong but has a downside
 const ZERO_TRUST_WEAK_BONUS = 0.5;    // Zero Trust: weak points take +0.5x...
 const ZERO_TRUST_OTHER_SCALE = 0.6;   // ...but every other hit deals 40% less

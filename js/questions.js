@@ -19,7 +19,8 @@ function showQuestion(question) {
   // Elimination Engine legendary (or the Expert Witness ascension node):
   // knock out one random wrong answer.
   // The button stays in place (disabled) so answer numbers still line up.
-  if (hasEffect("eliminate") || ascensionBonus("eliminate") > 0) {
+  // Drills are honest practice, so they don't cross anything out.
+  if (drillTopic === null && (hasEffect("eliminate") || ascensionBonus("eliminate") > 0)) {
     const wrongIndexes = question.choices.map((_, index) => index).filter(index => index !== question.answer);
     const removed = randomFrom(wrongIndexes);
     const button = choicesDiv.children[removed];
@@ -51,5 +52,16 @@ function checkAnswer(question, chosenIndex) {
     feedback.textContent = "Not quite. " + question.explanation;
   }
 
-  playTurn(correct, chosenIndex === null);  // see combat.js
+  // Every answer counts toward the topic's mastery rank (see mastery.js)
+  const rankUp = recordAnswer(question.topic, correct);
+  if (rankUp !== null) {
+    feedback.textContent += " MASTERY UP: " + topicName(question.topic) + " is now " + rankUp +
+      " (+" + masteryRank(question.topic) * MASTERY_DAMAGE_PER_RANK + "% damage with its skills).";
+  }
+
+  if (drillTopic !== null) {
+    finishDrillQuestion(correct, rankUp);  // a drill with Su Root: no enemy turn
+  } else {
+    playTurn(correct, chosenIndex === null);  // see combat.js
+  }
 }

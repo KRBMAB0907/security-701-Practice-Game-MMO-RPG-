@@ -158,6 +158,14 @@ def main():
     for npc in camp["npcs"]:
         if not (ROOT / "assets" / "sprites" / "npcs" / f"{npc['id']}.png").exists():
             problems.append(f"camp person '{npc['id']}' is missing assets/sprites/npcs/{npc['id']}.png")
+    # Su Root (js/mastery.js) needs a line for each moment of a drill
+    trainer = next((npc for npc in camp["npcs"] if npc["id"] == "su-root"), None)
+    if trainer is None:
+        problems.append("data/camp.json: Su Root (id 'su-root') is missing; the mastery tab needs him")
+    else:
+        for kind in ("correct", "wrong", "rankUp", "drillDone"):
+            if not trainer.get("lines", {}).get(kind):
+                problems.append(f"data/camp.json: Su Root has no '{kind}' lines")
     summary.append(f"  Home camp: {len(camp['npcs'])} people, {len(camp['forgeCost'])} forge tiers")
 
     # Skill tree: ids unique, tiers valid, stats and keystones the code knows about

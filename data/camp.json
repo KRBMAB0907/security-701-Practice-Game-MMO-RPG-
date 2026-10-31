@@ -34,6 +34,36 @@
 
   "npcs": [
     {
+      "id": "su-root",
+      "name": "Su Root",
+      "x": 82,
+      "greeting": "Knowledge is the only exploit that never gets patched. I track every topic you answer. Drill the weak ones with me: no timer, no risk.",
+      "lines": {
+        "correct": [
+          "Clean. You'd pass that one.",
+          "Right. Now remember why, not just what.",
+          "Good. Attackers hate people who read.",
+          "Correct. Keep that one in memory."
+        ],
+        "wrong": [
+          "Wrong. Read the explanation, that's the point.",
+          "Missed it. Better here than on exam day.",
+          "Nope. Guessing is how systems get owned.",
+          "Not quite. Go over it again."
+        ],
+        "rankUp": [
+          "{topic}: {rank}. You're getting dangerous.",
+          "Rank up on {topic}. {rank} now.",
+          "{topic} at {rank}. Your skills hit harder with it."
+        ],
+        "drillDone": [
+          "Drill done: {right} of {total}. Go again or go hunt.",
+          "{right} of {total}. Repetition is root access to memory.",
+          "That's {right} of {total}. The weak spots won't fix themselves."
+        ]
+      }
+    },
+    {
       "id": "blacksmith",
       "name": "Blacksmith",
       "x": 140,

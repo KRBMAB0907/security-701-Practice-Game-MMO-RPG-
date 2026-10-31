@@ -9,7 +9,7 @@ Draws every sprite from the text grids below and saves them as PNGs:
   assets/sprites/crown.png       drawn on top of bosses
   assets/sprites/items/*.png     gear icons (regular ones grayscale, tinted by tier)
   assets/sprites/armor/*.png     armor worn on each class (one per armor x class)
-  assets/sprites/npcs/*.png      the Blacksmith and Crafter at the home camp
+  assets/sprites/npcs/*.png      the Blacksmith, Crafter and Su Root at the home camp
   assets/backgrounds/*.png       one scene per area, plus camp.png
 
 Each sprite file is a sheet of 2 frames side by side (32x16 pixels):
@@ -138,6 +138,27 @@ NPCS = {
         "....oGooGo......",
         "....oGo.oGo.....",
         "...ooo..ooo.....",
+    ]),
+    # Su Root, the trainer: a black hat with a green band, shades, a dark
+    # coat and a glowing laptop. Extra letters: k/K black hat, n green band.
+    "su-root": ({**class_palette((78, 84, 104), (50, 54, 70)),
+                 "k": (8, 8, 12), "K": (36, 36, 44), "n": (0, 255, 156)}, [
+        "................",
+        "......oooo......",
+        ".....oKKKKo.....",
+        ".....oKkkKo.....",
+        ".....onnnno.....",
+        "...okkkkkkkko...",
+        ".....osssso.....",
+        ".....osskko.....",
+        ".....ossSso.....",
+        "......oSSo......",
+        "...oaaaaaaaao...",
+        "..oaaAaaaaAaao..",
+        "..oaaAaaaaAasbbo",
+        "..oaaAaaaaAaobbo",
+        "...oaaao.oaaao..",
+        "...ooo....ooo...",
     ]),
     # Goggles pushed up on the forehead, a vest and a wrench
     "crafter": (class_palette((0, 170, 190), (0, 105, 120)), [
@@ -789,7 +810,8 @@ def bg_council(rng):
 
 def bg_camp(rng):
     """The home camp. The forge and workbench sit behind where the
-    Blacksmith (x 140) and Crafter (x 236) stand; see data/camp.json."""
+    Blacksmith (x 140) and Crafter (x 236) stand; Su Root (x 82) lurks
+    between the tent and the forge. See data/camp.json."""
     img = Image.new("RGB", (W, H)); d = ImageDraw.Draw(img)
     gradient(d, (8, 12, 30), (30, 40, 60))
     stars(d, rng, 50, (170, 180, 210), 70)

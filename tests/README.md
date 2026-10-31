@@ -33,6 +33,7 @@ Each script defaults to the project folder it lives in; you can pass another pat
 | `loot.py` | Drop odds and equipping | < 1 min |
 | `gear_screen.py` | Equip now button, worn armor, gear screen | < 1 min |
 | `timer.py` | Hard timer runs out; Fun has no timer | < 1 min |
+| `mastery.py` | Topic mastery ranks and damage, Su Root's tab, drills (no timer, no XP), old saves, phone fit | < 1 min |
 | `camp.py` | Home camp: smelting, forging, legendaries, upgrades, re-leveling, costs, full bag, old saves | < 1 min |
 | `skill_tree.py` | Tree points, tiers, lock in, keystones, bonuses, reset and class switch | < 1 min |
 | `ascension.py` | Ascension lock, points, choosing, tiers, free reset, and effects in fights | < 1 min |

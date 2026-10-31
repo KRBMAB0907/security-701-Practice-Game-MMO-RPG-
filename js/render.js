@@ -151,25 +151,27 @@ function wrapText(text, maxWidth) {
   return lines;
 }
 
-// The enemy's speech bubble, above its health bar, fading out at the end
-function drawSpeechBubble(size) {
-  if (speech === null || enemy.maxHp === 0) {
+// A speech bubble above whoever is talking (the enemy in a fight, Su Root
+// at camp), fading out at the end. speaker is anything with an x and y,
+// and size is how big it's drawn (bosses are bigger, so the bubble sits higher).
+function drawSpeechBubble(speaker, size) {
+  if (speech === null) {
     return;
   }
   ctx.font = SPEECH_FONT;
   const lines = wrapText(speech.text, 104);
   const width = Math.max(...lines.map(line => ctx.measureText(line).width)) + 10;
   const height = lines.length * 9 + 6;
-  const tailX = enemy.x + 8;
+  const tailX = speaker.x + 8;
   const x = Math.min(Math.max(tailX - width / 2, 4), GAME_W - width - 4);  // stay on screen
-  const y = fighterTop(enemy, size) - (enemy.boss ? 18 : 12) - 20 - height;  // clear of the health number
+  const y = fighterTop(speaker, size) - (size > 16 ? 18 : 12) - 20 - height;  // clear of the health number
 
   ctx.globalAlpha = Math.min(1, speech.life / 300);  // fade out over the last 0.3s
   ctx.fillStyle = "#05070a";
   ctx.fillRect(x - 1, y - 1, width + 2, height + 2);  // dark outline
   ctx.fillStyle = "#f4f1e8";
   ctx.fillRect(x, y, width, height);
-  ctx.beginPath();  // the tail pointing down at the enemy
+  ctx.beginPath();  // the tail pointing down at the speaker
   ctx.moveTo(tailX - 4, y + height);
   ctx.lineTo(tailX + 4, y + height);
   ctx.lineTo(tailX, y + height + 5);
@@ -198,8 +200,9 @@ function drawXpBar() {
   shadowText("Lv " + save.level + "  XP " + save.xp + "/" + xpToNextLevel(), x, y - 4, "#ffd166");
 }
 
+// The camp scene shows in the camp menus and during Su Root's drills
 function isCampOpen() {
-  return !document.getElementById("camp-panel").hidden;
+  return !document.getElementById("camp-panel").hidden || drillTopic !== null;
 }
 
 function draw() {
@@ -227,7 +230,7 @@ function draw() {
     drawFighter(enemy, enemySize, true);  // enemies face left, toward the player
     drawHealthBar(player, 16);
     drawHealthBar(enemy, enemySize);
-    drawSpeechBubble(enemySize);
+    drawSpeechBubble(enemy, enemySize);
   }
 
   if (isCampOpen()) {

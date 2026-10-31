@@ -807,3 +807,52 @@ body.tree-open #ascension-panel {
   color: #5d6f66;
   cursor: not-allowed;
 }
+
+/* ---------------------------------------------------------------
+   Su Root's tab at camp: one row per exam topic with its mastery
+   rank, a bar toward the next rank, and a Drill button.
+   --------------------------------------------------------------- */
+.mastery-help {
+  color: #7fa894;
+  font-size: 0.85em;
+}
+
+.mastery-domain {
+  border: 2px solid #1c2733;
+  padding: 0.3em 0.6em;
+  margin: 0.4em 0;
+}
+
+.mastery-domain summary {
+  cursor: pointer;
+  color: #00ff9c;
+}
+
+.mastery-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8em;
+  border-bottom: 1px solid #1c2733;
+  padding: 0.4em 0;
+}
+
+.mastery-row > div {
+  flex: 1;
+}
+
+.mastery-row small {
+  display: block;
+  color: #7fa894;
+  margin: 0.15em 0 0.3em;
+}
+
+.mastery-track {
+  height: 0.4em;
+  border: 1px solid #33413a;
+}
+
+.mastery-bar {
+  height: 100%;
+  background: #ffd166;
+}
