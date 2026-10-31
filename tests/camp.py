@@ -120,6 +120,17 @@ try:
         pg.click("#camp-back-button"); pg.wait_for_timeout(200)
         check("back to map", pg.is_visible("#map-panel") and not pg.evaluate("isCampOpen()"))
 
+        # Smelt all Common: equipped Commons are kept, the rest melt
+        pg3 = page(b, {**OLD_SAVE, "equipped": {"tool": 1, "armor": 3, "module": None}})
+        pg3.click("#camp-button"); pg3.wait_for_timeout(200)
+        btn = pg3.query_selector("#camp-content button:has-text('Smelt all Common')")
+        check("smelt all button counts spare commons", btn.inner_text() == "Smelt all Common (1)", btn.inner_text())
+        btn.click()
+        names = pg3.evaluate("save.inventory.map(i => i.name)")
+        check("smelt all kept the equipped common", "Common Hardened Kernel" in names and "Common Hex Editor" not in names, names)
+        check("smelt all gave scrap", pg3.evaluate("save.materials.common") == 2)
+        check("smelt all disabled with none left", pg3.is_disabled("#camp-content button:has-text('Smelt all Common (0)')"))
+
         # Phone size: the map's buttons and the camp still fit without page scrolling
         pg2 = page(b, OLD_SAVE, viewport=(375, 667))
         pg2.click("#camp-button"); pg2.click("#crafter-tab"); pg2.wait_for_timeout(300)

@@ -200,11 +200,36 @@ function addHeading(parent, text) {
   parent.appendChild(heading);
 }
 
+// Unequipped Common items: the junk "Smelt all Common" clears out
+function spareCommons() {
+  return save.inventory.filter(item => item.tier === "common" && !isEquipped(item));
+}
+
+function smeltAllCommon() {
+  const items = spareCommons();
+  const amount = items.length * campData.smeltYield.common;
+  if (items.length === 0 ||
+      !confirm("Smelt " + items.length + " Common items into " + amount + " " + campData.materials.common + "?")) {
+    return;
+  }
+  save.inventory = save.inventory.filter(item => !items.includes(item));
+  save.materials.common = materialCount("common") + amount;
+  writeSave();
+  showCamp("Smelted " + items.length + " Common items into " + amount + " " + campData.materials.common + ".");
+}
+
 function showBlacksmith(content) {
   if (save.inventory.length === 0) {
     content.textContent = "Your bag is empty. Defeat enemies to find gear to smelt.";
     return;
   }
+  // One click to melt every spare Common item (equipped ones are kept)
+  const row = document.createElement("div");
+  row.className = "camp-row";
+  const commons = spareCommons().length;
+  row.appendChild(campButton("Smelt all Common (" + commons + ")", commons > 0, () => smeltAllCommon()));
+  content.appendChild(row);
+
   sortedInventory().forEach(item => {
     const info = campItemRow(content, item);
     const amount = campData.smeltYield[item.tier];
