@@ -1,2 +1,3 @@
 tests/screenshots/
 __pycache__/
+.venv/
