@@ -4,11 +4,36 @@ Written 2026-10-29 when the work moved to Claude Code. Read `CLAUDE.md` first fo
 
 ## Status
 
-All five areas are built and playable from level 1 to the final boss: 33 zones, 144 enemies, 69 skills, 3 classes, a 30-node skill tree, loot in five tiers with legendaries, pixel art for everything, and a screen layout that fits laptops, desktops and phones without scrolling.
+All five areas are built and playable from level 1 to the final boss: 33 zones, 144 enemies, 69 skills, 3 classes, a 30-node skill tree, 6 ascendancies (2 per class), loot in five tiers with legendaries, pixel art for everything, and a screen layout that fits laptops, desktops and phones without scrolling.
 
-Last commit on GitHub: `7e335ea Claude add` (the hit-chance and dialogue feature below).
+Last commit on GitHub: `a635dc2 Balance for tree and gear (WIP, balance runs pending)`. The ascension feature below isn't on `main` yet.
 
-## Latest feature: skill tree (not committed yet)
+## Latest feature: ascension (built 2026-10-31, waiting for Kaleb's review)
+
+Kaleb's choices:
+
+- **Like PoE2: each class chooses 1 of 2 ascendancies.** Defender: Blue Team Lead or Firewall Architect. Analyst: Threat Hunter or Forensic Investigator. Cryptographer: Cipher Master or PKI Warden.
+- **Points only from the 5 area finale bosses**, 1 each (first win; worked out from cleared zones, so old saves get theirs right away).
+- **Resetting is free**, and a reset lets you choose either ascendancy again. Switching class clears it.
+- **A circle like PoE2:** a round "ASCENSION" emblem at the top of the skill tree screen. With 0 points it's greyed out and says "Locked: need an Ascension point to unlock"; after the first point it's unlocked. It opens a round board: tier 1 on the inner ring, tier 2 on the middle ring (opens at 2 points spent), 2 capstones at the top (open at 4, only one allowed). 8 nodes and 5 points, so you can't take everything.
+- **Hold off on balance until all the new features are in.** No balance runs were done for ascension.
+
+Ascension nodes add new mechanics instead of plain stats: blocking the first hits, a cap on big hits, counterattacks, thorns, critical hits, answer streaks, partial damage on misses, lifesteal, a once-per-fight save at 1 health, and crossing out a wrong answer. Each node is a real Security+ concept with a one-line definition, like the tree. The node numbers are in `data/ascension.json`; shared limits (crit multiplier, streak caps, emergency heal thresholds) are in `js/config.js`; the list of special stats is at the top of `js/ascension.js`.
+
+Files: new `data/ascension.json`, `js/ascension.js`, `tests/ascension.py`. Changed `index.html`, `css/style.css`, `js/config.js`, `js/state.js`, `js/main.js`, `js/map.js`, `js/combat.js` (the effects), `js/leveling.js`, `js/timer.js`, `js/questions.js`, `js/classes.js`, `js/skilltree.js` (draws the emblem), `tools/check_game_data.py`, docs.
+
+**Tested 2026-10-31:** `tests/ascension.py` (31 checks, including the effects in real fights) passed, all 9 other browser tests ran with no page errors, and both checkers found no problems.
+
+**Still to do:** Kaleb reviews and playtests, then the balance pass for the tree, gear and ascension together.
+
+## Balance work in progress (Kaleb's commits after the skill tree)
+
+- Enemy damage now grows with the zone's level (`ENEMY_DAMAGE_GROWTH` in `js/config.js`) instead of a fixed step per area; `enemyDamageScale` was removed from `data/areas.json`.
+- Enemy health grows 2% per zone level on Learner and Hard (`enemyHpGrowth` in `MODES`), to keep up with the tree and gear.
+- Gear gains 5% per item level instead of 10% (`LEVEL_STAT_BONUS`), and extra question time is capped at +50% of the mode's time (`MAX_EXTRA_TIME`).
+- `tests/damage_calc.py` compares the numbers and `tests/balance_built.py` runs built characters; the balance runs are still pending.
+
+## Skill tree (committed in `0d0f72c`, fixed in `9390f6e`)
 
 Kaleb asked for a skill tree inspired by Path of Exile 2 and Diablo 4, with the cyber theme. He chose:
 
@@ -25,10 +50,7 @@ Files: new `data/skilltree.json`, `js/skilltree.js`, `tests/skill_tree.py`. Chan
 
 **Tested 2026-10-29:** `tests/skill_tree.py` (26 checks) passed, and all 8 regression tests ran with no page errors. Both checkers found no problems. The balance runs weren't re-run: their simulated players don't spend tree points, so their numbers are unchanged, but real players with a tree will find the game somewhat easier than the tables below.
 
-**Still to do:** Kaleb playtests the tree. Then the **ascension board** (he asked for it; build it after the tree playtest):
-- One board **per class**, like PoE2 ascendancies (switching class resets it).
-- Ascension points come **only from the 5 area finale bosses** (Foundry Overseer, Breach Lord, The Architect, Silent Operator, Shadow Council): 1 point each, first win only, 5 in total.
-- A Paragon-style endgame board with glyphs was discussed and left for later.
+A Paragon-style endgame board with glyphs was discussed and left for later.
 
 ## Previous feature: enemy hit chance and dialogue (committed in `7e335ea`)
 
@@ -73,7 +95,7 @@ Finale tries on Hard (Cryptographer, 65%), five runs each: Operations Core 0, 4,
 - Fix anything from his playtest of the hit-chance version.
 - Turn on GitHub Pages, then the custom domain.
 - Quests for players who want direction (he agreed to these early on), and a study log that shows which topics the player keeps missing.
-- The ascension board (see above), then maybe a Paragon-style endgame board.
+- The balance pass once all new features are in, then maybe a Paragon-style endgame board.
 - More classes or multiclassing.
 - More questions per objective, especially the heavy domains (4.0 is 28% of the exam).
 - Restyle or hand-edit the starter art in Piskel (`docs/ART.md`).

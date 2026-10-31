@@ -55,6 +55,10 @@
 
   <div id="tree-panel" hidden>
     <p id="tree-summary"></p>
+    <div id="ascension-emblem">
+      <button id="ascension-button">ASCENSION</button>
+      <p id="ascension-note"></p>
+    </div>
     <p id="tree-help">Click a node to plan a point, then Lock in. Taking points back out costs levels, like switching class.</p>
     <div class="small-buttons">
       <button id="tree-save-button">Lock in points</button>
@@ -63,6 +67,17 @@
       <button id="tree-back-button">Back to map</button>
     </div>
     <div id="tree-branches"></div>
+  </div>
+
+  <div id="ascension-panel" hidden>
+    <p id="ascension-summary"></p>
+    <div class="small-buttons">
+      <button id="ascension-reset-button">Reset ascension (free)</button>
+      <button id="ascension-back-button">Back to skill tree</button>
+    </div>
+    <div id="ascension-choices"></div>
+    <div id="ascension-circle"></div>
+    <div id="ascension-info"></div>
   </div>
 
   <div id="battle-panel" hidden>
@@ -94,6 +109,7 @@
   <script src="js/classes.js"></script>
   <script src="js/loot.js"></script>
   <script src="js/skilltree.js"></script>
+  <script src="js/ascension.js"></script>
   <script src="js/dialogue.js"></script>
   <script src="js/sprites.js"></script>
   <script src="js/render.js"></script>

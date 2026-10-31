@@ -16,9 +16,10 @@ function showQuestion(question) {
     choicesDiv.appendChild(button);
   });
 
-  // Elimination Engine legendary: knock out one random wrong answer.
+  // Elimination Engine legendary (or the Expert Witness ascension node):
+  // knock out one random wrong answer.
   // The button stays in place (disabled) so answer numbers still line up.
-  if (hasEffect("eliminate")) {
+  if (hasEffect("eliminate") || ascensionBonus("eliminate") > 0) {
     const wrongIndexes = question.choices.map((_, index) => index).filter(index => index !== question.answer);
     const removed = randomFrom(wrongIndexes);
     const button = choicesDiv.children[removed];

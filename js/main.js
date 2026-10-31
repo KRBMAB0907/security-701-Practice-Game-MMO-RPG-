@@ -23,13 +23,14 @@ async function start() {
   const status = document.getElementById("status");
   try {
     // Load the shared files at the same time and wait for all to finish
-    const [topicData, areaList, classData, lootData, dialogueData, treeData] = await Promise.all([
+    const [topicData, areaList, classData, lootData, dialogueData, treeData, ascensionFile] = await Promise.all([
       loadJson("data/topics.json"),
       loadJson("data/areas.json"),
       loadJson("data/classes.json"),
       loadJson("data/loot.json"),
       loadJson("data/dialogue.json"),
-      loadJson("data/skilltree.json")
+      loadJson("data/skilltree.json"),
+      loadJson("data/ascension.json")
     ]);
 
     // Then each built area's own file and its domain's questions, all at once.
@@ -80,6 +81,7 @@ async function start() {
         treeNodes.push(node);
       });
     });
+    ascensionData = ascensionFile;
     preloadArt();  // start loading images in the background
 
     status.hidden = true;

@@ -137,6 +137,7 @@ function showTree() {
   const resetButton = document.getElementById("tree-reset-button");
   resetButton.disabled = treePointsSpent(save.tree) === 0;
   resetButton.textContent = "Reset tree (costs " + classSwitchCost() + " levels)";
+  updateAscensionEmblem();  // the Ascension circle at the top (js/ascension.js)
 }
 
 // One column: the domain's name, then its tiers from top to bottom

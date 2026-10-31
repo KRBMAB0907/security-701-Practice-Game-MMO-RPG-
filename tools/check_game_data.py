@@ -6,8 +6,8 @@ Run from the repo's main folder:
 It checks that areas, zones, enemies, skills, classes and art all link up:
 every enemy weakness can be hit by a skill in its zone, every skill's
 topics exist and have questions, IDs are unique, and so on. Run it after
-editing anything in data/areas/, data/areas.json, data/classes.json or
-data/skilltree.json.
+editing anything in data/areas/, data/areas.json, data/classes.json,
+data/skilltree.json or data/ascension.json.
 """
 import json
 import sys
@@ -162,6 +162,49 @@ def main():
                 if not node.get(field):
                     problems.append(f"{where} has no {field}")
     summary.append(f"  Skill tree: {len(node_ids)} nodes, {tree_points} points to fill it")
+
+    # Ascension: every class has 2 ascendancies of 8 nodes (3 + 3 + 2 capstones),
+    # and every stat is one the code knows (see the list in js/ascension.js)
+    ascension = load("data/ascension.json")
+    ascension_stats = known_stats - {"loot", "domainDamage"} | {
+        "blockHits", "maxHitPercent", "counterOnMiss", "cheatDeath", "streakHeal", "lowHpDefense",
+        "dodgeAfterCorrect", "streakDamage", "bossDamage", "bossDefense", "healOnWrong", "weakHealPercent",
+        "missDamage", "critChance", "critMultiplier", "critEveryN", "firstHitBonus", "thorns",
+        "enemyMissHeal", "defenseAfterWrong", "eliminate", "emergencyHeal", "dodgePerHit", "lifesteal",
+        "wildcard", "hpPercent"}
+    ascension_tiers = len(ascension["tierCosts"])
+    ascension_ids = set()
+    ascendancy_count = 0
+    covered_classes = set()
+    for entry in ascension["classes"]:
+        if entry["classId"] not in class_ids:
+            problems.append(f"ascension lists unknown class '{entry['classId']}'")
+        covered_classes.add(entry["classId"])
+        if len(entry["ascendancies"]) != 2:
+            problems.append(f"class '{entry['classId']}' has {len(entry['ascendancies'])} ascendancies (want 2)")
+        for ascendancy in entry["ascendancies"]:
+            ascendancy_count += 1
+            per_tier = Counter(node["tier"] for node in ascendancy["nodes"])
+            if [per_tier[1], per_tier[2], per_tier[3]] != [3, 3, 2]:
+                problems.append(f"ascendancy '{ascendancy['id']}' needs 3 tier-1, 3 tier-2 and 2 tier-3 nodes "
+                                f"(has {per_tier[1]}, {per_tier[2]}, {per_tier[3]})")
+            for node in ascendancy["nodes"]:
+                where = f"ascension node '{node['id']}'"
+                if node["id"] in ascension_ids or node["id"] in node_ids:
+                    problems.append(f"{where} id is used twice")
+                ascension_ids.add(node["id"])
+                if not 1 <= node["tier"] <= ascension_tiers:
+                    problems.append(f"{where} has tier {node['tier']} (must be 1 to {ascension_tiers})")
+                for stat in node["stats"]:
+                    if stat not in ascension_stats:
+                        problems.append(f"{where} has unknown stat '{stat}'")
+                for field in ("name", "text", "concept"):
+                    if not node.get(field):
+                        problems.append(f"{where} has no {field}")
+    for class_id in class_ids:
+        if class_id not in covered_classes:
+            problems.append(f"class '{class_id}' has no ascendancies in data/ascension.json")
+    summary.append(f"  Ascension: {ascendancy_count} ascendancies, {len(ascension_ids)} nodes")
 
     print("Areas:")
     print("\n".join(summary))

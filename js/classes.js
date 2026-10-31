@@ -23,7 +23,7 @@ function showClassPicker() {
   const switching = currentClass() !== undefined;
 
   document.getElementById("class-intro").textContent = switching
-    ? "Your class: " + currentClass().name + ". Switching costs 20% of your levels (" + classSwitchCost() + " right now) and refunds your skill tree points."
+    ? "Your class: " + currentClass().name + ". Switching costs 20% of your levels (" + classSwitchCost() + " right now) and refunds your skill tree and ascension points."
     : "Choose your class. You can switch later, but it costs 20% of your levels.";
   document.getElementById("class-cancel-button").hidden = !switching;
 
@@ -49,7 +49,7 @@ function showClassPicker() {
 function chooseClass(playerClass) {
   if (currentClass() !== undefined) {
     const cost = classSwitchCost();
-    const ok = confirm("Become a " + playerClass.name + "? You will lose " + cost + " level(s), and your skill tree points come back to spend again.");
+    const ok = confirm("Become a " + playerClass.name + "? You will lose " + cost + " level(s), and your skill tree and ascension points come back to spend again.");
     if (!ok) {
       return;
     }
@@ -57,6 +57,9 @@ function chooseClass(playerClass) {
     save.xp = 0;  // start the new level's XP bar fresh, so the cost is real
     // Fewer levels means fewer tree points, so the tree starts over too
     save.tree = {};
+    // Ascendancies belong to one class, so the new class chooses again
+    save.ascendancy = null;
+    save.ascension = {};
   }
   save.classId = playerClass.id;
   writeSave();

@@ -52,6 +52,7 @@ body {
 #map-panel,
 #gear-panel,
 #tree-panel,
+#ascension-panel,
 #battle-panel {
   grid-row: 2;
   width: 100%;
@@ -83,6 +84,7 @@ body {
   #map-panel,
   #gear-panel,
   #tree-panel,
+  #ascension-panel,
   #battle-panel {
     grid-row: 1;
     grid-column: 2;
@@ -99,6 +101,7 @@ body {
   #map-panel,
   #gear-panel,
   #tree-panel,
+  #ascension-panel,
   #battle-panel {
     font-size: 15px;
   }
@@ -430,7 +433,8 @@ body.tree-open #game {
   display: none;
 }
 
-body.tree-open #tree-panel {
+body.tree-open #tree-panel,
+body.tree-open #ascension-panel {
   grid-row: 1;
   grid-column: 1;
   max-width: 1400px;
@@ -535,4 +539,201 @@ body.tree-open #tree-panel {
 #tree-panel .small-buttons {
   flex-wrap: wrap;
   margin-top: 0.5em;
+}
+
+/* ---------------------------------------------------------------
+   Ascension: a round emblem on the skill tree screen (like Path of
+   Exile 2's ascendancy circle) that opens a round board of 8 nodes.
+   --------------------------------------------------------------- */
+#ascension-emblem {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  margin: 0.5em 0;
+}
+
+#ascension-button {
+  flex-shrink: 0;
+  width: 6.5em;
+  height: 6.5em;
+  border-radius: 50%;  /* a circle */
+  font: inherit;
+  font-size: 0.8em;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  background: radial-gradient(circle, #2a0f33, #0a0e14 70%);
+  color: #ffd166;
+  border: 3px solid #e040fb;
+  box-shadow: 0 0 12px #e040fb88;
+  cursor: pointer;
+}
+
+#ascension-button small {
+  display: block;
+  margin-top: 0.3em;
+  font-weight: normal;
+  color: #d8f3e8;
+}
+
+#ascension-button.locked {
+  background: #0a0e14;
+  color: #5d6f66;
+  border-color: #33413a;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+#ascension-button.locked small {
+  color: #5d6f66;
+}
+
+#ascension-note {
+  margin: 0;
+  color: #e9a6f5;
+  font-size: 0.9em;
+}
+
+#ascension-summary {
+  color: #ffd166;
+}
+
+/* Choosing an ascendancy: one big button each */
+.ascendancy-choice {
+  display: block;
+  width: 100%;
+  margin: 0.5em 0;
+  padding: 0.7em 0.8em;
+  font: inherit;
+  text-align: left;
+  background: #0a0e14;
+  color: #ffd166;
+  border: 2px solid #e040fb;
+  cursor: pointer;
+}
+
+.ascendancy-choice:hover {
+  background: #2a0f33;
+}
+
+.ascendancy-choice small {
+  display: block;
+  margin-top: 0.3em;
+  color: #a8d5c0;
+}
+
+.ascendancy-choice small.concept {
+  color: #7fa894;
+  font-style: italic;
+}
+
+/* The board: a circle, with nodes placed by js/ascension.js in percent */
+#ascension-circle {
+  position: relative;
+  width: min(100%, 30em, 62vh);  /* fits with the details below it on short screens */
+  aspect-ratio: 1;
+  margin: 0.8em auto;
+  border-radius: 50%;
+  border: 3px solid #e040fb;
+  background: radial-gradient(circle, #1a0a22, #05070a 72%);
+  box-shadow: 0 0 18px #e040fb55;
+  box-sizing: border-box;
+  font-size: min(1em, 3.2vw, 2.2vh);  /* shrink the node names on small screens */
+}
+
+.ascension-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px dashed #4a2a55;
+  pointer-events: none;  /* decoration only: clicks go to the nodes */
+}
+
+.ascension-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 24%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 0.8em;
+  font-weight: bold;
+  color: #ffd166;
+}
+
+.ascension-node {
+  position: absolute;
+  width: 16%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);  /* centre the node on its spot */
+  border-radius: 50%;
+  padding: 0.2em;
+  font: inherit;
+  font-size: 0.62em;
+  line-height: 1.1;
+  background: #0a0e14;
+  color: #7fa894;
+  border: 2px solid #33413a;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/* Capstones are bigger, like keystones in the skill tree */
+.ascension-node.capstone {
+  width: 19%;
+  border-width: 3px;
+}
+
+.ascension-node.available {
+  color: #d8f3e8;
+  border-color: #e040fb;
+}
+
+.ascension-node.taken {
+  color: #05070a;
+  background: #e040fb;
+  border-color: #ffd166;
+  font-weight: bold;
+}
+
+.ascension-node.selected {
+  box-shadow: 0 0 0 3px #ffd166;
+}
+
+/* Details of the tapped node, under the circle */
+#ascension-info {
+  max-width: 30em;
+  margin: 0 auto;
+  color: #a8d5c0;
+}
+
+#ascension-info strong {
+  color: #ffd166;
+}
+
+#ascension-info small {
+  display: block;
+  margin-top: 0.3em;
+}
+
+#ascension-info small.concept {
+  color: #7fa894;
+  font-style: italic;
+}
+
+#ascension-take-button {
+  margin-top: 0.6em;
+  padding: 0.45em 0.8em;
+  font: inherit;
+  background: #0a0e14;
+  color: #d8f3e8;
+  border: 2px solid #e040fb;
+  cursor: pointer;
+}
+
+#ascension-take-button:disabled {
+  color: #5d6f66;
+  border-color: #33413a;
+  cursor: not-allowed;
 }

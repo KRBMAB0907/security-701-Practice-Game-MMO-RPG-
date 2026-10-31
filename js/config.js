@@ -48,6 +48,14 @@ const MAX_EXTRA_TIME = 0.5;       // gear and the skill tree can add at most +50
 // Skill tree (the nodes themselves are in data/skilltree.json)
 const FINAL_BOSS_TREE_POINTS = 3;     // bonus points for beating the final boss
 
+// Ascension (the boards and their node numbers are in data/ascension.json)
+const CRIT_MULTIPLIER = 2;          // critical hits deal double damage
+const STREAK_HEAL_EVERY = 3;        // streakHeal triggers every 3 right answers in a row
+const STREAK_DAMAGE_MAX_STACKS = 5; // streakDamage counts at most 5 answers (e.g. 5 x 8% = +40%)
+const DODGE_PER_HIT_CAP = 10;       // dodgePerHit can lower enemy hit chance by at most 10%
+const EMERGENCY_HEAL_BELOW = 0.3;   // emergencyHeal triggers below 30% health...
+const EMERGENCY_HEAL_TO = 0.6;      // ...and heals you back up to 60%
+
 // Keystones: each one is strong but has a downside
 const ZERO_TRUST_WEAK_BONUS = 0.5;    // Zero Trust: weak points take +0.5x...
 const ZERO_TRUST_OTHER_SCALE = 0.6;   // ...but every other hit deals 40% less

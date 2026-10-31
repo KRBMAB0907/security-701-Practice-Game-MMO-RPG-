@@ -7,7 +7,8 @@ function xpToNextLevel() {
 // Base health from the mode and level, scaled by your class, plus armor
 function playerMaxHp() {
   const base = currentMode.playerHp + (save.level - 1) * HP_PER_LEVEL;
-  return Math.round(base * currentClass().hpScale) + gearBonus("hp") + treeBonus("hp");
+  const flat = Math.round(base * currentClass().hpScale) + gearBonus("hp") + treeBonus("hp") + ascensionBonus("hp");
+  return Math.round(flat * (1 + ascensionBonus("hpPercent") / 100));  // e.g. Air Gap: 15% less
 }
 
 // Returns a message if the player leveled up, otherwise ""

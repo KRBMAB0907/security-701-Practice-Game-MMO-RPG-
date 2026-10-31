@@ -13,13 +13,15 @@ let classes = [];
 let topicDomains = {}; // topic id -> domain number, built from topics.json
 let skillTree = null;  // data/skilltree.json
 let treeNodes = [];    // every skill tree node from every branch, in one list
+let ascensionData = null; // data/ascension.json
 
 // A brand-new save: also used by "Reset progress"
 function newSave() {
   return {
     level: 1, xp: 0, clearedZones: [], classId: null,
     inventory: [], equipped: { tool: null, armor: null, module: null }, nextItemId: 1,
-    tree: {}  // skill tree points per node, e.g. { "integrity": 2 }
+    tree: {},  // skill tree points per node, e.g. { "integrity": 2 }
+    ascendancy: null, ascension: {}  // chosen ascendancy and its taken nodes
   };
 }
 
@@ -41,6 +43,7 @@ let questionTime = 0;     // full time for the current question, including gear 
 let failoverUsed = false; // the Failover Core legendary works once per fight
 let turnInProgress = false; // true while the enemy's attack is still playing out
 let questionShownAt = 0;  // when the current question appeared (for Rapid Response)
+let ascFight = {};        // ascension effects that count up during a fight (see js/ascension.js)
 
 // The two fighters. flash and shake count down in milliseconds.
 // spritePath is the image to draw; tint = true recolors it with `color`.

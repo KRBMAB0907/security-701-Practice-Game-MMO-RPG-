@@ -1,0 +1,207 @@
+{
+  "about": "Ascension: each class chooses 1 of 2 ascendancies (like Path of Exile 2). You get 1 Ascension point for each area finale boss you beat (5 in total). Each board has 8 nodes: tier 1 is open from the start, tier 2 opens at tierCosts[1] points spent, and tier 3 (the capstones) at tierCosts[2]; you can only take one capstone. stats work like the skill tree's (damage, hp, time, heal, weakness, dodge, defense, xp), plus the special ones listed in js/ascension.js. Resetting is free.",
+  "tierCosts": [0, 2, 4],
+  "classes": [
+    {
+      "classId": "defender",
+      "ascendancies": [
+        {
+          "id": "blue-team-lead",
+          "name": "Blue Team Lead",
+          "description": "Leads the defenders: blocks the first blow, caps big hits, and strikes back when attacks miss.",
+          "nodes": [
+            { "id": "hardened-perimeter", "name": "Hardened Perimeter", "tier": 1, "stats": { "hp": 40 },
+              "text": "+40 max health",
+              "concept": "Perimeter security: the controls at the edge of a network, like firewalls and gateways." },
+            { "id": "preventive-control", "name": "Preventive Control", "tier": 1, "stats": { "blockHits": 1 },
+              "text": "The first enemy hit in each fight is fully blocked",
+              "concept": "Preventive control: a control that stops an incident before it happens." },
+            { "id": "rate-limiting", "name": "Rate Limiting", "tier": 1, "stats": { "maxHitPercent": 25 },
+              "text": "No single hit can take more than 25% of your max health",
+              "concept": "Rate limiting: capping how many requests get through, so one source can't overwhelm a system." },
+            { "id": "countermeasure", "name": "Countermeasure", "tier": 2, "stats": { "counterOnMiss": 30 },
+              "text": "When an enemy misses you, strike back for 30% of your last hit",
+              "concept": "Countermeasure: an action or control that answers a threat." },
+            { "id": "fail-safe", "name": "Fail-Safe", "tier": 2, "stats": { "cheatDeath": 1 },
+              "text": "Once per fight, a killing blow leaves you at 1 health (works on top of Failover Core)",
+              "concept": "Fail-safe design: when something breaks, it ends up in a safe state." },
+            { "id": "continuous-monitoring", "name": "Continuous Monitoring", "tier": 2, "stats": { "dodge": 8 },
+              "text": "Enemies hit 8% less often",
+              "concept": "Continuous monitoring: watching systems all the time, so problems are caught early." },
+            { "id": "incident-commander", "name": "Incident Commander", "tier": 3, "stats": { "streakHeal": 20 },
+              "text": "Every 3 right answers in a row heal 20% of your max health",
+              "concept": "Incident commander: the person who leads the response team during an incident." },
+            { "id": "compensating-control", "name": "Compensating Control", "tier": 3, "stats": { "lowHpDefense": 25 },
+              "text": "Take 25% less damage while below half health",
+              "concept": "Compensating control: a backup control used when the main one can't do the job." }
+          ]
+        },
+        {
+          "id": "firewall-architect",
+          "name": "Firewall Architect",
+          "description": "Designs the walls: rules, zones and filters. Enemies that hit you get hurt too.",
+          "nodes": [
+            { "id": "implicit-deny", "name": "Implicit Deny", "tier": 1, "stats": { "dodge": 6 },
+              "text": "Enemies hit 6% less often",
+              "concept": "Implicit deny: anything a rule doesn't explicitly allow is blocked." },
+            { "id": "port-security", "name": "Port Security", "tier": 1, "stats": { "hp": 30 },
+              "text": "+30 max health",
+              "concept": "Port security: limiting which devices can use a switch port, often by MAC address." },
+            { "id": "packet-filtering", "name": "Packet Filtering", "tier": 1, "stats": { "defense": 10 },
+              "text": "Take 10% less damage",
+              "concept": "Packet filtering: allowing or blocking traffic by address, port and protocol." },
+            { "id": "stateful-inspection", "name": "Stateful Inspection", "tier": 2, "stats": { "thorns": 50 },
+              "text": "When an enemy hits you, it takes 50% of that damage back",
+              "concept": "Stateful inspection: a firewall that tracks connections, so only replies to traffic you started get back in." },
+            { "id": "access-control-list", "name": "Access Control List", "tier": 2, "stats": { "damage": 10 },
+              "text": "+10% skill damage",
+              "concept": "ACL: an ordered list of rules saying which traffic or users are allowed or denied." },
+            { "id": "ingress-filtering", "name": "Ingress Filtering", "tier": 2, "stats": { "bossDefense": 15 },
+              "text": "Bosses deal 15% less damage to you",
+              "concept": "Ingress filtering: checking traffic coming into a network and dropping what doesn't belong." },
+            { "id": "next-gen-firewall", "name": "Next-Gen Firewall", "tier": 3, "stats": { "enemyMissHeal": 8 },
+              "text": "Every time an enemy misses you, heal 8% of your max health",
+              "concept": "Next-generation firewall (NGFW): a firewall that understands applications and can block attacks hidden in allowed traffic." },
+            { "id": "air-gap", "name": "Air Gap", "tier": 3, "stats": { "blockHits": 2, "hpPercent": -15 },
+              "text": "The first 2 enemy hits in each fight are blocked, but you have 15% less max health",
+              "concept": "Air gap: a system with no network connection to anything else." }
+          ]
+        }
+      ]
+    },
+    {
+      "classId": "analyst",
+      "ascendancies": [
+        {
+          "id": "threat-hunter",
+          "name": "Threat Hunter",
+          "description": "Goes looking for attackers before the alarms go off. Rewards answer streaks and weak points.",
+          "nodes": [
+            { "id": "triage", "name": "Triage", "tier": 1, "stats": { "heal": 4 },
+              "text": "Heal 4 more health per right answer",
+              "concept": "Triage: sorting alerts and incidents so the most serious get handled first." },
+            { "id": "behavioral-analysis", "name": "Behavioral Analysis", "tier": 1, "stats": { "weakness": 0.25 },
+              "text": "Weak points take +0.25x more damage",
+              "concept": "Behavioral analysis: spotting attacks by unusual behavior instead of known signatures." },
+            { "id": "correlation", "name": "Correlation", "tier": 1, "stats": { "dodgeAfterCorrect": 15 },
+              "text": "After a right answer, the enemy's attack is 15% less likely to hit",
+              "concept": "Correlation: linking events from different logs to see one bigger attack (a SIEM does this)." },
+            { "id": "threat-feed", "name": "Threat Feed", "tier": 2, "stats": { "streakDamage": 8 },
+              "text": "Each right answer in a row adds +8% damage (up to +40%). A miss resets it.",
+              "concept": "Threat feed: a steady stream of fresh threat data that keeps improving your detections." },
+            { "id": "root-cause-analysis", "name": "Root Cause Analysis", "tier": 2, "stats": { "bossDamage": 20 },
+              "text": "Bosses take +20% damage",
+              "concept": "Root cause analysis: finding the real reason an incident happened, so it doesn't happen again." },
+            { "id": "lessons-learned", "name": "Lessons Learned", "tier": 2, "stats": { "healOnWrong": 5 },
+              "text": "A wrong answer heals you for 5 (you still learn from it)",
+              "concept": "Lessons learned: the review after an incident, to do better next time." },
+            { "id": "full-visibility", "name": "Full Visibility", "tier": 3, "stats": { "weakHealPercent": 10 },
+              "text": "Hitting a weak point also heals 10% of your max health",
+              "concept": "Visibility: you can't defend what you can't see. Logs and monitoring give you the view." },
+            { "id": "soar-playbook", "name": "SOAR Playbook", "tier": 3, "stats": { "missDamage": 35 },
+              "text": "Wrong answers and timeouts still deal 35% of the skill's damage",
+              "concept": "SOAR (security orchestration, automation and response): playbooks that act even when people are busy." }
+          ]
+        },
+        {
+          "id": "forensic-investigator",
+          "name": "Forensic Investigator",
+          "description": "Collects the evidence and rebuilds what really happened. More time, and help ruling out wrong answers.",
+          "nodes": [
+            { "id": "chain-of-custody", "name": "Chain of Custody", "tier": 1, "stats": { "time": 6 },
+              "text": "+6 seconds per question",
+              "concept": "Chain of custody: a record of everyone who handled evidence, so it holds up in court." },
+            { "id": "legal-hold", "name": "Legal Hold", "tier": 1, "stats": { "hp": 25 },
+              "text": "+25 max health",
+              "concept": "Legal hold: an order to keep data that might be needed in a lawsuit." },
+            { "id": "timeline", "name": "Timeline", "tier": 1, "stats": { "damage": 10 },
+              "text": "+10% skill damage",
+              "concept": "Timeline: putting events in order to see how an attack unfolded." },
+            { "id": "write-blocker", "name": "Write Blocker", "tier": 2, "stats": { "defenseAfterWrong": 15 },
+              "text": "After a wrong answer, the enemy's attack that turn deals 15% less",
+              "concept": "Write blocker: a device that lets you read a drive without changing anything on it." },
+            { "id": "order-of-volatility", "name": "Order of Volatility", "tier": 2, "stats": { "firstHitBonus": 40 },
+              "text": "Your first hit in each fight deals +40%",
+              "concept": "Order of volatility: collect the evidence that disappears fastest (like RAM) first." },
+            { "id": "e-discovery", "name": "E-Discovery", "tier": 2, "stats": { "xp": 25 },
+              "text": "+25% XP",
+              "concept": "E-discovery: finding and handing over electronic records for a legal case." },
+            { "id": "expert-witness", "name": "Expert Witness", "tier": 3, "stats": { "eliminate": 1 },
+              "text": "One wrong answer is crossed out on every question",
+              "concept": "Expert witness: a specialist who explains technical evidence to a court." },
+            { "id": "disk-image", "name": "Disk Image", "tier": 3, "stats": { "emergencyHeal": 1 },
+              "text": "Once per fight, when you drop below 30% health, heal back to 60%",
+              "concept": "Disk image: an exact bit-for-bit copy of a drive, so analysis never touches the original." }
+          ]
+        }
+      ]
+    },
+    {
+      "classId": "cryptographer",
+      "ascendancies": [
+        {
+          "id": "cipher-master",
+          "name": "Cipher Master",
+          "description": "Bends cryptography into raw damage: critical hits, big openers and boss slaying.",
+          "nodes": [
+            { "id": "key-stretching", "name": "Key Stretching", "tier": 1, "stats": { "damage": 12 },
+              "text": "+12% skill damage",
+              "concept": "Key stretching: hashing a password many times so it's slow to crack (PBKDF2, bcrypt)." },
+            { "id": "salting", "name": "Salting", "tier": 1, "stats": { "critChance": 15 },
+              "text": "15% chance for a critical hit (double damage)",
+              "concept": "Salting: adding random data to each password before hashing, so identical passwords get different hashes." },
+            { "id": "key-rotation", "name": "Key Rotation", "tier": 1, "stats": { "hp": 25 },
+              "text": "+25 max health",
+              "concept": "Key rotation: replacing keys on a schedule, so a stolen key is useful for less time." },
+            { "id": "forward-secrecy", "name": "Forward Secrecy", "tier": 2, "stats": { "firstHitBonus": 75 },
+              "text": "Your first hit in each fight deals +75%",
+              "concept": "Perfect forward secrecy: each session gets its own key, so one stolen key can't unlock past sessions." },
+            { "id": "post-quantum", "name": "Post-Quantum", "tier": 2, "stats": { "bossDamage": 20 },
+              "text": "Bosses take +20% damage",
+              "concept": "Post-quantum cryptography: algorithms designed to stay safe even against quantum computers." },
+            { "id": "entropy", "name": "Entropy", "tier": 2, "stats": { "critMultiplier": 0.5 },
+              "text": "Critical hits deal 2.5x instead of 2x",
+              "concept": "Entropy: true randomness. Keys need lots of it to be hard to guess." },
+            { "id": "one-time-pad", "name": "One-Time Pad", "tier": 3, "stats": { "critEveryN": 4 },
+              "text": "Every 4th right answer in a fight is an automatic critical hit",
+              "concept": "One-time pad: a random key as long as the message, used once. Unbreakable if done right." },
+            { "id": "elliptic-curve", "name": "Elliptic Curve", "tier": 3, "stats": { "damage": 30, "dodge": -5 },
+              "text": "+30% skill damage, but enemies hit 5% more often",
+              "concept": "Elliptic curve cryptography (ECC): strong encryption with small keys, good for phones and small devices." }
+          ]
+        },
+        {
+          "id": "pki-warden",
+          "name": "PKI Warden",
+          "description": "Guards the chain of trust: certificates, keys and signatures. Tougher, and heals from its own hits.",
+          "nodes": [
+            { "id": "root-of-trust", "name": "Root of Trust", "tier": 1, "stats": { "hp": 30 },
+              "text": "+30 max health",
+              "concept": "Root of trust: the starting point everything else trusts, like a root CA or a TPM chip." },
+            { "id": "certificate-pinning", "name": "Certificate Pinning", "tier": 1, "stats": { "dodge": 5 },
+              "text": "Enemies hit 5% less often",
+              "concept": "Certificate pinning: an app only accepts one specific certificate, which blocks fake ones." },
+            { "id": "digital-signature", "name": "Digital Signature", "tier": 1, "stats": { "damage": 10 },
+              "text": "+10% skill damage",
+              "concept": "Digital signature: a hash signed with the sender's private key. Proves who sent it and that it wasn't changed." },
+            { "id": "key-escrow", "name": "Key Escrow", "tier": 2, "stats": { "cheatDeath": 1 },
+              "text": "Once per fight, a killing blow leaves you at 1 health (works on top of Failover Core)",
+              "concept": "Key escrow: a trusted third party keeps a copy of a key so it can be recovered." },
+            { "id": "revocation", "name": "Revocation", "tier": 2, "stats": { "dodgePerHit": 2 },
+              "text": "Each of your hits makes the enemy 2% less likely to hit you this fight (up to 10%)",
+              "concept": "Certificate revocation: cancelling a certificate before it expires, checked with a CRL or OCSP." },
+            { "id": "ocsp-stapling", "name": "OCSP Stapling", "tier": 2, "stats": { "heal": 4 },
+              "text": "Heal 4 health per right answer",
+              "concept": "OCSP stapling: the server attaches a fresh \"still valid\" proof to its certificate, so clients don't have to ask." },
+            { "id": "certificate-authority", "name": "Certificate Authority", "tier": 3, "stats": { "lifesteal": 10 },
+              "text": "Heal for 10% of the damage you deal",
+              "concept": "Certificate authority (CA): the trusted organization that issues and signs certificates." },
+            { "id": "wildcard-certificate", "name": "Wildcard Certificate", "tier": 3, "stats": { "wildcard": 25 },
+              "text": "25% chance that any hit counts as a weak-point hit",
+              "concept": "Wildcard certificate: one certificate that covers every subdomain, like *.example.com." }
+          ]
+        }
+      ]
+    }
+  ]
+}
