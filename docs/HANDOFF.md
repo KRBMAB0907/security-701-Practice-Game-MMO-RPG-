@@ -30,6 +30,18 @@ Kaleb's target: **on Learner and Hard you die in 5-8 enemy hits**, for new playe
 
 Findings: the Operations Deep is now the hardest area (a difficulty spike), while the Council Spire is easier than it, because players arrive there at a higher level. Bosses take about 4 right answers (the old target in `balance_built.py` was 6-8), so `BOSS_HP_SCALE` 0.75 may be a bit low; 0.85 would lengthen boss fights. Kaleb's answers: **raise boss health** (done: 0.85) and **leave the Operations Deep as it is for now** (hard is fine).
 
+Re-run with `BOSS_HP_SCALE` 0.85 (deaths in Operations Deep / Council Spire; boss answers per fight):
+
+| Mode, class, accuracy | Operations Deep | Council Spire | Boss answers |
+| --- | --- | --- | --- |
+| Learner, Analyst 50% | 11 | 1 | 4.6-4.7 |
+| Learner, Cryptographer 65% | 3 | 1 | 4.0-4.4 |
+| Learner, Defender 90% | 0 | 0 | 4.7 |
+| Hard, Cryptographer 65% | **38** | 1 | 4.3-4.7 |
+| Hard, Defender 75% | 0 | 0 | 4.5-4.7 |
+
+The full playthrough passed (33 zones, no page errors). The Operations Deep on Hard as a Cryptographer (low health) at 65% is a wall: 38 deaths. Kaleb said the Deep is fine for now; if players complain, that's where to look first (likely its finale, the Silent Operator).
+
 ## Previous feature: affixes and set items (2026-11-01)
 
 Kaleb said yes to the affix and set ideas as proposed.
@@ -159,13 +171,13 @@ Finale tries on Hard (Cryptographer, 65%), five runs each: Operations Core 0, 4,
 
 ## Known issues
 
-- **GitHub Pages isn't on yet.** The README's "Play it here" link shows GitHub's 404 ("There isn't a GitHub Pages site here"). Fix: on GitHub, Settings → Pages → Build and deployment → Source "Deploy from a branch", branch `main`, folder `/ (root)`, Save, then wait a minute or two. Kaleb paused this, so check with him first.
+- ~~GitHub Pages isn't on yet.~~ It's on now and serves `main`. Browsers may keep old files for up to 10 minutes after an update (Ctrl+Shift+R, or DevTools → right-click reload → Empty Cache and Hard Reload; don't clear site data, that deletes the save). Old note: The README's "Play it here" link shows GitHub's 404 ("There isn't a GitHub Pages site here"). Fix: on GitHub, Settings → Pages → Build and deployment → Source "Deploy from a branch", branch `main`, folder `/ (root)`, Save, then wait a minute or two. Kaleb paused this, so check with him first.
 - A custom domain is planned. When it's bought: add it in Settings → Pages, which creates a `CNAME` file, and set the DNS records GitHub shows.
 
 ## Ideas for next (ask Kaleb which, in what order)
 
 - Fix anything from his playtest of the hit-chance version.
-- Turn on GitHub Pages, then the custom domain.
+- The custom domain (GitHub Pages is on and serves `main`).
 - Quests for players who want direction (he agreed to these early on). (The study log is now Su Root's mastery tab.)
 - The balance pass once all new features are in, then maybe a Paragon-style endgame board.
 - More classes or multiclassing.

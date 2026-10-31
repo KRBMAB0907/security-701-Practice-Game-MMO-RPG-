@@ -25,7 +25,7 @@ Each script defaults to the project folder it lives in; you can pass another pat
 
 | Script | What it checks | Time |
 | --- | --- | --- |
-| `full_playthrough.py` | The whole game, all 33 zones, as a new player | 3–5 min |
+| `full_playthrough.py` | The whole game, all 33 zones, as a new player. Add `--watch` to see it play in a real Chrome window, slowed down, missing about 1 in 5 questions | 3–5 min (watch: ~30–40 min) |
 | `hit_chance.py` | Enemy hit rates match the settings; turn order | ~1 min |
 | `screen_fit.py` | No scrolling and everything visible at 13 screen sizes | ~1 min |
 | `classes.py` | Class stats, switching, reset, old saves | < 1 min |
