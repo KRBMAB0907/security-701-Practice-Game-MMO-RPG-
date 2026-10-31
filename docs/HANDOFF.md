@@ -4,11 +4,28 @@ Written 2026-10-29 when the work moved to Claude Code. Read `CLAUDE.md` first fo
 
 ## Status
 
-All five areas are built and playable from level 1 to the final boss: 33 zones, 144 enemies, 69 skills, 3 classes, a 30-node skill tree, 6 ascendancies (2 per class), loot in five tiers with legendaries, pixel art for everything, and a screen layout that fits laptops, desktops and phones without scrolling.
+All five areas are built and playable from level 1 to the final boss: 33 zones, 144 enemies, 69 skills, 3 classes, a 30-node skill tree, 6 ascendancies (2 per class), loot in five tiers with legendaries, a home camp for smelting and crafting, pixel art for everything, and a screen layout that fits laptops, desktops and phones without scrolling.
 
 Last commit on GitHub: `a635dc2 Balance for tree and gear (WIP, balance runs pending)`. The ascension feature below isn't on `main` yet.
 
-## Latest feature: ascension (built 2026-10-31, waiting for Kaleb's review)
+## Latest feature: home camp (merged into main 2026-10-31)
+
+Kaleb asked for a home camp with a Blacksmith who smelts gear down and a Crafter who uses the pieces to make new gear. He chose:
+
+- **Scrap per tier:** smelting gives scrap of the item's own tier (Common, Uncommon, Rare, Epic Scrap; legendaries give Legendary Cores). 2 scrap per item, 3 cores per legendary.
+- **The Crafter does all four:** forge new gear (pick the item type and tier, Common to Epic; it's made at your level so you can wear it right away), upgrade an item one tier (up to Epic), re-level an old item to your level, and craft a legendary of your choice.
+- **No questions at camp:** it's a calm break from quizzing, just menus.
+- **A camp scene:** a "Home camp" button on the map. The game screen shows a night camp (tent, forge, anvil, campfire, workbench) with the player, the Blacksmith and the Crafter; an arrow bobs over whoever's menu is open.
+
+Costs (all in `data/camp.json`): forge 4 scrap of that tier; upgrade 6 scrap of the current tier; re-level 2 scrap of the item's tier (1 core for legendaries); legendary 2 cores + 4 Epic Scrap. Legendaries can only be crafted from cores, which only come from smelting legendaries, so crafting lets players *choose* a legendary but doesn't make them less rare (that was a settled decision). Equipped items can't be smelted (unequip first), and Rare or better asks before smelting.
+
+Files: new `data/camp.json`, `js/camp.js`, `tests/camp.py`, `assets/backgrounds/camp.png`, `assets/sprites/npcs/blacksmith.png` and `crafter.png`. Changed `index.html`, `css/style.css`, `js/state.js` (`save.materials`, `campData`), `js/loot.js` (`buildItem()` and `itemValue()` split out of `makeItem()` so crafting builds items the same way drops do), `js/render.js`, `js/sprites.js`, `js/map.js`, `js/main.js`, `tools/make_sprites.py`, `tools/check_game_data.py`, docs.
+
+**Tested 2026-10-31:** `tests/camp.py` (28 checks) passed; all 8 regression tests and the full playthrough (33 zones) ran with no page errors; both checkers found no problems.
+
+**Still to do:** Kaleb playtests the camp and the costs. A "Smelt all Common" button (keeps equipped items) was added after. Open question: whether forged gear should cost more since it's made at your level.
+
+## Previous feature: ascension (built 2026-10-31, waiting for Kaleb's review)
 
 Kaleb's choices:
 

@@ -57,6 +57,8 @@ function preloadArt() {
     }
   });
   areas.forEach(area => loadImage(backgroundPath(area.id)));
+  loadImage(backgroundPath("camp"));
+  campData.npcs.forEach(npc => loadImage(npcSpritePath(npc.id)));
   loadImage("assets/sprites/crown.png");
 
   const itemTypes = [...lootTable.bases, ...lootTable.legendaries];

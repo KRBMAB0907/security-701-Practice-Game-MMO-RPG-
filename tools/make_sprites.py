@@ -9,7 +9,8 @@ Draws every sprite from the text grids below and saves them as PNGs:
   assets/sprites/crown.png       drawn on top of bosses
   assets/sprites/items/*.png     gear icons (regular ones grayscale, tinted by tier)
   assets/sprites/armor/*.png     armor worn on each class (one per armor x class)
-  assets/backgrounds/*.png       one scene per area
+  assets/sprites/npcs/*.png      the Blacksmith and Crafter at the home camp
+  assets/backgrounds/*.png       one scene per area, plus camp.png
 
 Each sprite file is a sheet of 2 frames side by side (32x16 pixels):
 frame 1 is the drawing, frame 2 is the same drawing raised 1 pixel,
@@ -109,6 +110,53 @@ CLASSES = {
         "..oaaaAaaaao.yo.",
         "..oAAAAAAAAo.yo.",
         "...oooooooo..oo.",
+    ]),
+}
+
+# ---------------------------------------------------------------
+# Home camp people (full color, facing right; the game flips them to
+# face left, toward the player). Same palette letters as the classes,
+# so "a"/"A" is their clothing color.
+# ---------------------------------------------------------------
+
+NPCS = {
+    # A leather apron, a beard and a hammer
+    "blacksmith": (class_palette((150, 92, 45), (100, 58, 25)), [
+        "................",
+        "................",
+        ".....oooo.......",
+        "....oSssso......",
+        "....ossoso......",
+        "....ohhhho...ooo",
+        ".....ohho...oggo",
+        "...ooaaaaoo..oGo",
+        "..osoaaaaoso.oyo",
+        "..osoaAAaoosooyo",
+        "..oooaaaao.osyo.",
+        "....oaaaao..oyo.",
+        "....oAAAAo......",
+        "....oGooGo......",
+        "....oGo.oGo.....",
+        "...ooo..ooo.....",
+    ]),
+    # Goggles pushed up on the forehead, a vest and a wrench
+    "crafter": (class_palette((0, 170, 190), (0, 105, 120)), [
+        "................",
+        "................",
+        ".....oooo.......",
+        "....ohhhho......",
+        "....obbbbo......",
+        "....osssso......",
+        "....ossoso......",
+        ".....osso....oo.",
+        "...ooaaaaoo.ogo.",
+        "..osoaAyaoso.go.",
+        "..osoaAyaooso.go",
+        "..oooaAyao.oo.o.",
+        "....oyyyyo......",
+        "....ohooho......",
+        "....oho.oho.....",
+        "...ooo..ooo.....",
     ]),
 }
 
@@ -739,9 +787,52 @@ def bg_council(rng):
                 d.rectangle([x, y, x + 15, y + 7], fill=(40, 34, 64))
     return img
 
+def bg_camp(rng):
+    """The home camp. The forge and workbench sit behind where the
+    Blacksmith (x 140) and Crafter (x 236) stand; see data/camp.json."""
+    img = Image.new("RGB", (W, H)); d = ImageDraw.Draw(img)
+    gradient(d, (8, 12, 30), (30, 40, 60))
+    stars(d, rng, 50, (170, 180, 210), 70)
+    d.ellipse([268, 14, 282, 28], fill=(230, 230, 200))  # moon
+    points = [(0, FLOOR)] + [(x, rng.randrange(88, 104)) for x in range(0, W + 16, 16)] + [(W, FLOOR)]
+    d.polygon(points, fill=(12, 20, 26))  # dark hills
+    for x in (6, 296):  # pine trees at the edges
+        d.polygon([(x, FLOOR), (x + 9, 70), (x + 18, FLOOR)], fill=(10, 28, 22))
+    # A tent behind the player
+    d.polygon([(20, FLOOR), (44, 92), (68, FLOOR)], fill=(60, 70, 50))
+    d.polygon([(38, FLOOR), (44, 106), (50, FLOOR)], fill=(25, 30, 22))  # tent door
+    # The Blacksmith's forge: a stone furnace with a glowing mouth and a chimney
+    d.rectangle([100, 90, 130, FLOOR], fill=(50, 46, 46), outline=(30, 28, 28))
+    d.rectangle([110, 60, 118, 90], fill=(40, 37, 37))
+    d.rectangle([106, 108, 124, 120], fill=(255, 120, 20))
+    d.rectangle([109, 111, 121, 120], fill=(255, 200, 60))
+    for y in range(94, FLOOR, 6):  # stone lines
+        d.line([(100, y), (130, y)], fill=(36, 33, 33))
+    # Anvil in front of the forge
+    d.rectangle([156, 118, 172, 121], fill=(90, 98, 110))
+    d.rectangle([161, 122, 167, 125], fill=(60, 66, 76))
+    d.rectangle([158, 126, 170, FLOOR], fill=(60, 66, 76))
+    # The Crafter's workbench, with tools hanging on a board
+    d.rectangle([256, 84, 300, 108], fill=(70, 48, 28), outline=(40, 26, 14))
+    for x, color in ((262, (154, 165, 177)), (272, (255, 209, 102)), (282, (111, 247, 255)), (292, (154, 165, 177))):
+        d.rectangle([x, 88, x + 2, 100], fill=color)
+    d.rectangle([254, 112, 304, 115], fill=(110, 76, 44))  # table top
+    d.rectangle([257, 116, 260, FLOOR], fill=(70, 48, 28))
+    d.rectangle([298, 116, 301, FLOOR], fill=(70, 48, 28))
+    # Campfire in the middle of camp
+    d.polygon([(188, FLOOR), (196, 112), (204, FLOOR)], fill=(255, 120, 20))
+    d.polygon([(192, FLOOR), (196, 118), (200, FLOOR)], fill=(255, 220, 90))
+    d.line([(184, FLOOR - 1), (208, FLOOR - 3)], fill=(90, 56, 30), width=2)
+    # Packed dirt with a few tufts of grass
+    d.rectangle([0, FLOOR, W, H], fill=(40, 32, 26))
+    for _ in range(30):
+        x, y = rng.randrange(W), rng.randrange(FLOOR + 2, H)
+        d.line([(x, y), (x + 1, y - 2)], fill=(40, 70, 40))
+    return img
+
 BACKGROUNDS = {
     "foundry": bg_foundry, "breach-wastes": bg_breach, "citadel": bg_citadel,
-    "operations-deep": bg_ops, "council-spire": bg_council,
+    "operations-deep": bg_ops, "council-spire": bg_council, "camp": bg_camp,
 }
 
 
@@ -753,6 +844,9 @@ def main():
 
     for name, (palette, rows) in CLASSES.items():
         make_sheet(rows, palette).save(out / "sprites" / "classes" / f"{name}.png")
+    (out / "sprites" / "npcs").mkdir(parents=True, exist_ok=True)
+    for name, (palette, rows) in NPCS.items():
+        make_sheet(rows, palette).save(out / "sprites" / "npcs" / f"{name}.png")
     for name, rows in ENEMIES.items():
         make_sheet(rows, ENEMY_PALETTE).save(out / "sprites" / "enemies" / f"{name}.png")
     palette, rows = CROWN
@@ -769,7 +863,7 @@ def main():
         for class_id in CLASSES:
             make_armor_overlay(armor, class_id).save(out / "sprites" / "armor" / f"{armor}-{class_id}.png")
 
-    print(f"Saved {len(CLASSES)} class sprites, {len(ENEMIES)} enemy sprites, 1 crown, {len(BACKGROUNDS)} backgrounds,")
+    print(f"Saved {len(CLASSES)} class sprites, {len(NPCS)} camp people, {len(ENEMIES)} enemy sprites, 1 crown, {len(BACKGROUNDS)} backgrounds,")
     print(f"      {len(ITEMS)} item icons and {len(ARMOR_ICONS) * len(CLASSES)} armor overlays.")
 
 

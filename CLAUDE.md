@@ -36,7 +36,7 @@ Browser tests and balance runs are in `tests/` (see `tests/README.md`). Run the 
 
 ## How the code is laid out
 
-- **No build step.** `index.html` loads 17 plain scripts in order, all sharing global scope: config, state, storage, leveling, classes, loot, skilltree, ascension, dialogue, sprites, render, map, combat, timer, questions, layout, main. `main.js` starts the game and must load last.
+- **No build step.** `index.html` loads 18 plain scripts in order, all sharing global scope: config, state, storage, leveling, classes, loot, skilltree, ascension, camp, dialogue, sprites, render, map, combat, timer, questions, layout, main. `main.js` starts the game and must load last.
 - **Load order matters.** A file can call functions from later files only at runtime, not while it is loading. Button listeners set up early should use arrow functions, e.g. `() => showMap()`, not `showMap` directly (this bug happened once).
 - **Content lives in `data/`, separate from code.** Topics, areas, zones, enemies, skills, classes, loot, the skill tree, ascension, dialogue and questions are JSON. New content should almost never need JavaScript changes.
 - **All balance numbers live in `js/config.js`** (`MODES` plus constants). Change them there, not inline.
@@ -46,6 +46,7 @@ Browser tests and balance runs are in `tests/` (see `tests/README.md`). Run the 
 - **Saves** go to `localStorage` (key `secplus-rpg-save`), wrapped in try/catch. Old saves are upgraded by merging with `newSave()` defaults, so add new save fields there.
 - **Skill tree** (`js/skilltree.js`, `data/skilltree.json`): five branches, one per domain, with tiers that open by points spent. Points aren't saved, they're worked out from level (+3 after the final boss), and `save.tree` only stores points per node. Combat asks `treeBonus(stat)`, `treeDomainDamage(skill)` and `hasKeystone(id)`. A new stat or keystone needs code in those places and in `tools/check_game_data.py`; new nodes using existing stats are JSON only.
 - **Ascension** (`js/ascension.js`, `data/ascension.json`): each class picks 1 of 2 ascendancies, 8 nodes each; 1 point per area finale (worked out from cleared zones), free reset. Combat asks `ascensionBonus(stat)`; per-fight counters (streaks, blocks, once-per-fight saves) live in `ascFight`, reset by `resetAscensionFight()` in `startFight`. Special stats are listed at the top of `js/ascension.js` and in `tools/check_game_data.py`.
+- **Home camp** (`js/camp.js`, `data/camp.json`): the Blacksmith smelts bag items into scrap (`save.materials`, one count per loot tier; legendaries give Legendary Cores). The Crafter forges new gear at the player's level, upgrades a tier, re-levels, and crafts legendaries. Every cost is `{ tier: amount }` in `camp.json`. Crafted items are built with `buildItem()` in `loot.js`, the same as drops. The camp scene is drawn by `drawCamp()` when the camp panel is open.
 - **Turn flow** (`js/combat.js`): `checkAnswer` → `playTurn(correct, timedOut)` → your attack or miss → pause `ENEMY_TURN_DELAY_MS` → `enemyAttacks()` rolls `enemyHitChance()` → `finishTurn()`. `turnInProgress` is true during the pause; tests wait for it to go false.
 
 ## Content rules

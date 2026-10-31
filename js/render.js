@@ -119,7 +119,10 @@ function drawFighter(fighter, size, flip) {
 // The area scene behind everything; plain colors if the image isn't ready
 function drawBackground() {
   const area = currentZone ? areaOf(currentZone) : selectedArea;
-  const background = area ? getImage(backgroundPath(area.id)) : null;
+  let background = area ? getImage(backgroundPath(area.id)) : null;
+  if (isCampOpen()) {
+    background = getImage(backgroundPath("camp"));
+  }
 
   if (background !== null) {
     ctx.drawImage(background, 0, 0, GAME_W, GAME_H);
@@ -195,6 +198,10 @@ function drawXpBar() {
   shadowText("Lv " + save.level + "  XP " + save.xp + "/" + xpToNextLevel(), x, y - 4, "#ffd166");
 }
 
+function isCampOpen() {
+  return !document.getElementById("camp-panel").hidden;
+}
+
 function draw() {
   // Work in game units: scale everything up to the canvas's real size
   ctx.setTransform(renderScale, 0, 0, renderScale, 0, 0);
@@ -221,6 +228,10 @@ function draw() {
     drawHealthBar(player, 16);
     drawHealthBar(enemy, enemySize);
     drawSpeechBubble(enemySize);
+  }
+
+  if (isCampOpen()) {
+    drawCamp();  // in camp.js
   }
 
   if (currentMode) {

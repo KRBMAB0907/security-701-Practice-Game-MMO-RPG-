@@ -14,6 +14,7 @@ let topicDomains = {}; // topic id -> domain number, built from topics.json
 let skillTree = null;  // data/skilltree.json
 let treeNodes = [];    // every skill tree node from every branch, in one list
 let ascensionData = null; // data/ascension.json
+let campData = null;   // data/camp.json: scrap names and crafting costs
 
 // A brand-new save: also used by "Reset progress"
 function newSave() {
@@ -21,7 +22,9 @@ function newSave() {
     level: 1, xp: 0, clearedZones: [], classId: null,
     inventory: [], equipped: { tool: null, armor: null, module: null }, nextItemId: 1,
     tree: {},  // skill tree points per node, e.g. { "integrity": 2 }
-    ascendancy: null, ascension: {}  // chosen ascendancy and its taken nodes
+    ascendancy: null, ascension: {},  // chosen ascendancy and its taken nodes
+    // Scrap from smelting at the home camp, one kind per loot tier
+    materials: { common: 0, uncommon: 0, rare: 0, epic: 0, legendary: 0 }
   };
 }
 

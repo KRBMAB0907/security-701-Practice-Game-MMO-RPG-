@@ -41,24 +41,35 @@ function rollTier() {
   return lootTable.tiers[lootTable.tiers.length - 1];
 }
 
-function makeItem(tier, zoneLevel) {
-  const isLegendary = tier.id === "legendary";
-  const base = randomFrom(isLegendary ? lootTable.legendaries : lootTable.bases);
-  const slot = slotById(base.slot);
-  const level = zoneLevel + tier.levelOffset;  // rarer gear needs a higher level
+// How strong an item's stat is for its tier and level.
+// Also used by the Crafter when it upgrades or re-levels an item.
+function itemValue(tier, stat, level) {
+  return Math.round(tier.stats[stat] * (1 + (level - 1) * LEVEL_STAT_BONUS));
+}
 
+// A new item of one type ("base", e.g. Port Scanner) at a tier and level.
+// Drops pick a random base; the Crafter lets the player choose.
+function buildItem(base, tier, level) {
+  const slot = slotById(base.slot);
   return {
     id: save.nextItemId++,
-    name: isLegendary ? base.name : tier.name + " " + base.name,
+    name: tier.id === "legendary" ? base.name : tier.name + " " + base.name,
     tier: tier.id,
     slot: base.slot,
     icon: base.icon,
     stat: slot.stat,
-    value: Math.round(tier.stats[slot.stat] * (1 + (level - 1) * LEVEL_STAT_BONUS)),
+    value: itemValue(tier, slot.stat, level),
     level: level,
     effect: base.effect || null,
     effectText: base.effectText || null
   };
+}
+
+function makeItem(tier, zoneLevel) {
+  const isLegendary = tier.id === "legendary";
+  const base = randomFrom(isLegendary ? lootTable.legendaries : lootTable.bases);
+  const level = zoneLevel + tier.levelOffset;  // rarer gear needs a higher level
+  return buildItem(base, tier, level);
 }
 
 // Called after winning a fight. Returns { item, kept } or null if nothing dropped.

@@ -1,0 +1,49 @@
+{
+  "materials": {
+    "common":    "Common Scrap",
+    "uncommon":  "Uncommon Scrap",
+    "rare":      "Rare Scrap",
+    "epic":      "Epic Scrap",
+    "legendary": "Legendary Core"
+  },
+
+  "smeltYield": { "common": 2, "uncommon": 2, "rare": 2, "epic": 2, "legendary": 3 },
+
+  "forgeCost": {
+    "common":   { "common": 4 },
+    "uncommon": { "uncommon": 4 },
+    "rare":     { "rare": 4 },
+    "epic":     { "epic": 4 }
+  },
+
+  "upgradeCost": {
+    "uncommon": { "common": 6 },
+    "rare":     { "uncommon": 6 },
+    "epic":     { "rare": 6 }
+  },
+
+  "relevelCost": {
+    "common":    { "common": 2 },
+    "uncommon":  { "uncommon": 2 },
+    "rare":      { "rare": 2 },
+    "epic":      { "epic": 2 },
+    "legendary": { "legendary": 1 }
+  },
+
+  "legendaryCost": { "legendary": 2, "epic": 4 },
+
+  "npcs": [
+    {
+      "id": "blacksmith",
+      "name": "Blacksmith",
+      "x": 140,
+      "greeting": "Gear you don't need? I'll melt it down to scrap. Higher tiers give rarer scrap."
+    },
+    {
+      "id": "crafter",
+      "name": "Crafter",
+      "x": 236,
+      "greeting": "Bring me scrap and I'll build you something. New gear, upgrades, or a legendary if you have the cores."
+    }
+  ]
+}

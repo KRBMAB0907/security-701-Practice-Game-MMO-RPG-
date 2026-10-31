@@ -7,7 +7,7 @@ It checks that areas, zones, enemies, skills, classes and art all link up:
 every enemy weakness can be hit by a skill in its zone, every skill's
 topics exist and have questions, IDs are unique, and so on. Run it after
 editing anything in data/areas/, data/areas.json, data/classes.json,
-data/skilltree.json or data/ascension.json.
+data/loot.json, data/camp.json, data/skilltree.json or data/ascension.json.
 """
 import json
 import sys
@@ -132,6 +132,33 @@ def main():
             for class_id in class_ids:
                 if not (ROOT / "assets" / "sprites" / "armor" / f"{icon}-{class_id}.png").exists():
                     problems.append(f"missing armor overlay assets/sprites/armor/{icon}-{class_id}.png")
+
+    # Home camp: every loot tier has a scrap and a smelt amount, every cost
+    # uses real tiers, and the camp art exists
+    camp = load("data/camp.json")
+    tier_ids = [tier["id"] for tier in loot["tiers"]]
+    for field in ("materials", "smeltYield", "relevelCost"):
+        for tier_id in tier_ids:
+            if tier_id not in camp[field]:
+                problems.append(f"data/camp.json: {field} has nothing for tier '{tier_id}'")
+    costs = [("legendaryCost", camp["legendaryCost"])]
+    for field in ("forgeCost", "upgradeCost", "relevelCost"):
+        for tier_id, cost in camp[field].items():
+            if tier_id not in tier_ids:
+                problems.append(f"data/camp.json: {field} uses unknown tier '{tier_id}'")
+            costs.append((f"{field} {tier_id}", cost))
+    if "legendary" in camp["forgeCost"] or "legendary" in camp["upgradeCost"]:
+        problems.append("data/camp.json: legendaries are made with legendaryCost, not forgeCost or upgradeCost")
+    for where, cost in costs:
+        for tier_id, amount in cost.items():
+            if tier_id not in tier_ids or amount < 1:
+                problems.append(f"data/camp.json: {where} costs {amount} of unknown or bad tier '{tier_id}'")
+    if not (ROOT / "assets" / "backgrounds" / "camp.png").exists():
+        problems.append("missing camp background assets/backgrounds/camp.png")
+    for npc in camp["npcs"]:
+        if not (ROOT / "assets" / "sprites" / "npcs" / f"{npc['id']}.png").exists():
+            problems.append(f"camp person '{npc['id']}' is missing assets/sprites/npcs/{npc['id']}.png")
+    summary.append(f"  Home camp: {len(camp['npcs'])} people, {len(camp['forgeCost'])} forge tiers")
 
     # Skill tree: ids unique, tiers valid, stats and keystones the code knows about
     tree = load("data/skilltree.json")

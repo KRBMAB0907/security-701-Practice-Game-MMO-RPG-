@@ -5,7 +5,7 @@
 // ===============================================================
 
 function showPanel(id) {
-  ["mode-panel", "class-panel", "map-panel", "gear-panel", "tree-panel", "ascension-panel", "battle-panel"].forEach(panelId => {
+  ["mode-panel", "class-panel", "map-panel", "gear-panel", "camp-panel", "tree-panel", "ascension-panel", "battle-panel"].forEach(panelId => {
     document.getElementById(panelId).hidden = panelId !== id;
   });
   // The skill tree and ascension are full screen (like Diablo 4 and Path of
