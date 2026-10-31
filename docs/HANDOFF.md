@@ -18,7 +18,17 @@ Kaleb's target: **on Learner and Hard you die in 5-8 enemy hits**, for new playe
 
 `tests/damage_calc.py` now mirrors these, counts average affixes for the `--built` player, and its targets are 5-8 for Learner and Hard. Result: every area is inside 5-8 for both players (new: Learner 5-7, Hard 5-6; built: Learner 7-8, Hard 6-7). Fun got a little tougher late (sub-bosses 6 hits instead of 7) but its margins stay positive.
 
-**Balance run (`tests/balance_built.py`, real game): pending.** All 13 browser tests and the full playthrough (33 zones, 559 questions vs 610 before, since boss fights are shorter) passed with the new numbers.
+**Balance run (`tests/balance_built.py`, real game, built player with tree and Uncommon gear):** all 13 browser tests and the full playthrough (33 zones, 559 questions vs 610 before, since boss fights are shorter) passed with the new numbers.
+
+| Mode, class, accuracy | Operations Deep deaths | Council Spire deaths | Answers per fight (normal / boss) |
+| --- | --- | --- | --- |
+| Learner, Analyst 50% | 9 | 3 | 3.0 / 4.1-4.3 |
+| Learner, Cryptographer 65% | 5 | 0 | 3.0 / 3.6-4.0 |
+| Learner, Defender 90% | 0 | 0 | 3.4 / 4.1-4.3 |
+| Hard, Cryptographer 65% | 10 | 0 | 3.0 / 3.7-4.0 |
+| Hard, Defender 75% | 1 | 0 | 3.5 / 4.3-4.5 |
+
+Findings: the Operations Deep is now the hardest area (a difficulty spike), while the Council Spire is easier than it, because players arrive there at a higher level. Bosses take about 4 right answers (the old target in `balance_built.py` was 6-8), so `BOSS_HP_SCALE` 0.75 may be a bit low; 0.85 would lengthen boss fights. Open questions for Kaleb: smooth the Operations Deep spike? Raise boss health a little?
 
 ## Previous feature: affixes and set items (2026-11-01)
 
