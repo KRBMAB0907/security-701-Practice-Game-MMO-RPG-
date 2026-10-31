@@ -51,6 +51,7 @@ body {
 #class-panel,
 #map-panel,
 #gear-panel,
+#camp-panel,
 #tree-panel,
 #battle-panel {
   grid-row: 2;
@@ -82,6 +83,7 @@ body {
   #class-panel,
   #map-panel,
   #gear-panel,
+  #camp-panel,
   #tree-panel,
   #battle-panel {
     grid-row: 1;
@@ -98,6 +100,7 @@ body {
   #class-panel,
   #map-panel,
   #gear-panel,
+  #camp-panel,
   #tree-panel,
   #battle-panel {
     font-size: 15px;
@@ -395,7 +398,8 @@ body {
   margin-bottom: 8px;
 }
 
-#area-list button {
+#area-list button,
+#camp-tabs button {
   padding: 8px 12px;
   font: inherit;
   font-size: 14px;
@@ -405,7 +409,8 @@ body {
   cursor: pointer;
 }
 
-#area-list button.selected {
+#area-list button.selected,
+#camp-tabs button.selected {
   border: 2px solid #ffd166;
   color: #ffd166;
 }
@@ -531,8 +536,73 @@ body.tree-open #tree-panel {
   cursor: not-allowed;
 }
 
-/* The tree screen has four buttons, so let them wrap on phones */
+/* The tree screen and the map have many buttons, so let them wrap on phones */
+#map-panel .small-buttons,
 #tree-panel .small-buttons {
   flex-wrap: wrap;
   margin-top: 0.5em;
+}
+
+/* ---------------------------------------------------------------
+   Home camp: Blacksmith and Crafter tabs, then their menus.
+   Item rows reuse the Gear screen's .gear-item style.
+   --------------------------------------------------------------- */
+#camp-materials {
+  color: #ffd166;
+}
+
+#camp-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+#camp-greeting {
+  color: #a8d5c0;
+  font-style: italic;
+}
+
+#camp-message {
+  color: #00ff9c;
+  min-height: 1.2em;
+}
+
+#camp-content h3 {
+  margin: 1em 0 0.3em;
+  font-size: 0.95em;
+  color: #00ff9c;
+}
+
+/* One line of choices: dropdowns, a button and the cost */
+.camp-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5em;
+  margin: 0.4em 0;
+}
+
+.camp-row small {
+  color: #7fa894;
+}
+
+#camp-content select,
+#camp-content button {
+  padding: 0.35em 0.7em;
+  font: inherit;
+  font-size: 0.8em;
+  background: #0a0e14;
+  color: #d8f3e8;
+  border: 1px solid #00ff9c;
+  cursor: pointer;
+}
+
+#camp-content .gear-item button {
+  margin: 0 0.5em 0.3em 0;
+}
+
+#camp-content button:disabled {
+  border-color: #33413a;
+  color: #5d6f66;
+  cursor: not-allowed;
 }

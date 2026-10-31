@@ -4,11 +4,28 @@ Written 2026-10-29 when the work moved to Claude Code. Read `CLAUDE.md` first fo
 
 ## Status
 
-All five areas are built and playable from level 1 to the final boss: 33 zones, 144 enemies, 69 skills, 3 classes, a 30-node skill tree, loot in five tiers with legendaries, pixel art for everything, and a screen layout that fits laptops, desktops and phones without scrolling.
+All five areas are built and playable from level 1 to the final boss: 33 zones, 144 enemies, 69 skills, 3 classes, a 30-node skill tree, loot in five tiers with legendaries, a home camp for smelting and crafting, pixel art for everything, and a screen layout that fits laptops, desktops and phones without scrolling.
 
 Last commit on GitHub: `7e335ea Claude add` (the hit-chance and dialogue feature below).
 
-## Latest feature: skill tree (not committed yet)
+## Latest feature: home camp (not committed yet)
+
+Kaleb asked for a home camp with a Blacksmith who smelts gear down and a Crafter who uses the pieces to make new gear. He chose:
+
+- **Scrap per tier:** smelting gives scrap of the item's own tier (Common, Uncommon, Rare, Epic Scrap; legendaries give Legendary Cores). 2 scrap per item, 3 cores per legendary.
+- **The Crafter does all four:** forge new gear (pick the item type and tier, Common to Epic; it's made at your level so you can wear it right away), upgrade an item one tier (up to Epic), re-level an old item to your level, and craft a legendary of your choice.
+- **No questions at camp:** it's a calm break from quizzing, just menus.
+- **A camp scene:** a "Home camp" button on the map. The game screen shows a night camp (tent, forge, anvil, campfire, workbench) with the player, the Blacksmith and the Crafter; an arrow bobs over whoever's menu is open.
+
+Costs (all in `data/camp.json`): forge 4 scrap of that tier; upgrade 6 scrap of the current tier; re-level 2 scrap of the item's tier (1 core for legendaries); legendary 2 cores + 4 Epic Scrap. Legendaries can only be crafted from cores, which only come from smelting legendaries, so crafting lets players *choose* a legendary but doesn't make them less rare (that was a settled decision). Equipped items can't be smelted (unequip first), and Rare or better asks before smelting.
+
+Files: new `data/camp.json`, `js/camp.js`, `tests/camp.py`, `assets/backgrounds/camp.png`, `assets/sprites/npcs/blacksmith.png` and `crafter.png`. Changed `index.html`, `css/style.css`, `js/state.js` (`save.materials`, `campData`), `js/loot.js` (`buildItem()` and `itemValue()` split out of `makeItem()` so crafting builds items the same way drops do), `js/render.js`, `js/sprites.js`, `js/map.js`, `js/main.js`, `tools/make_sprites.py`, `tools/check_game_data.py`, docs.
+
+**Tested 2026-10-31:** `tests/camp.py` (24 checks) passed; all 8 regression tests ran with no page errors; both checkers found no problems.
+
+**Still to do:** Kaleb playtests the camp and the costs. Ideas he might want: a "smelt all Common" button, and whether forged gear should cost more since it's made at your level.
+
+## Earlier feature: skill tree
 
 Kaleb asked for a skill tree inspired by Path of Exile 2 and Diablo 4, with the cyber theme. He chose:
 

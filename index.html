@@ -34,6 +34,7 @@
     <div id="zone-list"></div>
     <div class="small-buttons">
       <button id="change-mode-button">Change difficulty</button>
+      <button id="camp-button">Home camp</button>
       <button id="gear-button">Gear</button>
       <button id="tree-button">Skill tree</button>
       <button id="change-class-button">Change class</button>
@@ -50,6 +51,20 @@
     <div id="gear-list"></div>
     <div class="small-buttons">
       <button id="gear-back-button">Back to map</button>
+    </div>
+  </div>
+
+  <div id="camp-panel" hidden>
+    <p id="camp-materials"></p>
+    <div id="camp-tabs">
+      <button id="blacksmith-tab">Blacksmith: smelt gear</button>
+      <button id="crafter-tab">Crafter: make gear</button>
+    </div>
+    <p id="camp-greeting"></p>
+    <p id="camp-message"></p>
+    <div id="camp-content"></div>
+    <div class="small-buttons">
+      <button id="camp-back-button">Back to map</button>
     </div>
   </div>
 
@@ -94,6 +109,7 @@
   <script src="js/classes.js"></script>
   <script src="js/loot.js"></script>
   <script src="js/skilltree.js"></script>
+  <script src="js/camp.js"></script>
   <script src="js/dialogue.js"></script>
   <script src="js/sprites.js"></script>
   <script src="js/render.js"></script>

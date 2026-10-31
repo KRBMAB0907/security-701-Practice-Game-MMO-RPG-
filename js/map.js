@@ -5,7 +5,7 @@
 // ===============================================================
 
 function showPanel(id) {
-  ["mode-panel", "class-panel", "map-panel", "gear-panel", "tree-panel", "battle-panel"].forEach(panelId => {
+  ["mode-panel", "class-panel", "map-panel", "gear-panel", "camp-panel", "tree-panel", "battle-panel"].forEach(panelId => {
     document.getElementById(panelId).hidden = panelId !== id;
   });
   // The skill tree is full screen (like Diablo 4 and Path of Exile 2),
